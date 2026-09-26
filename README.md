@@ -1,6 +1,12 @@
 ﻿# Irminsul Atlas
 
-Prototipo de explorador de lore con **cronología interactiva a pantalla completa**, barra superior mínima y menú lateral plegable. El MVP completo sigue en desarrollo. Todo el contenido incluido es sintético; no son hechos de Genshin Impact.
+Prototipo de explorador de lore con **cronología interactiva a pantalla completa**, barra superior mínima y menú lateral plegable. El MVP completo sigue en desarrollo. Todo el contenido mostrado por la aplicación es sintético; no son hechos de Genshin Impact. La investigación P1 de fuentes reales permanece separada del sitio.
+
+## Trabajo con Git y GitHub
+
+Repositorio: [FranciscoCamareno/IrminsulAtlas](https://github.com/FranciscoCamareno/IrminsulAtlas). Git es el historial y mecanismo principal de recuperación. Antes de cada fase, comprobar `git status`, registrar el commit base y trabajar en una rama propia; revisar el diff, ejecutar las comprobaciones y crear commits limitados a los archivos de la tarea.
+
+La base de P1 es `2b27c63c1e51c36d6e4b83f9673509f15c4c88eb`, comprobada contra `origin/main`. La rama de esta fase es `codex/p1-cobertura-fuentes`. El ZIP de P0 sigue en `.validation/p0/` como respaldo adicional; no se elimina ni se versiona. Las cachés de investigación también quedan en `.validation/`, fuera de Git y del sitio.
 
 ## Ejecutar localmente
 
@@ -68,7 +74,18 @@ Los esquemas son la única definición de contratos; los tipos se infieren con `
 
 `MissionProvider.loadMissions()` devuelve misiones normalizadas. La implementación inicial lee el archivo local. Un futuro adaptador transformará respuestas verificadas de un proveedor a ese contrato, fuera del cliente. El cargador vuelve a validar su salida. El archivo importado actual es una **excepción manual de demostración**; no representa una importación real. No se genera ni sobrescribe contenido editorial al cargar.
 
-Todavía no hay proveedor, endpoints, credenciales, snapshots remotos, reintentos ni publicación. La promoción de una compilación candidata sobre una versión publicada corresponde a una fase posterior.
+La aplicación sigue sin adaptador real, importación productiva ni promoción de candidatos. P1 investigó un snapshot fijado de AnimeGameData fuera del cliente; sus textos originales solo están en caché local. La integración y promoción de datos corresponden a fases posteriores.
+
+La [matriz de cobertura P1](docs/validation/cobertura-fuentes.md) registra las 12 categorías, dos referencias de texto ausentes y el encuentro parcialmente muestreado. Recomendación: adaptador propio en TypeScript. La revisión humana sigue pendiente y ningún registro real está aprobado ni conectado a la UI.
+
+Para reproducir la investigación, desde la raíz:
+
+```sh
+node scripts/research/p1-coverage.mjs --download
+node scripts/research/p1-coverage.mjs --check
+```
+
+La primera orden adquiere solo los archivos faltantes del manifiesto, unos 102 MiB si no existe caché. La segunda verifica hashes y compara evidencia sin red. El lector de revisión se genera en `.validation/p1/revision-humana.html`; contiene spoilers y no forma parte del sitio. No existen todavía comandos `content:import`, `content:diff` ni `test:e2e`.
 
 ## Manejar la cronología
 
@@ -80,7 +97,7 @@ Todavía no hay proveedor, endpoints, credenciales, snapshots remotos, reintento
 
 ## Comprobaciones y límites
 
-Auditoría P0 del 25 de septiembre: [estado real, RF-01–RF-12 y brechas de integración](docs/validation/estado-actual.md). Lint, tipos, 36 pruebas y build pasan; `npm run validate` se detiene por formato previo en `docs/10-plan-integracion-lore-y-pruebas.md`. No se ha iniciado la integración de fuentes reales. El informe distingue estas comprobaciones de las validaciones históricas siguientes.
+La [auditoría P0 del 25 de septiembre](docs/validation/estado-actual.md) registra el inventario y RF-01–RF-12. La [entrega P1 del 26 de septiembre](docs/validation/cobertura-fuentes.md) actualiza Git, corrige el formato pendiente del plan 10 y documenta la investigación de fuentes. Las validaciones de cada fase se distinguen de los antecedentes históricos siguientes.
 
 Verificación del 25 de septiembre de 2026: pruebas de dominio y de interacción en DOM simulado, lint, tipos y compilación. La página principal responde HTTP 200 con el nuevo lienzo, sin el bloque de presentación anterior. Los resultados detallados están en [09-cronologia-inmersiva.md](docs/09-cronologia-inmersiva.md).
 
@@ -104,3 +121,5 @@ La agrupación actual es por época y los umbrales de zoom son iniciales. Faltan
 11. [Rediseño de la cronología y validaciones](docs/09-cronologia-inmersiva.md).
 12. [Plan de integración de lore y pruebas](docs/10-plan-integracion-lore-y-pruebas.md).
 13. [Auditoría P0 del estado actual](docs/validation/estado-actual.md).
+14. [Cobertura de fuentes P1](docs/validation/cobertura-fuentes.md).
+15. [Registro de revisión humana P1](docs/validation/p1/revision-humana.md).

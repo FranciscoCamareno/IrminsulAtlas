@@ -1,31 +1,31 @@
 # Plan de integración de lore y validación — Irminsul Atlas
 
 Fecha: 25 de septiembre de 2026, Costa Rica.
-Destino recomendado: `docs/08-plan-integracion-lore-y-pruebas.md`.
-Estado: plan propuesto; ninguna fase de implementación o prueba de la aplicación se declara completada en este documento.
+Archivo: `docs/10-plan-integracion-lore-y-pruebas.md`.
+Estado al 26/09/2026: P0 auditada; Git/GitHub verificados. P1 tiene evidencia técnica, manifiesto y decisión de lenguaje; revisión humana y puerta editorial pendientes. P2–P7 no se han ejecutado. Véanse [estado actual P0](validation/estado-actual.md) y [cobertura P1](validation/cobertura-fuentes.md).
 
 ## 1. Alcance y evidencia disponible
 
 Objetivo: incorporar material narrativo de Genshin a la cronología mediante importaciones reproducibles, conservar evidencia de cada afirmación y comprobar que el contenido se puede explorar sin errores ni spoilers accidentales.
 
-Se revisaron los nueve Markdown de `genshin-lore-documentacion.zip` y la versión disponible de `styles.md`. El README indica que el paquete es documentación y no una aplicación; `06-plan-de-trabajo.md` mantiene todas las fases pendientes. El espacio de trabajo consultado no contiene el repositorio de VS Code, `package.json`, código fuente ni resultados de pruebas de esa instalación.
+En la elaboración original de este plan se revisaron los nueve Markdown de `genshin-lore-documentacion.zip` y la versión disponible de `styles.md`. El README de aquel paquete lo describía como documentación; su `06-plan-de-trabajo.md` mantenía todas las fases pendientes. Aquel espacio consultado no contenía el repositorio de VS Code, `package.json`, código fuente ni resultados de pruebas de esa instalación.
 
-Por tanto, este análisis comprueba el estado DOCUMENTADO. No demuestra el estado del código que pueda haberse creado después en el PC. También existe una referencia a un prototipo anterior de Irminsul Atlas; no se presume que sea el mismo repositorio ni se utiliza para certificar funcionalidades actuales.
+Por tanto, el diagnóstico original de esta sección comprobaba el estado DOCUMENTADO. También existía una referencia a un prototipo anterior de Irminsul Atlas; no se utilizó para certificar funcionalidades actuales.
 
-La fase P0 debe realizarse dentro del repositorio real antes de implementar el resto. No volver a crear módulos que esa auditoría encuentre ya implementados y correctos.
+P0 se realizó después dentro del repositorio real. Los informes enlazados al inicio acreditan la implementación y los resultados comprobados; los contratos y fases siguientes de este plan siguen siendo requisitos, no funcionalidades implementadas. No volver a crear módulos que la auditoría encuentre ya implementados y correctos.
 
 ### Diagnóstico de la base documentada
 
-| Área | Evidencia disponible | Ajuste necesario |
-| --- | --- | --- |
-| Stack | Astro + React + TypeScript estricto propuestos en README y arquitectura | Confirmar dependencias y versiones efectivas en el repositorio |
-| Dominio | Eventos, entidades, fuentes, evidencias, misiones y spoilers especificados | Ampliar la entrada a libros, cartas, objetos y conversaciones ambientales |
-| Importación | Flujo genérico de API, snapshots y diferencias | Concretarlo para archivos de un repositorio fijado a un commit; no inventar endpoints |
-| Cronología | Orden narrativo por épocas, tres niveles y agrupación | Verificar implementación; conservar fecha desconocida e incertidumbre |
-| Identidad visual | `styles.md` ya define crema/carbón, tokens y comportamiento | Actualizar menciones antiguas de «estilo pendiente» al integrar esta guía |
-| Spoilers | Reglas documentadas para eventos, relaciones, conteos y metadatos | Aplicar también a fragmentos de fuentes, entidades y carga inicial de HTML |
-| Pruebas | Casos prioritarios descritos | Convertirlos en pruebas repetibles y sesiones manuales con resultados guardados |
-| Contenido real | No hay corpus revisado en los archivos consultados | Crear muestra verificable antes de ampliar a 30–50 eventos |
+| Área             | Evidencia disponible                                                       | Ajuste necesario                                                                      |
+| ---------------- | -------------------------------------------------------------------------- | ------------------------------------------------------------------------------------- |
+| Stack            | Astro + React + TypeScript estricto propuestos en README y arquitectura    | Confirmar dependencias y versiones efectivas en el repositorio                        |
+| Dominio          | Eventos, entidades, fuentes, evidencias, misiones y spoilers especificados | Ampliar la entrada a libros, cartas, objetos y conversaciones ambientales             |
+| Importación      | Flujo genérico de API, snapshots y diferencias                             | Concretarlo para archivos de un repositorio fijado a un commit; no inventar endpoints |
+| Cronología       | Orden narrativo por épocas, tres niveles y agrupación                      | Verificar implementación; conservar fecha desconocida e incertidumbre                 |
+| Identidad visual | `styles.md` ya define crema/carbón, tokens y comportamiento                | Actualizar menciones antiguas de «estilo pendiente» al integrar esta guía             |
+| Spoilers         | Reglas documentadas para eventos, relaciones, conteos y metadatos          | Aplicar también a fragmentos de fuentes, entidades y carga inicial de HTML            |
+| Pruebas          | Casos prioritarios descritos                                               | Convertirlos en pruebas repetibles y sesiones manuales con resultados guardados       |
+| Contenido real   | No hay corpus revisado en los archivos consultados                         | Crear muestra verificable antes de ampliar a 30–50 eventos                            |
 
 ## 2. Decisión de integración
 
@@ -63,14 +63,14 @@ El sitio publicado sigue siendo estático. No se añade base de datos, autentica
 
 Reutilizar los esquemas existentes cuando P0 los encuentre. Los nombres siguientes son responsabilidades propuestas, no archivos o APIs que ya existan.
 
-| Concepto | Información mínima |
-| --- | --- |
+| Concepto         | Información mínima                                                                                                                    |
+| ---------------- | ------------------------------------------------------------------------------------------------------------------------------------- |
 | SnapshotManifest | Proveedor, commit completo, fecha de adquisición, versión declarada si existe, idiomas, versión del adaptador, inventario y checksums |
-| SourceRecord | ID interno estable, tipo de fuente, ID externo cuando exista, idioma, título, versión de fuente y localizador original |
-| SourceSegment | ID/localizador verificable, contenido, hablante si está disponible, orden y ramas cuando existan, hash del texto original |
-| Evidence | Fuente y segmento, afirmación respaldada, localizador, revisión y observaciones |
-| LoreEvent | Modelo editorial ya previsto: tiempo, época, importancia, resumen, participantes, evidencias y spoilers |
-| ImportReport | Conteos por categoría, registros procesados/omitidos, textos sin resolver, errores, cambios y versión candidata |
+| SourceRecord     | ID interno estable, tipo de fuente, ID externo cuando exista, idioma, título, versión de fuente y localizador original                |
+| SourceSegment    | ID/localizador verificable, contenido, hablante si está disponible, orden y ramas cuando existan, hash del texto original             |
+| Evidence         | Fuente y segmento, afirmación respaldada, localizador, revisión y observaciones                                                       |
+| LoreEvent        | Modelo editorial ya previsto: tiempo, época, importancia, resumen, participantes, evidencias y spoilers                               |
+| ImportReport     | Conteos por categoría, registros procesados/omitidos, textos sin resolver, errores, cambios y versión candidata                       |
 
 Tipos de fuente iniciales: misión, conversación ambiental, libro/documento, historia de personaje, historia de arma, historia de artefacto y descripción de objeto. Añadir otros tipos cuando un caso real lo requiera. Manga o vídeos oficiales se incorporan como referencias editoriales externas; no asumir que están contenidos en el dump.
 
@@ -89,16 +89,16 @@ Reglas obligatorias:
 
 ### Ubicaciones propuestas, sujetas a P0
 
-| Ruta | Responsabilidad |
-| --- | --- |
-| `scripts/import/` | Adquisición manual, adaptador, normalización e informes |
-| `src/domain/` | Tipos y reglas reutilizables; sin dependencias de UI o proveedor |
-| `src/data/editorial/` y `src/content/` | Eventos, relaciones y explicaciones humanas |
-| `src/data/generated/` | Datos generados validados; nunca corregirlos a mano |
-| `tests/fixtures/import/` | Casos mínimos versionados y casos de error |
-| `tests/e2e/` | Flujos de navegador sobre la salida compilada |
-| `docs/validation/` | Auditoría, cobertura, resultados manuales y decisiones |
-| Caché fuera de `public/` | Datos brutos y candidatos; ignorados por Git según tamaño |
+| Ruta                                   | Responsabilidad                                                  |
+| -------------------------------------- | ---------------------------------------------------------------- |
+| `scripts/import/`                      | Adquisición manual, adaptador, normalización e informes          |
+| `src/domain/`                          | Tipos y reglas reutilizables; sin dependencias de UI o proveedor |
+| `src/data/editorial/` y `src/content/` | Eventos, relaciones y explicaciones humanas                      |
+| `src/data/generated/`                  | Datos generados validados; nunca corregirlos a mano              |
+| `tests/fixtures/import/`               | Casos mínimos versionados y casos de error                       |
+| `tests/e2e/`                           | Flujos de navegador sobre la salida compilada                    |
+| `docs/validation/`                     | Auditoría, cobertura, resultados manuales y decisiones           |
+| Caché fuera de `public/`               | Datos brutos y candidatos; ignorados por Git según tamaño        |
 
 No añadir capas vacías ni duplicar un modelo que ya sea válido. Los artefactos públicos se generan a partir de una lista explícita de archivos, nunca copiando la caché completa.
 
@@ -225,36 +225,36 @@ Puerta: fallo de descarga, esquema incompatible o traducción ausente no reempla
 
 Usar el ejecutor de pruebas existente. Si falta, Vitest para TypeScript y Playwright para flujos de navegador son opciones coherentes; si se adopta Python, probar el extractor en su propio entorno y validar también el contrato JSON en TypeScript. Verificar versiones compatibles al instalar. No imponer un porcentaje de cobertura de líneas como sustituto de estos casos.
 
-| ID | Caso y estímulo | Resultado esperado | Nivel |
-| --- | --- | --- | --- |
-| IMP-01 | Texto presente solo en Medium | Se resuelve y conserva su referencia | Adaptador |
-| IMP-02 | Mismo hash con traducciones incompatibles | Conflicto explícito; no sobrescritura silenciosa | Adaptador |
-| IMP-03 | Campo ofuscado desconocido en fixture | Error explicable o cuarentena; nunca éxito vacío | Adaptador |
-| IMP-04 | JSON truncado, archivo ausente o descarga interrumpida | Candidato rechazado; snapshot válido intacto | Integración |
-| IMP-05 | Falta español de un segmento requerido | Informe con ID; no fallback silencioso | Adaptador |
-| IMP-06 | Diálogo con opciones y narrador desconocido | Ramas preservadas; hablante desconocido explícito | Adaptador |
-| IMP-07 | Dos importaciones idénticas | Salida normalizada equivalente y sin duplicados | Integración |
-| IMP-08 | Fuente cambia o desaparece | Eventos vinculados marcados para revisión; no borrados | Integración |
-| DOM-01 | ID duplicado o referencia rota | Validación falla con localizador | Dominio |
-| DOM-02 | Fecha desconocida, rango inválido y orden relativo | Incertidumbre preservada; rango inválido rechazado | Dominio |
-| DOM-03 | Ciclo causal/asociativo frente a ciclo de anterioridad estricta | No prohibir asociaciones cíclicas; detectar restricción temporal imposible | Dominio |
-| DOM-04 | Misión y eventos en relación muchos-a-muchos | Evidencias independientes y consultables | Dominio |
-| SEC-01 | Texto importado contiene script, HTML o URL peligrosa | Se muestra como texto seguro o se rechaza; nunca se ejecuta | Integración/UI |
-| SPO-01 | Evento no autorizado | Ausente de UI, resultados, sugerencias, conteos y grupos | Dominio/E2E |
-| SPO-02 | Extremos visibles, relación con spoiler propio | Relación y explicación ocultas | Dominio/E2E |
-| SPO-03 | Fuente compartida contiene un fragmento posterior | Solo evidencia autorizada; no abrir texto completo por defecto | Integración/E2E |
-| SPO-04 | URL de evento bloqueado en sesión nueva | HTML inicial, título y metadatos neutros; sin destello de spoiler | E2E/build |
-| SPO-05 | Reducir progreso con una ficha abierta | Desaparecen selección, detalle, relaciones y resultados no permitidos | E2E |
-| SPO-06 | URL solicita ampliar progreso | No modifica permisos personales automáticamente | E2E |
-| UI-01 | Buscar por alias y seleccionar | Ficha y evento correctos; contexto temporal visible | E2E |
-| UI-02 | Zoom cerca del umbral, abrir/cerrar panel | Sin parpadeos repetidos ni reinicio del contexto | E2E/manual |
-| UI-03 | Seguir relación lejana y regresar | Vuelve a selección/filtros/contexto acordado | E2E |
-| UI-04 | Aplicar filtros, lista y cronología | Mismo conjunto de eventos autorizados; sin confundir agrupación con ausencia | E2E |
-| UI-05 | Filtro vacío, ID inválido y detalle 404 | Mensaje útil, limpiar/reintentar/volver; sin pantalla rota | E2E |
-| UI-06 | Atrás/adelante, recargar y storage bloqueado | Estado documentado; funcionamiento esencial conservado | E2E |
-| UI-07 | Teclado, Escape y cierre de ficha | Sin trampa de foco y retorno al control válido | E2E/manual |
-| OPS-01 | Bloquear dominios del proveedor al navegar | Sitio y detalles publicados siguen funcionando | E2E |
-| OPS-02 | Fallar promoción y restaurar salida anterior | Datos editoriales intactos; reconstrucción válida | Integración |
+| ID     | Caso y estímulo                                                 | Resultado esperado                                                           | Nivel           |
+| ------ | --------------------------------------------------------------- | ---------------------------------------------------------------------------- | --------------- |
+| IMP-01 | Texto presente solo en Medium                                   | Se resuelve y conserva su referencia                                         | Adaptador       |
+| IMP-02 | Mismo hash con traducciones incompatibles                       | Conflicto explícito; no sobrescritura silenciosa                             | Adaptador       |
+| IMP-03 | Campo ofuscado desconocido en fixture                           | Error explicable o cuarentena; nunca éxito vacío                             | Adaptador       |
+| IMP-04 | JSON truncado, archivo ausente o descarga interrumpida          | Candidato rechazado; snapshot válido intacto                                 | Integración     |
+| IMP-05 | Falta español de un segmento requerido                          | Informe con ID; no fallback silencioso                                       | Adaptador       |
+| IMP-06 | Diálogo con opciones y narrador desconocido                     | Ramas preservadas; hablante desconocido explícito                            | Adaptador       |
+| IMP-07 | Dos importaciones idénticas                                     | Salida normalizada equivalente y sin duplicados                              | Integración     |
+| IMP-08 | Fuente cambia o desaparece                                      | Eventos vinculados marcados para revisión; no borrados                       | Integración     |
+| DOM-01 | ID duplicado o referencia rota                                  | Validación falla con localizador                                             | Dominio         |
+| DOM-02 | Fecha desconocida, rango inválido y orden relativo              | Incertidumbre preservada; rango inválido rechazado                           | Dominio         |
+| DOM-03 | Ciclo causal/asociativo frente a ciclo de anterioridad estricta | No prohibir asociaciones cíclicas; detectar restricción temporal imposible   | Dominio         |
+| DOM-04 | Misión y eventos en relación muchos-a-muchos                    | Evidencias independientes y consultables                                     | Dominio         |
+| SEC-01 | Texto importado contiene script, HTML o URL peligrosa           | Se muestra como texto seguro o se rechaza; nunca se ejecuta                  | Integración/UI  |
+| SPO-01 | Evento no autorizado                                            | Ausente de UI, resultados, sugerencias, conteos y grupos                     | Dominio/E2E     |
+| SPO-02 | Extremos visibles, relación con spoiler propio                  | Relación y explicación ocultas                                               | Dominio/E2E     |
+| SPO-03 | Fuente compartida contiene un fragmento posterior               | Solo evidencia autorizada; no abrir texto completo por defecto               | Integración/E2E |
+| SPO-04 | URL de evento bloqueado en sesión nueva                         | HTML inicial, título y metadatos neutros; sin destello de spoiler            | E2E/build       |
+| SPO-05 | Reducir progreso con una ficha abierta                          | Desaparecen selección, detalle, relaciones y resultados no permitidos        | E2E             |
+| SPO-06 | URL solicita ampliar progreso                                   | No modifica permisos personales automáticamente                              | E2E             |
+| UI-01  | Buscar por alias y seleccionar                                  | Ficha y evento correctos; contexto temporal visible                          | E2E             |
+| UI-02  | Zoom cerca del umbral, abrir/cerrar panel                       | Sin parpadeos repetidos ni reinicio del contexto                             | E2E/manual      |
+| UI-03  | Seguir relación lejana y regresar                               | Vuelve a selección/filtros/contexto acordado                                 | E2E             |
+| UI-04  | Aplicar filtros, lista y cronología                             | Mismo conjunto de eventos autorizados; sin confundir agrupación con ausencia | E2E             |
+| UI-05  | Filtro vacío, ID inválido y detalle 404                         | Mensaje útil, limpiar/reintentar/volver; sin pantalla rota                   | E2E             |
+| UI-06  | Atrás/adelante, recargar y storage bloqueado                    | Estado documentado; funcionamiento esencial conservado                       | E2E             |
+| UI-07  | Teclado, Escape y cierre de ficha                               | Sin trampa de foco y retorno al control válido                               | E2E/manual      |
+| OPS-01 | Bloquear dominios del proveedor al navegar                      | Sitio y detalles publicados siguen funcionando                               | E2E             |
+| OPS-02 | Fallar promoción y restaurar salida anterior                    | Datos editoriales intactos; reconstrucción válida                            | Integración     |
 
 Las pruebas corrientes usan fixtures fijados y no dependen de la red. La actualización de proveedor tiene una comprobación separada sobre un snapshot candidato. No actualizar resultados esperados automáticamente para hacer pasar una regresión.
 
@@ -276,15 +276,15 @@ Propuesta: combinar personas familiarizadas con Genshin y personas poco familiar
 
 No explicar qué botón pulsar. Pedir tareas y observar el recorrido. Limitar cada sesión a unos 20–30 minutos.
 
-| Tarea | Qué observar | Criterio propuesto |
-| --- | --- | --- |
-| Encontrar un evento por tema o personaje | Comprende búsqueda y filtros | 4 de 5 completan sin ayuda en menos de 90 s |
-| Abrir una fuente que respalde una afirmación | Distingue resumen de evidencia y localiza fragmento | 4 de 5 en menos de 60 s |
-| Acercarse a una época y volver a la vista general | Descubre zoom y restablecer | 4 de 5 sin perderse ni necesitar instrucciones |
-| Seguir una relación lejana y regresar | Mantiene orientación y selección | 4 de 5 completan sin reiniciar su exploración |
-| Ajustar progreso y abrir enlace bloqueado | Entiende el aviso y conserva control | Cero revelaciones accidentales en los casos probados |
-| Explicar fecha incierta y separación entre eventos | No interpreta distancia como duración real | 4 de 5 explican correctamente ambas ideas |
-| Repetir búsqueda y lectura en móvil/lista | Puede usar la alternativa sin gestos precisos | Flujo completo sin bloqueo de controles o texto |
+| Tarea                                              | Qué observar                                        | Criterio propuesto                                   |
+| -------------------------------------------------- | --------------------------------------------------- | ---------------------------------------------------- |
+| Encontrar un evento por tema o personaje           | Comprende búsqueda y filtros                        | 4 de 5 completan sin ayuda en menos de 90 s          |
+| Abrir una fuente que respalde una afirmación       | Distingue resumen de evidencia y localiza fragmento | 4 de 5 en menos de 60 s                              |
+| Acercarse a una época y volver a la vista general  | Descubre zoom y restablecer                         | 4 de 5 sin perderse ni necesitar instrucciones       |
+| Seguir una relación lejana y regresar              | Mantiene orientación y selección                    | 4 de 5 completan sin reiniciar su exploración        |
+| Ajustar progreso y abrir enlace bloqueado          | Entiende el aviso y conserva control                | Cero revelaciones accidentales en los casos probados |
+| Explicar fecha incierta y separación entre eventos | No interpreta distancia como duración real          | 4 de 5 explican correctamente ambas ideas            |
+| Repetir búsqueda y lectura en móvil/lista          | Puede usar la alternativa sin gestos precisos       | Flujo completo sin bloqueo de controles o texto      |
 
 Son umbrales iniciales del proyecto, no resultados ni normas universales. Con muestra tan pequeña, guardar también número de éxitos, errores y observaciones; no presentar porcentajes como evidencia estadística fuerte.
 
@@ -307,14 +307,14 @@ Medir sobre la compilación de producción local, no solo el servidor de desarro
 
 Objetivos iniciales propuestos:
 
-| Medida | Objetivo y método |
-| --- | --- |
-| Índice de 30–50 eventos | Hasta 250 KB comprimidos, excluyendo textos extensos e imágenes; registrar tamaño real |
-| Búsqueda/filtros | p95 ≤ 200 ms desde la acción hasta resultados visibles, con detalles ya disponibles; mínimo 30 acciones |
-| Abrir ficha ya cargada | p95 ≤ 200 ms con el mismo protocolo |
-| Zoom/arrastre | Respuesta continua; investigar tareas del hilo principal > 50 ms vinculadas al gesto en trazas |
-| Página inicial | Objetivo de laboratorio LCP ≤ 2,5 s y CLS ≤ 0,1 bajo condiciones fijadas; guardar mediana de tres ejecuciones |
-| Escalado de datos | Comparar 50 eventos reales y 500 sintéticos densos; renderizado limitado al viewport y agrupaciones |
+| Medida                  | Objetivo y método                                                                                             |
+| ----------------------- | ------------------------------------------------------------------------------------------------------------- |
+| Índice de 30–50 eventos | Hasta 250 KB comprimidos, excluyendo textos extensos e imágenes; registrar tamaño real                        |
+| Búsqueda/filtros        | p95 ≤ 200 ms desde la acción hasta resultados visibles, con detalles ya disponibles; mínimo 30 acciones       |
+| Abrir ficha ya cargada  | p95 ≤ 200 ms con el mismo protocolo                                                                           |
+| Zoom/arrastre           | Respuesta continua; investigar tareas del hilo principal > 50 ms vinculadas al gesto en trazas                |
+| Página inicial          | Objetivo de laboratorio LCP ≤ 2,5 s y CLS ≤ 0,1 bajo condiciones fijadas; guardar mediana de tres ejecuciones |
+| Escalado de datos       | Comparar 50 eventos reales y 500 sintéticos densos; renderizado limitado al viewport y agrupaciones           |
 
 Si no se alcanza un objetivo, identificar primero el cuello de botella: índice demasiado grande, renderizado excesivo, texto en el bundle o recomputaciones. No migrar a Canvas/WebGL sin medir el beneficio y mantener lista accesible.
 
@@ -326,15 +326,15 @@ Las cifras anteriores son presupuestos propuestos, no mediciones del sistema ni 
 
 P0 debe reutilizar los comandos existentes y documentar su equivalencia. Si faltan, proponer scripts para estas responsabilidades:
 
-| Comando propuesto | Responsabilidad |
-| --- | --- |
-| `npm run check` | Comprobación de tipos y validaciones del framework |
-| `npm run test` | Pruebas de dominio/adaptador sin red |
-| `npm run content:import` | Importación explícita de snapshot identificado a candidato |
-| `npm run content:validate` | Esquemas, referencias, evidencia y estados editoriales |
-| `npm run content:diff` | Diferencias con importación aceptada anterior |
-| `npm run build` | Generación estática desde datos aceptados; no descarga implícita |
-| `npm run test:e2e` | Pruebas sobre salida compilada servida localmente |
+| Comando propuesto          | Responsabilidad                                                  |
+| -------------------------- | ---------------------------------------------------------------- |
+| `npm run check`            | Comprobación de tipos y validaciones del framework               |
+| `npm run test`             | Pruebas de dominio/adaptador sin red                             |
+| `npm run content:import`   | Importación explícita de snapshot identificado a candidato       |
+| `npm run content:validate` | Esquemas, referencias, evidencia y estados editoriales           |
+| `npm run content:diff`     | Diferencias con importación aceptada anterior                    |
+| `npm run build`            | Generación estática desde datos aceptados; no descarga implícita |
+| `npm run test:e2e`         | Pruebas sobre salida compilada servida localmente                |
 
 Estos comandos no existen por el hecho de aparecer aquí. Codex debe crearlos o informar los nombres reales antes de indicar que pueden ejecutarse. El mecanismo de promoción/restauración de datos se define en P2 y se documenta en P7.
 
@@ -347,7 +347,7 @@ Enviar uno por fase. El primer prompt es una auditoría; los siguientes autoriza
 ### Prompt P0 — Auditoría real
 
 ```text
-Lee AGENTS.md, README.md y docs/, incluido docs/08-plan-integracion-lore-y-pruebas.md y styles.md. Audita el repositorio actual: dependencias, scripts, dominio, contenido, rutas, explorador, spoilers y pruebas. Preserva los cambios existentes. No confundas documentación con implementación. Ejecuta las comprobaciones disponibles y separa fallos previos de trabajo pendiente. Crea docs/validation/estado-actual.md con RF-01 a RF-12, evidencia concreta, brechas y archivos que habría que modificar. Reordena el plan solo si el código lo justifica. No instales todavía un extractor ni conectes un proveedor, y no despliegues. Si falta la base ejecutable, indica el incremento mínimo previo a P1. Termina con el primer paso recomendado y sus criterios de aceptación.
+Lee AGENTS.md, README.md y docs/, incluido docs/10-plan-integracion-lore-y-pruebas.md y styles.md. Audita el repositorio actual: dependencias, scripts, dominio, contenido, rutas, explorador, spoilers y pruebas. Preserva los cambios existentes. No confundas documentación con implementación. Ejecuta las comprobaciones disponibles y separa fallos previos de trabajo pendiente. Crea docs/validation/estado-actual.md con RF-01 a RF-12, evidencia concreta, brechas y archivos que habría que modificar. Reordena el plan solo si el código lo justifica. No instales todavía un extractor ni conectes un proveedor, y no despliegues. Si falta la base ejecutable, indica el incremento mínimo previo a P1. Termina con el primer paso recomendado y sus criterios de aceptación.
 ```
 
 ### Prompt P1 — Prueba de cobertura
@@ -386,7 +386,7 @@ Este plan desarrolla sobre todo la fase 4 del documento original y la conecta co
 
 Listo para solicitar publicación cuando:
 
-- [ ] P0 acredita el estado real y documenta las decisiones aplicadas.
+- [x] P0 acredita el estado real y documenta las decisiones aplicadas; el punto Git se verificó al iniciar P1.
 - [ ] Snapshot, adaptador y contenido editorial pueden reconstruir el resultado.
 - [ ] La importación informa ausencias y no promueve candidatos inválidos.
 - [ ] Los 30–50 eventos del MVP tienen revisión, evidencias y reglas de spoilers.
@@ -397,7 +397,7 @@ Listo para solicitar publicación cuando:
 - [ ] La actualización y recuperación conservan la última versión válida.
 - [ ] README, modelo, integración y plan reflejan los módulos y comandos efectivos.
 
-No se ha ejecutado ninguno de estos criterios sobre el repositorio local del usuario durante la elaboración de este documento. Para una auditoría específica del código es necesario compartir ese repositorio o ejecutar P0 allí y proporcionar su informe.
+La elaboración original del plan no ejecutó estos criterios sobre el repositorio. La auditoría P0 y la investigación técnica P1 se realizaron después y tienen informes enlazados al inicio. Las casillas restantes y la revisión humana de P1 siguen pendientes.
 
 ## 11. Referencias y procedencia
 

@@ -1,5 +1,7 @@
 # P0 — Auditoría del estado actual
 
+> Actualización del 26/09/2026: Git ya está disponible y `origin` apunta a GitHub. El commit `2b27c63c1e51c36d6e4b83f9673509f15c4c88eb` es la base comprobada de P1; Git sustituye al ZIP como historial principal, conservando este último como respaldo. El formato del plan se corrige en P1. Véase [la entrega de cobertura](cobertura-fuentes.md). El resto de este informe conserva la evidencia histórica de P0.
+
 Fecha: 25 de septiembre de 2026, Costa Rica. Carpeta auditada: `C:\IrminsulAtlas`. Alcance: inspección, comprobaciones existentes y documentación. No se implementaron P1–P7, no se adquirieron fuentes externas y no se desplegó el sitio.
 
 ## Resultado

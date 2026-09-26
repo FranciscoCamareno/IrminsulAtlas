@@ -10,6 +10,7 @@ Respeta las instrucciones actuales del usuario y cualquier instrucción de mayor
 
 - Inspecciona primero el repositorio, scripts, dependencias e instrucciones existentes.
 - Conserva cambios del usuario; evita reestructurar partes ajenas a la tarea.
+- Usa Git como historial y punto de recuperación principal: revisa el estado, identifica el commit base y trabaja en una rama de la fase. Incluye en cada commit solo archivos de la tarea. El remoto `origin` es GitHub. Conserva el ZIP local de P0 como respaldo adicional hasta que el usuario autorice eliminarlo; no lo uses como fuente de trabajo ni lo añadas al repositorio.
 - Implementa la fase solicitada. No añadas infraestructura o funcionalidades posteriores sin necesidad.
 - Explica las suposiciones y registra decisiones materiales.
 - Usa versiones estables compatibles verificadas al implementar y conserva el archivo de bloqueo de dependencias.

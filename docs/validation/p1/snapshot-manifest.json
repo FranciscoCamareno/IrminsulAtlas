@@ -1,0 +1,725 @@
+{
+  "manifestVersion": 1,
+  "purpose": "P1 coverage research only; not a published lore snapshot",
+  "repository": "https://github.com/DimbreathBot/AnimeGameData",
+  "commit": "b061b403c8afc7bca633cf4f201edc4a3baa75fe",
+  "commitDate": "2026-09-22T01:55:58Z",
+  "gitTree": "58b95a51a70564c3c097f4d3c239521865f20396",
+  "providerDeclaredBuild": {
+    "value": "CNRELWin7.1.0_R48145775_S48131320_D48145775",
+    "sourceCommit": "9587d1afbd9ab0419cdd00dc05ecd114b9e3fe99",
+    "note": "Provider commit label; not a historical date for lore events"
+  },
+  "language": "ES",
+  "projectBaseCommit": "2b27c63c1e51c36d6e4b83f9673509f15c4c88eb",
+  "probeVersion": 1,
+  "cacheDirectory": ".validation/p1/raw",
+  "humanReview": "pending",
+  "acquisition": {
+    "fileCount": 100,
+    "bytes": 106693778,
+    "policy": "Only Spanish TextMap dictionaries, selected lookup tables and individual sample files; no full clone or complete Dialog/Talk Excel tables"
+  },
+  "files": [
+    {
+      "path": "BinOutput/CodexQuest/1000.json",
+      "bytes": 66852,
+      "sha256": "e42021c825aa239fa8eada8020e0043c07de38af42ce7085ef81499cc65951ce",
+      "gitBlobSha1": "e1e7ddcb222820597a2780ac8d15887047a7987a",
+      "acquiredAt": "2026-09-26T17:09:19.369Z"
+    },
+    {
+      "path": "BinOutput/Quest/10007.json",
+      "bytes": 26738,
+      "sha256": "b81fbe073291d1854392dfeb2bbe72c299893a5c9b4f9a7fe28a4a7ec4631918",
+      "gitBlobSha1": "9bb010353eca8a16741c547b6548d128190f7dd0",
+      "acquiredAt": "2026-09-26T17:10:18.116Z"
+    },
+    {
+      "path": "BinOutput/Quest/19001.json",
+      "bytes": 12358,
+      "sha256": "df8d07a1f65a6079555639d6334e5dd1a17e67cf4ff10597e8eb4472f21b52ed",
+      "gitBlobSha1": "4ba2ece7dcfbca61a9f489a3b75b5b2f846d4126",
+      "acquiredAt": "2026-09-26T17:10:18.513Z"
+    },
+    {
+      "path": "BinOutput/Quest/352.json",
+      "bytes": 6776,
+      "sha256": "7ecb163381c27f1b6089186cfa55f8864251998adab383294dc98ae72ef03b0c",
+      "gitBlobSha1": "d488857a47a65d052f3335888262b9de9982f6a3",
+      "acquiredAt": "2026-09-26T17:08:40.871Z"
+    },
+    {
+      "path": "BinOutput/Quest/40250.json",
+      "bytes": 22831,
+      "sha256": "d6a09d6cd9702ee3ea92594721d9c08305249ca2b1c30bc74cff85ef8ca0e3c1",
+      "gitBlobSha1": "ae2869070538dc26567721a67dc40f4e732086ec",
+      "acquiredAt": "2026-09-26T17:10:18.118Z"
+    },
+    {
+      "path": "BinOutput/Quest/41111.json",
+      "bytes": 20689,
+      "sha256": "ba791cf0c37ccf0c4dda0741dfd4e04d677692e2b9f5fe601cf589be9fb0687b",
+      "gitBlobSha1": "a0b42d99af53ad3fc0f096a5e01378b7e83033b4",
+      "acquiredAt": "2026-09-26T17:10:18.100Z"
+    },
+    {
+      "path": "BinOutput/Quest/451.json",
+      "bytes": 10560,
+      "sha256": "b3f00d171656129fa28f30d77e70aa6b3ecb302f8845df105f27de3c2b8c09dd",
+      "gitBlobSha1": "30945ed554dc85329936c4d4672afe88049db12d",
+      "acquiredAt": "2026-09-26T17:09:19.274Z"
+    },
+    {
+      "path": "BinOutput/Talk/Coop/1900102_10.json",
+      "bytes": 1390,
+      "sha256": "40206f6e405f9430f4fdcf5a0a276577a1b446f36d5ae9f8a12575b35814ba5e",
+      "gitBlobSha1": "cb4b16d47fb197575089f91da5ca630e4e7e2332",
+      "acquiredAt": "2026-09-26T17:12:20.079Z"
+    },
+    {
+      "path": "BinOutput/Talk/Coop/1900102_7.json",
+      "bytes": 8720,
+      "sha256": "3c4513b68e6f96bdd49a59590bf1e989283f3c3965f5d1b0be5673194ead6144",
+      "gitBlobSha1": "8201eca4adb305a41a06a645742ca72a8e6bf562",
+      "acquiredAt": "2026-09-26T17:12:20.065Z"
+    },
+    {
+      "path": "BinOutput/Talk/Npc/100103.json",
+      "bytes": 881,
+      "sha256": "5c135247b46441bf7dc1e027ec0a969d5f00c17fc22a2f1807e3c48a68e9a34c",
+      "gitBlobSha1": "aaefa59af9cc8f4e2dad0b47e84e00a3f60cf4d9",
+      "acquiredAt": "2026-09-26T17:10:18.476Z"
+    },
+    {
+      "path": "BinOutput/Talk/Npc/40189.json",
+      "bytes": 428,
+      "sha256": "0e42c13c9c4fb47e15cf09ff17284a847a43810e3ee69589267f5b445c48450e",
+      "gitBlobSha1": "f234ee21fe34d5552d3c198fda7892fea944a18a",
+      "acquiredAt": "2026-09-26T17:14:26.779Z"
+    },
+    {
+      "path": "BinOutput/Talk/Npc/40190.json",
+      "bytes": 3246,
+      "sha256": "69270fc5afae0749ceec1dfb7e9538e619f3e5dce6a0bf606b083fe24d904d76",
+      "gitBlobSha1": "e4ef4acc7fea0d47c5d13c87d4eeb167015880a6",
+      "acquiredAt": "2026-09-26T17:14:26.792Z"
+    },
+    {
+      "path": "BinOutput/Talk/Npc/40191.json",
+      "bytes": 2807,
+      "sha256": "641db62e499709fe640344c481a6e18f01b6a1589bb2addd329e9770655bcc99",
+      "gitBlobSha1": "85db5242e396557dc37b45a32a134988f72cdb59",
+      "acquiredAt": "2026-09-26T17:14:26.791Z"
+    },
+    {
+      "path": "BinOutput/Talk/Npc/40193.json",
+      "bytes": 822,
+      "sha256": "584e0cf777ccb9ceb987a6868a3191db8248a431aa6afc29884f1538c9129b01",
+      "gitBlobSha1": "04c8b03da2d0f4059e61ea7d1a39a4bda609cfec",
+      "acquiredAt": "2026-09-26T17:14:27.162Z"
+    },
+    {
+      "path": "BinOutput/Talk/Npc/50001.json",
+      "bytes": 889,
+      "sha256": "30bd23aab9cf469d25a247046fc6a961fbff5869f19a65840a654002ec06a56b",
+      "gitBlobSha1": "885c955804251df99af13adfca18934e54badad7",
+      "acquiredAt": "2026-09-26T17:12:58.950Z"
+    },
+    {
+      "path": "BinOutput/Talk/Npc/50002.json",
+      "bytes": 1321,
+      "sha256": "41edc3391283a16b29db739133b0163a6596de0de64deab53e4ebd500ce50458",
+      "gitBlobSha1": "b0ae8e747bccf3938a6a93988697ac255fb8bcfb",
+      "acquiredAt": "2026-09-26T17:12:58.971Z"
+    },
+    {
+      "path": "BinOutput/Talk/Npc/50003.json",
+      "bytes": 1321,
+      "sha256": "774cc74d98201d6271d4d1681132c61d39812a4b26ac71dca92dc550d31818ee",
+      "gitBlobSha1": "25a0228693ad1d18965a628acfbb9b88c522933e",
+      "acquiredAt": "2026-09-26T17:12:58.965Z"
+    },
+    {
+      "path": "BinOutput/Talk/Npc/6146501.json",
+      "bytes": 852,
+      "sha256": "f69f3abbde084a538f85ce33ebe9d31d702b3eb85c3c0eacd87a1189c0c5f616",
+      "gitBlobSha1": "4e33d8681cb9c6b83e23b09178a6171bb5ff3fa7",
+      "acquiredAt": "2026-09-26T17:14:27.159Z"
+    },
+    {
+      "path": "BinOutput/Talk/Npc/6146502.json",
+      "bytes": 2029,
+      "sha256": "3ff5a11f040e712ab6fe24d50013b84b04ff01669369067d19c1ed5f5ccb6699",
+      "gitBlobSha1": "1a7edcc7261a6b4944ae3e32d7aaee0efb1c711b",
+      "acquiredAt": "2026-09-26T17:14:27.154Z"
+    },
+    {
+      "path": "BinOutput/Talk/Npc/6146503.json",
+      "bytes": 2031,
+      "sha256": "cc68206f5dc17cfa06e09c776222f0c0f43ee97af542baccdf0bd9e5ecef70b0",
+      "gitBlobSha1": "ddeadb94c6010f2b2c64e4d1b812cb2622df5da4",
+      "acquiredAt": "2026-09-26T17:14:27.520Z"
+    },
+    {
+      "path": "BinOutput/Talk/NpcGroup/1465.json",
+      "bytes": 2671,
+      "sha256": "f22a72095753c4d89c36b3ebdfee0f0e6d5c7083938a90afb824551613447769",
+      "gitBlobSha1": "e7435fc945441aaa2d8f05508d0d4dd281178b1f",
+      "acquiredAt": "2026-09-26T17:13:51.085Z"
+    },
+    {
+      "path": "BinOutput/Talk/Quest/1000701.json",
+      "bytes": 15845,
+      "sha256": "5502e26c6ca0eb69535ea742d2f32e824cdaebe780409bf25fc70cf0b055c0a3",
+      "gitBlobSha1": "bc9c00844f71caab9195475999fafc644d21f094",
+      "acquiredAt": "2026-09-26T17:10:47.420Z"
+    },
+    {
+      "path": "BinOutput/Talk/Quest/1000702.json",
+      "bytes": 396,
+      "sha256": "8e2acfae8271daf79c8df9a3e175a732bca766b8b9912d4ce2f2f0404c207b3d",
+      "gitBlobSha1": "0cef360f1dc3888fcd21d5895d236528717de6c1",
+      "acquiredAt": "2026-09-26T17:11:47.392Z"
+    },
+    {
+      "path": "BinOutput/Talk/Quest/1000703.json",
+      "bytes": 397,
+      "sha256": "7bffb7595d3ec6782b49e3420e57399c0ddf603d7e98f2714a871dd36dadbc8f",
+      "gitBlobSha1": "16b39f5a3a15b9464aca77e36f92062392b9e644",
+      "acquiredAt": "2026-09-26T17:11:47.370Z"
+    },
+    {
+      "path": "BinOutput/Talk/Quest/1000704.json",
+      "bytes": 3599,
+      "sha256": "7b43a9182531793ee2fc044af2e46e6b09416086c1ba7432d32c59f8a35e17db",
+      "gitBlobSha1": "846761fa3429d5aa1d9d323c220c330609a7a02b",
+      "acquiredAt": "2026-09-26T17:11:47.385Z"
+    },
+    {
+      "path": "BinOutput/Talk/Quest/1000705.json",
+      "bytes": 798,
+      "sha256": "0d3b43024612666db0244e57e3a7039d725f09547254234bccf5d46a5fd1d8f4",
+      "gitBlobSha1": "3566b7b79b9ef8fc2fe60f671a7b42e9a7bda157",
+      "acquiredAt": "2026-09-26T17:11:47.752Z"
+    },
+    {
+      "path": "BinOutput/Talk/Quest/1000707.json",
+      "bytes": 3248,
+      "sha256": "d696deeadc1e4dd45b83943ea22aff16db12b16c432cc4c3566ede1f8a0e3817",
+      "gitBlobSha1": "b639dc05dd4c59d10218c74afa7e1015d9a250e7",
+      "acquiredAt": "2026-09-26T17:11:47.758Z"
+    },
+    {
+      "path": "BinOutput/Talk/Quest/1000710.json",
+      "bytes": 396,
+      "sha256": "e4f51c021ea69868bd4aadec4bf57e31341b49d7da0e3bd6e6c75acdebc88e5d",
+      "gitBlobSha1": "d57930528edcf63932bcf2c9adf285111d5d848f",
+      "acquiredAt": "2026-09-26T17:11:47.764Z"
+    },
+    {
+      "path": "BinOutput/Talk/Quest/1000711.json",
+      "bytes": 797,
+      "sha256": "d5d93ca0e273ac7bcc9543f9febd6747da13c43da2648dcb51df97a4281961de",
+      "gitBlobSha1": "bcb38243133c4f44d1f913bde8d5c6ef6df15011",
+      "acquiredAt": "2026-09-26T17:11:48.123Z"
+    },
+    {
+      "path": "BinOutput/Talk/Quest/1000712.json",
+      "bytes": 9633,
+      "sha256": "7aaf499150d01e4502fcc02c1b75064b9514ecebd3b397512c3902be6554047c",
+      "gitBlobSha1": "d248667515a07f889c996763004f268a36ce191c",
+      "acquiredAt": "2026-09-26T17:11:48.132Z"
+    },
+    {
+      "path": "BinOutput/Talk/Quest/1000713.json",
+      "bytes": 796,
+      "sha256": "2f26e6ae00fedf4e01fa9bba0ddce416c717f6262d43cece48b650d41a3d69c7",
+      "gitBlobSha1": "f3d1faf7c8f6d00d9a1a6846b3ad333091152a16",
+      "acquiredAt": "2026-09-26T17:11:48.141Z"
+    },
+    {
+      "path": "BinOutput/Talk/Quest/1000714.json",
+      "bytes": 797,
+      "sha256": "22413c4a4602941763be0bdd4b47f9b150251cb23851da227cc3276d3724bf14",
+      "gitBlobSha1": "01285c56e5542b5d80c13208d8c9d3ce8aac0eb5",
+      "acquiredAt": "2026-09-26T17:11:48.508Z"
+    },
+    {
+      "path": "BinOutput/Talk/Quest/1000717.json",
+      "bytes": 396,
+      "sha256": "782eef04ede15972ff146f719b4ec82f500b70be5193b13c3c596a4ede4c29f3",
+      "gitBlobSha1": "a8a5e9ef69aab56d6429cbc908b4fb2b77dc1a3e",
+      "acquiredAt": "2026-09-26T17:11:48.515Z"
+    },
+    {
+      "path": "BinOutput/Talk/Quest/1000718.json",
+      "bytes": 797,
+      "sha256": "6fd3f859a425ca0dcec42bfcb874a1c9263c36cd419c2651306fa5048df336c1",
+      "gitBlobSha1": "be40b8f5848f35b5f130629298c18832a885839e",
+      "acquiredAt": "2026-09-26T17:11:48.498Z"
+    },
+    {
+      "path": "BinOutput/Talk/Quest/1000719.json",
+      "bytes": 797,
+      "sha256": "1ec40e7e50bf64aaf85236ce6963cc53e69b55e70fcaceb0e5737471920f22e0",
+      "gitBlobSha1": "2219fd4c706ad92813ef743bc30babb488490d04",
+      "acquiredAt": "2026-09-26T17:11:48.886Z"
+    },
+    {
+      "path": "BinOutput/Talk/Quest/1000720.json",
+      "bytes": 360,
+      "sha256": "9af0bbd7e0a023b8c3602bc4c3ef8af13905cb585729e4bf82b05b4092896691",
+      "gitBlobSha1": "327fd70fa5794ef16727517226bcfadcb03ecb1b",
+      "acquiredAt": "2026-09-26T17:11:48.881Z"
+    },
+    {
+      "path": "BinOutput/Talk/Quest/1900101.json",
+      "bytes": 3751,
+      "sha256": "07da92179a35fefecba9cfd4b58bcf0b5c222a9fb417ce5fe4d56b4ef6c2281b",
+      "gitBlobSha1": "c7f2009be66bc2e61846b593a1cf8b6f9aae5bfc",
+      "acquiredAt": "2026-09-26T17:10:48.458Z"
+    },
+    {
+      "path": "BinOutput/Talk/Quest/1900102.json",
+      "bytes": 441,
+      "sha256": "2797d145b73bc0a19f3e2f97b2396d0bf0d20a620f33e7d49078ffc31521d83e",
+      "gitBlobSha1": "6776f8196f3056b62c7f6f931470168b04a16cd4",
+      "acquiredAt": "2026-09-26T17:11:51.630Z"
+    },
+    {
+      "path": "BinOutput/Talk/Quest/1900103.json",
+      "bytes": 438,
+      "sha256": "e92dbf966374795e2f2280840e42412d72c4ff6216aa66830e7ce8b5364d66ec",
+      "gitBlobSha1": "8c839f5123b0553acfbed406a55ec71c506f2fa0",
+      "acquiredAt": "2026-09-26T17:11:51.621Z"
+    },
+    {
+      "path": "BinOutput/Talk/Quest/1900106.json",
+      "bytes": 438,
+      "sha256": "d95c4fb1afe65f884c020a787c7e91e4e93949b68da4f196ec6dd7ab6c138c38",
+      "gitBlobSha1": "633877cc21d79a80351b7e67c41fd8a973a7d7a9",
+      "acquiredAt": "2026-09-26T17:11:51.976Z"
+    },
+    {
+      "path": "BinOutput/Talk/Quest/35216.json",
+      "bytes": 2011,
+      "sha256": "41bc82ef30fe09d78a40d9bbcfeb24c6fa193bade7866a547172f021188bb6a7",
+      "gitBlobSha1": "ba847781ac5f0d74b4386257a004784ed91a0067",
+      "acquiredAt": "2026-09-26T17:09:19.296Z"
+    },
+    {
+      "path": "BinOutput/Talk/Quest/4025001.json",
+      "bytes": 7638,
+      "sha256": "bcb658b8c3188cfa60b2e8cf49eb8efea2f83ce854012721b7b20c436b49f357",
+      "gitBlobSha1": "d325a3b5fc3993dd42144852098e598c01f78191",
+      "acquiredAt": "2026-09-26T17:10:48.446Z"
+    },
+    {
+      "path": "BinOutput/Talk/Quest/4025002.json",
+      "bytes": 23765,
+      "sha256": "acb65ee7258cb2f30810a36ae16b0f65994b263a8464d5248759c61241573d74",
+      "gitBlobSha1": "86444ceaa2927906fca782364a69cba156fd8942",
+      "acquiredAt": "2026-09-26T17:11:50.009Z"
+    },
+    {
+      "path": "BinOutput/Talk/Quest/4025003.json",
+      "bytes": 5215,
+      "sha256": "a58bba2f971916c4fda1525156cf56df062da84a3145067af18a6b5a912d3487",
+      "gitBlobSha1": "914ea428d2ebe7711f31a9e8bff9eafc28eb0568",
+      "acquiredAt": "2026-09-26T17:11:50.454Z"
+    },
+    {
+      "path": "BinOutput/Talk/Quest/4025004.json",
+      "bytes": 1599,
+      "sha256": "81d9c1e95575d415dd704611165169f6e92475af32e3dfa901c8f67a5adea7a7",
+      "gitBlobSha1": "3d94548cfd829be9caf8002456e97fbc9732276b",
+      "acquiredAt": "2026-09-26T17:11:50.480Z"
+    },
+    {
+      "path": "BinOutput/Talk/Quest/4025006.json",
+      "bytes": 15743,
+      "sha256": "aac544bc17c4dad477b10b0570d934fcbfcf1276461baceed02eef8bfe2622bf",
+      "gitBlobSha1": "263d9e9547fd3be1d8a7f8f8345b38d24d6609eb",
+      "acquiredAt": "2026-09-26T17:11:50.475Z"
+    },
+    {
+      "path": "BinOutput/Talk/Quest/4025007.json",
+      "bytes": 52724,
+      "sha256": "7610f513069d607c23ff82b58a61386575ba57f015c18bd3a10c52dc336c35f0",
+      "gitBlobSha1": "510f4c77500c1d51aa5f139b97253424332d118d",
+      "acquiredAt": "2026-09-26T17:11:50.845Z"
+    },
+    {
+      "path": "BinOutput/Talk/Quest/4025012.json",
+      "bytes": 398,
+      "sha256": "22291eecb26730c4e33e5731372fe7d14badd979bae1debe17363809d69f31e6",
+      "gitBlobSha1": "249f1d6fb5005e1d29d07e32831e4ee5b29fca0b",
+      "acquiredAt": "2026-09-26T17:11:50.862Z"
+    },
+    {
+      "path": "BinOutput/Talk/Quest/4025013.json",
+      "bytes": 2803,
+      "sha256": "303dabce7373a7187a8f101862c36eb0540f1fd1fb6d5f5e91be7e65b65d455a",
+      "gitBlobSha1": "e55ab8b50ff7dc577567cd9a1127695082dff21f",
+      "acquiredAt": "2026-09-26T17:11:50.855Z"
+    },
+    {
+      "path": "BinOutput/Talk/Quest/4025014.json",
+      "bytes": 3209,
+      "sha256": "1dda154e62553b50de87db7764648456aa8394fefee50fd4064ba52f5fd93cab",
+      "gitBlobSha1": "89c5ec78524529a4e59873c0ef966853bc2b4054",
+      "acquiredAt": "2026-09-26T17:11:51.215Z"
+    },
+    {
+      "path": "BinOutput/Talk/Quest/4025015.json",
+      "bytes": 1596,
+      "sha256": "e6ac8bf48cd372d3097f88dfa2b44df47ffb9a41c1695d19c32c22b1c21aeb33",
+      "gitBlobSha1": "08097144b89f711636a50d1b12280f30b244c994",
+      "acquiredAt": "2026-09-26T17:11:51.223Z"
+    },
+    {
+      "path": "BinOutput/Talk/Quest/4025016.json",
+      "bytes": 5206,
+      "sha256": "3d3efb05880416c9361f71d8d7c3372e9baa957bf38271bfba9b706bb2a66325",
+      "gitBlobSha1": "c94f4b13ecbbd02988251e9647ff3f4fe0387e3b",
+      "acquiredAt": "2026-09-26T17:11:51.269Z"
+    },
+    {
+      "path": "BinOutput/Talk/Quest/4111101.json",
+      "bytes": 16523,
+      "sha256": "e3a0325d60a839f748aeb883a619b68daff716a8df17546ec74001bb1e1a8b01",
+      "gitBlobSha1": "b62fef2ca10e79a724039bbe040a44cdb79ce912",
+      "acquiredAt": "2026-09-26T17:10:48.455Z"
+    },
+    {
+      "path": "BinOutput/Talk/Quest/4111105.json",
+      "bytes": 2046,
+      "sha256": "108c29770ce284c108bffce0c2b6e07c1c26496ceeab094957a630f76e44616b",
+      "gitBlobSha1": "c07deb41e1f5bf4a73f908d92ec49a6c439d300a",
+      "acquiredAt": "2026-09-26T17:11:49.269Z"
+    },
+    {
+      "path": "BinOutput/Talk/Quest/4111106.json",
+      "bytes": 6108,
+      "sha256": "f51e220e4f30053cf5eca7d9f1e1dfe8fdbf08148a86c15dbbd03110166f887f",
+      "gitBlobSha1": "3cec74d713b375889df0423422901261dd5712eb",
+      "acquiredAt": "2026-09-26T17:11:49.252Z"
+    },
+    {
+      "path": "BinOutput/Talk/Quest/4111114.json",
+      "bytes": 6107,
+      "sha256": "2a14a8a470ec7cca5803d39743100d53565f10be8f006b91bab1353f89179ce5",
+      "gitBlobSha1": "a33053e75f0aee8bc340c570e5912dc5e3ad1f3c",
+      "acquiredAt": "2026-09-26T17:11:49.256Z"
+    },
+    {
+      "path": "BinOutput/Talk/Quest/4111115.json",
+      "bytes": 5261,
+      "sha256": "436967696628cad3d074878ff0244a32e8ec8a963ced6bdc7fdae13d0cdd36b0",
+      "gitBlobSha1": "c956eff6eb14dd9604da2b334e99dd30a338a6a2",
+      "acquiredAt": "2026-09-26T17:11:49.633Z"
+    },
+    {
+      "path": "BinOutput/Talk/Quest/4111116.json",
+      "bytes": 9312,
+      "sha256": "de8cd9df396882db37f93b0aad986aaba64809db2acb06fde0b8cf90288ba306",
+      "gitBlobSha1": "1cd7e3ab6f25d631ba1cd26ddf8aade1b96be79e",
+      "acquiredAt": "2026-09-26T17:11:49.649Z"
+    },
+    {
+      "path": "BinOutput/Talk/Quest/4111117.json",
+      "bytes": 7687,
+      "sha256": "6fe0e188d2939e16bcf113e0d7f8f001e4504e7b0dbb635345854d79f3d01771",
+      "gitBlobSha1": "f151029f578df95b957899effaeb51cc53f8ffeb",
+      "acquiredAt": "2026-09-26T17:11:49.638Z"
+    },
+    {
+      "path": "BinOutput/Talk/Quest/4111118.json",
+      "bytes": 2048,
+      "sha256": "bf9d665fb18d91a8a35af8891c693c9a89c7de408a7af0f5815d46c2f7b727af",
+      "gitBlobSha1": "9513ad9b5610ac80e524f49ed5ed0b9eab33f972",
+      "acquiredAt": "2026-09-26T17:11:50.076Z"
+    },
+    {
+      "path": "BinOutput/Talk/Quest/45101.json",
+      "bytes": 1980,
+      "sha256": "c8ae7ebdc99eaa114db4506b275780e8c1e852e61138f8f2ec719a5e0e2f061c",
+      "gitBlobSha1": "58d9e8b3373f77540c844c7c20b7dd0545414a7b",
+      "acquiredAt": "2026-09-26T17:10:47.433Z"
+    },
+    {
+      "path": "BinOutput/Talk/Quest/45103.json",
+      "bytes": 9235,
+      "sha256": "44f7ab673b8389e3874b06222a63ee30fbb09c40f52872373123bdfa0a07d3f1",
+      "gitBlobSha1": "2076c1a91015f6c33089ebbd56419be995c1cbce",
+      "acquiredAt": "2026-09-26T17:11:46.642Z"
+    },
+    {
+      "path": "BinOutput/Talk/Quest/45105.json",
+      "bytes": 1584,
+      "sha256": "533b6f841073e867e1d965f1a26bb1f3b96e459472b20b226d244cb015d8265f",
+      "gitBlobSha1": "b07bc4747d7a4472e9acbfeffa718d7e3858db88",
+      "acquiredAt": "2026-09-26T17:11:46.645Z"
+    },
+    {
+      "path": "BinOutput/Talk/Quest/45106.json",
+      "bytes": 4754,
+      "sha256": "d3198498cd42197524f4d0260811df9f980262fc8641bac7ee3e3a2c5b55a0fa",
+      "gitBlobSha1": "02329119aa604d58ecd1489f98244dfaecde7f0b",
+      "acquiredAt": "2026-09-26T17:11:47.020Z"
+    },
+    {
+      "path": "BinOutput/Talk/Quest/45107.json",
+      "bytes": 1584,
+      "sha256": "cb3a41179fe3ef886c0a2b20d95d0ebf991cdaa44c77ad53ed54b812d8abe649",
+      "gitBlobSha1": "109446b2a2ab88338316c6efceb888c6db00f22b",
+      "acquiredAt": "2026-09-26T17:11:47.016Z"
+    },
+    {
+      "path": "ExcelBinOutput/AvatarExcelConfigData.json",
+      "bytes": 351799,
+      "sha256": "a0ac92f1abb48e2ef6552cae2fefad95d51973dec9632f15dc51d85594efcfaf",
+      "gitBlobSha1": "b9376cd637d59deb46fd0e7d6dc29c10c1eb3685",
+      "acquiredAt": "2026-09-26T17:18:01.858Z"
+    },
+    {
+      "path": "ExcelBinOutput/BooksCodexExcelConfigData.json",
+      "bytes": 22959,
+      "sha256": "a0b8ac4b171abc7d1e0cda221a719bbea0fec8eb1005aa1494e62930fcc7c385",
+      "gitBlobSha1": "d712b899856fb3b5a84f36431e0aa050e916af10",
+      "acquiredAt": "2026-09-26T17:07:43.748Z"
+    },
+    {
+      "path": "ExcelBinOutput/BookSuitExcelConfigData.json",
+      "bytes": 4812,
+      "sha256": "9818524761136eb51b8c78dc3233fdbbd700ec07f20fe4f426ea807f687965fb",
+      "gitBlobSha1": "9deef42a7fa47b956d9481e56303d8790258525d",
+      "acquiredAt": "2026-09-26T17:07:43.760Z"
+    },
+    {
+      "path": "ExcelBinOutput/ChapterExcelConfigData.json",
+      "bytes": 199501,
+      "sha256": "e80b715698863211c8c4896236097cc8726e23aa00c9c59c44471a2fe0346767",
+      "gitBlobSha1": "69248646a56464eb7ebbddc6400ffd0a96fe7b06",
+      "acquiredAt": "2026-09-26T17:07:41.407Z"
+    },
+    {
+      "path": "ExcelBinOutput/CoopChapterExcelConfigData.json",
+      "bytes": 15166,
+      "sha256": "1a94b63295cbbbb15e6c591f0c40e328e879221c1031c8a20ab65ff597198fa0",
+      "gitBlobSha1": "8a067fcae010bfa4f8711caa2b4ea4deb95347eb",
+      "acquiredAt": "2026-09-26T17:07:42.625Z"
+    },
+    {
+      "path": "ExcelBinOutput/CoopPointExcelConfigData.json",
+      "bytes": 120761,
+      "sha256": "418c21f9456757f116e6e506623706604716547118c3b1635501f9c0bc5de1d1",
+      "gitBlobSha1": "a2b2b19ea4782587c5c2956c8f35b1914cab839c",
+      "acquiredAt": "2026-09-26T17:07:42.620Z"
+    },
+    {
+      "path": "ExcelBinOutput/DocumentExcelConfigData.json",
+      "bytes": 368918,
+      "sha256": "101aaaf9c0cbb161d4c0f59da1314bd427cbe954a43fec6d9483fdda4aa38a47",
+      "gitBlobSha1": "e79c7d760e0f0e99f32550f5c29a1d046f28730f",
+      "acquiredAt": "2026-09-26T17:07:43.786Z"
+    },
+    {
+      "path": "ExcelBinOutput/FetterStoryExcelConfigData.json",
+      "bytes": 550307,
+      "sha256": "29d02d7efe0aead8ac81221619350315770ad24c990cdb095be12997890e628d",
+      "gitBlobSha1": "2bd4b1e5336c70773e6de8d8b3933779bfbddb16",
+      "acquiredAt": "2026-09-26T17:07:42.879Z"
+    },
+    {
+      "path": "ExcelBinOutput/LocalizationExcelConfigData.json",
+      "bytes": 1948032,
+      "sha256": "a9e06e01c352bd7d3d30a2ea1c4fdddb10cb9c29a94b8ff544fbca6f3017cb79",
+      "gitBlobSha1": "16894b6ee5242748e7ccf9909506b1f364bd407e",
+      "acquiredAt": "2026-09-26T17:11:10.909Z"
+    },
+    {
+      "path": "ExcelBinOutput/MainQuestExcelConfigData.json",
+      "bytes": 2017064,
+      "sha256": "ae527bff4405698559f3eab8176f809d13fd100061b1a03923ce1a9edf06986c",
+      "gitBlobSha1": "07821e4d248a730486edca06fe33264567095e90",
+      "acquiredAt": "2026-09-26T17:07:42.258Z"
+    },
+    {
+      "path": "ExcelBinOutput/MaterialExcelConfigData.json",
+      "bytes": 8873251,
+      "sha256": "a0691209b2cfb50d2bf15fb06900740105d15901ebd7bb43da833922f0652319",
+      "gitBlobSha1": "c3ea28747ab723ee9007dcc7e1eb33067ad2ea8f",
+      "acquiredAt": "2026-09-26T17:07:44.873Z"
+    },
+    {
+      "path": "ExcelBinOutput/NewActivityExcelConfigData.json",
+      "bytes": 138157,
+      "sha256": "842064d6e0d310a4031a89029eb4145c43dac95049e1ec9f2df020f5fcc8ac7f",
+      "gitBlobSha1": "2b3a0780b800c04bac92ff8a60d129451b094a02",
+      "acquiredAt": "2026-09-26T17:11:52.030Z"
+    },
+    {
+      "path": "ExcelBinOutput/NpcExcelConfigData.json",
+      "bytes": 7166501,
+      "sha256": "f1c06cc20c6b0622df66eed8a4f14b078edf249d85bac6b9b1ad8d21e69b266a",
+      "gitBlobSha1": "ddb11e1adb9a33156c96b4e483f086c3f11acfe1",
+      "acquiredAt": "2026-09-26T17:10:48.083Z"
+    },
+    {
+      "path": "ExcelBinOutput/QuestCodexExcelConfigData.json",
+      "bytes": 51977,
+      "sha256": "64963aeddbf1fc6b17b01638af39c37bf949f896fd98faa9c9839bccff8eb6bc",
+      "gitBlobSha1": "1615ae3c617c987a0c346b5043625545d1cb15c0",
+      "acquiredAt": "2026-09-26T17:07:41.720Z"
+    },
+    {
+      "path": "ExcelBinOutput/ReliquaryCodexExcelConfigData.json",
+      "bytes": 24345,
+      "sha256": "20b16567229fc98774e7df4353262b1ff4beb96b43cb1176736e9590b47078d4",
+      "gitBlobSha1": "7c9c6de4d41ba634464f34af61c62793e44a8d49",
+      "acquiredAt": "2026-09-26T17:07:43.290Z"
+    },
+    {
+      "path": "ExcelBinOutput/ReliquaryExcelConfigData.json",
+      "bytes": 2837490,
+      "sha256": "163465b8a665b40f7cf31bbc6d61e8ae5f1344009ca1e22bd7fbd2e4aef23af6",
+      "gitBlobSha1": "391ed48beb26490193968c19136db8377af06fb2",
+      "acquiredAt": "2026-09-26T17:07:43.364Z"
+    },
+    {
+      "path": "ExcelBinOutput/WeaponExcelConfigData.json",
+      "bytes": 369387,
+      "sha256": "dfaee6f6eb5ca9b389e66173c52ff71404de1600d32553af8d622fc7ef3d9841",
+      "gitBlobSha1": "68a29ce377f00721b9a8e60f2a0ab7610bdc8a5a",
+      "acquiredAt": "2026-09-26T17:07:43.283Z"
+    },
+    {
+      "path": "Readable/ES/BarbaraBlackmail_ES.txt",
+      "bytes": 137,
+      "sha256": "4e01c8097df744d4bc9bea775a3117fb86d0db848b64937b0e7d2c75dd6fd923",
+      "gitBlobSha1": "650db0d081bdf9b41f04e03da526444b12ab33fb",
+      "acquiredAt": "2026-09-26T17:10:18.860Z"
+    },
+    {
+      "path": "Readable/ES/Book159_ES.txt",
+      "bytes": 2758,
+      "sha256": "29f16ef2ea3607e1a54dbfb7ad805e827239a3da884ef71dc2ad288928c2ddd1",
+      "gitBlobSha1": "fc09d9cff9caaf795952773355556ec924a95f7f",
+      "acquiredAt": "2026-09-26T17:11:45.109Z"
+    },
+    {
+      "path": "Readable/ES/Book21_ES.txt",
+      "bytes": 1198,
+      "sha256": "916d1c8a986fb4c91301a49a0b30795f8603962c64b9c97b9db287df0b7eda2f",
+      "gitBlobSha1": "8878fd35b48b9935c9d03f9435ab9586591297b3",
+      "acquiredAt": "2026-09-26T17:11:44.607Z"
+    },
+    {
+      "path": "Readable/ES/Book22_ES.txt",
+      "bytes": 700,
+      "sha256": "bd3dbd8a38972eadb23328e3742e08793e70eb62a4a45b9676792dd081fcb305",
+      "gitBlobSha1": "65e66cb5723c71fe18f6bc838e8eb54f37a49c1b",
+      "acquiredAt": "2026-09-26T17:11:44.621Z"
+    },
+    {
+      "path": "Readable/ES/Book23_ES.txt",
+      "bytes": 1500,
+      "sha256": "c91c0608940323976a0234463344d7b9a582c517eb667e8e0b1cf0fc55d28da8",
+      "gitBlobSha1": "4519e05f252198bdc184a02ff9c3c6369d34b251",
+      "acquiredAt": "2026-09-26T17:11:44.625Z"
+    },
+    {
+      "path": "Readable/ES/Book24_ES.txt",
+      "bytes": 1208,
+      "sha256": "c2f8c3f2f11587787d702cdd1cacdb32475ec7509c845317883a74846b692d6c",
+      "gitBlobSha1": "d6f14844c91a6f768fa4be0f89edd69c1551e264",
+      "acquiredAt": "2026-09-26T17:11:45.008Z"
+    },
+    {
+      "path": "Readable/ES/Book25_ES.txt",
+      "bytes": 1327,
+      "sha256": "5bbf40f2273ba71e079ed83d271c80446c32d5acbfe42e99fbba0dd120c2a044",
+      "gitBlobSha1": "faff92eadfa1569e757637fd1d4064d3579ab94e",
+      "acquiredAt": "2026-09-26T17:11:45.012Z"
+    },
+    {
+      "path": "Readable/ES/Book26_ES.txt",
+      "bytes": 1781,
+      "sha256": "35cd08a4988cc2ce20b49ff59a023375724f47e3bd77e4fb6d0af20f844edf41",
+      "gitBlobSha1": "2614506d2083346a1b8cca6ea34e4fa900d2ccc1",
+      "acquiredAt": "2026-09-26T17:11:45.489Z"
+    },
+    {
+      "path": "Readable/ES/DilucLetter_ES.txt",
+      "bytes": 470,
+      "sha256": "ad9373a9f042665b6d221e5a9f153b997812f6185ef4b4e9909c1b1e6af38aff",
+      "gitBlobSha1": "4432f1fdac1599bb4ed1c1f28af8e35ac31a6caf",
+      "acquiredAt": "2026-09-26T17:10:18.890Z"
+    },
+    {
+      "path": "Readable/ES/Relic15001_1_ES.txt",
+      "bytes": 803,
+      "sha256": "5a084004ffcc14fd3ba5b9567b0d1d51acb4530058fa409bd5aa732f42a3a848",
+      "gitBlobSha1": "bd2b8f3b84741078958978f299b86ace5a101dea",
+      "acquiredAt": "2026-09-26T17:11:45.868Z"
+    },
+    {
+      "path": "Readable/ES/Relic15001_2_ES.txt",
+      "bytes": 868,
+      "sha256": "c340d8831756c6aea0b906715db2a5b285b48a872dd1356b45bb115995d5ce42",
+      "gitBlobSha1": "6c74adac51ebbdeb6392940e35b4fb32ef2f46f9",
+      "acquiredAt": "2026-09-26T17:11:45.883Z"
+    },
+    {
+      "path": "Readable/ES/Relic15001_3_ES.txt",
+      "bytes": 860,
+      "sha256": "4924c92a925eae142db86b440d813dfe42543da5c5d7bc51f0f145240de0c40e",
+      "gitBlobSha1": "610d6ded60274bb41933af90c9b9f39537c047c8",
+      "acquiredAt": "2026-09-26T17:11:45.853Z"
+    },
+    {
+      "path": "Readable/ES/Relic15001_4_ES.txt",
+      "bytes": 810,
+      "sha256": "a85a69eed04b7f31ca56f3c0e4a5f0b2a164d72877464e1bc693e3dac71ce78a",
+      "gitBlobSha1": "d4b2c1ef62c67c2ec7509415b602bf745273a38b",
+      "acquiredAt": "2026-09-26T17:11:46.266Z"
+    },
+    {
+      "path": "Readable/ES/Relic15001_5_ES.txt",
+      "bytes": 831,
+      "sha256": "662ae58813ac5cd17092750c068c06baabd7217b2f607498cc3c63307bf33dcf",
+      "gitBlobSha1": "fdf63852d9a4d10cb3be6d986a7c73ef9914d197",
+      "acquiredAt": "2026-09-26T17:11:46.239Z"
+    },
+    {
+      "path": "Readable/ES/Weapon11501_ES.txt",
+      "bytes": 960,
+      "sha256": "5d6e434c2c025761b4409c271e1207876da049a22a01f4438deaa4121c1557fd",
+      "gitBlobSha1": "5f1a03478ef0fba421d2e0e88973b92439cdd929",
+      "acquiredAt": "2026-09-26T17:10:18.483Z"
+    },
+    {
+      "path": "README.md",
+      "bytes": 866,
+      "sha256": "b93c289ab7489ceea3444bf1b422557a59aafa52b7d6e2e5a8e71fe4b82258c6",
+      "gitBlobSha1": "c00840742e1979ca9c3739d4f3560d84ae55aaa7",
+      "acquiredAt": "2026-09-26T17:07:31.127Z"
+    },
+    {
+      "path": "TextMap/TextMap_MediumES.json",
+      "bytes": 22475636,
+      "sha256": "1a9c2fc60a9b393e2b8a45d423bc8f36747e6ffe9e367815bdb52f12a8288de0",
+      "gitBlobSha1": "b7ed03c731fa130776bbf9fa3759c65197ceee9b",
+      "acquiredAt": "2026-09-26T17:07:34.447Z"
+    },
+    {
+      "path": "TextMap/TextMapES.json",
+      "bytes": 58704170,
+      "sha256": "40100da3d62c01a36a3bee21f7784d130f17cf3ae42d711bbfdb18777842af86",
+      "gitBlobSha1": "bd6bde55579f2567f90e979cf9e71327bc23c75a",
+      "acquiredAt": "2026-09-26T17:07:40.975Z"
+    }
+  ]
+}

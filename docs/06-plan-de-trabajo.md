@@ -112,3 +112,12 @@ Añadir en cada iteración: fecha, fase, cambios, comprobaciones, limitaciones y
 - Layout separado, conexiones SVG, nodos HTML, pan/zoom D3, agrupaciones por época, tres niveles y lista accesible. Corpus ampliado a catorce eventos ficticios con diecisiete relaciones.
 - Pruebas de React/D3 en jsdom para gestos, ancla, controles, selección, enlaces, progreso y viewport estrecho. Tipos, build y HTTP se verifican con el flujo de validación. Evidencia y límites en [09-cronologia-inmersiva.md](09-cronologia-inmersiva.md).
 - El entorno continúa sin navegador conectado: no se certifica revisión visual ni gestos físicos. Próximo paso: revisar composición y calibrar con contenido representativo. No se desplegó.
+
+### 2026-09-26 — GitHub y cobertura P1
+
+- Git es el punto de recuperación principal. Árbol inicial limpio; `main`, `origin/main` y GitHub coinciden en `2b27c63c1e51c36d6e4b83f9673509f15c4c88eb`. Trabajo en `codex/p1-cobertura-fuentes`; ZIP de P0 conservado como respaldo local.
+- Snapshot AnimeGameData `b061b403c8afc7bca633cf4f201edc4a3baa75fe`, versión de datos declarada por el proveedor 7.1.0. Muestra de 12 categorías, manifiesto de 100 archivos y sonda reproducible sin instalar extractores. Originales fuera del sitio y de Git.
+- [Cobertura P1](validation/cobertura-fuentes.md): dos hashes de diálogo ausentes en español, formato Coop distinto y encuentro parcialmente cubierto. Recomendación para P2: TypeScript, con campos verificados por versión y originales preservados.
+- [Revisión humana](validation/p1/revision-humana.md) pendiente en los 12 casos; P1 no cierra su puerta editorial ni autoriza marcar datos como revisados. El próximo paso es validar el subconjunto y sus exclusiones antes de solicitar P2.
+- Se corrigen las referencias de archivo y el formato pendiente del plan 10. No se cambian UI, dominio, fixtures ni dependencias; no se implementa P2 ni se despliega.
+- `npm run validate` completo correcto: formato, lint, tipos sin diagnósticos en 25 archivos, 36 pruebas y build de 4 páginas. La sonda `--check` reproduce sin red la evidencia de 100 archivos verificados; no sustituye la revisión humana ni las futuras pruebas de P2.
