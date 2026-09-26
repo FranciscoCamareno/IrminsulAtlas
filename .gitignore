@@ -1,0 +1,16 @@
+node_modules/
+dist/
+.astro/
+.cache/
+.npm/
+coverage/
+*.tsbuildinfo
+*.log
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+.DS_Store
+Thumbs.db
+.validation/

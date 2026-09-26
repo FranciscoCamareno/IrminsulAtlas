@@ -1,0 +1,828 @@
+{
+  "schemaVersion": 1,
+  "universes": [
+    {
+      "id": "demo",
+      "name": "Archivo de la Bruma · universo de demostración",
+      "defaultLanguage": "es",
+      "temporalSystems": [
+        {
+          "id": "demo-cycle",
+          "label": "Ciclos ficticios",
+          "convention": "Numeración sintética creciente. No equivale a años terrestres ni a un calendario de Genshin."
+        }
+      ],
+      "editorialStatus": "demo"
+    }
+  ],
+  "eras": [
+    {
+      "id": "demo-era-01",
+      "universeId": "demo",
+      "name": "Primer archivo",
+      "displayOrder": 10,
+      "spoilerRequirements": [],
+      "editorialStatus": "demo"
+    },
+    {
+      "id": "demo-era-02",
+      "universeId": "demo",
+      "name": "Segundo archivo",
+      "displayOrder": 20,
+      "spoilerRequirements": [],
+      "editorialStatus": "demo"
+    },
+    {
+      "id": "demo-era-03",
+      "universeId": "demo",
+      "name": "Las rutas abiertas",
+      "displayOrder": 30,
+      "spoilerRequirements": [],
+      "editorialStatus": "demo"
+    },
+    {
+      "id": "demo-era-04",
+      "universeId": "demo",
+      "name": "La reconstrucción",
+      "displayOrder": 40,
+      "spoilerRequirements": [],
+      "editorialStatus": "demo"
+    }
+  ],
+  "entities": [
+    {
+      "id": "demo-place-01",
+      "universeId": "demo",
+      "kind": "place",
+      "name": "Refugio de papel",
+      "aliases": [],
+      "spoilerRequirements": [],
+      "editorialStatus": "demo"
+    },
+    {
+      "id": "demo-character-01",
+      "universeId": "demo",
+      "kind": "character",
+      "name": "La archivista ficticia",
+      "aliases": [],
+      "spoilerRequirements": [],
+      "editorialStatus": "demo"
+    },
+    {
+      "id": "demo-faction-01",
+      "universeId": "demo",
+      "kind": "faction",
+      "name": "Círculo de la tinta",
+      "aliases": [],
+      "spoilerRequirements": ["demo-milestone-01"],
+      "editorialStatus": "demo"
+    }
+  ],
+  "milestones": [
+    {
+      "id": "demo-milestone-01",
+      "universeId": "demo",
+      "safeLabel": "Lectura de demostración A",
+      "editorialStatus": "demo"
+    },
+    {
+      "id": "demo-milestone-02",
+      "universeId": "demo",
+      "safeLabel": "Lectura opcional de demostración B",
+      "editorialStatus": "demo"
+    }
+  ],
+  "events": [
+    {
+      "id": "demo-event-01",
+      "universeId": "demo",
+      "spoilerRequirements": [],
+      "editorialStatus": "demo",
+      "slug": "evento-1",
+      "language": "es",
+      "title": "Apertura del refugio",
+      "aliases": [],
+      "summary": "Escena ficticia del Archivo de la Bruma, creada para probar esta base. No representa lore de Genshin.",
+      "body": "Este contenido sintético permite comprobar las fuentes, la incertidumbre y la visibilidad de una ficha.",
+      "eraId": "demo-era-01",
+      "time": {
+        "kind": "unknown",
+        "label": "Fecha desconocida"
+      },
+      "displayOrder": 10,
+      "revelation": {
+        "order": 50,
+        "milestoneIds": []
+      },
+      "importance": "major",
+      "categories": ["Demostración"],
+      "entityIds": ["demo-character-01", "demo-place-01", "demo-faction-01"],
+      "evidence": [
+        {
+          "sourceId": "demo-source-01",
+          "locator": "Escena sintética 1",
+          "claim": "Ejemplo de afirmación respaldada por una misión ficticia.",
+          "stance": "supports",
+          "spoilerRequirements": []
+        }
+      ],
+      "claimStatus": "interpretation"
+    },
+    {
+      "id": "demo-event-02",
+      "universeId": "demo",
+      "spoilerRequirements": [],
+      "editorialStatus": "demo",
+      "slug": "evento-2",
+      "language": "es",
+      "title": "Restauración de las salas",
+      "aliases": [],
+      "summary": "Escena ficticia del Archivo de la Bruma, creada para probar esta base. No representa lore de Genshin.",
+      "body": "Este contenido sintético permite comprobar las fuentes, la incertidumbre y la visibilidad de una ficha.",
+      "eraId": "demo-era-01",
+      "time": {
+        "kind": "range",
+        "system": "demo-cycle",
+        "start": 12,
+        "end": 18,
+        "approximate": true,
+        "label": "Ciclos 12–18 del calendario ficticio"
+      },
+      "displayOrder": 20,
+      "revelation": {
+        "order": 40,
+        "milestoneIds": []
+      },
+      "importance": "major",
+      "categories": ["Demostración"],
+      "entityIds": ["demo-place-01"],
+      "evidence": [
+        {
+          "sourceId": "demo-source-01",
+          "locator": "Escena sintética 2",
+          "claim": "Una fuente sitúa la restauración dentro de un intervalo.",
+          "stance": "supports",
+          "spoilerRequirements": []
+        },
+        {
+          "sourceId": "demo-source-02",
+          "locator": "Ficha sintética B",
+          "claim": "Otra fuente cuestiona el alcance de la restauración.",
+          "stance": "contradicts",
+          "note": "Contradicción de demostración sin resolución editorial.",
+          "spoilerRequirements": []
+        }
+      ],
+      "claimStatus": "interpretation"
+    },
+    {
+      "id": "demo-event-03",
+      "universeId": "demo",
+      "spoilerRequirements": [],
+      "editorialStatus": "demo",
+      "slug": "evento-3",
+      "language": "es",
+      "title": "Inventario de los cuadernos",
+      "aliases": [],
+      "summary": "Escena ficticia del Archivo de la Bruma, creada para probar esta base. No representa lore de Genshin.",
+      "body": "Este contenido sintético permite comprobar las fuentes, la incertidumbre y la visibilidad de una ficha.",
+      "eraId": "demo-era-01",
+      "time": {
+        "kind": "approximate",
+        "system": "demo-cycle",
+        "reference": 20,
+        "margin": 2,
+        "label": "En torno al ciclo 20 ficticio"
+      },
+      "displayOrder": 30,
+      "revelation": {
+        "order": 30,
+        "milestoneIds": []
+      },
+      "importance": "minor",
+      "categories": ["Demostración"],
+      "entityIds": ["demo-place-01"],
+      "evidence": [
+        {
+          "sourceId": "demo-source-01",
+          "locator": "Escena sintética 3",
+          "claim": "Ejemplo de afirmación respaldada por una misión ficticia.",
+          "stance": "supports",
+          "spoilerRequirements": []
+        }
+      ],
+      "claimStatus": "theory"
+    },
+    {
+      "id": "demo-event-04",
+      "universeId": "demo",
+      "spoilerRequirements": [],
+      "editorialStatus": "demo",
+      "slug": "evento-4",
+      "language": "es",
+      "title": "Traslado del archivo",
+      "aliases": [],
+      "summary": "Escena ficticia del Archivo de la Bruma, creada para probar esta base. No representa lore de Genshin.",
+      "body": "Este contenido sintético permite comprobar las fuentes, la incertidumbre y la visibilidad de una ficha.",
+      "eraId": "demo-era-02",
+      "time": {
+        "kind": "relative",
+        "before": [],
+        "after": ["demo-event-02"]
+      },
+      "displayOrder": 40,
+      "revelation": {
+        "order": 20,
+        "milestoneIds": []
+      },
+      "importance": "major",
+      "categories": ["Demostración"],
+      "entityIds": ["demo-place-01"],
+      "evidence": [
+        {
+          "sourceId": "demo-source-01",
+          "locator": "Escena sintética 4",
+          "claim": "Ejemplo de afirmación respaldada por una misión ficticia.",
+          "stance": "supports",
+          "spoilerRequirements": []
+        }
+      ],
+      "claimStatus": "interpretation"
+    },
+    {
+      "id": "demo-event-05",
+      "universeId": "demo",
+      "spoilerRequirements": ["demo-milestone-01"],
+      "editorialStatus": "demo",
+      "slug": "evento-5",
+      "language": "es",
+      "title": "Hallazgo de la sala interior",
+      "aliases": [],
+      "summary": "Escena ficticia del Archivo de la Bruma, creada para probar esta base. No representa lore de Genshin.",
+      "body": "Este contenido sintético permite comprobar las fuentes, la incertidumbre y la visibilidad de una ficha.",
+      "eraId": "demo-era-02",
+      "time": {
+        "kind": "exact",
+        "system": "demo-cycle",
+        "value": 24,
+        "label": "Ciclo 24 del calendario ficticio"
+      },
+      "displayOrder": 50,
+      "revelation": {
+        "order": 50,
+        "milestoneIds": ["demo-milestone-01"]
+      },
+      "importance": "minor",
+      "categories": ["Demostración"],
+      "entityIds": ["demo-place-01"],
+      "evidence": [
+        {
+          "sourceId": "demo-source-02",
+          "locator": "Ficha sintética B",
+          "claim": "Ejemplo de hallazgo ficticio.",
+          "stance": "supports",
+          "spoilerRequirements": ["demo-milestone-01"]
+        }
+      ],
+      "claimStatus": "fact"
+    },
+    {
+      "id": "demo-event-06",
+      "universeId": "demo",
+      "spoilerRequirements": [],
+      "editorialStatus": "demo",
+      "slug": "evento-6",
+      "language": "es",
+      "title": "La primera copia",
+      "aliases": [],
+      "summary": "Acontecimiento ficticio del Archivo de la Bruma. Este ejemplo permite explorar cómo se ramifica y vuelve a conectarse una historia.",
+      "body": "Ejemplo de estructura narrativa, pendiente de sustituir por contenido editorial revisado.",
+      "eraId": "demo-era-01",
+      "time": {
+        "kind": "unknown",
+        "label": "Fecha desconocida"
+      },
+      "displayOrder": 35,
+      "revelation": {
+        "order": 60,
+        "milestoneIds": []
+      },
+      "importance": "minor",
+      "categories": ["Demostración"],
+      "entityIds": ["demo-place-01"],
+      "evidence": [
+        {
+          "sourceId": "demo-source-01",
+          "locator": "Escena sintética 6",
+          "claim": "Conexión de demostración entre archivos ficticios.",
+          "stance": "supports",
+          "spoilerRequirements": []
+        }
+      ],
+      "claimStatus": "interpretation"
+    },
+    {
+      "id": "demo-event-07",
+      "universeId": "demo",
+      "spoilerRequirements": [],
+      "editorialStatus": "demo",
+      "slug": "evento-7",
+      "language": "es",
+      "title": "Cruce de caminos",
+      "aliases": [],
+      "summary": "Acontecimiento ficticio del Archivo de la Bruma. Este ejemplo permite explorar cómo se ramifica y vuelve a conectarse una historia.",
+      "body": "Ejemplo de estructura narrativa, pendiente de sustituir por contenido editorial revisado.",
+      "eraId": "demo-era-02",
+      "time": {
+        "kind": "unknown",
+        "label": "Fecha desconocida"
+      },
+      "displayOrder": 60,
+      "revelation": {
+        "order": 70,
+        "milestoneIds": []
+      },
+      "importance": "major",
+      "categories": ["Demostración"],
+      "entityIds": ["demo-place-01"],
+      "evidence": [
+        {
+          "sourceId": "demo-source-01",
+          "locator": "Escena sintética 7",
+          "claim": "Conexión de demostración entre archivos ficticios.",
+          "stance": "supports",
+          "spoilerRequirements": []
+        }
+      ],
+      "claimStatus": "interpretation"
+    },
+    {
+      "id": "demo-event-08",
+      "universeId": "demo",
+      "spoilerRequirements": [],
+      "editorialStatus": "demo",
+      "slug": "evento-8",
+      "language": "es",
+      "title": "El mapa incompleto",
+      "aliases": [],
+      "summary": "Acontecimiento ficticio del Archivo de la Bruma. Este ejemplo permite explorar cómo se ramifica y vuelve a conectarse una historia.",
+      "body": "Ejemplo de estructura narrativa, pendiente de sustituir por contenido editorial revisado.",
+      "eraId": "demo-era-02",
+      "time": {
+        "kind": "unknown",
+        "label": "Fecha desconocida"
+      },
+      "displayOrder": 70,
+      "revelation": {
+        "order": 80,
+        "milestoneIds": []
+      },
+      "importance": "minor",
+      "categories": ["Demostración"],
+      "entityIds": ["demo-place-01"],
+      "evidence": [
+        {
+          "sourceId": "demo-source-01",
+          "locator": "Escena sintética 8",
+          "claim": "Conexión de demostración entre archivos ficticios.",
+          "stance": "supports",
+          "spoilerRequirements": []
+        }
+      ],
+      "claimStatus": "interpretation"
+    },
+    {
+      "id": "demo-event-09",
+      "universeId": "demo",
+      "spoilerRequirements": [],
+      "editorialStatus": "demo",
+      "slug": "evento-9",
+      "language": "es",
+      "title": "Apertura de las rutas",
+      "aliases": [],
+      "summary": "Acontecimiento ficticio del Archivo de la Bruma. Este ejemplo permite explorar cómo se ramifica y vuelve a conectarse una historia.",
+      "body": "Ejemplo de estructura narrativa, pendiente de sustituir por contenido editorial revisado.",
+      "eraId": "demo-era-03",
+      "time": {
+        "kind": "unknown",
+        "label": "Fecha desconocida"
+      },
+      "displayOrder": 10,
+      "revelation": {
+        "order": 90,
+        "milestoneIds": []
+      },
+      "importance": "major",
+      "categories": ["Demostración"],
+      "entityIds": ["demo-place-01"],
+      "evidence": [
+        {
+          "sourceId": "demo-source-01",
+          "locator": "Escena sintética 9",
+          "claim": "Conexión de demostración entre archivos ficticios.",
+          "stance": "supports",
+          "spoilerRequirements": []
+        }
+      ],
+      "claimStatus": "interpretation"
+    },
+    {
+      "id": "demo-event-10",
+      "universeId": "demo",
+      "spoilerRequirements": [],
+      "editorialStatus": "demo",
+      "slug": "evento-10",
+      "language": "es",
+      "title": "El registro perdido",
+      "aliases": [],
+      "summary": "Acontecimiento ficticio del Archivo de la Bruma. Este ejemplo permite explorar cómo se ramifica y vuelve a conectarse una historia.",
+      "body": "Ejemplo de estructura narrativa, pendiente de sustituir por contenido editorial revisado.",
+      "eraId": "demo-era-03",
+      "time": {
+        "kind": "unknown",
+        "label": "Fecha desconocida"
+      },
+      "displayOrder": 20,
+      "revelation": {
+        "order": 100,
+        "milestoneIds": []
+      },
+      "importance": "minor",
+      "categories": ["Demostración"],
+      "entityIds": ["demo-place-01"],
+      "evidence": [
+        {
+          "sourceId": "demo-source-01",
+          "locator": "Escena sintética 10",
+          "claim": "Conexión de demostración entre archivos ficticios.",
+          "stance": "supports",
+          "spoilerRequirements": []
+        }
+      ],
+      "claimStatus": "interpretation"
+    },
+    {
+      "id": "demo-event-11",
+      "universeId": "demo",
+      "spoilerRequirements": [],
+      "editorialStatus": "demo",
+      "slug": "evento-11",
+      "language": "es",
+      "title": "Encuentro de los archivos",
+      "aliases": [],
+      "summary": "Acontecimiento ficticio del Archivo de la Bruma. Este ejemplo permite explorar cómo se ramifica y vuelve a conectarse una historia.",
+      "body": "Ejemplo de estructura narrativa, pendiente de sustituir por contenido editorial revisado.",
+      "eraId": "demo-era-03",
+      "time": {
+        "kind": "unknown",
+        "label": "Fecha desconocida"
+      },
+      "displayOrder": 30,
+      "revelation": {
+        "order": 110,
+        "milestoneIds": []
+      },
+      "importance": "major",
+      "categories": ["Demostración"],
+      "entityIds": ["demo-place-01"],
+      "evidence": [
+        {
+          "sourceId": "demo-source-01",
+          "locator": "Escena sintética 11",
+          "claim": "Conexión de demostración entre archivos ficticios.",
+          "stance": "supports",
+          "spoilerRequirements": []
+        }
+      ],
+      "claimStatus": "interpretation"
+    },
+    {
+      "id": "demo-event-12",
+      "universeId": "demo",
+      "spoilerRequirements": [],
+      "editorialStatus": "demo",
+      "slug": "evento-12",
+      "language": "es",
+      "title": "El regreso al refugio",
+      "aliases": [],
+      "summary": "Acontecimiento ficticio del Archivo de la Bruma. Este ejemplo permite explorar cómo se ramifica y vuelve a conectarse una historia.",
+      "body": "Ejemplo de estructura narrativa, pendiente de sustituir por contenido editorial revisado.",
+      "eraId": "demo-era-04",
+      "time": {
+        "kind": "unknown",
+        "label": "Fecha desconocida"
+      },
+      "displayOrder": 10,
+      "revelation": {
+        "order": 120,
+        "milestoneIds": []
+      },
+      "importance": "major",
+      "categories": ["Demostración"],
+      "entityIds": ["demo-place-01"],
+      "evidence": [
+        {
+          "sourceId": "demo-source-01",
+          "locator": "Escena sintética 12",
+          "claim": "Conexión de demostración entre archivos ficticios.",
+          "stance": "supports",
+          "spoilerRequirements": []
+        }
+      ],
+      "claimStatus": "interpretation"
+    },
+    {
+      "id": "demo-event-13",
+      "universeId": "demo",
+      "spoilerRequirements": [],
+      "editorialStatus": "demo",
+      "slug": "evento-13",
+      "language": "es",
+      "title": "La última anotación",
+      "aliases": [],
+      "summary": "Acontecimiento ficticio del Archivo de la Bruma. Este ejemplo permite explorar cómo se ramifica y vuelve a conectarse una historia.",
+      "body": "Ejemplo de estructura narrativa, pendiente de sustituir por contenido editorial revisado.",
+      "eraId": "demo-era-04",
+      "time": {
+        "kind": "unknown",
+        "label": "Fecha desconocida"
+      },
+      "displayOrder": 20,
+      "revelation": {
+        "order": 130,
+        "milestoneIds": []
+      },
+      "importance": "minor",
+      "categories": ["Demostración"],
+      "entityIds": ["demo-place-01"],
+      "evidence": [
+        {
+          "sourceId": "demo-source-01",
+          "locator": "Escena sintética 13",
+          "claim": "Conexión de demostración entre archivos ficticios.",
+          "stance": "supports",
+          "spoilerRequirements": []
+        }
+      ],
+      "claimStatus": "interpretation"
+    },
+    {
+      "id": "demo-event-14",
+      "universeId": "demo",
+      "spoilerRequirements": [],
+      "editorialStatus": "demo",
+      "slug": "evento-14",
+      "language": "es",
+      "title": "Un nuevo comienzo",
+      "aliases": [],
+      "summary": "Acontecimiento ficticio del Archivo de la Bruma. Este ejemplo permite explorar cómo se ramifica y vuelve a conectarse una historia.",
+      "body": "Ejemplo de estructura narrativa, pendiente de sustituir por contenido editorial revisado.",
+      "eraId": "demo-era-04",
+      "time": {
+        "kind": "unknown",
+        "label": "Fecha desconocida"
+      },
+      "displayOrder": 30,
+      "revelation": {
+        "order": 140,
+        "milestoneIds": []
+      },
+      "importance": "major",
+      "categories": ["Demostración"],
+      "entityIds": ["demo-place-01"],
+      "evidence": [
+        {
+          "sourceId": "demo-source-01",
+          "locator": "Escena sintética 14",
+          "claim": "Conexión de demostración entre archivos ficticios.",
+          "stance": "supports",
+          "spoilerRequirements": []
+        }
+      ],
+      "claimStatus": "interpretation"
+    }
+  ],
+  "relations": [
+    {
+      "id": "demo-relation-01",
+      "universeId": "demo",
+      "spoilerRequirements": [],
+      "editorialStatus": "demo",
+      "fromEventId": "demo-event-01",
+      "toEventId": "demo-event-02",
+      "kind": "association",
+      "directed": false,
+      "explanation": "Vínculo narrativo de demostración; no implica causalidad.",
+      "evidence": [],
+      "claimStatus": "interpretation"
+    },
+    {
+      "id": "demo-relation-02",
+      "universeId": "demo",
+      "spoilerRequirements": ["demo-milestone-02"],
+      "editorialStatus": "demo",
+      "fromEventId": "demo-event-02",
+      "toEventId": "demo-event-03",
+      "kind": "association",
+      "directed": false,
+      "explanation": "Vínculo narrativo de demostración; no implica causalidad.",
+      "evidence": [],
+      "claimStatus": "interpretation"
+    },
+    {
+      "id": "demo-relation-03",
+      "universeId": "demo",
+      "spoilerRequirements": [],
+      "editorialStatus": "demo",
+      "fromEventId": "demo-event-02",
+      "toEventId": "demo-event-05",
+      "kind": "association",
+      "directed": false,
+      "explanation": "Vínculo narrativo de demostración; no implica causalidad.",
+      "evidence": [],
+      "claimStatus": "interpretation"
+    },
+    {
+      "id": "demo-relation-04",
+      "universeId": "demo",
+      "spoilerRequirements": [],
+      "editorialStatus": "demo",
+      "fromEventId": "demo-event-02",
+      "toEventId": "demo-event-04",
+      "kind": "precedes",
+      "directed": true,
+      "explanation": "Orden relativo explícito; no establece cuánto tiempo transcurrió.",
+      "evidence": [],
+      "claimStatus": "interpretation"
+    },
+    {
+      "id": "demo-relation-05",
+      "universeId": "demo",
+      "spoilerRequirements": [],
+      "editorialStatus": "demo",
+      "fromEventId": "demo-event-01",
+      "toEventId": "demo-event-06",
+      "kind": "association",
+      "directed": false,
+      "explanation": "Vínculo narrativo de demostración; no implica causalidad.",
+      "evidence": [],
+      "claimStatus": "interpretation"
+    },
+    {
+      "id": "demo-relation-06",
+      "universeId": "demo",
+      "spoilerRequirements": [],
+      "editorialStatus": "demo",
+      "fromEventId": "demo-event-06",
+      "toEventId": "demo-event-04",
+      "kind": "association",
+      "directed": false,
+      "explanation": "Vínculo narrativo de demostración; no implica causalidad.",
+      "evidence": [],
+      "claimStatus": "interpretation"
+    },
+    {
+      "id": "demo-relation-07",
+      "universeId": "demo",
+      "spoilerRequirements": [],
+      "editorialStatus": "demo",
+      "fromEventId": "demo-event-04",
+      "toEventId": "demo-event-07",
+      "kind": "association",
+      "directed": false,
+      "explanation": "Vínculo narrativo de demostración; no implica causalidad.",
+      "evidence": [],
+      "claimStatus": "interpretation"
+    },
+    {
+      "id": "demo-relation-08",
+      "universeId": "demo",
+      "spoilerRequirements": [],
+      "editorialStatus": "demo",
+      "fromEventId": "demo-event-07",
+      "toEventId": "demo-event-08",
+      "kind": "association",
+      "directed": false,
+      "explanation": "Vínculo narrativo de demostración; no implica causalidad.",
+      "evidence": [],
+      "claimStatus": "interpretation"
+    },
+    {
+      "id": "demo-relation-09",
+      "universeId": "demo",
+      "spoilerRequirements": [],
+      "editorialStatus": "demo",
+      "fromEventId": "demo-event-07",
+      "toEventId": "demo-event-09",
+      "kind": "association",
+      "directed": false,
+      "explanation": "Vínculo narrativo de demostración; no implica causalidad.",
+      "evidence": [],
+      "claimStatus": "interpretation"
+    },
+    {
+      "id": "demo-relation-10",
+      "universeId": "demo",
+      "spoilerRequirements": [],
+      "editorialStatus": "demo",
+      "fromEventId": "demo-event-08",
+      "toEventId": "demo-event-10",
+      "kind": "association",
+      "directed": false,
+      "explanation": "Vínculo narrativo de demostración; no implica causalidad.",
+      "evidence": [],
+      "claimStatus": "interpretation"
+    },
+    {
+      "id": "demo-relation-11",
+      "universeId": "demo",
+      "spoilerRequirements": [],
+      "editorialStatus": "demo",
+      "fromEventId": "demo-event-09",
+      "toEventId": "demo-event-11",
+      "kind": "association",
+      "directed": false,
+      "explanation": "Vínculo narrativo de demostración; no implica causalidad.",
+      "evidence": [],
+      "claimStatus": "interpretation"
+    },
+    {
+      "id": "demo-relation-12",
+      "universeId": "demo",
+      "spoilerRequirements": [],
+      "editorialStatus": "demo",
+      "fromEventId": "demo-event-10",
+      "toEventId": "demo-event-11",
+      "kind": "association",
+      "directed": false,
+      "explanation": "Vínculo narrativo de demostración; no implica causalidad.",
+      "evidence": [],
+      "claimStatus": "interpretation"
+    },
+    {
+      "id": "demo-relation-13",
+      "universeId": "demo",
+      "spoilerRequirements": [],
+      "editorialStatus": "demo",
+      "fromEventId": "demo-event-11",
+      "toEventId": "demo-event-12",
+      "kind": "association",
+      "directed": false,
+      "explanation": "Vínculo narrativo de demostración; no implica causalidad.",
+      "evidence": [],
+      "claimStatus": "interpretation"
+    },
+    {
+      "id": "demo-relation-14",
+      "universeId": "demo",
+      "spoilerRequirements": [],
+      "editorialStatus": "demo",
+      "fromEventId": "demo-event-12",
+      "toEventId": "demo-event-13",
+      "kind": "association",
+      "directed": false,
+      "explanation": "Vínculo narrativo de demostración; no implica causalidad.",
+      "evidence": [],
+      "claimStatus": "interpretation"
+    },
+    {
+      "id": "demo-relation-15",
+      "universeId": "demo",
+      "spoilerRequirements": [],
+      "editorialStatus": "demo",
+      "fromEventId": "demo-event-12",
+      "toEventId": "demo-event-14",
+      "kind": "association",
+      "directed": false,
+      "explanation": "Vínculo narrativo de demostración; no implica causalidad.",
+      "evidence": [],
+      "claimStatus": "interpretation"
+    },
+    {
+      "id": "demo-relation-16",
+      "universeId": "demo",
+      "spoilerRequirements": [],
+      "editorialStatus": "demo",
+      "fromEventId": "demo-event-13",
+      "toEventId": "demo-event-14",
+      "kind": "association",
+      "directed": false,
+      "explanation": "Vínculo narrativo de demostración; no implica causalidad.",
+      "evidence": [],
+      "claimStatus": "interpretation"
+    },
+    {
+      "id": "demo-relation-17",
+      "universeId": "demo",
+      "spoilerRequirements": [],
+      "editorialStatus": "demo",
+      "fromEventId": "demo-event-04",
+      "toEventId": "demo-event-11",
+      "kind": "association",
+      "directed": false,
+      "explanation": "Vínculo narrativo de demostración; no implica causalidad.",
+      "evidence": [],
+      "claimStatus": "interpretation"
+    }
+  ]
+}

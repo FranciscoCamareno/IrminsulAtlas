@@ -1,0 +1,18 @@
+node_modules/
+dist/
+.astro/
+.cache/
+.npm/
+.validation/
+coverage/
+package-lock.json
+# Original specification: avoid unrelated formatting changes.
+AGENTS.md
+docs/01-requisitos.md
+docs/02-arquitectura.md
+docs/03-modelo-de-datos.md
+docs/04-integracion-api.md
+docs/05-diseno-ux.md
+docs/06-plan-de-trabajo.md
+docs/07-referencias-y-decisiones.md
+docs/styles.md

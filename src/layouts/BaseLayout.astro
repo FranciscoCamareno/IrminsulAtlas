@@ -1,0 +1,59 @@
+---
+import '../styles/tokens.css';
+import '../styles/global.css';
+import '../styles/timeline.css';
+
+interface Props {
+  immersive?: boolean;
+}
+const { immersive = false } = Astro.props;
+---
+
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta
+      name="description"
+      content="Archivo de demostración para explorar acontecimientos, fuentes e incertidumbre histórica."
+    />
+    <title>Irminsul Atlas · Archivo de demostración</title>
+  </head>
+  <body class:list={{ 'atlas-page': immersive }}>
+    <a class="skip-link" href="#main">
+      Saltar al contenido
+    </a>
+    {!immersive && (
+      <header class="site-header">
+        <a href="/" class="brand">
+          Irminsul <span>Atlas</span>
+        </a>
+        <span class="metadata">Archivo de demostración</span>
+      </header>
+    )}
+    <main id="main" tabindex="-1" class:list={{ 'atlas-main': immersive }}>
+      {!immersive && (
+        <div class="demo-notice">
+          <strong>Datos de demostración</strong>
+          <p>
+            El Archivo de la Bruma es ficticio. Sus acontecimientos, personajes
+            y fuentes no representan lore de Genshin Impact.
+          </p>
+        </div>
+      )}
+      <slot />
+    </main>
+    {!immersive && (
+      <footer class="site-footer">
+        <p>
+          <a href="/">Volver a la cronología</a>
+        </p>
+        <p>
+          Los filtros de spoilers protegen la lectura; los archivos de un sitio
+          estático siguen siendo públicos.
+        </p>
+      </footer>
+    )}
+  </body>
+</html>

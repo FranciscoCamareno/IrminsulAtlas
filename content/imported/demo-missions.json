@@ -1,0 +1,38 @@
+[
+  {
+    "id": "demo-source-01",
+    "universeId": "demo",
+    "spoilerRequirements": [],
+    "editorialStatus": "demo",
+    "kind": "mission",
+    "title": "Cuaderno de prueba A",
+    "language": "es",
+    "locator": "Ficha sintética 1",
+    "providerId": "local-demo",
+    "externalId": "synthetic-1",
+    "snapshotVersion": "demo-v1",
+    "prerequisiteExternalIds": [],
+    "text": {
+      "status": "available",
+      "value": "Material fuente completamente sintético para las escenas del archivo."
+    }
+  },
+  {
+    "id": "demo-source-02",
+    "universeId": "demo",
+    "spoilerRequirements": [],
+    "editorialStatus": "demo",
+    "kind": "mission",
+    "title": "Cuaderno de prueba B",
+    "language": "es",
+    "locator": "Ficha sintética 2",
+    "providerId": "local-demo",
+    "externalId": "synthetic-2",
+    "snapshotVersion": "demo-v1",
+    "prerequisiteExternalIds": [],
+    "text": {
+      "status": "missing",
+      "reason": "Fixture de metadatos sin diálogo. No se ha consultado un proveedor real."
+    }
+  }
+]

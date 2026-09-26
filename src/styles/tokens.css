@@ -1,0 +1,37 @@
+:root {
+  --background: #f4f1eb;
+  --surface: #ffffff;
+  --surface-subtle: #e8e3da;
+  --surface-inverse: #191c21;
+  --text-primary: #111827;
+  --text-secondary: #4b5563;
+  --text-inverse: #f4f1eb;
+  --text-inverse-secondary: #d5d0c8;
+  --action: #000000;
+  --on-action: #ffffff;
+  --border-subtle: #d5cec4;
+  --border-strong: #8f8880;
+  --focus: #245cc5;
+  --focus-inverse: #a8c7ff;
+  --connection: #736b62;
+  --connection-active: #111827;
+  --status-info: #245cc5;
+  --status-warning: #855800;
+  --status-error: #a12d35;
+  --status-success: #246744;
+  --font-body: Inter, system-ui, sans-serif;
+  --font-meta: 'JetBrains Mono', ui-monospace, monospace;
+  --space-1: 0.25rem;
+  --space-2: 0.5rem;
+  --space-3: 0.75rem;
+  --space-4: 1rem;
+  --space-6: 1.5rem;
+  --space-8: 2rem;
+  --space-12: 3rem;
+  --space-16: 4rem;
+  --radius-panel: 1rem;
+  --radius-control: 0.5rem;
+  --radius-pill: 999px;
+  --touch-target: 2.75rem;
+  --shadow-panel: 0 8px 28px rgb(17 24 39 / 10%);
+}
