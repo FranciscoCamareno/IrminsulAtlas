@@ -1,0 +1,240 @@
+{
+  "acceptedBytes": 963614,
+  "acceptedVersion": "216c2918914f40d1f4031ba47cca4d5628ed8a064498ac729fa452df783bc253",
+  "applicationChecks": {
+    "build": {
+      "pages": 4,
+      "importMarkersCheckedAbsent": [
+        "agd-quest-352-es",
+        "17833f345e40fa245e464c66c2dd0f55b6164adfe8b4de480d2c2ae7ea10c460",
+        "TextMap_MediumES",
+        "BinOutput/Quest"
+      ]
+    },
+    "deployed": false,
+    "format": "passed",
+    "lint": "passed",
+    "tests": {
+      "files": 5,
+      "newImportTests": 24,
+      "passed": 60
+    },
+    "typecheck": {
+      "errors": 0,
+      "files": 32,
+      "hints": 0,
+      "warnings": 0
+    }
+  },
+  "byteIdentical": true,
+  "candidateBytes": 1609846,
+  "candidateId": "17833f345e40fa245e464c66c2dd0f55b6164adfe8b4de480d2c2ae7ea10c460",
+  "diffBeforePromotion": {
+    "added": [
+      "agd-document-100202-es",
+      "agd-document-100203-es",
+      "agd-document-100204-es",
+      "agd-document-100205-es",
+      "agd-document-100206-es",
+      "agd-document-100207-es",
+      "agd-document-100214-es",
+      "agd-document-100610-es",
+      "agd-document-185011-es",
+      "agd-document-185012-es",
+      "agd-document-185013-es",
+      "agd-document-185014-es",
+      "agd-document-185015-es",
+      "agd-document-191501-es",
+      "agd-fetter-10202-es",
+      "agd-npc-1465-es",
+      "agd-quest-352-es",
+      "agd-quest-40250-es",
+      "agd-quest-451-es"
+    ],
+    "changed": [],
+    "removed": [],
+    "unchanged": []
+  },
+  "executedAt": "2026-09-27T07:02:16.452Z",
+  "importPreservedAcceptedState": true,
+  "network": "disabled",
+  "promotion": {
+    "diffAfterPromotion": {
+      "added": [],
+      "changed": [],
+      "removed": [],
+      "unchanged": [
+        "agd-document-100202-es",
+        "agd-document-100203-es",
+        "agd-document-100204-es",
+        "agd-document-100205-es",
+        "agd-document-100206-es",
+        "agd-document-100207-es",
+        "agd-document-100214-es",
+        "agd-document-100610-es",
+        "agd-document-185011-es",
+        "agd-document-185012-es",
+        "agd-document-185013-es",
+        "agd-document-185014-es",
+        "agd-document-185015-es",
+        "agd-document-191501-es",
+        "agd-fetter-10202-es",
+        "agd-npc-1465-es",
+        "agd-quest-352-es",
+        "agd-quest-40250-es",
+        "agd-quest-451-es"
+      ]
+    },
+    "pointer": {
+      "previousVersion": null,
+      "schemaVersion": 1,
+      "version": "216c2918914f40d1f4031ba47cca4d5628ed8a064498ac729fa452df783bc253"
+    },
+    "sources": 19,
+    "validated": true
+  },
+  "report": {
+    "adapterVersion": "animegamedata-7.1-p1-v1",
+    "categories": [
+      {
+        "accepted": 1,
+        "category": "ambient-dialogue",
+        "excluded": 0,
+        "processed": 1
+      },
+      {
+        "accepted": 5,
+        "category": "artifact-story",
+        "excluded": 0,
+        "processed": 5
+      },
+      {
+        "accepted": 7,
+        "category": "book",
+        "excluded": 0,
+        "processed": 7
+      },
+      {
+        "accepted": 1,
+        "category": "character-story",
+        "excluded": 0,
+        "processed": 1
+      },
+      {
+        "accepted": 0,
+        "category": "hangout",
+        "excluded": 1,
+        "processed": 1
+      },
+      {
+        "accepted": 1,
+        "category": "letter",
+        "excluded": 0,
+        "processed": 1
+      },
+      {
+        "accepted": 3,
+        "category": "mission",
+        "excluded": 3,
+        "processed": 6
+      },
+      {
+        "accepted": 1,
+        "category": "weapon-story",
+        "excluded": 0,
+        "processed": 1
+      }
+    ],
+    "filesVerified": 100,
+    "issues": [
+      {
+        "category": "hangout",
+        "code": "UNKNOWN_ROOT",
+        "field": "rootSegmentId",
+        "file": "BinOutput/Talk/Coop/1900102_7.json",
+        "id": "agd-coop-101401-es-talk-1900102-7",
+        "message": "Raíz no verificada: conservar fuera del conjunto aceptado",
+        "severity": "warning"
+      },
+      {
+        "category": "hangout",
+        "code": "UNKNOWN_ROOT",
+        "field": "rootSegmentId",
+        "file": "BinOutput/Talk/Coop/1900102_10.json",
+        "id": "agd-coop-101401-es-talk-1900102-10",
+        "message": "Raíz no verificada: conservar fuera del conjunto aceptado",
+        "severity": "warning"
+      },
+      {
+        "category": "hangout",
+        "code": "EXCLUDED_SOURCE",
+        "field": "",
+        "file": "ExcelBinOutput/CoopChapterExcelConfigData.json",
+        "id": "agd-coop-101401-es",
+        "message": "P1-03: solo dos variantes muestreadas; raíces Coop y rutas completas sin certificar.",
+        "severity": "warning"
+      },
+      {
+        "category": "mission",
+        "code": "MISSING_TEXT",
+        "field": "/PCIAMAFDDAA/0",
+        "file": "BinOutput/Talk/Quest/1000720.json",
+        "id": "100072001",
+        "message": "Hash 1811400490: Texto ausente o vacío en ambos diccionarios españoles",
+        "severity": "warning"
+      },
+      {
+        "category": "mission",
+        "code": "EXCLUDED_SOURCE",
+        "field": "",
+        "file": "BinOutput/Quest/10007.json",
+        "id": "agd-quest-10007-es",
+        "message": "P1-01: hash ES 1811400490 ausente; conservar la fuente completa fuera del subconjunto aceptado.",
+        "severity": "warning"
+      },
+      {
+        "category": "mission",
+        "code": "EXCLUDED_SOURCE",
+        "field": "",
+        "file": "BinOutput/Quest/19001.json",
+        "id": "agd-quest-19001-es",
+        "message": "P1-03: fragmento de entrada del encuentro excluido; se conserva junto a su contexto.",
+        "severity": "warning"
+      },
+      {
+        "category": "mission",
+        "code": "MISSING_TEXT",
+        "field": "/PCIAMAFDDAA/4",
+        "file": "BinOutput/Talk/Quest/4111101.json",
+        "id": "411110142",
+        "message": "Hash 4073544202: Texto ausente o vacío en ambos diccionarios españoles",
+        "severity": "warning"
+      },
+      {
+        "category": "mission",
+        "code": "EXCLUDED_SOURCE",
+        "field": "",
+        "file": "BinOutput/Quest/41111.json",
+        "id": "agd-quest-41111-es",
+        "message": "P1-02: hash ES 4073544202 ausente; conservar la fuente completa fuera del subconjunto aceptado.",
+        "severity": "warning"
+      }
+    ],
+    "schemaVersion": 1,
+    "segmentsAccepted": 396,
+    "snapshotCommit": "b061b403c8afc7bca633cf4f201edc4a3baa75fe",
+    "sourcesAccepted": 19,
+    "sourcesExcluded": 4,
+    "sourcesProcessed": 23,
+    "status": "valid",
+    "unresolvedTexts": 2
+  },
+  "sameCandidateId": true,
+  "repositoryChecks": {
+    "lockfileUnchanged": true,
+    "uiAndEditorialUnchanged": true,
+    "p0BackupPreserved": true,
+    "generatedSourcesIgnored": true,
+    "rawFixtureGitTextConversion": "disabled"
+  }
+}

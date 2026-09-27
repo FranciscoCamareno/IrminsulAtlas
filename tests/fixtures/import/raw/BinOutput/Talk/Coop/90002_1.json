@@ -1,0 +1,22 @@
+{
+  "PFALHAKIILD": [
+    {
+      "OIFGMOHKPOI": 9201,
+      "OACNIBLFFDI": 4,
+      "LFGCLNLPAPB": {
+        "_id": "900",
+        "_type": "TALK_ROLE_NPC"
+      },
+      "KMLAFCBMFEI": [
+        9202
+      ]
+    },
+    {
+      "OIFGMOHKPOI": 9202,
+      "OACNIBLFFDI": 5,
+      "KMLAFCBMFEI": [
+        0
+      ]
+    }
+  ]
+}

@@ -1,0 +1,32 @@
+{
+  "talkId": 90011,
+  "PCIAMAFDDAA": [
+    {
+      "id": 9001101,
+      "LKECPJIFFEE": 3,
+      "KBPOBGFGLKN": {
+        "id": "900",
+        "type": "TALK_ROLE_NPC"
+      },
+      "GLJCECCOEDP": [
+        9001102,
+        9001103
+      ]
+    },
+    {
+      "id": 9001102,
+      "LKECPJIFFEE": 4,
+      "KBPOBGFGLKN": {
+        "id": "",
+        "type": "TALK_ROLE_PLAYER"
+      },
+      "GLJCECCOEDP": [
+        0
+      ]
+    },
+    {
+      "id": 9001103,
+      "LKECPJIFFEE": 5
+    }
+  ]
+}

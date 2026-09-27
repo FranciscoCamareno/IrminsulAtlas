@@ -18,7 +18,12 @@
     "lint": "eslint .",
     "format": "prettier --write .",
     "format:check": "prettier --check .",
-    "validate": "npm run format:check && npm run lint && npm run check && npm test && npm run build"
+    "validate": "npm run format:check && npm run lint && npm run check && npm test && npm run build",
+    "content:acquire": "node scripts/import/cli.ts acquire",
+    "content:import": "node scripts/import/cli.ts import",
+    "content:validate": "node scripts/import/cli.ts validate",
+    "content:diff": "node scripts/import/cli.ts diff",
+    "content:promote": "node scripts/import/cli.ts promote"
   },
   "dependencies": {
     "@astrojs/react": "7.0.0",

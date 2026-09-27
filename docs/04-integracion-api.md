@@ -1,5 +1,7 @@
 # Integración de una API de misiones
 
+> Estado al 27/09/2026: P2 implementa un proveedor de archivos AnimeGameData fijado a commit, sin API REST ni credenciales. Comandos efectivos, formato y garantías en [importador P2](validation/importador-p2.md). Este documento conserva el diseño general; paginación, reintentos, vinculación editorial y publicación no están implementados por aparecer aquí.
+
 ## Decisión recomendada
 
 Consultar la API durante una importación previa a la compilación. Publicar datos preparados con el sitio. Los visitantes no necesitan volver a solicitar toda la información al proveedor.
@@ -54,7 +56,7 @@ Una misión ausente en una respuesta parcial no debe interpretarse como eliminad
 
 La base inicial define únicamente `MissionProvider.loadMissions(): Promise<readonly Mission[]>` en `src/content/local.ts`, con una implementación funcional de lectura local. El adaptador futuro normalizará y validará la respuesta real de un proveedor antes de devolver estas fuentes. No se han definido operaciones de detalle, endpoints ni formatos externos. Reevaluar esas operaciones cuando se conozca el proveedor; algunos entregan archivos completos.
 
-El dominio consume Mission normalizada, nunca objetos específicos del proveedor. Registrar una clave compuesta por proveedor, ID externo e idioma cuando sea necesario.
+El cargador demo conserva ese contrato. P2 añade `SourceRecord` y `SourceSegment` en los esquemas de dominio para conservar conversaciones ramificadas y documentos; no fuerza todas las fuentes al texto plano de `Mission`. Su integración con eventos queda para P3. La identidad normalizada incorpora proveedor, tipo, ID externo, variante e idioma; las condiciones originales permanecen opacas y no se interpretan como fechas o spoilers.
 
 ## Separación de archivos
 

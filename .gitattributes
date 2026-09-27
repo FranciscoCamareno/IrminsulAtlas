@@ -1,0 +1,2 @@
+# Preserve exact fixture bytes across checkouts, including text hashes and line endings.
+tests/fixtures/import/raw/** -text

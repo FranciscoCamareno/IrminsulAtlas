@@ -193,3 +193,204 @@ export type Source = z.infer<typeof SourceSchema>;
 export type LoreEvent = z.infer<typeof EventSchema>;
 export type Relation = z.infer<typeof RelationSchema>;
 export type Dataset = z.infer<typeof DatasetSchema>;
+
+// Import contracts describe source material, never historical events.
+// Imported text is deliberately not trimmed: its original bytes/hash matter.
+export const Sha256Schema = z.string().regex(/^[a-f0-9]{64}$/);
+export const CommitSchema = z.string().regex(/^[a-f0-9]{40}$/);
+export const SnapshotPathSchema = z
+  .string()
+  .regex(/^(?:[A-Za-z0-9_-]+\/)*[A-Za-z0-9_.-]+$/)
+  .refine(
+    (path) => !path.split('/').some((part) => part === '.' || part === '..'),
+  );
+export const SnapshotManifestSchema = z
+  .object({
+    manifestVersion: z.literal(1),
+    repository: z.literal('https://github.com/DimbreathBot/AnimeGameData'),
+    commit: CommitSchema,
+    language: z.literal('ES'),
+    commitDate: z.iso.datetime().optional(),
+    providerDeclaredBuild: z
+      .object({
+        value: text,
+        sourceCommit: CommitSchema,
+        note: text.optional(),
+      })
+      .optional(),
+    contentOrigin: z.enum(['provider', 'synthetic']).default('provider'),
+    files: z
+      .array(
+        z.object({
+          path: SnapshotPathSchema,
+          bytes: z.number().int().nonnegative(),
+          sha256: Sha256Schema,
+          gitBlobSha1: CommitSchema,
+          acquiredAt: z.iso.datetime().optional(),
+        }),
+      )
+      .min(1),
+  })
+  .refine(
+    (manifest) =>
+      new Set(manifest.files.map((file) => file.path)).size ===
+      manifest.files.length,
+    {
+      message: 'Archivo duplicado en el manifiesto',
+      path: ['files'],
+    },
+  );
+
+export const ImportSelectionSchema = z.strictObject({
+  schemaVersion: z.literal(1),
+  adapterVersion: z.literal('animegamedata-7.1-p1-v1'),
+  quests: z.array(z.number().int().positive()),
+  ambientNpcs: z.array(z.number().int().positive()),
+  hangouts: z.array(
+    z.strictObject({
+      chapterId: z.number().int().positive(),
+      conversationFiles: z.array(SnapshotPathSchema).min(1),
+    }),
+  ),
+  documents: z.array(
+    z.strictObject({
+      id: z.number().int().positive(),
+      kind: z.enum(['book', 'letter', 'weapon-story', 'artifact-story']),
+    }),
+  ),
+  characterStories: z.array(z.number().int().positive()),
+  exclusions: z.array(z.strictObject({ sourceId: IdSchema, reason: text })),
+});
+
+export const SourceLocatorSchema = z.strictObject({
+  path: SnapshotPathSchema,
+  pointer: z.string(),
+  fileSha256: Sha256Schema,
+});
+export const ImportedTextSchema = z.discriminatedUnion('status', [
+  z.strictObject({
+    status: z.literal('available'),
+    value: z.string().min(1),
+    sha256: Sha256Schema,
+    textMapHash: z.string().regex(/^\d+$/).nullable(),
+    origin: SourceLocatorSchema,
+  }),
+  z.strictObject({
+    status: z.literal('missing'),
+    textMapHash: z.string().regex(/^\d+$/).nullable(),
+    reason: text,
+  }),
+]);
+export const SourceSegmentSchema = z.strictObject({
+  id: IdSchema,
+  externalId: text,
+  locator: SourceLocatorSchema,
+  // Position in the provider file; not historical/revelation order or identity.
+  sourceOrder: order,
+  text: ImportedTextSchema,
+  speaker: z.strictObject({
+    externalId: z.string().nullable(),
+    roleType: z.string().nullable(),
+    name: z.string().nullable(),
+  }),
+  nextSegmentIds: ids,
+  endsConversation: z.boolean(),
+  // Conditions and opaque fields survive; unsafe integers are exact decimal strings.
+  original: z.json(),
+});
+export const SourceRecordSchema = z.strictObject({
+  id: IdSchema,
+  providerId: z.literal('animegamedata'),
+  externalId: text,
+  language: z.literal('es'),
+  kind: z.enum([
+    'mission',
+    'ambient-dialogue',
+    'hangout',
+    'book',
+    'letter',
+    'character-story',
+    'weapon-story',
+    'artifact-story',
+  ]),
+  title: z.string().min(1),
+  locator: SourceLocatorSchema,
+  metadataLocators: z.array(SourceLocatorSchema),
+  editorialStatus: z.literal('draft'),
+  // P1 review concerns source coverage; it is not approval of inferred events/spoilers.
+  publication: z.literal('not-publishable'),
+  context: z.json(),
+  conversations: z.array(
+    z.strictObject({
+      id: IdSchema,
+      locator: SourceLocatorSchema,
+      rootSegmentId: IdSchema.nullable(),
+    }),
+  ),
+  segments: z.array(SourceSegmentSchema).min(1),
+});
+export const ImportedDatasetSchema = z.strictObject({
+  schemaVersion: z.literal(1),
+  adapterVersion: ImportSelectionSchema.shape.adapterVersion,
+  snapshot: SnapshotManifestSchema,
+  selectionSha256: Sha256Schema,
+  sources: z.array(SourceRecordSchema),
+});
+export const ImportIssueSchema = z.strictObject({
+  severity: z.enum(['error', 'warning']),
+  code: text,
+  category: text,
+  file: z.string(),
+  field: z.string(),
+  id: z.string().nullable(),
+  message: text,
+});
+export const ImportReportSchema = z.strictObject({
+  schemaVersion: z.literal(1),
+  status: z.enum(['valid', 'rejected']),
+  snapshotCommit: CommitSchema.nullable(),
+  adapterVersion: ImportSelectionSchema.shape.adapterVersion,
+  filesVerified: order,
+  sourcesProcessed: order,
+  sourcesAccepted: order,
+  sourcesExcluded: order,
+  segmentsAccepted: order,
+  unresolvedTexts: order,
+  categories: z.array(
+    z.strictObject({
+      category: text,
+      processed: order,
+      accepted: order,
+      excluded: order,
+    }),
+  ),
+  issues: z.array(ImportIssueSchema),
+});
+export const ImportCandidateSchema = z.strictObject({
+  schemaVersion: z.literal(1),
+  dataset: ImportedDatasetSchema,
+  selection: ImportSelectionSchema,
+});
+export const ImportDiffSchema = z.strictObject({
+  added: ids,
+  changed: ids,
+  removed: ids,
+  unchanged: ids,
+});
+export const AcceptedImportSchema = z.strictObject({
+  schemaVersion: z.literal(1),
+  version: Sha256Schema,
+  previousVersion: Sha256Schema.nullable(),
+});
+export type SnapshotManifest = z.infer<typeof SnapshotManifestSchema>;
+export type ImportSelection = z.infer<typeof ImportSelectionSchema>;
+export type SourceLocator = z.infer<typeof SourceLocatorSchema>;
+export type ImportedText = z.infer<typeof ImportedTextSchema>;
+export type SourceSegment = z.infer<typeof SourceSegmentSchema>;
+export type SourceRecord = z.infer<typeof SourceRecordSchema>;
+export type ImportedDataset = z.infer<typeof ImportedDatasetSchema>;
+export type ImportIssue = z.infer<typeof ImportIssueSchema>;
+export type ImportReport = z.infer<typeof ImportReportSchema>;
+export type ImportCandidate = z.infer<typeof ImportCandidateSchema>;
+export type ImportDiff = z.infer<typeof ImportDiffSchema>;
+export type AcceptedImport = z.infer<typeof AcceptedImportSchema>;

@@ -30,7 +30,7 @@ Estos enlaces respaldan las capacidades generales comentadas. La arquitectura, a
 | SVG/HTML + D3 | Prototipo implementado | React dibuja; D3 calcula y captura gestos |
 | Escala narrativa | Provisional | Fechas inciertas y legibilidad |
 | Identidad visual | Lienzo inmersivo carbón/crema | Referencias estructurales del usuario; 09-cronologia-inmersiva.md |
-| API concreta | Pendiente | Cobertura de diálogos, IDs, idioma, condiciones y fiabilidad |
+| Fuente concreta | Archivos AnimeGameData fijados a commit; importador P2 | Cobertura y exclusiones en validation/importador-p2.md; sin consulta en navegador |
 | Hosting y dominio | Pendiente | Elegir al solicitar publicación |
 | Capítulos/hitos de spoilers | Pendiente editorial | No confundir progreso con cronología |
 | Analítica | Excluida por defecto | No es necesaria para el objetivo |

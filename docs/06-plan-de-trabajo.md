@@ -121,3 +121,12 @@ Añadir en cada iteración: fecha, fase, cambios, comprobaciones, limitaciones y
 - [Revisión humana](validation/p1/revision-humana.md) pendiente en los 12 casos; P1 no cierra su puerta editorial ni autoriza marcar datos como revisados. El próximo paso es validar el subconjunto y sus exclusiones antes de solicitar P2.
 - Se corrigen las referencias de archivo y el formato pendiente del plan 10. No se cambian UI, dominio, fixtures ni dependencias; no se implementa P2 ni se despliega.
 - `npm run validate` completo correcto: formato, lint, tipos sin diagnósticos en 25 archivos, 36 pruebas y build de 4 páginas. La sonda `--check` reproduce sin red la evidencia de 100 archivos verificados; no sustituye la revisión humana ni las futuras pruebas de P2.
+
+### 2026-09-27 — P2: importación reproducible
+
+- Revisión humana P1 aprobada por el usuario en la conversación; [acta y límites](validation/p1/revision-humana.md). Rama `codex/p2-importador-reproducible` desde `897ceded7cd0dacbb3c4d9da66c9021c41262f0f`; ZIP P0 conservado.
+- [Importador P2](validation/importador-p2.md) en TypeScript/Node, contratos Zod, adquisición separada, normalización sin red, informes, diferencias y promoción local con versiones inmutables. Sin dependencias nuevas.
+- 100 archivos del snapshot P1 verificados; 23 fuentes procesadas, 4 excluidas explícitamente y 19 fuentes con 396 segmentos aceptadas localmente. Fuentes `draft` y `not-publishable`; UI y editorial siguen usando demostración.
+- Dos ejecuciones reales con red deshabilitada produjeron el mismo candidato byte por byte. Pruebas de fallo conservan el puntero y los datos de la última versión válida.
+- `npm run validate` correcto: formato, lint, tipos sin diagnósticos en 32 archivos, 60 pruebas (24 nuevas) y 4 páginas compiladas. Promoción, validación local y comparación posterior correctas.
+- Próximo paso: P3, muestra editorial de 8–12 eventos con evidencia, incertidumbre y revisión. No se implementó P3 ni se desplegó.

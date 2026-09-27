@@ -1,5 +1,7 @@
 # P1 — Cobertura de fuentes de lore
 
+> Actualización registrada el 27/09/2026: el usuario aprobó la revisión humana y autorizó P2. Véanse el [acta de aprobación](p1/revision-humana.md) y la [implementación P2](importador-p2.md). El resto conserva el informe técnico original del 26/09 y su estado de revisión en aquel momento; las ausencias de texto y el alcance parcial no se dan por resueltos.
+
 Fecha: 26 de septiembre de 2026, Costa Rica. Estado: **investigación técnica entregada; revisión humana y aceptación editorial pendientes**. No se implementó P2 ni se conectó contenido real a la aplicación.
 
 ## Resultado y decisión

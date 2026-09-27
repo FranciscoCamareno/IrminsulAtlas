@@ -2,6 +2,10 @@
 
 > Contrato ejecutable inicial: [src/domain/schema.ts](../src/domain/schema.ts). Los tipos se infieren de Zod; las tablas de este documento son orientativas. Véase [la decisión de modelo](08-base-inicial.md): `Mission` es una variante de fuente, los intervalos tienen incertidumbre explícita y las restricciones relativas usan `before`/`after`.
 
+## Contratos añadidos en P2
+
+El importador define en `src/domain/schema.ts` `SnapshotManifest`, `SourceRecord`, `SourceSegment`, `ImportSelection`, `ImportedDataset`, `ImportCandidate`, `ImportReport`, `ImportDiff` y `AcceptedImport`, con tipos inferidos de Zod. Conserva texto, hashes, roles, condiciones, localizadores y ramas como material fuente. Los IDs no dependen del título ni del commit. Todo material normalizado permanece `draft` y `not-publishable`; su aceptación técnica no lo convierte en evento revisado ni concede visibilidad. El `Dataset` demo y las evidencias editoriales existentes permanecen compatibles. Véase [P2](validation/importador-p2.md).
+
 ## Principios
 
 Una misión es material fuente; un evento es una unidad histórica editada. Una misión puede describir varios eventos y un evento puede tener varias fuentes.

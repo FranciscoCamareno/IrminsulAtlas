@@ -16,3 +16,6 @@ docs/05-diseno-ux.md
 docs/06-plan-de-trabajo.md
 docs/07-referencias-y-decisiones.md
 docs/styles.md
+
+# Exact bytes of synthetic provider fixtures (including 64-bit integers).
+tests/fixtures/import/raw/

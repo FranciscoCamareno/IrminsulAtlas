@@ -1,0 +1,15 @@
+[
+  {
+    "id": 9003,
+    "chapterNameTextMapHash": 7,
+    "unlockCond": [
+      {
+        "condType": "DEMO",
+        "args": [
+          1,
+          2
+        ]
+      }
+    ]
+  }
+]

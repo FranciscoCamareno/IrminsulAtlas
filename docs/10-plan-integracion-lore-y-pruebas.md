@@ -2,7 +2,7 @@
 
 Fecha: 25 de septiembre de 2026, Costa Rica.
 Archivo: `docs/10-plan-integracion-lore-y-pruebas.md`.
-Estado al 26/09/2026: P0 auditada; Git/GitHub verificados. P1 tiene evidencia técnica, manifiesto y decisión de lenguaje; revisión humana y puerta editorial pendientes. P2–P7 no se han ejecutado. Véanse [estado actual P0](validation/estado-actual.md) y [cobertura P1](validation/cobertura-fuentes.md).
+Estado al 27/09/2026: P0 auditada; Git/GitHub verificados. P1 aprobada por el usuario con los límites de cobertura documentados. P2 implementa adquisición, normalización, validación, comparación y promoción local; evidencia en [importador P2](validation/importador-p2.md). P3–P7 pendientes. Antecedentes: [estado actual P0](validation/estado-actual.md), [cobertura P1](validation/cobertura-fuentes.md) y [aprobación humana](validation/p1/revision-humana.md).
 
 ## 1. Alcance y evidencia disponible
 
@@ -61,7 +61,7 @@ El sitio publicado sigue siendo estático. No se añade base de datos, autentica
 
 ## 3. Contratos y límites que deben quedar definidos
 
-Reutilizar los esquemas existentes cuando P0 los encuentre. Los nombres siguientes son responsabilidades propuestas, no archivos o APIs que ya existan.
+Reutilizar los esquemas existentes cuando P0 los encuentre. La tabla siguiente conserva las responsabilidades propuestas. P2 concreta los contratos de manifiesto, fuentes/segmentos, selección, candidato, informe, comparación y versión aceptada en `src/domain/schema.ts`; la integración con evidencias/eventos y su aprobación editorial sigue pendiente de P3. Véase el informe P2 para los nombres y archivos efectivos.
 
 | Concepto         | Información mínima                                                                                                                    |
 | ---------------- | ------------------------------------------------------------------------------------------------------------------------------------- |
@@ -336,7 +336,7 @@ P0 debe reutilizar los comandos existentes y documentar su equivalencia. Si falt
 | `npm run build`            | Generación estática desde datos aceptados; no descarga implícita |
 | `npm run test:e2e`         | Pruebas sobre salida compilada servida localmente                |
 
-Estos comandos no existen por el hecho de aparecer aquí. Codex debe crearlos o informar los nombres reales antes de indicar que pueden ejecutarse. El mecanismo de promoción/restauración de datos se define en P2 y se documenta en P7.
+Estos comandos no existen por el hecho de aparecer aquí. P2 añadió `content:acquire`, `content:import`, `content:validate`, `content:diff` y `content:promote`; su validación se limita al material fuente, no certifica todavía evidencias editoriales ni sus estados de publicación. `test:e2e` sigue pendiente. README y el informe P2 documentan los argumentos reales. El mecanismo de promoción/restauración de datos se define en P2 y se documenta en P7.
 
 Cada incremento entrega: resumen de cambios, archivos afectados, snapshot/configuración utilizados, comandos ejecutados y resultado, fallos previos, nuevas limitaciones, evidencia manual cuando aplique y siguiente fase habilitada. No basta «todo funciona».
 
@@ -397,7 +397,7 @@ Listo para solicitar publicación cuando:
 - [ ] La actualización y recuperación conservan la última versión válida.
 - [ ] README, modelo, integración y plan reflejan los módulos y comandos efectivos.
 
-La elaboración original del plan no ejecutó estos criterios sobre el repositorio. La auditoría P0 y la investigación técnica P1 se realizaron después y tienen informes enlazados al inicio. Las casillas restantes y la revisión humana de P1 siguen pendientes.
+La elaboración original del plan no ejecutó estos criterios sobre el repositorio. La auditoría P0 y la investigación técnica P1 se realizaron después y tienen informes enlazados al inicio. La aprobación humana de P1 y la implementación P2 se registran en sus informes. Las casillas restantes requieren integración editorial y fases posteriores; la aceptación local de fuentes no certifica el MVP publicable.
 
 ## 11. Referencias y procedencia
 

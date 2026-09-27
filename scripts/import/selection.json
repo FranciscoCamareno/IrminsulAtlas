@@ -1,0 +1,92 @@
+{
+  "schemaVersion": 1,
+  "adapterVersion": "animegamedata-7.1-p1-v1",
+  "quests": [352, 10007, 451, 41111, 40250, 19001],
+  "ambientNpcs": [1465],
+  "hangouts": [
+    {
+      "chapterId": 101401,
+      "conversationFiles": [
+        "BinOutput/Talk/Coop/1900102_7.json",
+        "BinOutput/Talk/Coop/1900102_10.json"
+      ]
+    }
+  ],
+  "documents": [
+    {
+      "id": 100202,
+      "kind": "book"
+    },
+    {
+      "id": 100203,
+      "kind": "book"
+    },
+    {
+      "id": 100204,
+      "kind": "book"
+    },
+    {
+      "id": 100205,
+      "kind": "book"
+    },
+    {
+      "id": 100206,
+      "kind": "book"
+    },
+    {
+      "id": 100610,
+      "kind": "book"
+    },
+    {
+      "id": 100207,
+      "kind": "book"
+    },
+    {
+      "id": 100214,
+      "kind": "letter"
+    },
+    {
+      "id": 191501,
+      "kind": "weapon-story"
+    },
+    {
+      "id": 185011,
+      "kind": "artifact-story"
+    },
+    {
+      "id": 185012,
+      "kind": "artifact-story"
+    },
+    {
+      "id": 185013,
+      "kind": "artifact-story"
+    },
+    {
+      "id": 185014,
+      "kind": "artifact-story"
+    },
+    {
+      "id": 185015,
+      "kind": "artifact-story"
+    }
+  ],
+  "characterStories": [10202],
+  "exclusions": [
+    {
+      "sourceId": "agd-quest-10007-es",
+      "reason": "P1-01: hash ES 1811400490 ausente; conservar la fuente completa fuera del subconjunto aceptado."
+    },
+    {
+      "sourceId": "agd-quest-41111-es",
+      "reason": "P1-02: hash ES 4073544202 ausente; conservar la fuente completa fuera del subconjunto aceptado."
+    },
+    {
+      "sourceId": "agd-coop-101401-es",
+      "reason": "P1-03: solo dos variantes muestreadas; raíces Coop y rutas completas sin certificar."
+    },
+    {
+      "sourceId": "agd-quest-19001-es",
+      "reason": "P1-03: fragmento de entrada del encuentro excluido; se conserva junto a su contexto."
+    }
+  ]
+}

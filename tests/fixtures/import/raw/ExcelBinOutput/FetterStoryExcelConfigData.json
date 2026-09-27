@@ -1,0 +1,17 @@
+[
+  {
+    "fetterId": 9005,
+    "avatarId": 9004,
+    "storyTitleTextMapHash": 9,
+    "storyContextTextMapHash": 10,
+    "openConds": [
+      {
+        "condType": "DEMO",
+        "paramList": [
+          2
+        ]
+      }
+    ],
+    "finishConds": []
+  }
+]

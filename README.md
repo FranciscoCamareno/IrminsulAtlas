@@ -1,10 +1,12 @@
 ﻿# Irminsul Atlas
 
-Prototipo de explorador de lore con **cronología interactiva a pantalla completa**, barra superior mínima y menú lateral plegable. El MVP completo sigue en desarrollo. Todo el contenido mostrado por la aplicación es sintético; no son hechos de Genshin Impact. La investigación P1 de fuentes reales permanece separada del sitio.
+Prototipo de explorador de lore con **cronología interactiva a pantalla completa**, barra superior mínima y menú lateral plegable. El MVP completo sigue en desarrollo. Todo el contenido mostrado por la aplicación es sintético; no son hechos de Genshin Impact. La importación P2 de fuentes reales permanece separada del sitio y del contenido editorial.
 
 ## Trabajo con Git y GitHub
 
 Repositorio: [FranciscoCamareno/IrminsulAtlas](https://github.com/FranciscoCamareno/IrminsulAtlas). Git es el historial y mecanismo principal de recuperación. Antes de cada fase, comprobar `git status`, registrar el commit base y trabajar en una rama propia; revisar el diff, ejecutar las comprobaciones y crear commits limitados a los archivos de la tarea.
+
+P2 parte del commit `897ceded7cd0dacbb3c4d9da66c9021c41262f0f`, en la rama `codex/p2-importador-reproducible`, después de la aprobación humana de P1.
 
 La base de P1 es `2b27c63c1e51c36d6e4b83f9673509f15c4c88eb`, comprobada contra `origin/main`. La rama de esta fase es `codex/p1-cobertura-fuentes`. El ZIP de P0 sigue en `.validation/p0/` como respaldo adicional; no se elimina ni se versiona. Las cachés de investigación también quedan en `.validation/`, fuera de Git y del sitio.
 
@@ -72,11 +74,22 @@ Editar el JSON editorial y ejecutar `npm run validate`. Un error identifica el a
 
 Los esquemas son la única definición de contratos; los tipos se infieren con `z.infer`. El esquema rechaza campos extra, fechas inválidas y fuentes con URL no HTTP(S). La integridad global comprueba referencias, duplicados y ciclos estrictos; no existe un motor de razonamiento temporal completo.
 
-`MissionProvider.loadMissions()` devuelve misiones normalizadas. La implementación inicial lee el archivo local. Un futuro adaptador transformará respuestas verificadas de un proveedor a ese contrato, fuera del cliente. El cargador vuelve a validar su salida. El archivo importado actual es una **excepción manual de demostración**; no representa una importación real. No se genera ni sobrescribe contenido editorial al cargar.
+`MissionProvider.loadMissions()` sigue siendo el cargador de las misiones demo que usa la UI. P2 normaliza fuentes reales con segmentos y variantes en los nuevos contratos Zod `SourceRecord`/`SourceSegment`, fuera del cliente. La conexión de ese material con el modelo editorial queda para P3; no se aplana una conversación ramificada al contrato demo ni se sobrescribe contenido editorial.
 
-La aplicación sigue sin adaptador real, importación productiva ni promoción de candidatos. P1 investigó un snapshot fijado de AnimeGameData fuera del cliente; sus textos originales solo están en caché local. La integración y promoción de datos corresponden a fases posteriores.
+El [importador P2](docs/validation/importador-p2.md) implementa adquisición explícita, normalización sin red, comparación, validación y promoción local. Usa TypeScript/Node sin dependencias nuevas. La [revisión de P1 fue aprobada por el usuario](docs/validation/p1/revision-humana.md), conservando sus ausencias y exclusiones: se procesan 23 fuentes, y el subconjunto técnico contiene 19 fuentes completas y 396 segmentos. Ninguna se convierte automáticamente en evento ni se publica.
 
-La [matriz de cobertura P1](docs/validation/cobertura-fuentes.md) registra las 12 categorías, dos referencias de texto ausentes y el encuentro parcialmente muestreado. Recomendación: adaptador propio en TypeScript. La revisión humana sigue pendiente y ningún registro real está aprobado ni conectado a la UI.
+Desde la raíz:
+
+```sh
+npm run content:acquire
+npm run content:import
+npm run content:validate -- ID_DEL_CANDIDATO
+npm run content:diff -- ID_DEL_CANDIDATO
+npm run content:promote -- ID_DEL_CANDIDATO
+npm run content:validate
+```
+
+`content:acquire` es la única orden que descarga; las demás trabajan localmente. Sustituir `ID_DEL_CANDIDATO` por el hash mostrado al importar. La promoción requiere validación y conserva versiones anteriores. Sus datos quedan en `content/imported/animegame/`, ignorados por Git y separados del sitio. Los candidatos e informes están en `.validation/p2/`. El build sigue utilizando únicamente contenido demo.
 
 Para reproducir la investigación, desde la raíz:
 
@@ -85,7 +98,7 @@ node scripts/research/p1-coverage.mjs --download
 node scripts/research/p1-coverage.mjs --check
 ```
 
-La primera orden adquiere solo los archivos faltantes del manifiesto, unos 102 MiB si no existe caché. La segunda verifica hashes y compara evidencia sin red. El lector de revisión se genera en `.validation/p1/revision-humana.html`; contiene spoilers y no forma parte del sitio. No existen todavía comandos `content:import`, `content:diff` ni `test:e2e`.
+La primera orden adquiere solo los archivos faltantes del manifiesto, unos 102 MiB si no existe caché. La segunda verifica hashes y compara evidencia sin red. El lector de revisión se genera en `.validation/p1/revision-humana.html`; contiene spoilers y no forma parte del sitio. La sonda P1 conserva su evidencia histórica previa a la aprobación humana. Los comandos `content:*` pertenecen al importador P2; `test:e2e` sigue pendiente.
 
 ## Manejar la cronología
 
@@ -97,13 +110,13 @@ La primera orden adquiere solo los archivos faltantes del manifiesto, unos 102 M
 
 ## Comprobaciones y límites
 
-La [auditoría P0 del 25 de septiembre](docs/validation/estado-actual.md) registra el inventario y RF-01–RF-12. La [entrega P1 del 26 de septiembre](docs/validation/cobertura-fuentes.md) actualiza Git, corrige el formato pendiente del plan 10 y documenta la investigación de fuentes. Las validaciones de cada fase se distinguen de los antecedentes históricos siguientes.
+La [auditoría P0 del 25 de septiembre](docs/validation/estado-actual.md) registra el inventario y RF-01–RF-12. La [entrega P1 del 26 de septiembre](docs/validation/cobertura-fuentes.md) actualiza Git, corrige el formato pendiente del plan 10 y documenta la investigación de fuentes. La [entrega P2](docs/validation/importador-p2.md) registra pruebas de importación y la reproducción sobre el snapshot real. Las validaciones de cada fase se distinguen de los antecedentes históricos siguientes.
 
 Verificación del 25 de septiembre de 2026: pruebas de dominio y de interacción en DOM simulado, lint, tipos y compilación. La página principal responde HTTP 200 con el nuevo lienzo, sin el bloque de presentación anterior. Los resultados detallados están en [09-cronologia-inmersiva.md](docs/09-cronologia-inmersiva.md).
 
 El entorno sigue sin navegador conectado. Las pruebas DOM ejercitan React y D3, incluidos rueda, arrastre, ancla de zoom, selección, enlaces, agrupación, progreso y coordenadas de vista general a 320 px. No certifican apariencia, CSS, foco modal nativo ni gestos físicos en móvil; esa revisión visual permanece pendiente.
 
-La agrupación actual es por época y los umbrales de zoom son iniciales. Faltan ajuste con contenido real, agrupación por densidad, resolución general de colisiones, búsqueda y filtros del MVP. No existe un grafo independiente ni API real. No se ha desplegado el sitio.
+La agrupación actual es por época y los umbrales de zoom son iniciales. Faltan ajuste con contenido real, agrupación por densidad, resolución general de colisiones, búsqueda y filtros del MVP. No existe un grafo independiente ni consulta remota en el navegador; P2 consume archivos del proveedor fuera de la aplicación. No se ha desplegado el sitio.
 
 ## Documentación
 
@@ -123,3 +136,4 @@ La agrupación actual es por época y los umbrales de zoom son iniciales. Faltan
 13. [Auditoría P0 del estado actual](docs/validation/estado-actual.md).
 14. [Cobertura de fuentes P1](docs/validation/cobertura-fuentes.md).
 15. [Registro de revisión humana P1](docs/validation/p1/revision-humana.md).
+16. [Importador reproducible y validación P2](docs/validation/importador-p2.md).

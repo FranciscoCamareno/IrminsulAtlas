@@ -1,0 +1,20 @@
+[
+  {
+    "id": 9100,
+    "chapterId": 9003,
+    "postPointList": [
+      9101,
+      9102
+    ]
+  },
+  {
+    "id": 9101,
+    "chapterId": 9003,
+    "type": "POINT_END"
+  },
+  {
+    "id": 9102,
+    "chapterId": 9003,
+    "type": "POINT_END"
+  }
+]
