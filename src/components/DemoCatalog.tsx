@@ -58,8 +58,16 @@ function EventMeta({ event }: { event: EventSummary }) {
         {event.eraName} · {event.timeLabel}
       </p>
       <div className="tags">
-        <span className="tag">{editorialLabels[event.editorialStatus]}</span>
-        <span className="tag">{claimLabels[event.claimStatus]}</span>
+        <span className="tag">
+          {event.id.startsWith('preview-')
+            ? 'Vista previa'
+            : editorialLabels[event.editorialStatus]}
+        </span>
+        <span className="tag">
+          {event.id.startsWith('preview-')
+            ? 'Material fuente'
+            : claimLabels[event.claimStatus]}
+        </span>
         <span className="tag">
           {event.importance === 'major' ? 'Principal' : 'Secundario'}
         </span>
@@ -80,7 +88,7 @@ export function Detail({
       <EventMeta event={event} />
       <h3>{event.title}</h3>
       <p>{event.summary}</p>
-      <p>{event.body}</p>
+      <p style={{ whiteSpace: 'pre-line' }}>{event.body}</p>
       <h4>Participantes y lugares</h4>
       {event.entities.length ? (
         <ul>
@@ -103,8 +111,10 @@ export function Detail({
                   {other.title}
                 </a>
                 <p>
-                  {relationLabels[relation.kind]} ·{' '}
-                  {claimLabels[relation.claimStatus]}
+                  {event.id.startsWith('preview-')
+                    ? 'Conexión ilustrativa'
+                    : relationLabels[relation.kind]}{' '}
+                  · {claimLabels[relation.claimStatus]}
                 </p>
                 {relation.directed && (
                   <p>
@@ -163,6 +173,9 @@ export default function DemoCatalog({
   dataset: Dataset;
   detailPage?: boolean;
 }) {
+  const preview = dataset.universes.some(
+    (universe) => universe.id === 'genshin-preview',
+  );
   const [completed, setCompleted] = useState<string[]>([]);
   const location = useSyncExternalStore(
     subscribeLocation,
@@ -183,42 +196,47 @@ export default function DemoCatalog({
   const result = id ? getEventById(dataset, id, progress) : undefined;
 
   return (
-    <div className="catalog">
-      <aside className="progress-panel">
-        <fieldset aria-describedby="progress-help">
-          <legend>Tu progreso de lectura</legend>
-          <p id="progress-help">
-            Marca las lecturas completadas para permitir su contenido de
-            demostración.
+    <div
+      className="catalog"
+      style={preview ? { gridTemplateColumns: '1fr' } : undefined}
+    >
+      {!preview && (
+        <aside className="progress-panel">
+          <fieldset aria-describedby="progress-help">
+            <legend>Tu progreso de lectura</legend>
+            <p id="progress-help">
+              Marca las lecturas completadas para permitir su contenido de
+              demostración.
+            </p>
+            {options.map((option) => (
+              <label className="progress-option" key={option.id}>
+                <input
+                  type="checkbox"
+                  checked={completed.includes(option.id)}
+                  onChange={(event) => {
+                    const checked = event.currentTarget.checked;
+                    setCompleted((previous) =>
+                      checked
+                        ? [...previous, option.id]
+                        : previous.filter((value) => value !== option.id),
+                    );
+                  }}
+                />
+                <span>{option.label}</span>
+              </label>
+            ))}
+          </fieldset>
+          <p className="progress-note">
+            El progreso se conserva al navegar aquí y se reinicia al recargar.
           </p>
-          {options.map((option) => (
-            <label className="progress-option" key={option.id}>
-              <input
-                type="checkbox"
-                checked={completed.includes(option.id)}
-                onChange={(event) => {
-                  const checked = event.currentTarget.checked;
-                  setCompleted((previous) =>
-                    checked
-                      ? [...previous, option.id]
-                      : previous.filter((value) => value !== option.id),
-                  );
-                }}
-              />
-              <span>{option.label}</span>
-            </label>
-          ))}
-        </fieldset>
-        <p className="progress-note">
-          El progreso se conserva al navegar aquí y se reinicia al recargar.
-        </p>
-        <noscript>
-          <p>
-            Activa JavaScript para cambiar el progreso y abrir detalles. La
-            lista inicial muestra solo contenido permitido sin progreso.
-          </p>
-        </noscript>
-      </aside>
+          <noscript>
+            <p>
+              Activa JavaScript para cambiar el progreso y abrir detalles. La
+              lista inicial muestra solo contenido permitido sin progreso.
+            </p>
+          </noscript>
+        </aside>
+      )}
       <section aria-labelledby="catalog-title">
         <div className="section-heading">
           <h2 id="catalog-title" ref={heading} tabIndex={-1}>
@@ -226,7 +244,8 @@ export default function DemoCatalog({
           </h2>
           {!isDetail && (
             <p className="metadata" role="status">
-              {events.length} eventos visibles
+              {events.length}{' '}
+              {preview ? 'fuentes en la vista previa' : 'eventos visibles'}
             </p>
           )}
         </div>
@@ -256,8 +275,9 @@ export default function DemoCatalog({
         ) : (
           <>
             <p className="reading-note">
-              Orden editorial por épocas. Las fechas conservan su incertidumbre;
-              esta lista no representa duraciones.
+              {preview
+                ? 'Colección de fuentes de Genshin Impact. La distribución temporal está pendiente.'
+                : 'Orden editorial por épocas. Las fechas conservan su incertidumbre; esta lista no representa duraciones.'}
             </p>
             {events.length ? (
               <ul className="event-list">

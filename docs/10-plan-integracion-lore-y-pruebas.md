@@ -4,6 +4,8 @@ Fecha: 25 de septiembre de 2026, Costa Rica.
 Archivo: `docs/10-plan-integracion-lore-y-pruebas.md`.
 Estado al 27/09/2026: P0 auditada; Git/GitHub verificados. P1 aprobada por el usuario con los límites de cobertura documentados. P2 implementa adquisición, normalización, validación, comparación y promoción local; evidencia en [importador P2](validation/importador-p2.md). P3–P7 pendientes. Antecedentes: [estado actual P0](validation/estado-actual.md), [cobertura P1](validation/cobertura-fuentes.md) y [aprobación humana](validation/p1/revision-humana.md).
 
+Vista previa temporal del 27/09/2026: a petición del usuario, se muestran las fuentes P2 en el lienzo mediante `src/content/preview.ts`. Posiciones y conexiones son ilustrativas; no constituyen eventos editoriales aprobados ni completan P3. La proyección puede desactivarse con `lorePreviewEnabled = false`.
+
 ## 1. Alcance y evidencia disponible
 
 Objetivo: incorporar material narrativo de Genshin a la cronología mediante importaciones reproducibles, conservar evidencia de cada afirmación y comprobar que el contenido se puede explorar sin errores ni spoilers accidentales.

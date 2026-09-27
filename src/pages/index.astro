@@ -1,11 +1,11 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import TimelineExplorer from '../components/explorer/TimelineExplorer';
-import { loadLocalContent } from '../content/local';
+import { loadSiteContent, lorePreviewEnabled } from '../content/preview';
 
-const dataset = await loadLocalContent();
+const dataset = await loadSiteContent();
 ---
 
-<BaseLayout immersive>
+<BaseLayout immersive preview={lorePreviewEnabled}>
   <TimelineExplorer dataset={dataset} client:load />
 </BaseLayout>

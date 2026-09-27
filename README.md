@@ -1,5 +1,7 @@
 ﻿# Irminsul Atlas
 
+> **Vista previa temporal activada (27/09/2026):** las páginas muestran 19 fuentes reales de Genshin Impact, con fragmentos, grupos y conexiones ilustrativas. Es una prueba visual solicitada antes de P3; no representa una cronología editorial validada. Para volver al contenido anterior, cambiar `lorePreviewEnabled` a `false` en `src/content/preview.ts`. Requiere la versión local aceptada de P2. Las descripciones y validaciones que siguen registran la base previa.
+
 Prototipo de explorador de lore con **cronología interactiva a pantalla completa**, barra superior mínima y menú lateral plegable. El MVP completo sigue en desarrollo. Todo el contenido mostrado por la aplicación es sintético; no son hechos de Genshin Impact. La importación P2 de fuentes reales permanece separada del sitio y del contenido editorial.
 
 ## Trabajo con Git y GitHub

@@ -130,3 +130,9 @@ Añadir en cada iteración: fecha, fase, cambios, comprobaciones, limitaciones y
 - Dos ejecuciones reales con red deshabilitada produjeron el mismo candidato byte por byte. Pruebas de fallo conservan el puntero y los datos de la última versión válida.
 - `npm run validate` correcto: formato, lint, tipos sin diagnósticos en 32 archivos, 60 pruebas (24 nuevas) y 4 páginas compiladas. Promoción, validación local y comparación posterior correctas.
 - Próximo paso: P3, muestra editorial de 8–12 eventos con evidencia, incertidumbre y revisión. No se implementó P3 ni se desplegó.
+
+### 2026-09-27 — Vista previa temporal antes de P3
+
+- Solicitud explícita del usuario: ver el sitio con el contenido actual del juego, sin completar aún la integración editorial ni su validación.
+- Proyección visual separada de las 19 fuentes P2: títulos, fragmentos, cuatro grupos y conexiones ilustrativas. Inicio, ficha y lista usan la vista previa; los originales demo y la importación aceptada se conservan.
+- Interruptor `lorePreviewEnabled` en `src/content/preview.ts` para restaurar la demo. No se generan archivos editoriales ni se declara P3 completada. Comprobación limitada a formato y compilación; no se certifica cronología, relaciones históricas ni nueva revisión editorial. Sin despliegue.

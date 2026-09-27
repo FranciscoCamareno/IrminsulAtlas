@@ -25,6 +25,9 @@ const readSelection = () =>
 const serverSelection = () => '';
 
 export default function TimelineExplorer({ dataset }: { dataset: Dataset }) {
+  const preview = dataset.universes.some(
+    (universe) => universe.id === 'genshin-preview',
+  );
   const [completed, setCompleted] = useState<string[]>([]);
   const [menuOpen, setMenuOpen] = useState(false);
   const [light, setLight] = useState(false);
@@ -127,7 +130,7 @@ export default function TimelineExplorer({ dataset }: { dataset: Dataset }) {
         <div className="navbar-actions">
           <span className="demo-label">
             <span />
-            Demostración
+            {preview ? 'Vista previa' : 'Demostración'}
           </span>
           <button
             type="button"
@@ -153,6 +156,7 @@ export default function TimelineExplorer({ dataset }: { dataset: Dataset }) {
           inert={listOpen}
         >
           <TimelineCanvas
+            preview={preview}
             content={content}
             selectedId={result?.status === 'visible' ? selectedId : null}
             onSelect={selectEvent}
@@ -162,10 +166,15 @@ export default function TimelineExplorer({ dataset }: { dataset: Dataset }) {
           <section className="atlas-list" aria-label="Vista de lista">
             <div className="atlas-list-heading">
               <span className="atlas-kicker">
-                Archivo de la Bruma · Demostración
+                {preview
+                  ? 'Genshin Impact · Vista previa'
+                  : 'Archivo de la Bruma · Demostración'}
               </span>
-              <h2>Acontecimientos</h2>
-              <p role="status">{content.events.length} eventos visibles</p>
+              <h2>{preview ? 'Historias y fuentes' : 'Acontecimientos'}</h2>
+              <p role="status">
+                {content.events.length}{' '}
+                {preview ? 'fuentes en la vista previa' : 'eventos visibles'}
+              </p>
             </div>
             <ol>
               {content.events.map((event) => (
@@ -190,7 +199,9 @@ export default function TimelineExplorer({ dataset }: { dataset: Dataset }) {
             <div className="detail-toolbar">
               <h2 id="detail-heading" ref={detailHeading} tabIndex={-1}>
                 {result.status === 'visible'
-                  ? 'Acontecimiento'
+                  ? preview
+                    ? 'Fragmento de Genshin Impact'
+                    : 'Acontecimiento'
                   : 'Detalle del archivo'}
               </h2>
               <button
@@ -273,7 +284,9 @@ export default function TimelineExplorer({ dataset }: { dataset: Dataset }) {
           <details className="menu-progress">
             <summary>Progreso de lectura</summary>
             <p>
-              Marca solo las lecturas que quieras revelar en esta demostración.
+              {preview
+                ? 'Esta vista previa muestra todos los fragmentos seleccionados y puede contener spoilers.'
+                : 'Marca solo las lecturas que quieras revelar en esta demostración.'}
             </p>
             <fieldset>
               <legend className="sr-only">Lecturas completadas</legend>
@@ -310,8 +323,9 @@ export default function TimelineExplorer({ dataset }: { dataset: Dataset }) {
               {light ? 'Cambiar a tema oscuro' : 'Cambiar a tema claro'}
             </button>
             <p>
-              Contenido ficticio para explorar la estructura. No representa lore
-              de Genshin Impact.
+              {preview
+                ? 'Textos de Genshin Impact. Las posiciones y conexiones son provisionales, solo para probar el diseño.'
+                : 'Contenido ficticio para explorar la estructura. No representa lore de Genshin Impact.'}
             </p>
           </div>
         </div>

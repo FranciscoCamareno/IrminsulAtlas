@@ -26,8 +26,10 @@ export default function TimelineCanvas({
   content,
   selectedId,
   onSelect,
+  preview = false,
 }: {
   content: TimelineContent;
+  preview?: boolean;
   selectedId: string | null;
   onSelect: (id: string) => void;
 }) {
@@ -167,8 +169,14 @@ export default function TimelineCanvas({
       className={`timeline-stage ${compactOverview ? 'compact-overview' : ''}`}
     >
       <div className="canvas-heading" aria-hidden="true">
-        <span className="atlas-kicker">Archivo de la Bruma</span>
-        <span>Cronología de demostración</span>
+        <span className="atlas-kicker">
+          {preview ? 'Genshin Impact' : 'Archivo de la Bruma'}
+        </span>
+        <span>
+          {preview
+            ? 'Vista previa · historias y conexiones'
+            : 'Cronología de demostración'}
+        </span>
       </div>
       <div
         ref={surface}
@@ -365,7 +373,9 @@ export default function TimelineCanvas({
             </span>
           </p>
           <small>
-            Orden narrativo; las distancias no representan duración.
+            {preview
+              ? 'Vista previa: distribución y conexiones provisionales. Contiene spoilers.'
+              : 'Orden narrativo; las distancias no representan duración.'}
           </small>
         </div>
         <div
