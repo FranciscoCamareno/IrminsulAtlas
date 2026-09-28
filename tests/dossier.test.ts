@@ -1,0 +1,200 @@
+import { describe, expect, it } from 'vitest';
+import { createElement } from 'react';
+import { renderToStaticMarkup } from 'react-dom/server';
+import {
+  loadDossierContent,
+  loadDossierDocuments,
+  extractDossierSections,
+} from '../src/content/dossier';
+import { DatasetSchema } from '../src/domain/schema';
+import { findIntegrityIssues } from '../src/domain/integrity';
+import {
+  getEntityById,
+  getEventById,
+  getVisibleTimeline,
+  listVisibleEvents,
+} from '../src/application/catalog';
+import { layoutTimeline } from '../src/visualization/layout';
+import DossierText from '../src/components/DossierText';
+
+const data = await loadDossierContent();
+const documents = await loadDossierDocuments();
+const sections = documents.flatMap((document) =>
+  extractDossierSections(document.body),
+);
+const none = new Set<string>();
+
+describe('dossier integration', () => {
+  it('preserves every supplied event and entity ID and the full section prose', () => {
+    for (const section of sections) {
+      if (section.id.startsWith('evt-'))
+        expect(data.events.find((event) => event.id === section.id)?.body).toBe(
+          section.body,
+        );
+      else
+        expect(
+          data.entities.find((entity) => entity.id === section.id)?.body,
+        ).toBe(section.body);
+    }
+    for (const event of data.events) {
+      expect(event.body).toBe(
+        sections.find((section) => section.id === event.dossierSection)?.body,
+      );
+      expect(event.evidence.length).toBeGreaterThan(0);
+    }
+    expect(data.entities.some((entity) => entity.id === 'per-vedrfolnir')).toBe(
+      true,
+    );
+    expect(
+      data.entities.some((entity) => entity.id === 'per-vindagnyr-testigos'),
+    ).toBe(true);
+    expect(findIntegrityIssues(data)).toEqual([]);
+  });
+  it('shows the entire provisional dossier without presenting it as reviewed or demo', () => {
+    expect(
+      data.events.every((event) => event.editorialStatus === 'provisional'),
+    ).toBe(true);
+    expect(listVisibleEvents(data, none)).toHaveLength(data.events.length);
+    expect(
+      data.events.every((event) => event.spoilerRequirements.length === 0),
+    ).toBe(true);
+    expect(data.universes.map((universe) => universe.id)).toEqual(['genshin']);
+    expect(data.sources.some((source) => source.kind === 'mission')).toBe(
+      false,
+    );
+    expect(data.milestones).toEqual([]);
+  });
+  it('retains narrative years, uncertain visits and the disputed Mare Jivari chronology', () => {
+    expect(
+      data.events.find((event) => event.id === 'evt-caida-guili')?.time,
+    ).toMatchObject({
+      kind: 'approximate',
+      reference: -3700,
+      system: 'teyvat-presente-narrativo',
+    });
+    expect(data.events.every((event) => event.time.kind !== 'exact')).toBe(
+      true,
+    );
+    expect(
+      data.events.find((event) => event.id === 'evt-hiperborea')?.time.kind,
+    ).toBe('unknown');
+    expect(
+      data.events.find((event) => event.id === 'evt-mare-jivari')?.certainty,
+    ).toContain('disputed');
+    expect(
+      data.events.find((event) => event.id === 'evt-enkanomiya-watatsumi')
+        ?.body,
+    ).toContain('tampoco debe colocarse toda la historia de Watatsumi antes');
+    expect(
+      data.relations.find(
+        (relation) =>
+          relation.fromEventId === 'evt-llegada-gemelos' &&
+          relation.toEventId === 'evt-cataclismo',
+      )?.kind,
+    ).toBe('association');
+    expect(
+      data.events.find((event) => event.id === 'evt-cataclismo')?.categories,
+    ).toContain('Cierre contextual');
+  });
+  it('keeps event/entity navigation bidirectional and document references honest', () => {
+    const event = getEventById(data, 'evt-hiperborea', none);
+    const person = getEntityById(data, 'per-koitar', none);
+    expect(event.status).toBe('visible');
+    expect(person.status).toBe('visible');
+    if (event.status !== 'visible' || person.status !== 'visible')
+      throw new Error('Missing dossier content');
+    expect(event.event.entities.map((entity) => entity.id)).toContain(
+      person.entity.id,
+    );
+    expect(person.events.map((item) => item.id)).toContain(event.event.id);
+    expect(
+      event.event.evidence.some(
+        (evidence) =>
+          evidence.sourceUrl === '/dossier/historia/#evt-hiperborea',
+      ),
+    ).toBe(true);
+    expect(
+      event.event.evidence
+        .filter((evidence) => evidence.sourceUrl?.startsWith('https:'))
+        .every(
+          (evidence) =>
+            evidence.availability === 'Referencia externa sin contrastar',
+        ),
+    ).toBe(true);
+    expect(getEntityById(data, 'missing', none)).toEqual({
+      status: 'not-found',
+    });
+  });
+  it('still excludes hidden drafts and entity/event restrictions when a future policy is added', () => {
+    const copy = structuredClone(data);
+    copy.entities.find(
+      (entity) => entity.id === 'per-koitar',
+    )!.editorialStatus = 'draft';
+    copy.events.find(
+      (event) => event.id === 'evt-hiperborea',
+    )!.editorialStatus = 'draft';
+    expect(getEntityById(copy, 'per-koitar', none)).toEqual({
+      status: 'blocked',
+    });
+    expect(
+      getVisibleTimeline(copy, none).events.some(
+        (event) => event.id === 'evt-hiperborea',
+      ),
+    ).toBe(false);
+    expect(getEntityById(copy, 'loc-hiperborea', none)).not.toEqual(
+      getEntityById(data, 'loc-hiperborea', none),
+    );
+  });
+  it('does not truncate a section at a table and does not absorb later unnumbered material', () => {
+    const sinners = sections.find(
+      (section) => section.id === 'per-cinco-pecadores',
+    )!;
+    expect(sinners.body).toContain('| `per-rerir` |');
+    const twins = sections.find((section) => section.id === 'per-gemelos')!;
+    expect(twins.body).not.toContain('Figuras de cierre');
+    expect(() =>
+      extractDossierSections('## A — `evt-uno`\n\nA\n\n## B — `evt-uno`\n\nB'),
+    ).toThrow('ID repetido');
+  });
+  it('keeps text and links safe without executing HTML or executable Markdown', () => {
+    const html = renderToStaticMarkup(
+      createElement(DossierText, {
+        text: '<img src=x onerror=alert(1)>\n\n[unsafe](javascript:alert) [ok](https://example.org/)\n\n| A | B |\n|---|---|\n| Uno | Dos |',
+      }),
+    );
+    expect(html).not.toContain('<img');
+    expect(html).not.toContain('href="javascript:');
+    expect(html).toContain('href="https://example.org/"');
+    expect(html).toContain('<table>');
+    expect(html).not.toContain('<td>---');
+  });
+  it('expands layout from data, keeps regional threads distinct, and never mutates historical records', () => {
+    const copy = structuredClone(data);
+    const content = getVisibleTimeline(copy, none);
+    const layout = layoutTimeline(content);
+    const sumeru = layout.nodes.filter(
+      (node) =>
+        node.narrativeThread === 'Sumeru' &&
+        node.eraId === 'era-historias-regionales',
+    );
+    expect(sumeru.length).toBeGreaterThan(1);
+    expect(new Set(sumeru.map((node) => node.y)).size).toBe(1);
+    const mondstadt = layout.nodes.find(
+      (node) => node.id === 'evt-rebelion-decarabian',
+    )!;
+    expect(mondstadt.y).not.toBe(sumeru[0]!.y);
+    const extra = structuredClone(content.eras[0]!);
+    extra.id = 'future-chapter';
+    content.eras.push(extra);
+    content.events.push({
+      ...content.events[0]!,
+      id: 'future-event',
+      eraId: extra.id,
+    });
+    const expanded = layoutTimeline(content);
+    expect(expanded.eras).toHaveLength(layout.eras.length + 1);
+    expect(expanded.nodes.at(-1)?.id).toBe('future-event');
+    expect(copy).toEqual(data);
+    expect(DatasetSchema.safeParse(data).success).toBe(true);
+  });
+});

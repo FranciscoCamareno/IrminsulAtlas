@@ -1,10 +1,10 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import DemoCatalog from '../components/DemoCatalog';
-import { loadSiteContent, lorePreviewEnabled } from '../content/preview';
-const dataset = await loadSiteContent();
+import { loadDossierContent } from '../content/dossier';
+const dataset = await loadDossierContent();
 ---
 
-<BaseLayout preview={lorePreviewEnabled}>
+<BaseLayout dossier>
   <DemoCatalog dataset={dataset} client:load />
 </BaseLayout>

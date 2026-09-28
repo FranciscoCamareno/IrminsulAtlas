@@ -100,3 +100,9 @@ No es confidencialidad: una publicación estática contiene archivos accesibles.
 ## Validación mínima
 
 IDs únicos; referencias válidas; slugs únicos por universo/idioma; rangos temporales válidos; requisitos de spoilers existentes; fuentes en contenido revisado; relaciones sin extremos inexistentes; distinción clara entre datos reales y demo.
+
+## Borrador visible del dossier — 28/09/2026
+
+El usuario autorizó mostrar el dossier íntegro como primer borrador, sin revisión factual nueva ni filtros de spoilers. Se añade `provisional` como estado visible distinto de `reviewed`; `draft` conserva su exclusión. Este permiso no se aplica a las fuentes importadas de P2.
+
+Las entidades admiten `body` y `dossierSection`; los eventos añaden `narrativeThread`, `dossierSection` y `certainty`. Las épocas admiten descripción y sirven como capítulos narrativos que pueden solaparse históricamente. `DossierMapSchema` valida las anotaciones del JSON editorial; no se duplican interfaces de contratos. Textos y fuentes siguen en los documentos aportados. Véase [el informe](validation/dossier-historia-antigua.md).

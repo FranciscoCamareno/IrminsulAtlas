@@ -4,10 +4,12 @@ import { createRoot, type Root } from 'react-dom/client';
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 import TimelineExplorer from '../src/components/explorer/TimelineExplorer';
 import { loadLocalContent } from '../src/content/local';
+import { loadDossierContent } from '../src/content/dossier';
 import { attachViewport } from '../src/visualization/viewport';
 import type { Viewport } from '../src/visualization/layout';
 
 const dataset = await loadLocalContent();
+const dossier = await loadDossierContent();
 let host: HTMLDivElement;
 let root: Root;
 
@@ -52,9 +54,9 @@ afterEach(async () => {
   host.remove();
   vi.unstubAllGlobals();
 });
-async function render() {
+async function render(content = dataset) {
   await act(async () =>
-    root.render(createElement(TimelineExplorer, { dataset })),
+    root.render(createElement(TimelineExplorer, { dataset: content })),
   );
 }
 function button(label: string) {
@@ -240,5 +242,99 @@ describe('D3 gesture adapter', () => {
       new WheelEvent('wheel', { deltaY: -100, bubbles: true }),
     );
     expect(state).toEqual(final);
+  });
+});
+
+describe('dossier navigation', () => {
+  it('opens all chapters at 320 px without a fixed four-section limit', async () => {
+    Object.defineProperty(HTMLElement.prototype, 'clientWidth', {
+      configurable: true,
+      get: () => 320,
+    });
+    await render(dossier);
+    expect(host.querySelectorAll('.chapter-card')).toHaveLength(
+      dossier.eras.length,
+    );
+    expect(host.textContent).toContain('Primer borrador');
+    expect(host.querySelector('input[type="checkbox"]')).toBeNull();
+    await click(host.querySelector<HTMLButtonElement>('.chapter-card')!);
+    expect(host.querySelector('[data-level="events"]')).not.toBeNull();
+    await click(button('Ver toda la cronología'));
+    expect(host.querySelectorAll('.chapter-card')).toHaveLength(
+      dossier.eras.length,
+    );
+    await click(button('Mostrar vista de lista'));
+    expect(host.querySelectorAll('[data-list-event-id]')).toHaveLength(
+      dossier.events.length,
+    );
+  });
+  it('preserves event context through entity cards, Escape, direct links and history', async () => {
+    window.history.replaceState(null, '', '/?id=evt-hiperborea');
+    await render(dossier);
+    expect(host.querySelector('.atlas-detail')?.textContent).toContain(
+      'Hiperbórea, Koitar y Seutervoinen',
+    );
+    await click(
+      host.querySelector<HTMLAnchorElement>(
+        '.atlas-detail [data-entity-id="per-koitar"]',
+      )!,
+    );
+    expect(window.location.search).toContain('entity=per-koitar');
+    expect(host.querySelector('.atlas-detail h3')?.textContent).toBe('Koitar');
+    expect(document.activeElement?.id).toBe('detail-heading');
+    await act(async () =>
+      host
+        .querySelector('.atlas-shell')!
+        .dispatchEvent(
+          new KeyboardEvent('keydown', { key: 'Escape', bubbles: true }),
+        ),
+    );
+    expect(window.location.search).toBe('?id=evt-hiperborea');
+    expect(document.activeElement?.getAttribute('data-entity-id')).toBe(
+      'per-koitar',
+    );
+    await act(async () => {
+      window.history.replaceState(null, '', '/?entity=loc-enkanomiya');
+      window.dispatchEvent(new PopStateEvent('popstate'));
+    });
+    expect(host.querySelector('.atlas-detail h3')?.textContent).toContain(
+      'Enkanomiya',
+    );
+    await click(
+      host.querySelector<HTMLAnchorElement>(
+        '.atlas-detail a[href="/?id=evt-enkanomiya-watatsumi"]',
+      )!,
+    );
+    expect(window.location.search).toBe('?id=evt-enkanomiya-watatsumi');
+    await click(button('Cerrar detalle'));
+    expect(document.activeElement?.getAttribute('data-event-id')).toBe(
+      'evt-enkanomiya-watatsumi',
+    );
+  });
+  it('opens the complete people directory and handles unknown entity IDs neutrally', async () => {
+    await render(dossier);
+    await click(button('Abrir menú'));
+    const people = [
+      ...host.querySelectorAll<HTMLButtonElement>('.atlas-menu button'),
+    ].find((item) => item.textContent === 'Personajes')!;
+    await click(people);
+    expect(host.querySelectorAll('.atlas-list [data-entity-id]')).toHaveLength(
+      dossier.entities.filter((entity) => entity.kind === 'character').length,
+    );
+    await click(
+      host.querySelector<HTMLButtonElement>(
+        '[data-entity-id="per-vedrfolnir"]',
+      )!,
+    );
+    expect(host.querySelector('.atlas-detail h3')?.textContent).toBe(
+      'Vedrfolnir',
+    );
+    await act(async () => {
+      window.history.replaceState(null, '', '/?entity=not-a-person');
+      window.dispatchEvent(new PopStateEvent('popstate'));
+    });
+    expect(host.querySelector('.atlas-detail')?.textContent).toContain(
+      'No se encontró la ficha solicitada.',
+    );
   });
 });

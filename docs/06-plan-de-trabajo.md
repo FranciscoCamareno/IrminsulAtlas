@@ -136,3 +136,11 @@ Añadir en cada iteración: fecha, fase, cambios, comprobaciones, limitaciones y
 - Solicitud explícita del usuario: ver el sitio con el contenido actual del juego, sin completar aún la integración editorial ni su validación.
 - Proyección visual separada de las 19 fuentes P2: títulos, fragmentos, cuatro grupos y conexiones ilustrativas. Inicio, ficha y lista usan la vista previa; los originales demo y la importación aceptada se conservan.
 - Interruptor `lorePreviewEnabled` en `src/content/preview.ts` para restaurar la demo. No se generan archivos editoriales ni se declara P3 completada. Comprobación limitada a formato y compilación; no se certifica cronología, relaciones históricas ni nueva revisión editorial. Sin despliegue.
+
+### 2026-09-28 — Borrador de historia antigua desde el dossier
+
+- Solicitud confirmada: trasladar fielmente los documentos 00–03, mostrar todo el contenido y usar acontecimientos como nodos con fichas relacionadas de personajes/lugares.
+- 29 acontecimientos, siete capítulos narrativos, 35 conexiones, 48 fichas de personajes/grupos y 34 lugares. Textos y IDs conservados; tiempo incierto, orden regional y cierre contextual explícitos.
+- Estado `provisional` separado de revisión editorial; la importación P2 y los fixtures demo permanecen independientes. No se completan automáticamente P3–P7 del plan 10.
+- Carga local validada, directorios, documentos estáticos, conexiones, lista y navegación evento/entidad con historial y foco. [Informe de validación](validation/dossier-historia-antigua.md).
+- Pruebas ampliadas a 71; capturas locales de escritorio y viewports de 320/390 px. Gestos físicos, contraste externo de fuentes y filtros de spoilers pendientes. Sin despliegue.

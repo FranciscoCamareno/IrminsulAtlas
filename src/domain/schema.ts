@@ -9,7 +9,7 @@ const ids = z
     message: 'Las referencias no deben repetirse',
   });
 const order = z.number().int().nonnegative();
-const editorialStatus = z.enum(['draft', 'reviewed', 'demo']);
+const editorialStatus = z.enum(['draft', 'provisional', 'reviewed', 'demo']);
 const claimStatus = z.enum(['fact', 'interpretation', 'theory']);
 const scoped = {
   id: IdSchema,
@@ -67,12 +67,15 @@ export const EraSchema = z.strictObject({
   name: text,
   displayOrder: order,
   bounds: HistoricalTimeSchema.optional(),
+  description: text.optional(),
 });
 export const NarrativeEntitySchema = z.strictObject({
   ...scoped,
   kind: z.enum(['character', 'place', 'faction']),
   name: text,
   aliases: z.array(text),
+  body: text.optional(),
+  dossierSection: IdSchema.optional(),
 });
 export const MilestoneSchema = z.strictObject({
   id: IdSchema,
@@ -130,6 +133,19 @@ export const EventSchema = z
     revelation: z.strictObject({ order, milestoneIds: ids }),
     importance: z.enum(['major', 'minor']),
     categories: z.array(text),
+    narrativeThread: text.optional(),
+    dossierSection: IdSchema.optional(),
+    certainty: z
+      .array(
+        z.enum([
+          'documented',
+          'tradition',
+          'approximate',
+          'disputed',
+          'unknown',
+        ]),
+      )
+      .optional(),
     entityIds: ids,
     evidence: z.array(EvidenceSchema),
     claimStatus,
@@ -394,3 +410,34 @@ export type ImportReport = z.infer<typeof ImportReportSchema>;
 export type ImportCandidate = z.infer<typeof ImportCandidateSchema>;
 export type ImportDiff = z.infer<typeof ImportDiffSchema>;
 export type AcceptedImport = z.infer<typeof AcceptedImportSchema>;
+
+// Local dossier annotations. Prose remains in the supplied Markdown documents.
+export const DossierMapSchema = z.strictObject({
+  eras: z.array(
+    z.strictObject({ id: IdSchema, name: text, description: text }),
+  ),
+  events: z.array(
+    z.strictObject({
+      id: IdSchema,
+      sectionId: IdSchema,
+      title: text.optional(),
+      eraId: IdSchema,
+      narrativeThread: text,
+      entityIds: ids,
+      time: HistoricalTimeSchema,
+      importance: z.enum(['major', 'minor']),
+      certainty: EventSchema.shape.certainty,
+    }),
+  ),
+  relations: z.array(
+    z.strictObject({
+      id: IdSchema,
+      fromEventId: IdSchema,
+      toEventId: IdSchema,
+      kind: z.enum(['association', 'precedes', 'causes', 'mentions']),
+      explanation: text,
+      sectionId: IdSchema,
+    }),
+  ),
+});
+export type DossierMap = z.infer<typeof DossierMapSchema>;

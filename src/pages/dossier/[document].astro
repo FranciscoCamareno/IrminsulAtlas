@@ -1,0 +1,29 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import DossierText from '../../components/DossierText';
+import { loadDossierDocuments, dossierFiles } from '../../content/dossier';
+export async function getStaticPaths() {
+  return (await loadDossierDocuments()).map((document) => ({
+    params: { document: document.id },
+    props: { document },
+  }));
+}
+const { document } = Astro.props;
+---
+
+<BaseLayout dossier>
+  <nav class="dossier-navigation" aria-label="Documentos del dossier">
+    {dossierFiles.map((item) => (
+      <a
+        href={'/dossier/' + item.id + '/'}
+        aria-current={item.id === document.id ? 'page' : undefined}
+      >
+        {item.title}
+      </a>
+    ))}
+  </nav>
+  <article class="dossier-document">
+    <h1>{document.title}</h1>
+    <DossierText text={document.body} />
+  </article>
+</BaseLayout>

@@ -19,3 +19,9 @@ docs/styles.md
 
 # Exact bytes of synthetic provider fixtures (including 64-bit integers).
 tests/fixtures/import/raw/
+
+# Supplied dossier: preserve the author’s exact source formatting.
+docs/00_guia_de_lectura.md
+docs/01_historia_cronologica.md
+docs/02_regiones_y_locaciones.md
+docs/03_personajes_fundamentales.md

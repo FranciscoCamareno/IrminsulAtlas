@@ -6,8 +6,9 @@ import '../styles/timeline.css';
 interface Props {
   immersive?: boolean;
   preview?: boolean;
+  dossier?: boolean;
 }
-const { immersive = false, preview = false } = Astro.props;
+const { immersive = false, preview = false, dossier = false } = Astro.props;
 ---
 
 <!doctype html>
@@ -17,9 +18,13 @@ const { immersive = false, preview = false } = Astro.props;
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta
       name="description"
-      content="Archivo de demostración para explorar acontecimientos, fuentes e incertidumbre histórica."
+      content={
+        dossier
+          ? 'Historia antigua de Teyvat: acontecimientos, personajes, lugares e incertidumbres. Primer borrador basado en el dossier.'
+          : 'Archivo para explorar acontecimientos, fuentes e incertidumbre histórica.'
+      }
     />
-    <title>{preview ? 'Irminsul Atlas · Vista previa de Genshin Impact' : 'Irminsul Atlas · Archivo de demostración'}</title>
+    <title>{dossier ? 'Irminsul Atlas · Historia antigua de Teyvat' : preview ? 'Irminsul Atlas · Vista previa de Genshin Impact' : 'Irminsul Atlas · Archivo de demostración'}</title>
   </head>
   <body class:list={{ 'atlas-page': immersive }}>
     <a class="skip-link" href="#main">
@@ -31,7 +36,11 @@ const { immersive = false, preview = false } = Astro.props;
           Irminsul <span>Atlas</span>
         </a>
         <span class="metadata">
-          {preview ? 'Vista previa temporal' : 'Archivo de demostración'}
+          {dossier
+            ? 'Primer borrador · Historia antigua'
+            : preview
+              ? 'Vista previa temporal'
+              : 'Archivo de demostración'}
         </span>
       </header>
     )}
@@ -39,14 +48,18 @@ const { immersive = false, preview = false } = Astro.props;
       {!immersive && (
         <div class="demo-notice">
           <strong>
-            {preview
-              ? 'Vista previa de Genshin Impact'
-              : 'Datos de demostración'}
+            {dossier
+              ? 'Dossier de Genshin Impact · Borrador visible'
+              : preview
+                ? 'Vista previa de Genshin Impact'
+                : 'Datos de demostración'}
           </strong>
           <p>
-            {preview
-              ? 'Textos reales del juego con distribución y conexiones provisionales para probar el diseño. Puede contener spoilers.'
-              : 'El Archivo de la Bruma es ficticio. Sus acontecimientos, personajes y fuentes no representan lore de Genshin Impact.'}
+            {dossier
+              ? 'Contenido trasladado de los documentos aportados, con sus fuentes e incertidumbres. Todo el contenido está visible; el contraste de fuentes y los filtros de spoilers quedan para más adelante.'
+              : preview
+                ? 'Textos reales del juego con distribución y conexiones provisionales para probar el diseño. Puede contener spoilers.'
+                : 'El Archivo de la Bruma es ficticio. Sus acontecimientos, personajes y fuentes no representan lore de Genshin Impact.'}
           </p>
         </div>
       )}

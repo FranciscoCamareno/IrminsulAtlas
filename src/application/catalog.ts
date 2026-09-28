@@ -48,6 +48,10 @@ function timeLabel(
 function eventSummary(event: LoreEvent, data: Dataset, progress: Progress) {
   return {
     id: event.id,
+    narrativeThread: event.narrativeThread,
+    dossierSection: event.dossierSection,
+    certainty: event.certainty,
+    categories: event.categories,
     eraId: event.eraId,
     title: event.title,
     summary: event.summary,
@@ -80,11 +84,22 @@ function visibleEvidence(
         claim: evidence.claim,
         stance: evidence.stance,
         note: evidence.note,
-        sourceUrl: source.url,
+        sourceUrl:
+          source.url ??
+          (source.id.startsWith('source-dossier-')
+            ? '/dossier/' +
+              source.id.slice('source-dossier-'.length) +
+              '/#' +
+              evidence.locator.split('#')[1]
+            : undefined),
         availability:
-          source.kind === 'mission' && source.text.status === 'missing'
-            ? 'Solo metadatos'
-            : 'Texto disponible',
+          source.kind === 'document'
+            ? source.id.startsWith('source-dossier-')
+              ? 'Texto del dossier'
+              : 'Referencia externa sin contrastar'
+            : source.text.status === 'missing'
+              ? 'Solo metadatos'
+              : 'Texto disponible',
       },
     ];
   });
@@ -178,7 +193,11 @@ export function getVisibleTimeline(data: Dataset, progress: Progress) {
       .sort(
         (a, b) => a.displayOrder - b.displayOrder || a.id.localeCompare(b.id),
       )
-      .map((era) => ({ id: era.id, name: era.name })),
+      .map((era) => ({
+        id: era.id,
+        name: era.name,
+        description: era.description,
+      })),
     relations: data.relations
       .filter(
         (relation) =>
@@ -204,3 +223,30 @@ export type EventDetail = Extract<
   ReturnType<typeof getEventById>,
   { status: 'visible' }
 >['event'];
+
+export function listVisibleEntities(data: Dataset, progress: Progress) {
+  return data.entities
+    .filter((entity) => isVisible(entity, progress))
+    .map((entity) => ({
+      id: entity.id,
+      name: entity.name,
+      kind: entity.kind,
+    }));
+}
+export function getEntityById(data: Dataset, id: string, progress: Progress) {
+  const entity = data.entities.find((item) => item.id === id);
+  if (!entity) return { status: 'not-found' } as const;
+  if (!isVisible(entity, progress)) return { status: 'blocked' } as const;
+  const associatedIds = new Set(
+    data.events
+      .filter((event) => event.entityIds.includes(id))
+      .map((event) => event.id),
+  );
+  return {
+    status: 'visible',
+    entity,
+    events: listVisibleEvents(data, progress).filter((event) =>
+      associatedIds.has(event.id),
+    ),
+  } as const;
+}

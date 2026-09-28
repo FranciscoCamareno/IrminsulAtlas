@@ -27,9 +27,11 @@ export default function TimelineCanvas({
   selectedId,
   onSelect,
   preview = false,
+  dossier = false,
 }: {
   content: TimelineContent;
   preview?: boolean;
+  dossier?: boolean;
   selectedId: string | null;
   onSelect: (id: string) => void;
 }) {
@@ -45,6 +47,7 @@ export default function TimelineCanvas({
   const latestViewport = useRef(viewport);
   const initialLayout = useRef(layout);
   const level = detailLevel(viewport.k);
+  const overview = dossier && level === 'eras';
 
   useEffect(() => {
     const element = surface.current;
@@ -64,11 +67,15 @@ export default function TimelineCanvas({
         // Start at event level, with room to pan; "Ver todo" provides the overview.
         const fit = fitViewport(initialLayout.current, next);
         const k = Math.max(0.65, fit.k);
-        controls.set({
-          k,
-          x: 70,
-          y: (next.height - initialLayout.current.height * k) / 2,
-        });
+        controls.set(
+          initialLayout.current.nodes.some((node) => node.narrativeThread)
+            ? fit
+            : {
+                k,
+                x: 70,
+                y: (next.height - initialLayout.current.height * k) / 2,
+              },
+        );
         first = false;
       } else {
         const previous = latestViewport.current;
@@ -170,12 +177,14 @@ export default function TimelineCanvas({
     >
       <div className="canvas-heading" aria-hidden="true">
         <span className="atlas-kicker">
-          {preview ? 'Genshin Impact' : 'Archivo de la Bruma'}
+          {dossier || preview ? 'Genshin Impact' : 'Archivo de la Bruma'}
         </span>
         <span>
-          {preview
-            ? 'Vista previa · historias y conexiones'
-            : 'Cronología de demostración'}
+          {dossier
+            ? 'Historia antigua · Primer borrador visible'
+            : preview
+              ? 'Vista previa · historias y conexiones'
+              : 'Cronología de demostración'}
         </span>
       </div>
       <div
@@ -207,7 +216,7 @@ export default function TimelineCanvas({
               <path d="M 0 0 L 10 5 L 0 10 z" fill="currentColor" />
             </marker>
           </defs>
-          {layout.eras.map((era) => {
+          {(overview ? [] : layout.eras).map((era) => {
             const start = project({ x: era.x, y: 0 }, viewport);
             const end = project({ x: era.x, y: layout.height }, viewport);
             return (
@@ -229,42 +238,51 @@ export default function TimelineCanvas({
               </g>
             );
           })}
-          {level === 'eras'
-            ? layout.eras.slice(1).map((era, index) => {
-                const previous = layout.eras[index]!;
-                return (
-                  <path
-                    key={era.id}
-                    d={connectionPath(eraPosition(previous), eraPosition(era))}
-                    className="era-order-line"
-                  />
-                );
-              })
-            : layout.edges
-                .filter(
-                  (edge) =>
-                    renderedIds.has(edge.from.id) &&
-                    renderedIds.has(edge.to.id),
-                )
-                .map((edge) => {
-                  const active =
-                    edge.from.id === selectedId || edge.to.id === selectedId;
+          {overview
+            ? null
+            : level === 'eras'
+              ? layout.eras.slice(1).map((era, index) => {
+                  const previous = layout.eras[index]!;
                   return (
                     <path
-                      key={edge.id}
+                      key={era.id}
                       d={connectionPath(
-                        project(edge.from, viewport),
-                        project(edge.to, viewport),
+                        eraPosition(previous),
+                        eraPosition(era),
                       )}
-                      className={`timeline-connection ${active ? 'is-active' : ''} ${selectedId && !active ? 'is-muted' : ''} ${edge.claimStatus === 'fact' ? '' : 'is-inferred'}`}
-                      markerEnd={
-                        edge.directed ? 'url(#timeline-arrow)' : undefined
-                      }
+                      className="era-order-line"
                     />
                   );
-                })}
+                })
+              : layout.edges
+                  .filter(
+                    (edge) =>
+                      (!dossier ||
+                        !selectedId ||
+                        edge.from.id === selectedId ||
+                        edge.to.id === selectedId) &&
+                      renderedIds.has(edge.from.id) &&
+                      renderedIds.has(edge.to.id),
+                  )
+                  .map((edge) => {
+                    const active =
+                      edge.from.id === selectedId || edge.to.id === selectedId;
+                    return (
+                      <path
+                        key={edge.id}
+                        d={connectionPath(
+                          project(edge.from, viewport),
+                          project(edge.to, viewport),
+                        )}
+                        className={`timeline-connection ${active ? 'is-active' : ''} ${selectedId && !active ? 'is-muted' : ''} ${edge.claimStatus === 'fact' ? '' : 'is-inferred'}`}
+                        markerEnd={
+                          edge.directed ? 'url(#timeline-arrow)' : undefined
+                        }
+                      />
+                    );
+                  })}
         </svg>
-        {layout.eras.map((era) => {
+        {(overview ? [] : layout.eras).map((era) => {
           const position =
             level === 'eras'
               ? eraPosition(era)
@@ -301,9 +319,11 @@ export default function TimelineCanvas({
             </div>
           );
         })}
-        {(level === 'eras'
-          ? layout.nodes.filter((node) => node.id === selectedId)
-          : renderedNodes
+        {(overview
+          ? []
+          : level === 'eras'
+            ? layout.nodes.filter((node) => node.id === selectedId)
+            : renderedNodes
         ).map((node) => {
           const position = project(node, viewport);
           return (
@@ -334,7 +354,8 @@ export default function TimelineCanvas({
               </span>
               <span className="node-label">
                 <span className="node-order">
-                  {String(node.index).padStart(2, '0')} /{' '}
+                  {node.narrativeThread ?? String(node.index).padStart(2, '0')}{' '}
+                  /{' '}
                   {node.claimStatus === 'theory'
                     ? 'TEORÍA'
                     : node.timeLabel.includes('desconocida')
@@ -343,7 +364,11 @@ export default function TimelineCanvas({
                 </span>
                 <strong>{node.title}</strong>
                 {level === 'details' && (
-                  <span className="node-time">{node.timeLabel}</span>
+                  <span className="node-time">
+                    {node.timeLabel.length > 100
+                      ? node.timeLabel.slice(0, 97) + '…'
+                      : node.timeLabel}
+                  </span>
                 )}
               </span>
             </button>
@@ -355,17 +380,90 @@ export default function TimelineCanvas({
           </p>
         )}
       </div>
+      {overview && (
+        <section
+          className="dossier-overview"
+          aria-label="Capítulos de la historia"
+        >
+          <div className="overview-intro">
+            <h2>Del mundo elemental al Cataclismo</h2>
+            <p>
+              Elige un capítulo para explorar sus acontecimientos. Las
+              trayectorias regionales se solapan; el orden de lectura no fija
+              fechas ni simultaneidad.
+            </p>
+          </div>
+          <div className="chapter-grid">
+            {layout.eras.map((era) => (
+              <button
+                type="button"
+                className="chapter-card"
+                key={era.id}
+                aria-label={
+                  'Explorar ' +
+                  era.name +
+                  ', ' +
+                  era.count +
+                  ' eventos visibles'
+                }
+                onClick={() => {
+                  const first = layout.nodes.find(
+                    (node) => node.eraId === era.id,
+                  );
+                  if (first)
+                    controller.current?.center(first, size.current, 0.9);
+                }}
+              >
+                <span className="atlas-kicker">
+                  {String(era.index).padStart(2, '0')} / {era.count}{' '}
+                  acontecimientos
+                </span>
+                <strong>{era.name}</strong>
+                <span>{era.description}</span>
+                <span className="chapter-action">Explorar capítulo →</span>
+              </button>
+            ))}
+          </div>
+        </section>
+      )}
+      {dossier && !overview && (
+        <label className="chapter-jump">
+          Ir a capítulo
+          <select
+            defaultValue=""
+            onChange={(event) => {
+              const first = layout.nodes.find(
+                (node) => node.eraId === event.target.value,
+              );
+              if (first) controller.current?.center(first, size.current, 0.9);
+            }}
+          >
+            <option value="" disabled>
+              Seleccionar…
+            </option>
+            {layout.eras.map((era) => (
+              <option value={era.id} key={era.id}>
+                {era.name}
+              </option>
+            ))}
+          </select>
+        </label>
+      )}
       <div className="canvas-bottom">
         <div className="canvas-caption">
           <span className="atlas-kicker">
-            {level === 'eras'
-              ? '01 / Épocas'
-              : level === 'events'
-                ? '02 / Acontecimientos'
-                : '03 / Detalle'}
+            {overview
+              ? null
+              : level === 'eras'
+                ? '01 / Épocas'
+                : level === 'events'
+                  ? '02 / Acontecimientos'
+                  : '03 / Detalle'}
           </span>
           <p id="canvas-help">
-            Arrastra para explorar · Rueda para acercar
+            {overview
+              ? 'Desplázate por los capítulos y elige uno'
+              : 'Arrastra para explorar · Rueda para acercar'}
             <span className="sr-only">
               . Con foco en el lienzo: flechas para desplazar, más y menos para
               zoom, Inicio para ver todo. Ctrl más o menos conserva el zoom del
@@ -373,9 +471,11 @@ export default function TimelineCanvas({
             </span>
           </p>
           <small>
-            {preview
-              ? 'Vista previa: distribución y conexiones provisionales. Contiene spoilers.'
-              : 'Orden narrativo; las distancias no representan duración.'}
+            {dossier
+              ? 'Orden de lectura; distancias y filas no representan duración ni simultaneidad. Conexiones discontinuas: interpretación del dossier.'
+              : preview
+                ? 'Vista previa: distribución y conexiones provisionales. Contiene spoilers.'
+                : 'Orden narrativo; las distancias no representan duración.'}
           </small>
         </div>
         <div

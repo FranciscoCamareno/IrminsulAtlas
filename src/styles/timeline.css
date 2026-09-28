@@ -832,3 +832,217 @@
     animation: none;
   }
 }
+
+/* Dossier: growing chapter overview and readable source material. */
+.dossier-overview {
+  position: absolute;
+  inset: 6rem 2.7rem 9rem;
+  overflow: auto;
+  z-index: 1;
+  padding: 0.4rem 0.7rem 1.5rem 0.3rem;
+  overscroll-behavior: contain;
+}
+.overview-intro {
+  max-width: 48rem;
+  margin-bottom: 2rem;
+}
+.overview-intro h2 {
+  font-weight: 400;
+  font-size: clamp(1.5rem, 3vw, 2.5rem);
+  margin-bottom: 0.7rem;
+}
+.overview-intro p {
+  color: var(--atlas-muted);
+  font-size: 0.95rem;
+}
+.chapter-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 17rem), 1fr));
+  gap: 1rem;
+}
+.chapter-card {
+  background: var(--atlas-panel);
+  border: 1px solid var(--atlas-border);
+  border-radius: 0.7rem;
+  padding: 1.35rem;
+  text-align: left;
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+  min-height: 14rem;
+}
+.chapter-card:hover {
+  border-color: var(--atlas-accent);
+}
+.chapter-card strong {
+  font-size: 1.2rem;
+  font-weight: 500;
+}
+.chapter-card > span:not(.atlas-kicker) {
+  font-size: 0.875rem;
+  color: var(--atlas-muted);
+  line-height: 1.6;
+}
+.chapter-card .chapter-action {
+  margin-top: auto;
+  color: var(--atlas-accent) !important;
+}
+.chapter-jump {
+  position: absolute;
+  top: 1.3rem;
+  right: 1.5rem;
+  z-index: 2;
+  max-width: 15rem;
+  font-size: 0.75rem;
+  display: grid;
+  gap: 0.3rem;
+  color: var(--atlas-muted);
+}
+.chapter-jump select,
+.directory-search input {
+  min-height: 2.75rem;
+  border: 1px solid var(--atlas-border);
+  border-radius: 0.3rem;
+  color: var(--atlas-text);
+  background: var(--atlas-panel);
+  font: inherit;
+  padding: 0.5rem;
+  max-width: 100%;
+}
+.directory-search {
+  display: grid;
+  gap: 0.5rem;
+  max-width: 30rem;
+  font-size: 0.875rem;
+}
+.atlas-detail {
+  width: 29rem;
+  max-width: 43%;
+}
+.atlas-detail .detail p,
+.atlas-detail .detail li {
+  font-size: 0.9375rem;
+  line-height: 1.7;
+}
+.atlas-detail .detail a {
+  color: var(--atlas-accent);
+  overflow-wrap: anywhere;
+}
+.atlas-detail .detail li a {
+  display: inline-block;
+  padding-block: 0.35rem;
+}
+.atlas-detail .detail .tag {
+  font-size: 0.75rem;
+}
+.dossier-prose {
+  overflow-wrap: anywhere;
+}
+.dossier-prose p {
+  white-space: pre-line;
+}
+.dossier-prose h3 {
+  scroll-margin-top: 2rem;
+}
+.dossier-table {
+  max-width: 100%;
+  overflow-x: auto;
+  margin-block: 1.2rem;
+}
+.dossier-table table {
+  border-collapse: collapse;
+  width: 100%;
+  font-size: 0.875rem;
+}
+.dossier-table td,
+.dossier-table th {
+  text-align: left;
+  padding: 0.6rem;
+  border: 1px solid var(--atlas-border, #b8b5ab);
+  vertical-align: top;
+}
+.dossier-document {
+  max-width: 54rem;
+  margin-inline: auto;
+}
+.dossier-document .dossier-prose h3 {
+  font-size: 1.35rem;
+  margin-top: 2.5rem;
+}
+.dossier-navigation {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem 1.5rem;
+  margin-block: 1.5rem 2.5rem;
+}
+.dossier-navigation a {
+  min-height: 2.75rem;
+  display: inline-flex;
+  align-items: center;
+}
+.dossier-navigation [aria-current] {
+  font-weight: 700;
+}
+@media (max-width: 900px) {
+  .dossier-overview {
+    inset-inline: 1.2rem;
+  }
+  .chapter-jump {
+    top: 4.5rem;
+    left: 1.2rem;
+    right: auto;
+  }
+}
+@media (max-width: 767px) {
+  .atlas-workspace.has-detail {
+    flex-direction: column;
+  }
+  .atlas-workspace.has-detail .canvas-container,
+  .atlas-workspace.has-detail .atlas-list {
+    flex: 1;
+    min-height: 8rem;
+  }
+  .atlas-detail {
+    width: 100%;
+    max-width: 100%;
+    height: 56%;
+    flex: 0 0 56%;
+    border-left: 0;
+    border-top: 1px solid var(--atlas-border);
+  }
+  .has-detail .dossier-overview {
+    inset: 0.5rem;
+  }
+  .has-detail .overview-intro {
+    display: none;
+  }
+  .has-detail .chapter-jump {
+    display: none;
+  }
+  .dossier-overview {
+    inset-block: 5rem 11rem;
+  }
+  .chapter-card {
+    min-height: 12rem;
+  }
+  .canvas-caption small {
+    font-size: 0.6875rem;
+  }
+  .canvas-caption {
+    max-width: 30rem;
+  }
+}
+
+.dossier-prose p + p {
+  margin-top: 0.9rem;
+}
+.timeline-node.is-muted {
+  opacity: 0.7;
+}
+
+.atlas-shell {
+  color-scheme: dark;
+}
+.atlas-light {
+  color-scheme: light;
+}

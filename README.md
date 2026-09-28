@@ -1,86 +1,82 @@
-﻿# Irminsul Atlas
+# Irminsul Atlas
 
-> **Vista previa temporal activada (27/09/2026):** las páginas muestran 19 fuentes reales de Genshin Impact, con fragmentos, grupos y conexiones ilustrativas. Es una prueba visual solicitada antes de P3; no representa una cronología editorial validada. Para volver al contenido anterior, cambiar `lorePreviewEnabled` a `false` en `src/content/preview.ts`. Requiere la versión local aceptada de P2. Las descripciones y validaciones que siguen registran la base previa.
+Explorador de lore con cronología interactiva a pantalla completa. La página muestra el **primer borrador de la historia antigua de Genshin Impact**, basado en los cuatro documentos aportados en `docs/`.
 
-Prototipo de explorador de lore con **cronología interactiva a pantalla completa**, barra superior mínima y menú lateral plegable. El MVP completo sigue en desarrollo. Todo el contenido mostrado por la aplicación es sintético; no son hechos de Genshin Impact. La importación P2 de fuentes reales permanece separada del sitio y del contenido editorial.
-
-## Trabajo con Git y GitHub
-
-Repositorio: [FranciscoCamareno/IrminsulAtlas](https://github.com/FranciscoCamareno/IrminsulAtlas). Git es el historial y mecanismo principal de recuperación. Antes de cada fase, comprobar `git status`, registrar el commit base y trabajar en una rama propia; revisar el diff, ejecutar las comprobaciones y crear commits limitados a los archivos de la tarea.
-
-P2 parte del commit `897ceded7cd0dacbb3c4d9da66c9021c41262f0f`, en la rama `codex/p2-importador-reproducible`, después de la aprobación humana de P1.
-
-La base de P1 es `2b27c63c1e51c36d6e4b83f9673509f15c4c88eb`, comprobada contra `origin/main`. La rama de esta fase es `codex/p1-cobertura-fuentes`. El ZIP de P0 sigue en `.validation/p0/` como respaldo adicional; no se elimina ni se versiona. Las cachés de investigación también quedan en `.validation/`, fuera de Git y del sitio.
+**Estado al 28/09/2026:** 29 acontecimientos, siete capítulos de lectura, 35 conexiones, 48 fichas de personajes/grupos y 34 lugares. El contenido está visible sin requisitos de progreso por petición del usuario. Conserva fuentes, incertidumbres y discrepancias del dossier; no representa una revisión factual nueva. Los filtros de spoilers para este corpus quedan pendientes.
 
 ## Ejecutar localmente
 
-Requisitos: **Node.js 24 LTS y npm 11**. Verificado con Node 24.21.0 y npm 11.19.0. Usar npm como único gestor y conservar `package-lock.json`.
-
-Desde la raíz del proyecto:
+Desde la raíz, con Node.js 24 LTS y npm 11:
 
 ```sh
 npm ci
 npm run dev
 ```
 
-Abrir `http://localhost:4321/` (Astro indica otra dirección si el puerto está ocupado). En PowerShell, usar `npm.cmd` si la política del sistema impide ejecutar `npm.ps1`; no es necesario cambiar dicha política.
+Astro sirve normalmente en `http://localhost:4321/`. En PowerShell usar `npm.cmd` cuando la política del sistema impida ejecutar `npm.ps1`.
 
-| Comando                | Uso                                                        |
-| ---------------------- | ---------------------------------------------------------- |
-| `npm run dev`          | Desarrollo local                                           |
-| `npm run build`        | Validar contenido y generar el sitio estático en `dist/`   |
-| `npm run preview`      | Servir localmente la compilación existente                 |
-| `npm run check`        | Tipos TypeScript/TSX y diagnósticos Astro                  |
-| `npm test`             | Pruebas de dominio, carga, consultas y HTML inicial        |
-| `npm run test:watch`   | Pruebas durante edición                                    |
-| `npm run lint`         | ESLint para TypeScript, React y configuraciones JavaScript |
-| `npm run format`       | Aplicar Prettier al código y documentación nueva           |
-| `npm run format:check` | Comprobar formato sin editar                               |
-| `npm run validate`     | Formato, lint, tipos, pruebas y compilación                |
+| Comando                | Uso                                             |
+| ---------------------- | ----------------------------------------------- |
+| `npm run dev`          | Desarrollo local                                |
+| `npm run build`        | Validar contenido y generar el sitio en `dist/` |
+| `npm run preview`      | Servir la compilación local                     |
+| `npm run check`        | TypeScript y Astro                              |
+| `npm test`             | Pruebas de dominio, contenido e interacción     |
+| `npm run lint`         | ESLint                                          |
+| `npm run format:check` | Comprobar formato                               |
+| `npm run validate`     | Formato, lint, tipos, pruebas y build           |
 
-No se requieren variables de entorno, credenciales, API ni servicios externos para ejecutar la aplicación después de instalar dependencias. La CLI de Astro puede escribir configuración fuera del proyecto; en un entorno restringido puede desactivarse su telemetría antes de ejecutar los comandos: PowerShell `$env:ASTRO_TELEMETRY_DISABLED='1'`; shells POSIX `export ASTRO_TELEMETRY_DISABLED=1`.
+Se conservan las dependencias instaladas y `package-lock.json`. La compilación del dossier no requiere red, credenciales ni el snapshot P2. Puede desactivarse la telemetría de Astro con `$env:ASTRO_TELEMETRY_DISABLED='1'` en PowerShell.
 
-## Qué funciona
+## Explorar la historia
 
-- JSON local → validación estructural → integridad del conjunto → consultas → página Astro e isla React.
-- Catorce eventos ficticios en cuatro épocas, dos misiones fuente y diecisiete relaciones con ramificaciones y convergencias. Trece eventos están permitidos sin progreso.
-- Lienzo HTML/SVG con orden editorial por épocas. Arrastre, rueda, gesto táctil de D3 y controles visibles para ampliar, alejar, ver todo y centrar la selección. Las coordenadas no son fechas.
-- Tres niveles de zoom: grupos por época, acontecimientos principales y detalle con secundarios/fechas. Las etiquetas mantienen su tamaño de lectura. Progreso por hitos en el menú; nodos, grupos, conteos y relaciones se calculan después de filtrar spoilers.
-- Selección y ficha contextual lateral (inferior en móvil), conexiones destacadas y acceso a eventos relacionados. Fuentes, evidencias y participantes conservan sus filtros.
-- Selección compartible en `/?id=demo-event-01`; `/evento/?id=demo-event-01` sigue funcionando. El evento 05 demuestra el estado bloqueado. Metadatos neutros y estados de ID inexistente o bloqueado.
-- Historial de selección, cierre con Escape y restauración de foco. Progreso, tema y viewport permanecen en memoria al navegar dentro del explorador; recargar o abrir otra pestaña reinicia preferencias. La URL nunca concede progreso.
-- Vista de lista con el mismo progreso, accesible desde la barra superior. Ruta `/lista/` prerenderizada para lectura sin JavaScript. Menú con Personajes, Ubicaciones y Otros datos decorativos, marcados como próximos; tema carbón inicial y alternativa clara.
+- La vista general presenta siete capítulos: mundo elemental, orden celestial, rupturas antiguas, trayectorias regionales, mundo de los Siete, umbral de los gemelos y cierre del Cataclismo.
+- Pulsar un capítulo abre el lienzo. Arrastrar desplaza; rueda y botones amplían. «Ver toda la cronología» recupera la vista general y el selector permite saltar entre capítulos.
+- Los recorridos regionales se distribuyen en filas. **La posición, las filas y las distancias no prueban fechas, duraciones ni simultaneidad.** Algunas fichas abarcan procesos largos que se solapan con otros capítulos.
+- El zoom muestra acontecimientos principales y después episodios complementarios y fechas. Seleccionar un nodo abre el texto completo, incertidumbre, personajes/lugares y fuentes. Las conexiones discontinuas son interpretaciones de lectura del dossier; una flecha indica anterioridad solo cuando el texto la expresa.
+- Las fichas de personajes y lugares enlazan los acontecimientos asociados. El menú ofrece sus directorios, búsqueda por nombre, guía y cambio de tema.
+- La lista interactiva y `/lista/` permiten explorar los mismos acontecimientos sin manejar el lienzo. Los documentos completos en `/dossier/guia/`, `/dossier/historia/`, `/dossier/lugares/` y `/dossier/personajes/` se leen sin JavaScript.
+- Enlaces: `/?id=evt-hiperborea`, `/?entity=per-koitar` y `/?id=evt-hiperborea&entity=per-koitar`. La ruta `/evento/?id=…` sigue funcionando. Atrás/adelante recupera selección; Escape vuelve de una entidad al evento o cierra el detalle.
+- Con foco en el lienzo: flechas, +/− e Inicio. El zoom del navegador conserva sus atajos. Tema y vista se reinician al recargar.
 
-Los filtros de spoilers protegen la experiencia de lectura: el pequeño dataset completo se serializa como propiedades de la isla y sus archivos estáticos son inspeccionables. No es control de acceso. El contenido se presenta como texto escapado, sin HTML remoto ni MDX ejecutable.
+El núcleo termina con la llegada de los gemelos; el Cataclismo es un cierre contextual explícito. El viaje jugable y los cinco siglos posteriores no se añaden. «Hace 500 años» se refiere al presente narrativo del juego, nunca a una fecha terrestre.
 
-## Estructura real
+## Contenido y ampliación
 
-| Ruta                                        | Responsabilidad                                                                    |
-| ------------------------------------------- | ---------------------------------------------------------------------------------- |
-| `src/domain/schema.ts`                      | Contratos Zod y tipos inferidos de todas las entidades                             |
-| `src/domain/integrity.ts`                   | IDs, referencias, universos, sistemas temporales y ciclos de anterioridad estricta |
-| `src/domain/visibility.ts`                  | Reglas puras de progreso y publicación editorial                                   |
-| `src/content/local.ts`                      | Lectura JSON, validación y contrato mínimo `MissionProvider`                       |
-| `src/application/catalog.ts`                | Consultas y proyecciones visibles para la interfaz                                 |
-| `content/editorial/demo.json`               | Contenido editorial sintético                                                      |
-| `content/imported/demo-missions.json`       | Fuentes normalizadas sintéticas, separadas del editorial                           |
-| `src/components/DemoCatalog.tsx`            | Lista, progreso y detalle interactivo                                              |
-| `src/layouts/`, `src/pages/`, `src/styles/` | Layout, rutas, tokens y estilos                                                    |
-| `tests/`                                    | Pruebas del recorrido actual                                                       |
+Los textos originales permanecen en:
 
-Los comandos deben ejecutarse desde la raíz: el cargador resuelve allí `content/`. Los fixtures son compartidos por aplicación y pruebas. `src/visualization/layout.ts` proyecta las consultas permitidas; `viewport.ts` conecta los gestos de D3. React es el único propietario de los nodos y atributos dibujados. La interfaz principal vive en `src/components/explorer/` y sus estilos en `src/styles/timeline.css`.
+1. [Guía y límites](docs/00_guia_de_lectura.md).
+2. [Historia](docs/01_historia_cronologica.md).
+3. [Regiones y lugares](docs/02_regiones_y_locaciones.md).
+4. [Personajes](docs/03_personajes_fundamentales.md).
 
-## Contenido y futura API
+`content/editorial/genshin-dossier.json` contiene únicamente anotaciones: capítulos, orden de lectura, hilos regionales, tiempos, referencias a entidades y relaciones. `src/content/dossier.ts` carga los apartados por sus IDs, sin reescribir sus cuerpos. Los ocho episodios complementarios reutilizan apartados de lugares/personajes y se identifican como secundarios.
 
-Editar el JSON editorial y ejecutar `npm run validate`. Un error identifica el archivo y el campo; la carga falla en lugar de descartar registros. Una misión es una fuente y puede respaldar varios eventos. Ninguna misión se convierte automáticamente en evento.
+Para ampliar, conservar IDs existentes, añadir el texto y su ID en el documento correspondiente, y anotar el nuevo evento en el JSON. Añadir un capítulo no requiere cambiar componentes. Un evento de la cronología sin anotaciones, una sección ausente, un ID duplicado, una referencia rota o un ciclo de anterioridad hace fallar la carga.
 
-Los esquemas son la única definición de contratos; los tipos se infieren con `z.infer`. El esquema rechaza campos extra, fechas inválidas y fuentes con URL no HTTP(S). La integridad global comprueba referencias, duplicados y ciclos estrictos; no existe un motor de razonamiento temporal completo.
+Los contratos y tipos inferidos viven en `src/domain/schema.ts`. El estado `provisional` significa **borrador visible autorizado**, distinto de `reviewed`; los `draft` anteriores siguen ocultos. No se asigna un orden de revelación ficticio: el valor neutral 0 y la ausencia de hitos indican que ese trabajo está pendiente. Las referencias externas se conservan como referencias sin contrastar, no como transcripciones disponibles ni evidencias primarias auditadas.
 
-`MissionProvider.loadMissions()` sigue siendo el cargador de las misiones demo que usa la UI. P2 normaliza fuentes reales con segmentos y variantes en los nuevos contratos Zod `SourceRecord`/`SourceSegment`, fuera del cliente. La conexión de ese material con el modelo editorial queda para P3; no se aplana una conversación ramificada al contrato demo ni se sobrescribe contenido editorial.
+El lector admite Markdown de texto, énfasis, listas, tablas y enlaces HTTP(S); React escapa HTML. No ejecuta MDX ni HTML del dossier. El corpus completo se serializa en la isla: separación de índice y detalle, medición con corpus extensos y protección editorial de spoilers quedan para siguientes fases.
 
-El [importador P2](docs/validation/importador-p2.md) implementa adquisición explícita, normalización sin red, comparación, validación y promoción local. Usa TypeScript/Node sin dependencias nuevas. La [revisión de P1 fue aprobada por el usuario](docs/validation/p1/revision-humana.md), conservando sus ausencias y exclusiones: se procesan 23 fuentes, y el subconjunto técnico contiene 19 fuentes completas y 396 segmentos. Ninguna se convierte automáticamente en evento ni se publica.
+## Estructura
 
-Desde la raíz:
+| Ruta                                                    | Responsabilidad                                    |
+| ------------------------------------------------------- | -------------------------------------------------- |
+| `src/domain/schema.ts`, `integrity.ts`, `visibility.ts` | Contratos, integridad y visibilidad                |
+| `src/content/dossier.ts`                                | Lectura local del dossier y referencias            |
+| `content/editorial/genshin-dossier.json`                | Anotaciones editoriales del primer borrador        |
+| `src/application/catalog.ts`                            | Consultas de eventos, entidades y conexiones       |
+| `src/visualization/`                                    | Posiciones narrativas y gestos D3                  |
+| `src/components/explorer/`                              | Lienzo, capítulos, menú y navegación               |
+| `src/components/DossierText.tsx`                        | Presentación segura del texto                      |
+| `src/pages/dossier/`                                    | Lectura completa de los documentos                 |
+| `tests/`                                                | Dominio, importación, dossier, layout y navegación |
+
+Los fixtures demo permanecen en `content/editorial/demo.json` y `content/imported/demo-missions.json`, usados por pruebas. La antigua proyección `src/content/preview.ts` se conserva como antecedente y ya no alimenta las páginas: cambiar su interruptor no cambia el sitio actual.
+
+## Importador P2
+
+El [importador P2](docs/validation/importador-p2.md) permanece separado del dossier y del cliente. Trabaja con la muestra [aprobada en P1](docs/validation/p1/revision-humana.md): 23 fuentes procesadas, 19 aceptadas y 396 segmentos. Ninguna misión se convierte automáticamente en evento.
 
 ```sh
 npm run content:acquire
@@ -91,51 +87,19 @@ npm run content:promote -- ID_DEL_CANDIDATO
 npm run content:validate
 ```
 
-`content:acquire` es la única orden que descarga; las demás trabajan localmente. Sustituir `ID_DEL_CANDIDATO` por el hash mostrado al importar. La promoción requiere validación y conserva versiones anteriores. Sus datos quedan en `content/imported/animegame/`, ignorados por Git y separados del sitio. Los candidatos e informes están en `.validation/p2/`. El build sigue utilizando únicamente contenido demo.
+Solo `content:acquire` descarga. Las demás órdenes trabajan localmente; la promoción exige validación y conserva versiones anteriores. Candidatos en `.validation/p2/`; fuentes normalizadas en `content/imported/animegame/`, ignoradas por Git. Su aceptación técnica no equivale a revisión editorial del dossier.
 
-Para reproducir la investigación, desde la raíz:
+## Git, validación y límites
 
-```sh
-node scripts/research/p1-coverage.mjs --download
-node scripts/research/p1-coverage.mjs --check
-```
+Repositorio: [FranciscoCamareno/IrminsulAtlas](https://github.com/FranciscoCamareno/IrminsulAtlas). Esta fase parte de `d68840a8f832e7c4f64f19cff1e74d8208b8853d`, en `codex/cronologia-dossier`. El ZIP de P0 permanece en `.validation/p0/` como respaldo adicional; no se usa ni se versiona.
 
-La primera orden adquiere solo los archivos faltantes del manifiesto, unos 102 MiB si no existe caché. La segunda verifica hashes y compara evidencia sin red. El lector de revisión se genera en `.validation/p1/revision-humana.html`; contiene spoilers y no forma parte del sitio. La sonda P1 conserva su evidencia histórica previa a la aprobación humana. Los comandos `content:*` pertenecen al importador P2; `test:e2e` sigue pendiente.
+La [validación de este borrador](docs/validation/dossier-historia-antigua.md) registra pruebas, compilación, capturas de escritorio y viewports estrechos. Las pruebas de DOM y las capturas no certifican gestos táctiles físicos, lector de pantalla, todos los navegadores ni usabilidad con participantes.
 
-## Manejar la cronología
+Pendiente: contraste de fuentes, aprobación editorial, spoilers por progreso, búsqueda/filtros completos de acontecimientos, carga de detalle separada y mediciones de rendimiento. No se publicó ni desplegó.
 
-- Arrastrar el fondo para desplazarse; rueda o botones +/− para zoom.
-- «Ver toda la cronología» agrupa por épocas; pulsar una época la explora. En pantallas estrechas, la vista general apila los grupos para conservar legibilidad.
-- Pulsar un nodo para abrir la ficha; Escape o «Cerrar detalle» la cierra. Los enlaces relacionados centran el destino.
-- Con el foco en el lienzo: flechas para desplazarse, +/− para zoom e Inicio para ver todo. Los atajos Ctrl/Cmd del navegador se conservan.
-- Abrir el menú para cambiar tema o progreso; el icono de lista alterna las dos vistas.
+## Documentación de arquitectura y planes
 
-## Comprobaciones y límites
-
-La [auditoría P0 del 25 de septiembre](docs/validation/estado-actual.md) registra el inventario y RF-01–RF-12. La [entrega P1 del 26 de septiembre](docs/validation/cobertura-fuentes.md) actualiza Git, corrige el formato pendiente del plan 10 y documenta la investigación de fuentes. La [entrega P2](docs/validation/importador-p2.md) registra pruebas de importación y la reproducción sobre el snapshot real. Las validaciones de cada fase se distinguen de los antecedentes históricos siguientes.
-
-Verificación del 25 de septiembre de 2026: pruebas de dominio y de interacción en DOM simulado, lint, tipos y compilación. La página principal responde HTTP 200 con el nuevo lienzo, sin el bloque de presentación anterior. Los resultados detallados están en [09-cronologia-inmersiva.md](docs/09-cronologia-inmersiva.md).
-
-El entorno sigue sin navegador conectado. Las pruebas DOM ejercitan React y D3, incluidos rueda, arrastre, ancla de zoom, selección, enlaces, agrupación, progreso y coordenadas de vista general a 320 px. No certifican apariencia, CSS, foco modal nativo ni gestos físicos en móvil; esa revisión visual permanece pendiente.
-
-La agrupación actual es por época y los umbrales de zoom son iniciales. Faltan ajuste con contenido real, agrupación por densidad, resolución general de colisiones, búsqueda y filtros del MVP. No existe un grafo independiente ni consulta remota en el navegador; P2 consume archivos del proveedor fuera de la aplicación. No se ha desplegado el sitio.
-
-## Documentación
-
-1. [Requisitos y alcance](docs/01-requisitos.md).
-2. [Arquitectura propuesta](docs/02-arquitectura.md).
-3. [Modelo de datos y criterio editorial](docs/03-modelo-de-datos.md).
-4. [Integración futura de API](docs/04-integracion-api.md).
-5. [Diseño e interacción](docs/05-diseno-ux.md).
-6. [Plan y estado de avance](docs/06-plan-de-trabajo.md).
-7. [Referencias y decisiones](docs/07-referencias-y-decisiones.md).
-8. [Guía visual](docs/styles.md).
-9. [Decisiones y validación de esta implementación](docs/08-base-inicial.md).
-10. [Instrucciones de trabajo](AGENTS.md).
-
-11. [Rediseño de la cronología y validaciones](docs/09-cronologia-inmersiva.md).
-12. [Plan de integración de lore y pruebas](docs/10-plan-integracion-lore-y-pruebas.md).
-13. [Auditoría P0 del estado actual](docs/validation/estado-actual.md).
-14. [Cobertura de fuentes P1](docs/validation/cobertura-fuentes.md).
-15. [Registro de revisión humana P1](docs/validation/p1/revision-humana.md).
-16. [Importador reproducible y validación P2](docs/validation/importador-p2.md).
+- [Requisitos](docs/01-requisitos.md), [arquitectura](docs/02-arquitectura.md), [modelo](docs/03-modelo-de-datos.md), [integración](docs/04-integracion-api.md).
+- [UX](docs/05-diseno-ux.md), [estilos](docs/styles.md), [decisiones](docs/07-referencias-y-decisiones.md).
+- [Plan general](docs/06-plan-de-trabajo.md) y [plan de integración](docs/10-plan-integracion-lore-y-pruebas.md).
+- Antecedentes: [base inicial](docs/08-base-inicial.md), [cronología inmersiva](docs/09-cronologia-inmersiva.md), [P0](docs/validation/estado-actual.md), [P1](docs/validation/cobertura-fuentes.md) y [P2](docs/validation/importador-p2.md).

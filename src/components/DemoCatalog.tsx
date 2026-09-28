@@ -5,6 +5,7 @@ import {
   useSyncExternalStore,
   type MouseEvent,
 } from 'react';
+import DossierText, { dossierHref } from './DossierText';
 import type { Dataset } from '../domain/schema';
 import {
   getEventById,
@@ -15,7 +16,7 @@ import {
 } from '../application/catalog';
 
 const claimLabels = {
-  fact: 'Hecho (ficticio en esta demo)',
+  fact: 'Hecho',
   interpretation: 'Interpretación',
   theory: 'Teoría',
 };
@@ -28,6 +29,7 @@ const relationLabels = {
 const editorialLabels = {
   demo: 'Demostración',
   draft: 'Borrador',
+  provisional: 'Borrador visible',
   reviewed: 'Revisado',
 };
 const eventHref = (id: string) => `/evento/?id=${encodeURIComponent(id)}`;
@@ -66,11 +68,26 @@ function EventMeta({ event }: { event: EventSummary }) {
         <span className="tag">
           {event.id.startsWith('preview-')
             ? 'Material fuente'
-            : claimLabels[event.claimStatus]}
+            : event.editorialStatus === 'provisional'
+              ? 'Síntesis del dossier'
+              : claimLabels[event.claimStatus]}
         </span>
         <span className="tag">
           {event.importance === 'major' ? 'Principal' : 'Secundario'}
         </span>
+        {event.certainty?.map((certainty) => (
+          <span className="tag" key={certainty}>
+            {
+              {
+                documented: 'Documentado en el dossier',
+                tradition: 'Testimonio o tradición',
+                approximate: 'Aproximado',
+                disputed: 'Discutido',
+                unknown: 'Sin datación exacta',
+              }[certainty]
+            }
+          </span>
+        ))}
       </div>
     </>
   );
@@ -87,13 +104,39 @@ export function Detail({
     <article className="panel detail">
       <EventMeta event={event} />
       <h3>{event.title}</h3>
-      <p>{event.summary}</p>
-      <p style={{ whiteSpace: 'pre-line' }}>{event.body}</p>
-      <h4>Participantes y lugares</h4>
+      {event.dossierSection ? (
+        <>
+          <p className="metadata">
+            {event.narrativeThread} · {event.categories.join(' · ')}
+          </p>
+          <DossierText text={event.body} onNavigate={onNavigate} />
+          <a href={dossierHref(event.dossierSection)}>
+            Leer el apartado en su contexto
+          </a>
+        </>
+      ) : (
+        <>
+          <p>{event.summary}</p>
+          <p style={{ whiteSpace: 'pre-line' }}>{event.body}</p>
+        </>
+      )}
+      <h4>Personajes y lugares relacionados</h4>
       {event.entities.length ? (
         <ul>
           {event.entities.map((entity) => (
-            <li key={entity.id}>{entity.name}</li>
+            <li key={entity.id}>
+              {event.dossierSection ? (
+                <a
+                  href={'/?id=' + event.id + '&entity=' + entity.id}
+                  data-entity-id={entity.id}
+                  onClick={onNavigate}
+                >
+                  {entity.name}
+                </a>
+              ) : (
+                entity.name
+              )}
+            </li>
           ))}
         </ul>
       ) : (
@@ -173,6 +216,9 @@ export default function DemoCatalog({
   dataset: Dataset;
   detailPage?: boolean;
 }) {
+  const dossier = dataset.universes.some(
+    (universe) => universe.id === 'genshin',
+  );
   const preview = dataset.universes.some(
     (universe) => universe.id === 'genshin-preview',
   );
@@ -198,9 +244,9 @@ export default function DemoCatalog({
   return (
     <div
       className="catalog"
-      style={preview ? { gridTemplateColumns: '1fr' } : undefined}
+      style={preview || dossier ? { gridTemplateColumns: '1fr' } : undefined}
     >
-      {!preview && (
+      {!preview && !dossier && (
         <aside className="progress-panel">
           <fieldset aria-describedby="progress-help">
             <legend>Tu progreso de lectura</legend>
@@ -285,11 +331,14 @@ export default function DemoCatalog({
                   <li className="panel" key={event.id}>
                     <EventMeta event={event} />
                     <h3>
-                      <a href={eventHref(event.id)} onClick={navigate}>
+                      <a
+                        href={eventHref(event.id)}
+                        onClick={dossier ? undefined : navigate}
+                      >
                         {event.title}
                       </a>
                     </h3>
-                    <p>{event.summary}</p>
+                    <DossierText text={event.summary} />
                   </li>
                 ))}
               </ul>

@@ -1,0 +1,902 @@
+{
+  "eras": [
+    {
+      "id": "era-mundo-elemental",
+      "name": "Mundo elemental",
+      "description": "Antes del orden humano. Antigüedad absoluta desconocida."
+    },
+    {
+      "id": "era-orden-celestial",
+      "name": "Orden celestial",
+      "description": "Conquista y adaptación del mundo; las cifras del libro pertenecen a su propia cuenta."
+    },
+    {
+      "id": "era-rupturas-antiguas",
+      "name": "Rupturas antiguas",
+      "description": "Guerras, pilares y civilizaciones desaparecidas. No todos los desastres fueron simultáneos."
+    },
+    {
+      "id": "era-historias-regionales",
+      "name": "Trayectorias regionales",
+      "description": "Recorridos de larga duración que se solapan con el orden de los Siete. Su posición de lectura no sincroniza regiones ni fija el final de cada historia."
+    },
+    {
+      "id": "era-mundo-siete",
+      "name": "Mundo de los Siete",
+      "description": "Consolidación del sistema y trayectorias independientes; persisten herencias anteriores."
+    },
+    {
+      "id": "era-umbral-gemelos",
+      "name": "Umbral de los gemelos",
+      "description": "Khaenri’ah y llegada de los gemelos. Visitas, despertares y separación no son un único acontecimiento."
+    },
+    {
+      "id": "era-cierre-cataclismo",
+      "name": "Cierre: Cataclismo",
+      "description": "Cierre contextual fuera del límite estricto de llegada. No incluye el viaje jugable ni reconstruye los cinco siglos posteriores."
+    }
+  ],
+  "events": [
+    {
+      "id": "evt-mundo-elemental",
+      "sectionId": "evt-mundo-elemental",
+      "eraId": "era-mundo-elemental",
+      "narrativeThread": "Mundo antiguo",
+      "entityIds": ["loc-teyvat", "per-nibelung", "per-apep"],
+      "time": {
+        "kind": "unknown",
+        "label": "Fecha desconocida"
+      },
+      "importance": "major",
+      "certainty": ["unknown"]
+    },
+    {
+      "id": "evt-orden-lunar",
+      "sectionId": "evt-orden-lunar",
+      "eraId": "era-mundo-elemental",
+      "narrativeThread": "Mundo antiguo",
+      "entityIds": [
+        "loc-tres-lunas",
+        "loc-teyvat",
+        "per-nibelung",
+        "per-diosas-lunares"
+      ],
+      "time": {
+        "kind": "unknown",
+        "label": "Anterior al dominio celestial"
+      },
+      "importance": "major",
+      "certainty": ["tradition", "unknown"]
+    },
+    {
+      "id": "evt-conquista-celestial",
+      "sectionId": "evt-conquista-celestial",
+      "eraId": "era-orden-celestial",
+      "narrativeThread": "Mundo antiguo",
+      "entityIds": [
+        "loc-teyvat",
+        "loc-celestia",
+        "per-primordial",
+        "per-istaroth",
+        "per-ronova",
+        "per-naberius",
+        "per-asmoday"
+      ],
+      "time": {
+        "kind": "unknown",
+        "label": "Guerra de cuarenta años en la cronología del libro"
+      },
+      "importance": "major",
+      "certainty": ["tradition", "disputed"]
+    },
+    {
+      "id": "evt-mundo-humano",
+      "sectionId": "evt-mundo-humano",
+      "eraId": "era-orden-celestial",
+      "narrativeThread": "Mundo antiguo",
+      "entityIds": ["loc-teyvat", "loc-celestia", "per-primordial"],
+      "time": {
+        "kind": "unknown",
+        "label": "Cuatrocientos años desde el comienzo de la cuenta del libro"
+      },
+      "importance": "major",
+      "certainty": ["tradition"]
+    },
+    {
+      "id": "evt-hiperborea",
+      "sectionId": "evt-hiperborea",
+      "eraId": "era-orden-celestial",
+      "narrativeThread": "Norte",
+      "entityIds": [
+        "loc-hiperborea",
+        "loc-celestia",
+        "per-koitar",
+        "per-seutervoinen"
+      ],
+      "time": {
+        "kind": "unknown",
+        "label": "Antigüedad remota; la reconstrucción de unos seis mil años no es una fecha demostrada"
+      },
+      "importance": "major",
+      "certainty": ["approximate", "disputed"]
+    },
+    {
+      "id": "evt-guerra-llama-funeraria",
+      "sectionId": "evt-guerra-llama-funeraria",
+      "eraId": "era-rupturas-antiguas",
+      "narrativeThread": "Mundo antiguo",
+      "entityIds": [
+        "loc-teyvat",
+        "loc-tres-lunas",
+        "loc-natlantea",
+        "loc-enkanomiya",
+        "per-nibelung",
+        "per-diosas-lunares",
+        "per-primordial"
+      ],
+      "time": {
+        "kind": "unknown",
+        "label": "Posterior al establecimiento del orden humano"
+      },
+      "importance": "major",
+      "certainty": ["unknown"]
+    },
+    {
+      "id": "evt-pilares-celestiales",
+      "sectionId": "evt-pilares-celestiales",
+      "eraId": "era-rupturas-antiguas",
+      "narrativeThread": "Mundo antiguo",
+      "entityIds": [
+        "loc-celestia",
+        "loc-hiperborea",
+        "loc-sal-vindagnyr",
+        "loc-sima",
+        "per-primordial"
+      ],
+      "time": {
+        "kind": "unknown",
+        "label": "Distintos episodios antiguos; no necesariamente simultáneos"
+      },
+      "importance": "major",
+      "certainty": ["unknown"]
+    },
+    {
+      "id": "evt-vindagnyr-khaenriah",
+      "sectionId": "evt-vindagnyr-khaenriah",
+      "eraId": "era-rupturas-antiguas",
+      "narrativeThread": "Mondstadt / Khaenri’ah",
+      "entityIds": [
+        "loc-sal-vindagnyr",
+        "loc-khaenriah",
+        "per-vindagnyr-testigos"
+      ],
+      "time": {
+        "kind": "unknown",
+        "label": "Khaenri’ah ya es mencionada en los textos de Vindagnyr"
+      },
+      "importance": "major",
+      "certainty": ["unknown"]
+    },
+    {
+      "id": "evt-gnosis-guerra-arcontes",
+      "sectionId": "evt-gnosis-guerra-arcontes",
+      "eraId": "era-historias-regionales",
+      "narrativeThread": "Orden mundial",
+      "entityIds": [
+        "loc-teyvat",
+        "loc-celestia",
+        "loc-pohjola",
+        "per-tercer-descendido",
+        "per-primordial"
+      ],
+      "time": {
+        "kind": "unknown",
+        "label": "Conflictos regionales; conclusión general hace unos dos mil años"
+      },
+      "importance": "major",
+      "certainty": ["approximate", "disputed"]
+    },
+    {
+      "id": "evt-caida-guili",
+      "sectionId": "evt-caida-guili",
+      "eraId": "era-historias-regionales",
+      "narrativeThread": "Liyue",
+      "entityIds": [
+        "loc-liyue",
+        "loc-guili",
+        "loc-sal-terrae",
+        "loc-chenyu",
+        "per-morax-guizhong",
+        "per-havria",
+        "per-fujin-herbologa"
+      ],
+      "time": {
+        "kind": "approximate",
+        "system": "teyvat-presente-narrativo",
+        "reference": -3700,
+        "label": "Hace unos 3.700 años"
+      },
+      "importance": "major",
+      "certainty": ["approximate"]
+    },
+    {
+      "id": "evt-rebelion-decarabian",
+      "sectionId": "evt-rebelion-decarabian",
+      "eraId": "era-historias-regionales",
+      "narrativeThread": "Mondstadt",
+      "entityIds": [
+        "loc-mondstadt",
+        "loc-viejo-mondstadt",
+        "per-barbatos",
+        "per-decarabian-andrius"
+      ],
+      "time": {
+        "kind": "approximate",
+        "system": "teyvat-presente-narrativo",
+        "reference": -2600,
+        "label": "Hace unos 2.600 años"
+      },
+      "importance": "major",
+      "certainty": ["approximate"]
+    },
+    {
+      "id": "evt-enkanomiya-watatsumi",
+      "sectionId": "evt-enkanomiya-watatsumi",
+      "eraId": "era-historias-regionales",
+      "narrativeThread": "Inazuma",
+      "entityIds": [
+        "loc-enkanomiya",
+        "loc-watatsumi-yashiori",
+        "loc-inazuma",
+        "loc-mar-oscuro",
+        "per-orobashi-abrax",
+        "per-makoto-ei",
+        "per-istaroth"
+      ],
+      "time": {
+        "kind": "unknown",
+        "label": "Recorrido largo: del aislamiento a Watatsumi; no queda enteramente antes de los Siete"
+      },
+      "importance": "major",
+      "certainty": ["unknown"]
+    },
+    {
+      "id": "evt-tres-dioses-sumeru",
+      "sectionId": "evt-tres-dioses-sumeru",
+      "eraId": "era-historias-regionales",
+      "narrativeThread": "Sumeru",
+      "entityIds": [
+        "loc-sumeru",
+        "loc-ay-khanoum",
+        "loc-gurabad",
+        "loc-reino-deshret",
+        "per-deshret",
+        "per-nabu-malikata",
+        "per-rukkhadevata",
+        "per-apep",
+        "per-liloupar-ormazd"
+      ],
+      "time": {
+        "kind": "unknown",
+        "label": "Orden relativo conocido; sincronización regional desconocida"
+      },
+      "importance": "major",
+      "certainty": ["unknown"]
+    },
+    {
+      "id": "evt-remuria",
+      "sectionId": "evt-remuria",
+      "eraId": "era-historias-regionales",
+      "narrativeThread": "Fontaine",
+      "entityIds": [
+        "loc-fontaine",
+        "loc-remuria",
+        "loc-erinnyes",
+        "per-remus-phobos-scylla",
+        "per-egeria"
+      ],
+      "time": {
+        "kind": "unknown",
+        "label": "Remuria precede al gobierno de Egeria como Arconte"
+      },
+      "importance": "major",
+      "certainty": ["unknown"]
+    },
+    {
+      "id": "evt-fundacion-natlan",
+      "sectionId": "evt-fundacion-natlan",
+      "eraId": "era-historias-regionales",
+      "narrativeThread": "Natlan",
+      "entityIds": [
+        "loc-natlantea",
+        "loc-natlan",
+        "loc-reino-noche",
+        "loc-ochkanatlan",
+        "per-xbalanque",
+        "per-sabio-robafuegos",
+        "per-yohualtecuhtin",
+        "per-ronova",
+        "per-ochkan-rebelion"
+      ],
+      "time": {
+        "kind": "unknown",
+        "label": "Etapas distintas: dragones, Xbalanque y el imperio posterior de Och-Kan"
+      },
+      "importance": "major",
+      "certainty": ["unknown"]
+    },
+    {
+      "id": "evt-formacion-snezhnaya",
+      "sectionId": "evt-formacion-snezhnaya",
+      "eraId": "era-historias-regionales",
+      "narrativeThread": "Norte",
+      "entityIds": [
+        "loc-snezhnaya",
+        "loc-hiperborea",
+        "loc-nod-krai",
+        "per-monomakh",
+        "per-diosas-lunares"
+      ],
+      "time": {
+        "kind": "unknown",
+        "label": "Kitezh se atribuye a más de tres mil años antes del presente narrativo"
+      },
+      "importance": "major",
+      "certainty": ["approximate", "tradition"]
+    },
+    {
+      "id": "evt-caida-gurabad",
+      "sectionId": "loc-gurabad",
+      "title": "Ascenso y caída de Gurabad",
+      "eraId": "era-historias-regionales",
+      "narrativeThread": "Sumeru",
+      "entityIds": [
+        "loc-gurabad",
+        "loc-sumeru",
+        "per-liloupar-ormazd",
+        "per-nabu-malikata",
+        "per-deshret"
+      ],
+      "time": {
+        "kind": "unknown",
+        "label": "Después de la muerte de Nabu Malikata y antes del desastre final de Deshret"
+      },
+      "importance": "minor",
+      "certainty": ["unknown"]
+    },
+    {
+      "id": "evt-caida-havria",
+      "sectionId": "loc-sal-terrae",
+      "title": "Muerte de Havria y éxodo de sus seguidores",
+      "eraId": "era-historias-regionales",
+      "narrativeThread": "Liyue",
+      "entityIds": ["loc-sal-terrae", "loc-liyue", "per-havria"],
+      "time": {
+        "kind": "unknown",
+        "label": "Fecha desconocida"
+      },
+      "importance": "minor",
+      "certainty": ["unknown"]
+    },
+    {
+      "id": "evt-proteccion-chenyu",
+      "sectionId": "loc-chenyu",
+      "title": "Fujin y la protección de Chenyu",
+      "eraId": "era-historias-regionales",
+      "narrativeThread": "Liyue",
+      "entityIds": ["loc-chenyu", "per-fujin-herbologa", "per-morax-guizhong"],
+      "time": {
+        "kind": "unknown",
+        "label": "Durante el conflicto de la deidad local con Morax"
+      },
+      "importance": "minor",
+      "certainty": ["unknown"]
+    },
+    {
+      "id": "evt-ruina-tsurumi",
+      "sectionId": "loc-tsurumi",
+      "title": "Ruu y la destrucción de su comunidad",
+      "eraId": "era-historias-regionales",
+      "narrativeThread": "Inazuma",
+      "entityIds": ["loc-tsurumi", "per-ruu-kapatcir"],
+      "time": {
+        "kind": "unknown",
+        "label": "Sin sincronización exacta con las demás historias regionales"
+      },
+      "importance": "minor",
+      "certainty": ["unknown"]
+    },
+    {
+      "id": "evt-caida-ochkanatlan",
+      "sectionId": "loc-ochkanatlan",
+      "title": "Rebelión y caída de Ochkanatlan",
+      "eraId": "era-historias-regionales",
+      "narrativeThread": "Natlan",
+      "entityIds": [
+        "loc-ochkanatlan",
+        "loc-natlan",
+        "per-ochkan-rebelion",
+        "per-xbalanque"
+      ],
+      "time": {
+        "kind": "unknown",
+        "label": "Imperio posterior a Xbalanque; no se fija fecha para su caída"
+      },
+      "importance": "minor",
+      "certainty": ["unknown"]
+    },
+    {
+      "id": "evt-era-siete",
+      "sectionId": "evt-era-siete",
+      "eraId": "era-mundo-siete",
+      "narrativeThread": "Orden mundial",
+      "entityIds": [
+        "loc-teyvat",
+        "loc-mar-oscuro",
+        "loc-khaenriah",
+        "per-barbatos",
+        "per-morax-guizhong",
+        "per-makoto-ei",
+        "per-rukkhadevata",
+        "per-egeria",
+        "per-xbalanque",
+        "per-monomakh"
+      ],
+      "time": {
+        "kind": "approximate",
+        "system": "teyvat-presente-narrativo",
+        "reference": -2000,
+        "label": "Hace unos 2.000 años"
+      },
+      "importance": "major",
+      "certainty": ["approximate"]
+    },
+    {
+      "id": "evt-revolucion-vennessa",
+      "sectionId": "evt-revolucion-vennessa",
+      "eraId": "era-mundo-siete",
+      "narrativeThread": "Mondstadt",
+      "entityIds": [
+        "loc-mondstadt",
+        "loc-celestia",
+        "per-vennessa",
+        "per-barbatos"
+      ],
+      "time": {
+        "kind": "approximate",
+        "system": "teyvat-presente-narrativo",
+        "reference": -1000,
+        "label": "Hace unos 1.000 años"
+      },
+      "importance": "major",
+      "certainty": ["approximate"]
+    },
+    {
+      "id": "evt-sello-azhdaha",
+      "sectionId": "per-azhdaha",
+      "title": "Erosión y sellado de Azhdaha",
+      "eraId": "era-mundo-siete",
+      "narrativeThread": "Liyue",
+      "entityIds": [
+        "loc-liyue",
+        "loc-sima",
+        "per-azhdaha",
+        "per-morax-guizhong"
+      ],
+      "time": {
+        "kind": "unknown",
+        "label": "Ubicación de lectura temática; el dossier no fija su fecha"
+      },
+      "importance": "minor",
+      "certainty": ["unknown"]
+    },
+    {
+      "id": "evt-khaenriah-irmin",
+      "sectionId": "evt-khaenriah-irmin",
+      "eraId": "era-umbral-gemelos",
+      "narrativeThread": "Khaenri’ah",
+      "entityIds": [
+        "loc-khaenriah",
+        "per-irmin",
+        "per-dainsleif",
+        "per-cinco-pecadores",
+        "per-hroptatyr",
+        "per-vedrfolnir",
+        "per-rhinedottir",
+        "per-surtalogi",
+        "per-rerir"
+      ],
+      "time": {
+        "kind": "unknown",
+        "label": "Última etapa del Eclipse, antes del desastre"
+      },
+      "importance": "major",
+      "certainty": ["unknown"]
+    },
+    {
+      "id": "evt-llegada-gemelos",
+      "sectionId": "evt-llegada-gemelos",
+      "eraId": "era-umbral-gemelos",
+      "narrativeThread": "Khaenri’ah / Norte",
+      "entityIds": [
+        "loc-khaenriah",
+        "loc-nod-krai",
+        "per-gemelos",
+        "per-asmoday"
+      ],
+      "time": {
+        "kind": "approximate",
+        "system": "teyvat-presente-narrativo",
+        "reference": -500,
+        "label": "Época vinculada a hace unos 500 años; fecha exacta desconocida"
+      },
+      "importance": "major",
+      "certainty": ["approximate", "disputed"]
+    },
+    {
+      "id": "evt-cataclismo",
+      "sectionId": "evt-cataclismo",
+      "eraId": "era-cierre-cataclismo",
+      "narrativeThread": "Continental",
+      "entityIds": [
+        "loc-khaenriah",
+        "loc-mondstadt",
+        "loc-liyue",
+        "loc-inazuma",
+        "loc-sumeru",
+        "loc-fontaine",
+        "loc-natlan",
+        "loc-snezhnaya",
+        "loc-sima",
+        "loc-vurukasha",
+        "loc-mare-jivari",
+        "per-cinco-pecadores",
+        "per-rhinedottir",
+        "per-dainsleif",
+        "per-makoto-ei",
+        "per-istaroth",
+        "per-rukkhadevata",
+        "per-egeria",
+        "per-mavuika",
+        "per-monomakh",
+        "per-bosacius-boyang",
+        "per-arundolyn-rostam",
+        "per-tenoch-sanhaj",
+        "per-bakunawa",
+        "per-simurgh",
+        "per-barbatos"
+      ],
+      "time": {
+        "kind": "approximate",
+        "system": "teyvat-presente-narrativo",
+        "reference": -500,
+        "label": "Hace unos 500 años · cierre contextual"
+      },
+      "importance": "major",
+      "certainty": ["approximate"]
+    },
+    {
+      "id": "evt-mare-jivari",
+      "sectionId": "loc-mare-jivari",
+      "title": "Formación y aislamiento de Mare Jivari",
+      "eraId": "era-cierre-cataclismo",
+      "narrativeThread": "Natlan",
+      "entityIds": [
+        "loc-mare-jivari",
+        "loc-natlan",
+        "per-tenoch-sanhaj",
+        "per-bakunawa",
+        "per-barbatos"
+      ],
+      "time": {
+        "kind": "unknown",
+        "label": "Vinculado al Cataclismo, con discrepancias y separación de la línea temporal ordinaria"
+      },
+      "importance": "minor",
+      "certainty": ["disputed", "approximate"]
+    },
+    {
+      "id": "evt-amrita-pari",
+      "sectionId": "loc-vurukasha",
+      "title": "Amrita, Harvisptokhm y origen de las Pari",
+      "eraId": "era-cierre-cataclismo",
+      "narrativeThread": "Sumeru / Fontaine",
+      "entityIds": [
+        "loc-vurukasha",
+        "loc-sumeru",
+        "loc-fontaine",
+        "per-egeria",
+        "per-rukkhadevata",
+        "per-simurgh"
+      ],
+      "time": {
+        "kind": "unknown",
+        "label": "Cierre del Cataclismo"
+      },
+      "importance": "minor",
+      "certainty": ["unknown"]
+    }
+  ],
+  "relations": [
+    {
+      "id": "rel-mundo-elemental-conquista-celestial",
+      "fromEventId": "evt-mundo-elemental",
+      "toEventId": "evt-conquista-celestial",
+      "kind": "precedes",
+      "explanation": "El mundo elemental preexiste a la conquista celestial.",
+      "sectionId": "evt-conquista-celestial"
+    },
+    {
+      "id": "rel-orden-lunar-conquista-celestial",
+      "fromEventId": "evt-orden-lunar",
+      "toEventId": "evt-conquista-celestial",
+      "kind": "precedes",
+      "explanation": "El dossier sitúa el orden lunar antes del dominio celestial.",
+      "sectionId": "evt-orden-lunar"
+    },
+    {
+      "id": "rel-conquista-celestial-mundo-humano",
+      "fromEventId": "evt-conquista-celestial",
+      "toEventId": "evt-mundo-humano",
+      "kind": "precedes",
+      "explanation": "Tras la conquista se adapta el mundo para los humanos.",
+      "sectionId": "evt-mundo-humano"
+    },
+    {
+      "id": "rel-mundo-humano-guerra-llama-funeraria",
+      "fromEventId": "evt-mundo-humano",
+      "toEventId": "evt-guerra-llama-funeraria",
+      "kind": "precedes",
+      "explanation": "El regreso de Nibelung se sitúa después del establecimiento del orden humano.",
+      "sectionId": "evt-guerra-llama-funeraria"
+    },
+    {
+      "id": "rel-hiperborea-guerra-llama-funeraria",
+      "fromEventId": "evt-hiperborea",
+      "toEventId": "evt-guerra-llama-funeraria",
+      "kind": "association",
+      "explanation": "La civilización precede a la guerra; el dossier no cierra la sincronización de su destrucción.",
+      "sectionId": "evt-hiperborea"
+    },
+    {
+      "id": "rel-orden-lunar-guerra-llama-funeraria",
+      "fromEventId": "evt-orden-lunar",
+      "toEventId": "evt-guerra-llama-funeraria",
+      "kind": "association",
+      "explanation": "La guerra transforma el destino de las lunas y de sus diosas.",
+      "sectionId": "evt-guerra-llama-funeraria"
+    },
+    {
+      "id": "rel-guerra-llama-funeraria-enkanomiya-watatsumi",
+      "fromEventId": "evt-guerra-llama-funeraria",
+      "toEventId": "evt-enkanomiya-watatsumi",
+      "kind": "association",
+      "explanation": "El hundimiento inicia el aislamiento; el recorrido de Enkanomiya y Watatsumi abarca etapas posteriores.",
+      "sectionId": "evt-guerra-llama-funeraria"
+    },
+    {
+      "id": "rel-guerra-llama-funeraria-fundacion-natlan",
+      "fromEventId": "evt-guerra-llama-funeraria",
+      "toEventId": "evt-fundacion-natlan",
+      "kind": "association",
+      "explanation": "La devastación de Natlantea es parte del trasfondo de la Natlan posterior.",
+      "sectionId": "loc-natlantea"
+    },
+    {
+      "id": "rel-pilares-celestiales-vindagnyr-khaenriah",
+      "fromEventId": "evt-pilares-celestiales",
+      "toEventId": "evt-vindagnyr-khaenriah",
+      "kind": "association",
+      "explanation": "Vindagnyr constituye un caso de la ruptura de civilizaciones; no sincroniza todos los pilares.",
+      "sectionId": "evt-vindagnyr-khaenriah"
+    },
+    {
+      "id": "rel-vindagnyr-khaenriah-khaenriah-irmin",
+      "fromEventId": "evt-vindagnyr-khaenriah",
+      "toEventId": "evt-khaenriah-irmin",
+      "kind": "association",
+      "explanation": "Dos momentos diferentes de la trayectoria de Khaenri’ah.",
+      "sectionId": "loc-khaenriah"
+    },
+    {
+      "id": "rel-gnosis-guerra-arcontes-era-siete",
+      "fromEventId": "evt-gnosis-guerra-arcontes",
+      "toEventId": "evt-era-siete",
+      "kind": "association",
+      "explanation": "La conclusión de los conflictos regionales se relaciona con la consolidación de los Siete.",
+      "sectionId": "evt-era-siete"
+    },
+    {
+      "id": "rel-caida-guili-era-siete",
+      "fromEventId": "evt-caida-guili",
+      "toEventId": "evt-era-siete",
+      "kind": "association",
+      "explanation": "Trayectoria regional vinculada al sistema de los Siete; no se infiere una fecha común de fundación.",
+      "sectionId": "evt-caida-guili"
+    },
+    {
+      "id": "rel-rebelion-decarabian-era-siete",
+      "fromEventId": "evt-rebelion-decarabian",
+      "toEventId": "evt-era-siete",
+      "kind": "association",
+      "explanation": "Trayectoria regional vinculada al sistema de los Siete; no se infiere una fecha común de fundación.",
+      "sectionId": "evt-rebelion-decarabian"
+    },
+    {
+      "id": "rel-remuria-era-siete",
+      "fromEventId": "evt-remuria",
+      "toEventId": "evt-era-siete",
+      "kind": "association",
+      "explanation": "Trayectoria regional vinculada al sistema de los Siete; no se infiere una fecha común de fundación.",
+      "sectionId": "evt-remuria"
+    },
+    {
+      "id": "rel-fundacion-natlan-era-siete",
+      "fromEventId": "evt-fundacion-natlan",
+      "toEventId": "evt-era-siete",
+      "kind": "association",
+      "explanation": "Trayectoria regional vinculada al sistema de los Siete; no se infiere una fecha común de fundación.",
+      "sectionId": "evt-fundacion-natlan"
+    },
+    {
+      "id": "rel-formacion-snezhnaya-era-siete",
+      "fromEventId": "evt-formacion-snezhnaya",
+      "toEventId": "evt-era-siete",
+      "kind": "association",
+      "explanation": "Trayectoria regional vinculada al sistema de los Siete; no se infiere una fecha común de fundación.",
+      "sectionId": "evt-formacion-snezhnaya"
+    },
+    {
+      "id": "rel-caida-guili-caida-havria",
+      "fromEventId": "evt-caida-guili",
+      "toEventId": "evt-caida-havria",
+      "kind": "association",
+      "explanation": "El dossier conserva herencias de varios dioses dentro de Liyue.",
+      "sectionId": "evt-caida-guili"
+    },
+    {
+      "id": "rel-caida-guili-proteccion-chenyu",
+      "fromEventId": "evt-caida-guili",
+      "toEventId": "evt-proteccion-chenyu",
+      "kind": "association",
+      "explanation": "Chenyu y Guili son historias distintas de la formación regional.",
+      "sectionId": "evt-caida-guili"
+    },
+    {
+      "id": "rel-caida-guili-sello-azhdaha",
+      "fromEventId": "evt-caida-guili",
+      "toEventId": "evt-sello-azhdaha",
+      "kind": "association",
+      "explanation": "Morax conecta dos episodios de Liyue; el dossier no fecha aquí el sello.",
+      "sectionId": "per-azhdaha"
+    },
+    {
+      "id": "rel-tres-dioses-sumeru-caida-gurabad",
+      "fromEventId": "evt-tres-dioses-sumeru",
+      "toEventId": "evt-caida-gurabad",
+      "kind": "association",
+      "explanation": "Gurabad surge después de Nabu Malikata y cae antes de la crisis final de Deshret; la ficha de los tres dioses abarca todo ese recorrido.",
+      "sectionId": "loc-gurabad"
+    },
+    {
+      "id": "rel-enkanomiya-watatsumi-ruina-tsurumi",
+      "fromEventId": "evt-enkanomiya-watatsumi",
+      "toEventId": "evt-ruina-tsurumi",
+      "kind": "association",
+      "explanation": "Historias de comunidades diferentes de Inazuma; no se afirma simultaneidad.",
+      "sectionId": "loc-inazuma"
+    },
+    {
+      "id": "rel-fundacion-natlan-caida-ochkanatlan",
+      "fromEventId": "evt-fundacion-natlan",
+      "toEventId": "evt-caida-ochkanatlan",
+      "kind": "association",
+      "explanation": "El imperio de Och-Kan es posterior al gobierno originario de Xbalanque; la ficha principal incluye ambas etapas.",
+      "sectionId": "loc-ochkanatlan"
+    },
+    {
+      "id": "rel-hiperborea-formacion-snezhnaya",
+      "fromEventId": "evt-hiperborea",
+      "toEventId": "evt-formacion-snezhnaya",
+      "kind": "association",
+      "explanation": "Las tradiciones del norte sobreviven a Hiperbórea y participan en historias posteriores.",
+      "sectionId": "evt-formacion-snezhnaya"
+    },
+    {
+      "id": "rel-rebelion-decarabian-revolucion-vennessa",
+      "fromEventId": "evt-rebelion-decarabian",
+      "toEventId": "evt-revolucion-vennessa",
+      "kind": "precedes",
+      "explanation": "Son revoluciones distintas, separadas aproximadamente por un milenio y medio.",
+      "sectionId": "evt-revolucion-vennessa"
+    },
+    {
+      "id": "rel-khaenriah-irmin-llegada-gemelos",
+      "fromEventId": "evt-khaenriah-irmin",
+      "toEventId": "evt-llegada-gemelos",
+      "kind": "association",
+      "explanation": "La corte y la estancia del gemelo se relacionan; no se impone un orden cerrado a las visitas y despertares.",
+      "sectionId": "evt-llegada-gemelos"
+    },
+    {
+      "id": "rel-khaenriah-irmin-cataclismo",
+      "fromEventId": "evt-khaenriah-irmin",
+      "toEventId": "evt-cataclismo",
+      "kind": "association",
+      "explanation": "La crisis de la corte forma parte del contexto del desastre continental.",
+      "sectionId": "evt-cataclismo"
+    },
+    {
+      "id": "rel-llegada-gemelos-cataclismo",
+      "fromEventId": "evt-llegada-gemelos",
+      "toEventId": "evt-cataclismo",
+      "kind": "association",
+      "explanation": "El Cataclismo cierra el dossier; no equivale al primer contacto de los gemelos con Teyvat.",
+      "sectionId": "evt-llegada-gemelos"
+    },
+    {
+      "id": "rel-revolucion-vennessa-cataclismo",
+      "fromEventId": "evt-revolucion-vennessa",
+      "toEventId": "evt-cataclismo",
+      "kind": "association",
+      "explanation": "El cierre contextual recoge consecuencias para esta historia regional.",
+      "sectionId": "evt-cataclismo"
+    },
+    {
+      "id": "rel-enkanomiya-watatsumi-cataclismo",
+      "fromEventId": "evt-enkanomiya-watatsumi",
+      "toEventId": "evt-cataclismo",
+      "kind": "association",
+      "explanation": "El cierre contextual recoge consecuencias para esta historia regional.",
+      "sectionId": "evt-cataclismo"
+    },
+    {
+      "id": "rel-tres-dioses-sumeru-cataclismo",
+      "fromEventId": "evt-tres-dioses-sumeru",
+      "toEventId": "evt-cataclismo",
+      "kind": "association",
+      "explanation": "El cierre contextual recoge consecuencias para esta historia regional.",
+      "sectionId": "evt-cataclismo"
+    },
+    {
+      "id": "rel-remuria-cataclismo",
+      "fromEventId": "evt-remuria",
+      "toEventId": "evt-cataclismo",
+      "kind": "association",
+      "explanation": "El cierre contextual recoge consecuencias para esta historia regional.",
+      "sectionId": "evt-cataclismo"
+    },
+    {
+      "id": "rel-fundacion-natlan-cataclismo",
+      "fromEventId": "evt-fundacion-natlan",
+      "toEventId": "evt-cataclismo",
+      "kind": "association",
+      "explanation": "El cierre contextual recoge consecuencias para esta historia regional.",
+      "sectionId": "evt-cataclismo"
+    },
+    {
+      "id": "rel-formacion-snezhnaya-cataclismo",
+      "fromEventId": "evt-formacion-snezhnaya",
+      "toEventId": "evt-cataclismo",
+      "kind": "association",
+      "explanation": "El cierre contextual recoge consecuencias para esta historia regional.",
+      "sectionId": "evt-cataclismo"
+    },
+    {
+      "id": "rel-cataclismo-mare-jivari",
+      "fromEventId": "evt-cataclismo",
+      "toEventId": "evt-mare-jivari",
+      "kind": "association",
+      "explanation": "La formación se vincula al Cataclismo, conservando la discrepancia temporal.",
+      "sectionId": "loc-mare-jivari"
+    },
+    {
+      "id": "rel-cataclismo-amrita-pari",
+      "fromEventId": "evt-cataclismo",
+      "toEventId": "evt-amrita-pari",
+      "kind": "association",
+      "explanation": "El cierre conecta la muerte de Egeria y los legados protectores de Sumeru.",
+      "sectionId": "loc-vurukasha"
+    }
+  ]
+}
