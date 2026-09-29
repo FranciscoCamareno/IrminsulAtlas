@@ -151,3 +151,11 @@ Añadir en cada iteración: fecha, fase, cambios, comprobaciones, limitaciones y
 - Se conservan pan, zoom interactivo, selección de capítulos y ajuste de toda la extensión. En pantallas estrechas, el ajuste puede quedar por debajo del 10 % y mostrar tarjetas.
 - Pruebas existentes actualizadas para comprobar el límite, la vista completa en escritorio y el paso entre tarjetas y línea con los botones en móvil. Validación conjunta correcta: formato, lint, tipos sin diagnósticos, 71 pruebas y compilación de ocho páginas.
 - Siguiente paso: revisar la comodidad de lectura del conjunto a zoom lejano. Sin cambios de contenido ni despliegue.
+
+### 2026-09-28 — Legibilidad y descubrimiento al cambiar el zoom
+
+- Rama codex/legibilidad-zoom desde 6ed8d9d. Círculos, etiquetas y rótulos de capítulo escalan proporcionalmente por debajo del 60 % para conservar su separación; desde ese nivel mantienen el tamaño de lectura.
+- Los ocho acontecimientos secundarios aparecen desde el 45 % en vez de esperar al 115 %. Las fechas conservan el umbral del 115 % y las tarjetas el 10 %. Selección, conexiones y navegación conservan sus reglas.
+- Validación completa correcta: formato, lint, tipos sin diagnósticos, 71 pruebas y ocho páginas compiladas. Edge local: sin intersecciones entre las cajas de nodos/etiquetas al 16 %, 44 %, 46 %, 60 % y 116 % en escritorio; también al 16 % en un viewport móvil de 390 px. Al 44 % hay 21 nodos y al 46 % hay 29, sin fechas hasta el detalle.
+- Evidencia local en .validation/zoom/. La vista lejana sirve para apreciar la estructura; para leer textos se acerca la vista, y el título completo también está disponible al posar el cursor sobre el nodo. No se certifican gestos táctiles físicos.
+- Siguiente paso: valoración del usuario sobre el tamaño y el umbral elegidos. Sin cambios al contenido, dependencias ni despliegue.

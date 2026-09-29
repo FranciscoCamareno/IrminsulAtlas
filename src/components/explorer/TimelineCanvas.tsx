@@ -4,6 +4,7 @@ import {
   useRef,
   useState,
   type KeyboardEvent,
+  type CSSProperties,
 } from 'react';
 import type { TimelineContent } from '../../application/catalog';
 import {
@@ -123,7 +124,7 @@ export default function TimelineCanvas({
   );
   const renderedNodes = layout.nodes.filter(
     (node) =>
-      level === 'details' ||
+      viewport.k >= 0.45 ||
       node.importance === 'major' ||
       node.id === selectedId ||
       connected.has(node.id),
@@ -196,6 +197,9 @@ export default function TimelineCanvas({
         aria-describedby="canvas-help"
         onKeyDown={keyboard}
         data-level={level}
+        style={
+          { '--timeline-scale': Math.min(1, viewport.k / 0.6) } as CSSProperties
+        }
       >
         <svg
           className="timeline-lines"
@@ -334,6 +338,7 @@ export default function TimelineCanvas({
               className={`timeline-node ${node.importance} ${node.id === selectedId ? 'is-selected' : ''} ${connected.has(node.id) ? 'is-connected' : ''} ${selectedId && !connected.has(node.id) && node.id !== selectedId ? 'is-muted' : ''}`}
               style={{ left: position.x, top: position.y }}
               aria-label={`Abrir ${node.title}`}
+              title={node.title}
               aria-pressed={node.id === selectedId}
               onClick={() => onSelect(node.id)}
               onFocus={() => {

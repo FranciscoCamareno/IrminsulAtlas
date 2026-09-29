@@ -63,7 +63,7 @@ describe('timeline projection', () => {
       Number.isFinite(fitViewport(layout, { width: 320, height: 480 }).k),
     ).toBe(true);
   });
-  it('fits a desktop overview and exposes semantic levels without shrinking labels', () => {
+  it('fits a desktop overview and exposes semantic levels', () => {
     const layout = layoutTimeline(getVisibleTimeline(data, new Set()));
     const viewport = fitViewport(layout, { width: 1280, height: 720 });
     const first = project({ x: 0, y: 0 }, viewport);

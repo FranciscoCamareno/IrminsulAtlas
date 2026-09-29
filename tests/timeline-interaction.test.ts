@@ -95,7 +95,18 @@ describe('timeline interaction', () => {
   it('zooms with buttons, retains the timeline on fit, and groups eras below 10 percent', async () => {
     await render();
     expect(host.querySelector('[data-level="events"]')).not.toBeNull();
+    await click(button('Alejar cronología'));
+    await click(button('Alejar cronología'));
     expect(host.querySelector('[data-event-id="demo-event-03"]')).toBeNull();
+    await click(button('Acercar cronología'));
+    expect(
+      host.querySelector('[data-event-id="demo-event-03"]'),
+    ).not.toBeNull();
+    expect(host.querySelector('.node-time')).toBeNull();
+    await click(button('Alejar cronología'));
+    expect(host.querySelector('[data-event-id="demo-event-03"]')).toBeNull();
+    await click(button('Acercar cronología'));
+    await click(button('Acercar cronología'));
     await click(button('Acercar cronología'));
     await click(button('Acercar cronología'));
     await click(button('Acercar cronología'));
