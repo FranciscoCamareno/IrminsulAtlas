@@ -30,8 +30,8 @@ Se conservan las dependencias instaladas y `package-lock.json`. La compilación 
 
 ## Explorar la historia
 
-- La vista general presenta siete capítulos: mundo elemental, orden celestial, rupturas antiguas, trayectorias regionales, mundo de los Siete, umbral de los gemelos y cierre del Cataclismo.
-- Pulsar un capítulo abre el lienzo. Arrastrar desplaza; rueda y botones amplían. «Ver toda la cronología» recupera la vista general y el selector permite saltar entre capítulos.
+- La cronología recorre siete capítulos: mundo elemental, orden celestial, rupturas antiguas, trayectorias regionales, mundo de los Siete, umbral de los gemelos y cierre del Cataclismo.
+- La línea permanece visible desde el 10 % de zoom; por debajo aparecen las tarjetas de capítulos. Pulsar una tarjeta acerca el lienzo. Arrastrar desplaza; rueda y botones amplían. «Ver toda la cronología» ajusta la extensión al espacio disponible y el selector permite saltar entre capítulos.
 - Los recorridos regionales se distribuyen en filas. **La posición, las filas y las distancias no prueban fechas, duraciones ni simultaneidad.** Algunas fichas abarcan procesos largos que se solapan con otros capítulos.
 - El zoom muestra acontecimientos principales y después episodios complementarios y fechas. Seleccionar un nodo abre el texto completo, incertidumbre, personajes/lugares y fuentes. Las conexiones discontinuas son interpretaciones de lectura del dossier; una flecha indica anterioridad solo cuando el texto la expresa.
 - Las fichas de personajes y lugares enlazan los acontecimientos asociados. El menú ofrece sus directorios, búsqueda por nombre, guía y cambio de tema.

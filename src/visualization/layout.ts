@@ -116,7 +116,7 @@ export interface Size {
 }
 
 export function detailLevel(k: number): DetailLevel {
-  return k < 0.48 ? 'eras' : k < 1.15 ? 'events' : 'details';
+  return k < 0.1 ? 'eras' : k < 1.15 ? 'events' : 'details';
 }
 
 export function fitViewport(

@@ -92,7 +92,7 @@ describe('timeline interaction', () => {
     await click(groups[2]!);
     expect(host.querySelector('[data-level="events"]')).not.toBeNull();
   });
-  it('zooms with buttons, reveals secondary nodes, and groups eras on reset', async () => {
+  it('zooms with buttons, retains the timeline on fit, and groups eras below 10 percent', async () => {
     await render();
     expect(host.querySelector('[data-level="events"]')).not.toBeNull();
     expect(host.querySelector('[data-event-id="demo-event-03"]')).toBeNull();
@@ -104,6 +104,15 @@ describe('timeline interaction', () => {
       host.querySelector('[data-event-id="demo-event-03"]'),
     ).not.toBeNull();
     await click(button('Ver toda la cronología'));
+    expect(host.querySelector('[data-level="events"]')).not.toBeNull();
+    expect(host.querySelectorAll('.era-group')).toHaveLength(0);
+    for (
+      let step = 0;
+      step < 8 && !host.querySelector('[data-level="eras"]');
+      step++
+    ) {
+      await click(button('Alejar cronología'));
+    }
     expect(host.querySelector('[data-level="eras"]')).not.toBeNull();
     expect(host.querySelectorAll('.era-group')).toHaveLength(4);
     await click(host.querySelector<HTMLButtonElement>('.era-group')!);
@@ -257,6 +266,14 @@ describe('dossier navigation', () => {
     );
     expect(host.textContent).toContain('Primer borrador');
     expect(host.querySelector('input[type="checkbox"]')).toBeNull();
+    // The mobile fit starts at 8%; one zoom step reaches 10.4%.
+    await click(button('Acercar cronología'));
+    expect(host.querySelector('[data-level="events"]')).not.toBeNull();
+    expect(host.querySelectorAll('.chapter-card')).toHaveLength(0);
+    await click(button('Alejar cronología'));
+    expect(host.querySelectorAll('.chapter-card')).toHaveLength(
+      dossier.eras.length,
+    );
     await click(host.querySelector<HTMLButtonElement>('.chapter-card')!);
     expect(host.querySelector('[data-level="events"]')).not.toBeNull();
     await click(button('Ver toda la cronología'));

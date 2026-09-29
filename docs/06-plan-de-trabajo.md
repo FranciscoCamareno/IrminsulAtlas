@@ -144,3 +144,10 @@ Añadir en cada iteración: fecha, fase, cambios, comprobaciones, limitaciones y
 - Estado `provisional` separado de revisión editorial; la importación P2 y los fixtures demo permanecen independientes. No se completan automáticamente P3–P7 del plan 10.
 - Carga local validada, directorios, documentos estáticos, conexiones, lista y navegación evento/entidad con historial y foco. [Informe de validación](validation/dossier-historia-antigua.md).
 - Pruebas ampliadas a 71; capturas locales de escritorio y viewports de 320/390 px. Gestos físicos, contraste externo de fuentes y filtros de spoilers pendientes. Sin despliegue.
+
+### 2026-09-28 — Ajuste del zoom de la cronología
+
+- Rama local codex/ajuste-zoom-cronologia desde f2c5cdb; ajuste solicitado del umbral de tarjetas del 48 % al 10 %. La línea permanece visible al 10 % y las tarjetas aparecen por debajo.
+- Se conservan pan, zoom interactivo, selección de capítulos y ajuste de toda la extensión. En pantallas estrechas, el ajuste puede quedar por debajo del 10 % y mostrar tarjetas.
+- Pruebas existentes actualizadas para comprobar el límite, la vista completa en escritorio y el paso entre tarjetas y línea con los botones en móvil. Validación conjunta correcta: formato, lint, tipos sin diagnósticos, 71 pruebas y compilación de ocho páginas.
+- Siguiente paso: revisar la comodidad de lectura del conjunto a zoom lejano. Sin cambios de contenido ni despliegue.

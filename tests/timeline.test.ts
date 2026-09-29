@@ -71,7 +71,9 @@ describe('timeline projection', () => {
     expect(first.x).toBeGreaterThanOrEqual(0);
     expect(last.x).toBeLessThanOrEqual(1280);
     expect(last.y).toBeLessThanOrEqual(720);
-    expect(detailLevel(0.3)).toBe('eras');
+    expect(detailLevel(0.099)).toBe('eras');
+    expect(detailLevel(0.1)).toBe('events');
+    expect(detailLevel(0.3)).toBe('events');
     expect(detailLevel(0.8)).toBe('events');
     expect(detailLevel(1.4)).toBe('details');
   });
