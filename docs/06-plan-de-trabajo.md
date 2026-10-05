@@ -214,3 +214,10 @@ Añadir en cada iteración: fecha, fase, cambios, comprobaciones, limitaciones y
 - Registro de evidencias: 46 afirmaciones, 51 fuentes, 37 apoyos contrastados con fragmento fijado en 27 afirmaciones y 13 de 29 acontecimientos; todo sigue `pending`. Hallazgos críticos (cifra de Decarabian «tres mil años» frente a 2.600, tensiones de orden en Gurabad/Deshret y Watatsumi, partes del dossier sin respaldo primario) en `docs/validation/revision-editorial-muestra.md`.
 - Pendiente: decisiones editoriales sobre esos hallazgos, 12 acontecimientos sin afirmaciones (varios exigen importar misiones o diálogos), aprobación humana.
 
+### 2026-10-05 — N-00 reproducida y N-01 preparada
+
+- **N-00:** reproducción en la nube con Node 24.21.0/npm 11.19.0: `npm ci`, `validate:code` (109 pruebas), reconstrucción determinista de la importación (candidato `9af75c4c…`), `validate` y `test:e2e` (26 pruebas), todo con código 0. Informe: [n00](validation/n00-reproduccion-nube-2026-10-05.md).
+- **N-01:** se revisaron 1.824 documentos legibles (libros, historias de armas y artefactos) buscando los 12 apartados sin afirmaciones; se importaron 10 más (candidato `31df5180…` → versión aceptada `6b752f0f…`: 61 fuentes). El registro pasa a 64 afirmaciones, 63 fuentes (32 importadas) y 59 apoyos contrastados; 25 de 29 acontecimientos tienen afirmaciones. Siguen sin ninguna `evt-ruina-tsurumi`, `evt-sello-azhdaha`, `evt-cataclismo` y `evt-amrita-pari`: sus textos no están en documentos sino en misiones y diálogos. Matriz: [n01](validation/n01-matriz-evidencia-2026-10-05.md). Todo sigue `pending`.
+- **N-02 (preparación):** 12 decisiones editoriales y 3 estructurales con evidencia, límites y propuesta en [n02](validation/n02-paquete-decisiones-2026-10-05.md); la más importante, la cifra «tres mil años» del juego frente a 2.600 para Decarabian. Sin aprobar.
+- Pendiente: importar misiones y diálogos para los 4 eventos restantes y los huecos de la matriz; decisiones y aprobación humanas; N-03 en adelante. Sin despliegue.
+
