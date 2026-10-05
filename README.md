@@ -91,11 +91,11 @@ Solo `content:acquire` descarga. Las demás órdenes trabajan localmente; la pro
 
 ## Git, validación y límites
 
-Repositorio: [FranciscoCamareno/IrminsulAtlas](https://github.com/FranciscoCamareno/IrminsulAtlas). Esta fase parte de `d68840a8f832e7c4f64f19cff1e74d8208b8853d`, en `codex/cronologia-dossier`. El ZIP de P0 permanece en `.validation/p0/` como respaldo adicional; no se usa ni se versiona.
+Repositorio: [FranciscoCamareno/IrminsulAtlas](https://github.com/FranciscoCamareno/IrminsulAtlas). Rama actual: `main`, con seguimiento de `origin/main`. La comprobación del 05/10/2026 confirmó que el árbol estaba limpio y que local y GitHub coincidían en `7ae8060dae8c8bffa750996a7591a4cf596264d6`, antes de esta actualización documental. Las ramas y commits de los informes anteriores identifican sus iteraciones históricas. El ZIP de P0 permanece en `.validation/p0/` como respaldo adicional; no se usa ni se versiona.
 
 La [validación de este borrador](docs/validation/dossier-historia-antigua.md) registra pruebas, compilación, capturas de escritorio y viewports estrechos. Las pruebas de DOM y las capturas no certifican gestos táctiles físicos, lector de pantalla, todos los navegadores ni usabilidad con participantes.
 
-Pendiente: contraste de fuentes, aprobación editorial, spoilers por progreso, búsqueda/filtros completos de acontecimientos, carga de detalle separada y mediciones de rendimiento. No se publicó ni desplegó.
+Los [siguientes pasos priorizados](docs/06-plan-de-trabajo.md#siguientes-pasos-desde-el-estado-actual) incluyen revisión del borrador y del zoom, contraste de fuentes, aprobación editorial, spoilers por progreso, búsqueda/filtros completos de acontecimientos, carga de detalle separada y mediciones de rendimiento. P3–P7 siguen pendientes. No se desplegó el sitio.
 
 ## Documentación de arquitectura y planes
 

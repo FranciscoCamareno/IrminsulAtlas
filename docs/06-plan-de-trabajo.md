@@ -1,6 +1,6 @@
 # Plan de trabajo y validación
 
-Estado al 25 de septiembre de 2026: base implementada y prototipo de fase 2 con cronología a pantalla completa, gestos y ficha. Hay pruebas automatizadas de dominio, React/D3 en DOM simulado y HTTP. La revisión visual en navegador y el cierre de la fase 2 siguen pendientes. El MVP no está completo.
+Estado al 5 de octubre de 2026: base, importador P2 y borrador del dossier implementados. La cronología muestra 29 acontecimientos, siete capítulos y fichas de personajes/lugares; incorpora los ajustes de zoom del 28/09. Hay pruebas automatizadas y capturas locales de escritorio y viewports estrechos. Siguen pendientes la revisión editorial, spoilers del dossier, validación con dispositivos y personas, rendimiento y cierre del MVP. Las casillas de las fases originales conservan sus criterios de aceptación; los avances parciales y sus límites se detallan en el registro.
 
 ## Fase 0 — Inspección y decisiones
 
@@ -85,6 +85,16 @@ Si no se identifica una API adecuada, registrar la limitación y usar contenido 
 
 RF-01 a RF-12 implementados, contenido revisado, casos difíciles comprobados, compilación válida, navegación accesible, sin secretos publicados y documentación ajustada a lo construido. La publicación no es obligatoria para considerar listo el prototipo local.
 
+## Siguientes pasos desde el estado actual
+
+1. **Revisar el borrador y la lectura del zoom con el usuario.** Comprobar vista general, aparición de los ocho episodios complementarios al 45 %, lectura de fichas y navegación entre eventos/entidades. Registrar correcciones concretas y conservar IDs. Las comprobaciones técnicas del 28/09 no sustituyen la valoración de lectura ni gestos táctiles físicos.
+2. **Completar P3 con una muestra editorial verificable.** Seleccionar 8–12 eventos, contrastar afirmaciones con fuentes y fragmentos localizables, registrar incertidumbre y revisión humana. Vincular solo material pertinente del importador P2; el dossier provisional no equivale a contenido aprobado. Mantener explícitas las fuentes españolas ausentes y las rutas Coop incompletas.
+3. **Definir spoilers y completar P4.** Acordar hitos de progreso y orden de revelación; aplicar visibilidad a eventos, entidades, relaciones, fragmentos, resultados, conteos, HTML y metadatos. Incorporar búsqueda/filtros de acontecimientos y separar índice de detalles. Verificar enlaces bloqueados, reducción de progreso, historial, estados vacíos y errores; no deducir spoilers del orden de lectura.
+4. **Cerrar las brechas de P5–P6.** Reutilizar la cronología existente y comprobar densidad, equivalencia con la lista, teclado, movimiento reducido, zoom de página al 200 %, lector de pantalla y móvil real. Medir la compilación de producción con condiciones registradas; preparar y registrar sesiones reales de usabilidad. Una prueba no realizada permanece pendiente.
+5. **Completar P7 y preparar una eventual publicación.** Probar actualización de snapshots, revisión de eventos afectados y recuperación de la versión anterior sin perder editorial. Actualizar la documentación operativa y ejecutar validación completa. La publicación del sitio requiere una solicitud explícita; subir commits a GitHub no acredita estos criterios ni despliega el sitio.
+
+Antes del siguiente cambio de implementación, resolver la diferencia de finales de línea entre el checkout Windows (`core.autocrlf=true`) y Prettier, preservando los bytes de fixtures protegidos, y repetir la validación completa en un entorno con acceso a las rutas temporales del importador. Los criterios detallados siguen en [el plan de integración](10-plan-integracion-lore-y-pruebas.md). No se implementan esas fases mediante esta actualización documental.
+
 ## Registro de avances
 
 Añadir en cada iteración: fecha, fase, cambios, comprobaciones, limitaciones y siguiente paso. No rellenar avances hipotéticos.
@@ -159,3 +169,11 @@ Añadir en cada iteración: fecha, fase, cambios, comprobaciones, limitaciones y
 - Validación completa correcta: formato, lint, tipos sin diagnósticos, 71 pruebas y ocho páginas compiladas. Edge local: sin intersecciones entre las cajas de nodos/etiquetas al 16 %, 44 %, 46 %, 60 % y 116 % en escritorio; también al 16 % en un viewport móvil de 390 px. Al 44 % hay 21 nodos y al 46 % hay 29, sin fechas hasta el detalle.
 - Evidencia local en .validation/zoom/. La vista lejana sirve para apreciar la estructura; para leer textos se acerca la vista, y el título completo también está disponible al posar el cursor sobre el nodo. No se certifican gestos táctiles físicos.
 - Siguiente paso: valoración del usuario sobre el tamaño y el umbral elegidos. Sin cambios al contenido, dependencias ni despliegue.
+
+
+### 2026-10-05 — Revisión de GitHub y próximos pasos
+
+- Comprobación mediante actualización de referencias y consulta de la rama remota: `main`, `origin/main` y GitHub coinciden en `7ae8060dae8c8bffa750996a7591a4cf596264d6`; cero commits de diferencia y árbol limpio antes de esta edición. No había cambios de código pendientes de subir.
+- README corregido para identificar `main` como rama actual; las ramas de los informes anteriores permanecen como antecedentes históricos.
+- Estado inicial del plan actualizado y próximos pasos priorizados con criterios pendientes de revisión, integración editorial, spoilers, accesibilidad, rendimiento y recuperación. P3–P7 y el MVP no se declaran completos.
+- Validación de esta actualización: lint correcto; tipos en 37 archivos sin diagnósticos; compilación de ocho páginas correcta. `npm run validate` se detiene en formato: 40 archivos previos tienen finales de línea Windows; `prettier --check . --end-of-line auto` pasa. Con TEMP/TMP en el workspace, pasan 50 de 71 pruebas; las 21 restantes del importador fallan con EPERM en `realpath` de directorios temporales de `.validation/p2/tests/` dentro de este entorno restringido. No se certifica la suite completa; debe repetirse con acceso adecuado. Sin cambios de implementación, contenido del dossier ni dependencias; sin despliegue.

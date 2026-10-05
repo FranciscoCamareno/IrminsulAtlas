@@ -1,3 +1,5 @@
+> **Seguimiento 05/10/2026:** el proyecto está en `main`; la revisión de GitHub encontró el árbol limpio y sincronizado antes de la actualización documental. La cronología y sus ajustes de zoom ya están implementados; P3–P7 continúan pendientes. El orden de trabajo inmediato y sus límites se mantienen en [siguientes pasos del plan general](06-plan-de-trabajo.md#siguientes-pasos-desde-el-estado-actual).
+
 > **Actualización 28/09/2026 — borrador del dossier:** por instrucción explícita del usuario, la página sustituye la vista previa de fuentes por la historia de los documentos 00–03. Son 29 acontecimientos, siete capítulos, 35 conexiones y fichas de personajes/lugares, visibles como `provisional`. No se contrastan fuentes ni se asignan spoilers todavía. Esta entrega no equivale a completar P3–P7 ni a aprobar editorialmente el lore. Véase [implementación y validación](validation/dossier-historia-antigua.md). La referencia a la vista previa temporal que sigue es histórica; su interruptor ya no controla el sitio.
 
 # Plan de integración de lore y validación — Irminsul Atlas
