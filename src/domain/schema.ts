@@ -785,3 +785,19 @@ export const CoverageRegistrySchema = z
   );
 export type CoverageUnit = z.infer<typeof CoverageUnitSchema>;
 export type CoverageRegistry = z.infer<typeof CoverageRegistrySchema>;
+
+// An additional corpus (for example the Traveler's story) is authored apart
+// from the ancient dossier and composed with it before anything is published.
+// It carries its own evidence registry, verified with the same rules.
+export const CorpusFileSchema = z.strictObject({
+  schemaVersion: z.literal(1),
+  corpus: IdSchema,
+  // Appended after the base ladder, in this order.
+  milestones: z.array(MilestoneSchema),
+  eras: z.array(EraSchema),
+  entities: z.array(NarrativeEntitySchema),
+  events: z.array(EventSchema),
+  relations: z.array(RelationSchema),
+  evidence: EvidenceRegistrySchema,
+});
+export type CorpusFile = z.infer<typeof CorpusFileSchema>;

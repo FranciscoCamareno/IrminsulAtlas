@@ -113,6 +113,41 @@ export function extractDossierSections(body: string) {
 
 // The registry is editorial data; incomplete or broken references stop the
 // load, exactly like a broken event reference would.
+export function registrySourceToSource(
+  source: EvidenceRegistry['sources'][number],
+): Dataset['sources'][number] {
+  return source.kind === 'imported'
+    ? {
+        ...scope,
+        id: source.id,
+        kind: 'document',
+        title: source.title,
+        language: 'es',
+        locator: source.locator.path + source.locator.pointer,
+        work:
+          'AnimeGameData (ES) · ' +
+          source.sourceKind +
+          ' · snapshot ' +
+          source.snapshotCommit.slice(0, 7),
+        tier: 'primary',
+      }
+    : {
+        ...scope,
+        id: source.id,
+        kind: 'document',
+        title: source.title,
+        language: 'und',
+        locator: 'Referencia externa',
+        url: source.url,
+        ...(source.accessedAt ? { accessedAt: source.accessedAt } : {}),
+        work:
+          source.tier === 'primary'
+            ? 'Fuente primaria externa'
+            : 'Fuente secundaria externa',
+        tier: source.tier,
+      };
+}
+
 function applyEvidenceRegistry(data: Dataset, registry: EvidenceRegistry) {
   const problems = findRegistryIssues(
     registry,
@@ -125,40 +160,8 @@ function applyEvidenceRegistry(data: Dataset, registry: EvidenceRegistry) {
           .map((issue) => `${issue.code} ${issue.path}: ${issue.message}`)
           .join('\n'),
     );
-  for (const source of registry.sources) {
-    data.sources.push(
-      source.kind === 'imported'
-        ? {
-            ...scope,
-            id: source.id,
-            kind: 'document',
-            title: source.title,
-            language: 'es',
-            locator: source.locator.path + source.locator.pointer,
-            work:
-              'AnimeGameData (ES) · ' +
-              source.sourceKind +
-              ' · snapshot ' +
-              source.snapshotCommit.slice(0, 7),
-            tier: 'primary',
-          }
-        : {
-            ...scope,
-            id: source.id,
-            kind: 'document',
-            title: source.title,
-            language: 'und',
-            locator: 'Referencia externa',
-            url: source.url,
-            ...(source.accessedAt ? { accessedAt: source.accessedAt } : {}),
-            work:
-              source.tier === 'primary'
-                ? 'Fuente primaria externa'
-                : 'Fuente secundaria externa',
-            tier: source.tier,
-          },
-    );
-  }
+  for (const source of registry.sources)
+    data.sources.push(registrySourceToSource(source));
   data.claims = registry.claims;
 }
 

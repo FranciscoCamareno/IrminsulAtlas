@@ -1,7 +1,9 @@
 import process from 'node:process';
 import console from 'node:console';
+import { readdir } from 'node:fs/promises';
 import { resolve } from 'node:path';
 import {
+  CorpusFileSchema,
   EvidenceRegistrySchema,
   DossierMapSchema,
   ImportSelectionSchema,
@@ -114,10 +116,32 @@ try {
     const dossier = DossierMapSchema.parse(
       await readJson('content/editorial/genshin-dossier.json'),
     );
-    const events = new Set(dossier.events.map((event) => event.id));
+    const corpusDirectory = resolve('content/editorial/corpora');
+    const corpora = [];
+    for (const name of (await readdir(corpusDirectory).catch(() => []))
+      .filter((file) => file.endsWith('.json'))
+      .sort())
+      corpora.push(
+        parse(
+          CorpusFileSchema,
+          await readJson(`content/editorial/corpora/${name}`),
+          name,
+        ),
+      );
+    const events = new Set([
+      ...dossier.events.map((event) => event.id),
+      ...corpora.flatMap((corpus) => corpus.events.map((event) => event.id)),
+    ]);
+    const allClaims = [
+      ...registry.claims,
+      ...corpora.flatMap((corpus) => corpus.evidence.claims),
+    ];
     const structural = [
       ...findRegistryIssues(registry, events),
       ...findDossierReviewIssues(dossier, registry),
+      ...corpora.flatMap((corpus) =>
+        findRegistryIssues(corpus.evidence, events),
+      ),
     ];
     // Candidate verification is read-only: a broken fragment cannot replace
     // the accepted import just to discover the mismatch afterwards.
@@ -133,7 +157,12 @@ try {
         null,
         'No hay importación aceptada: las referencias a fragmentos no pueden verificarse. Ejecutar acquire, import y promote.',
       );
-    const textual = verifyAgainstImport(registry, imported);
+    const textual = [
+      ...verifyAgainstImport(registry, imported),
+      ...corpora.flatMap((corpus) =>
+        verifyAgainstImport(corpus.evidence, imported),
+      ),
+    ];
     const issues = [...structural, ...textual];
     console.log(
       stableJson({
@@ -143,23 +172,28 @@ try {
         ...(id
           ? { candidate: id }
           : { importVersion: current!.pointer.version }),
-        claims: registry.claims.length,
-        sources: registry.sources.length,
+        corpora: corpora.map((corpus) => corpus.corpus),
+        claims: allClaims.length,
+        sources:
+          registry.sources.length +
+          corpora.reduce(
+            (sum, corpus) => sum + corpus.evidence.sources.length,
+            0,
+          ),
         // Coverage is reported, never hidden: events with no claim are unreviewed.
         coverage: {
           eventsWithClaims: [...events].filter((id) =>
-            registry.claims.some((claim) => claim.eventIds.includes(id)),
+            allClaims.some((claim) => claim.eventIds.includes(id)),
           ).length,
           eventsWithoutClaims: [...events].filter(
-            (id) =>
-              !registry.claims.some((claim) => claim.eventIds.includes(id)),
+            (id) => !allClaims.some((claim) => claim.eventIds.includes(id)),
           ),
-          verifiedSupports: registry.claims.flatMap((claim) =>
+          verifiedSupports: allClaims.flatMap((claim) =>
             claim.support.filter(
               (support) => support.verification === 'verified',
             ),
           ).length,
-          claimsReviewed: registry.claims.filter(
+          claimsReviewed: allClaims.filter(
             (claim) => claim.review.status === 'reviewed',
           ).length,
         },
