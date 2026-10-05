@@ -41,7 +41,7 @@ npm run build
 npm run test:e2e
 ```
 
-Playwright usa su propio Chromium si está instalado (`npx playwright install chromium`); si no, apuntar `E2E_CHROMIUM_PATH` a cualquier Chromium/Chrome (en el contenedor en la nube hay uno en `/opt/pw-browsers/chromium`). Los informes JSON quedan en `.validation/e2e/` (ignorado por Git). Resultados registrados: [lectura](docs/validation/revision-lectura-2026-10-05.md), [accesibilidad](docs/validation/accesibilidad-compatibilidad.md), [rendimiento](docs/validation/rendimiento-2026-10-05.md) y [sesiones de usabilidad](docs/validation/sesiones-usabilidad.md) (pendientes).
+Playwright usa su propio Chromium si está instalado (`npx playwright-core install chromium`); si no, apuntar `E2E_CHROMIUM_PATH` a cualquier Chromium/Chrome (en el contenedor en la nube hay uno en `/opt/pw-browsers/chromium`). Los informes JSON quedan en `.validation/e2e/` (ignorado por Git). Resultados registrados: [lectura](docs/validation/revision-lectura-2026-10-05.md), [accesibilidad](docs/validation/accesibilidad-compatibilidad.md), [rendimiento](docs/validation/rendimiento-2026-10-05.md) y [sesiones de usabilidad](docs/validation/sesiones-usabilidad.md) (pendientes).
 
 ## Explorar la historia
 
