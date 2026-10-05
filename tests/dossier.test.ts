@@ -1,3 +1,4 @@
+import { readFileSync } from 'node:fs';
 import { describe, expect, it } from 'vitest';
 import { createElement } from 'react';
 import { renderToStaticMarkup } from 'react-dom/server';
@@ -6,7 +7,8 @@ import {
   loadDossierDocuments,
   extractDossierSections,
 } from '../src/content/dossier';
-import { DatasetSchema } from '../src/domain/schema';
+import { DatasetSchema, RevelationMapSchema } from '../src/domain/schema';
+import { isRelationVisible } from '../src/domain/visibility';
 import { findIntegrityIssues } from '../src/domain/integrity';
 import {
   getEntityById,
@@ -224,5 +226,61 @@ describe('dossier integration', () => {
     expect(expanded.nodes.at(-1)?.id).toBe('future-event');
     expect(copy).toEqual(data);
     expect(DatasetSchema.safeParse(data).success).toBe(true);
+  });
+});
+
+describe('relation revelation overrides', () => {
+  const base = JSON.parse(
+    readFileSync('content/editorial/genshin-revelation.json', 'utf8'),
+  );
+  const last = base.milestones.at(-1).id as string;
+  // A link whose ends both open before the last milestone.
+  const relation = data.relations.find((item) =>
+    [item.fromEventId, item.toEventId].every(
+      (id) =>
+        !data.events
+          .find((event) => event.id === id)!
+          .spoilerRequirements.includes(last),
+    ),
+  )!;
+  it('lets a link demand a milestone beyond both of its ends', async () => {
+    const gated = await loadDossierContent({
+      revelation: RevelationMapSchema.parse({
+        ...base,
+        relationOverrides: { [relation.id]: last },
+      }),
+    });
+    const target = gated.relations.find((item) => item.id === relation.id)!;
+    expect(target.spoilerRequirements).toEqual([last]);
+    // Ends granted but not the link's own milestone: the link stays hidden.
+    const ends = new Set(
+      [relation.fromEventId, relation.toEventId].flatMap(
+        (id) =>
+          gated.events.find((event) => event.id === id)!.spoilerRequirements,
+      ),
+    );
+    expect(ends.has(last)).toBe(false);
+    expect(isRelationVisible(target, gated, ends)).toBe(false);
+    expect(isRelationVisible(target, gated, new Set([...ends, last]))).toBe(
+      true,
+    );
+  });
+  it('rejects overrides for unknown relations or milestones', async () => {
+    await expect(
+      loadDossierContent({
+        revelation: RevelationMapSchema.parse({
+          ...base,
+          relationOverrides: { 'rel-inexistente': base.milestones[0].id },
+        }),
+      }),
+    ).rejects.toThrow(/relación inexistente/);
+    await expect(
+      loadDossierContent({
+        revelation: RevelationMapSchema.parse({
+          ...base,
+          relationOverrides: { [relation.id]: 'hito-inexistente' },
+        }),
+      }),
+    ).rejects.toThrow(/Hito de relación inexistente/);
   });
 });

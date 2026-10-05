@@ -113,6 +113,41 @@ export function extractDossierSections(body: string) {
 
 // The registry is editorial data; incomplete or broken references stop the
 // load, exactly like a broken event reference would.
+export function registrySourceToSource(
+  source: EvidenceRegistry['sources'][number],
+): Dataset['sources'][number] {
+  return source.kind === 'imported'
+    ? {
+        ...scope,
+        id: source.id,
+        kind: 'document',
+        title: source.title,
+        language: 'es',
+        locator: source.locator.path + source.locator.pointer,
+        work:
+          'AnimeGameData (ES) · ' +
+          source.sourceKind +
+          ' · snapshot ' +
+          source.snapshotCommit.slice(0, 7),
+        tier: 'primary',
+      }
+    : {
+        ...scope,
+        id: source.id,
+        kind: 'document',
+        title: source.title,
+        language: 'und',
+        locator: 'Referencia externa',
+        url: source.url,
+        ...(source.accessedAt ? { accessedAt: source.accessedAt } : {}),
+        work:
+          source.tier === 'primary'
+            ? 'Fuente primaria externa'
+            : 'Fuente secundaria externa',
+        tier: source.tier,
+      };
+}
+
 function applyEvidenceRegistry(data: Dataset, registry: EvidenceRegistry) {
   const problems = findRegistryIssues(
     registry,
@@ -125,40 +160,8 @@ function applyEvidenceRegistry(data: Dataset, registry: EvidenceRegistry) {
           .map((issue) => `${issue.code} ${issue.path}: ${issue.message}`)
           .join('\n'),
     );
-  for (const source of registry.sources) {
-    data.sources.push(
-      source.kind === 'imported'
-        ? {
-            ...scope,
-            id: source.id,
-            kind: 'document',
-            title: source.title,
-            language: 'es',
-            locator: source.locator.path + source.locator.pointer,
-            work:
-              'AnimeGameData (ES) · ' +
-              source.sourceKind +
-              ' · snapshot ' +
-              source.snapshotCommit.slice(0, 7),
-            tier: 'primary',
-          }
-        : {
-            ...scope,
-            id: source.id,
-            kind: 'document',
-            title: source.title,
-            language: 'und',
-            locator: 'Referencia externa',
-            url: source.url,
-            ...(source.accessedAt ? { accessedAt: source.accessedAt } : {}),
-            work:
-              source.tier === 'primary'
-                ? 'Fuente primaria externa'
-                : 'Fuente secundaria externa',
-            tier: source.tier,
-          },
-    );
-  }
+  for (const source of registry.sources)
+    data.sources.push(registrySourceToSource(source));
   data.claims = registry.claims;
 }
 
@@ -191,6 +194,7 @@ function applyRevelation(data: Dataset, map: RevelationMap) {
   };
   data.milestones = map.milestones.map((item) => ({
     universeId: 'genshin',
+    track: 'main' as const,
     editorialStatus: map.status === 'reviewed' ? 'reviewed' : 'provisional',
     ...item,
   }));
@@ -219,6 +223,17 @@ function applyRevelation(data: Dataset, map: RevelationMap) {
       throw new Error('Hito de ficha inexistente: ' + milestone);
     entity.spoilerRequirements = [milestone];
   }
+  const relationIds = new Set(data.relations.map((relation) => relation.id));
+  for (const [id, milestone] of Object.entries(map.relationOverrides)) {
+    if (!relationIds.has(id))
+      throw new Error('Revelación de relación inexistente: ' + id);
+    if (!rank.has(milestone))
+      throw new Error('Hito de relación inexistente: ' + milestone);
+  }
+  for (const relation of data.relations) {
+    const own = map.relationOverrides[relation.id];
+    relation.spoilerRequirements = own ? [own] : [];
+  }
 }
 
 const scope = {
@@ -228,7 +243,11 @@ const scope = {
 };
 
 export async function loadDossierContent(
-  overrides: { mapping?: DossierMap; registry?: EvidenceRegistry } = {},
+  overrides: {
+    mapping?: DossierMap;
+    registry?: EvidenceRegistry;
+    revelation?: RevelationMap;
+  } = {},
 ): Promise<Dataset> {
   const documents = await loadDossierDocuments();
   const mapping = DossierMapSchema.parse(
@@ -299,9 +318,11 @@ export async function loadDossierContent(
       .map((section) => ({
         ...scope,
         id: section.id,
-        kind: section.id.startsWith('per-')
-          ? ('character' as const)
-          : ('place' as const),
+        kind: mapping.factions.includes(section.id)
+          ? ('faction' as const)
+          : section.id.startsWith('per-')
+            ? ('character' as const)
+            : ('place' as const),
         name: section.title,
         aliases: [],
         body: section.body,
@@ -375,7 +396,7 @@ export async function loadDossierContent(
   }
   for (const [displayOrder, annotation] of mapping.events.entries()) {
     const section = required(annotation.sectionId);
-    const { sectionId, ...fields } = annotation;
+    const { sectionId, categories, ...fields } = annotation;
     data.events.push({
       ...scope,
       ...fields,
@@ -388,9 +409,10 @@ export async function loadDossierContent(
       displayOrder,
       revelation: { order: 0, milestoneIds: [] },
       categories: [
-        annotation.eraId === 'era-cierre-cataclismo'
-          ? 'Cierre contextual'
-          : 'Historia antigua',
+        ...(categories ?? ['Historia antigua']),
+        ...(annotation.eraId === 'era-cierre-cataclismo'
+          ? ['Cierre contextual']
+          : []),
       ],
       dossierSection: sectionId,
       evidence: evidenceFor(sectionId),
@@ -413,7 +435,7 @@ export async function loadDossierContent(
       throw new Error('Acontecimiento sin anotaciones: ' + section.id);
   }
   applyEvidenceRegistry(data, registry);
-  applyRevelation(data, await loadRevelationMap());
+  applyRevelation(data, overrides.revelation ?? (await loadRevelationMap()));
   const parsed = DatasetSchema.parse(data);
   const issues = findIntegrityIssues(parsed);
   if (issues.length)

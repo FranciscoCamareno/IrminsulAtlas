@@ -196,6 +196,46 @@
     {
       "id": 101683,
       "kind": "book"
+    },
+    {
+      "id": 194412,
+      "kind": "weapon-story"
+    },
+    {
+      "id": 194520,
+      "kind": "weapon-story"
+    },
+    {
+      "id": 185431,
+      "kind": "artifact-story"
+    },
+    {
+      "id": 185434,
+      "kind": "artifact-story"
+    },
+    {
+      "id": 185435,
+      "kind": "artifact-story"
+    },
+    {
+      "id": 140018,
+      "kind": "document"
+    },
+    {
+      "id": 120484,
+      "kind": "document"
+    },
+    {
+      "id": 121155,
+      "kind": "document"
+    },
+    {
+      "id": 101596,
+      "kind": "document"
+    },
+    {
+      "id": 121304,
+      "kind": "document"
     }
   ],
   "characterStories": [10202],

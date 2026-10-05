@@ -508,6 +508,162 @@
         "path": "ExcelBinOutput/DocumentExcelConfigData.json",
         "pointer": "/1078"
       }
+    },
+    {
+      "kind": "imported",
+      "id": "imp-frio-eterno",
+      "importedId": "agd-document-194412-es",
+      "snapshotCommit": "b061b403c8afc7bca633cf4f201edc4a3baa75fe",
+      "title": "Frío Eterno · historia del arma (ES)",
+      "sourceKind": "weapon-story",
+      "locator": {
+        "fileSha256": "101aaaf9c0cbb161d4c0f59da1314bd427cbe954a43fec6d9483fdda4aa38a47",
+        "path": "ExcelBinOutput/DocumentExcelConfigData.json",
+        "pointer": "/1716"
+      }
+    },
+    {
+      "kind": "imported",
+      "id": "imp-espejo-tejenoches",
+      "importedId": "agd-document-194520-es",
+      "snapshotCommit": "b061b403c8afc7bca633cf4f201edc4a3baa75fe",
+      "title": "Espejo Tejenoches · historia del arma (ES)",
+      "sourceKind": "weapon-story",
+      "locator": {
+        "fileSha256": "101aaaf9c0cbb161d4c0f59da1314bd427cbe954a43fec6d9483fdda4aa38a47",
+        "path": "ExcelBinOutput/DocumentExcelConfigData.json",
+        "pointer": "/1750"
+      }
+    },
+    {
+      "kind": "imported",
+      "id": "imp-hora-final-luna",
+      "importedId": "agd-document-185435-es",
+      "snapshotCommit": "b061b403c8afc7bca633cf4f201edc4a3baa75fe",
+      "title": "Hora Final para la Luna · historia de artefacto (ES)",
+      "sourceKind": "artifact-story",
+      "locator": {
+        "fileSha256": "101aaaf9c0cbb161d4c0f59da1314bd427cbe954a43fec6d9483fdda4aa38a47",
+        "path": "ExcelBinOutput/DocumentExcelConfigData.json",
+        "pointer": "/1517"
+      }
+    },
+    {
+      "kind": "imported",
+      "id": "imp-alas-encuentro",
+      "importedId": "agd-document-140018-es",
+      "snapshotCommit": "b061b403c8afc7bca633cf4f201edc4a3baa75fe",
+      "title": "Alas del Encuentro Ocioso · documento (ES)",
+      "sourceKind": "document",
+      "locator": {
+        "fileSha256": "101aaaf9c0cbb161d4c0f59da1314bd427cbe954a43fec6d9483fdda4aa38a47",
+        "path": "ExcelBinOutput/DocumentExcelConfigData.json",
+        "pointer": "/1236"
+      }
+    },
+    {
+      "kind": "imported",
+      "id": "imp-compilacion-egeria",
+      "importedId": "agd-document-120484-es",
+      "snapshotCommit": "b061b403c8afc7bca633cf4f201edc4a3baa75fe",
+      "title": "Compilación antigua de filosofía natural · documento (ES)",
+      "sourceKind": "document",
+      "locator": {
+        "fileSha256": "101aaaf9c0cbb161d4c0f59da1314bd427cbe954a43fec6d9483fdda4aa38a47",
+        "path": "ExcelBinOutput/DocumentExcelConfigData.json",
+        "pointer": "/656"
+      }
+    },
+    {
+      "kind": "imported",
+      "id": "imp-ochkanatlan-notas",
+      "importedId": "agd-document-121155-es",
+      "snapshotCommit": "b061b403c8afc7bca633cf4f201edc4a3baa75fe",
+      "title": "Notas de un viajero anónimo (II) · documento (ES)",
+      "sourceKind": "document",
+      "locator": {
+        "fileSha256": "101aaaf9c0cbb161d4c0f59da1314bd427cbe954a43fec6d9483fdda4aa38a47",
+        "path": "ExcelBinOutput/DocumentExcelConfigData.json",
+        "pointer": "/960"
+      }
+    },
+    {
+      "kind": "imported",
+      "id": "imp-creencias-sangonomiya",
+      "importedId": "agd-document-101596-es",
+      "snapshotCommit": "b061b403c8afc7bca633cf4f201edc4a3baa75fe",
+      "title": "Estudio sobre las creencias populares de Sangonomiya · documento (ES)",
+      "sourceKind": "document",
+      "locator": {
+        "fileSha256": "101aaaf9c0cbb161d4c0f59da1314bd427cbe954a43fec6d9483fdda4aa38a47",
+        "path": "ExcelBinOutput/DocumentExcelConfigData.json",
+        "pointer": "/297"
+      }
+    },
+    {
+      "kind": "imported",
+      "id": "imp-hanan-pacha-i",
+      "importedId": "agd-document-121061-es",
+      "snapshotCommit": "b061b403c8afc7bca633cf4f201edc4a3baa75fe",
+      "title": "Crónicas de Hanan Pacha (I) · libro (ES)",
+      "sourceKind": "book",
+      "locator": {
+        "fileSha256": "101aaaf9c0cbb161d4c0f59da1314bd427cbe954a43fec6d9483fdda4aa38a47",
+        "path": "ExcelBinOutput/DocumentExcelConfigData.json",
+        "pointer": "/910"
+      }
+    },
+    {
+      "kind": "imported",
+      "id": "imp-hanan-pacha-ii",
+      "importedId": "agd-document-121062-es",
+      "snapshotCommit": "b061b403c8afc7bca633cf4f201edc4a3baa75fe",
+      "title": "Crónicas de Hanan Pacha (II) · libro (ES)",
+      "sourceKind": "book",
+      "locator": {
+        "fileSha256": "101aaaf9c0cbb161d4c0f59da1314bd427cbe954a43fec6d9483fdda4aa38a47",
+        "path": "ExcelBinOutput/DocumentExcelConfigData.json",
+        "pointer": "/911"
+      }
+    },
+    {
+      "kind": "imported",
+      "id": "imp-sundiata",
+      "importedId": "agd-document-121304-es",
+      "snapshotCommit": "b061b403c8afc7bca633cf4f201edc4a3baa75fe",
+      "title": "Sundiata y el forjado de flogisto · documento (ES)",
+      "sourceKind": "document",
+      "locator": {
+        "fileSha256": "101aaaf9c0cbb161d4c0f59da1314bd427cbe954a43fec6d9483fdda4aa38a47",
+        "path": "ExcelBinOutput/DocumentExcelConfigData.json",
+        "pointer": "/1031"
+      }
+    },
+    {
+      "kind": "imported",
+      "id": "imp-snezhnaya-ii",
+      "importedId": "agd-document-121680-es",
+      "snapshotCommit": "b061b403c8afc7bca633cf4f201edc4a3baa75fe",
+      "title": "Historia general de Snezhnaya (II) · libro (ES)",
+      "sourceKind": "book",
+      "locator": {
+        "fileSha256": "101aaaf9c0cbb161d4c0f59da1314bd427cbe954a43fec6d9483fdda4aa38a47",
+        "path": "ExcelBinOutput/DocumentExcelConfigData.json",
+        "pointer": "/1197"
+      }
+    },
+    {
+      "kind": "imported",
+      "id": "imp-letanias-iii",
+      "importedId": "agd-document-121393-es",
+      "snapshotCommit": "b061b403c8afc7bca633cf4f201edc4a3baa75fe",
+      "title": "Letanías del Lejano Norte (III) · libro (ES)",
+      "sourceKind": "book",
+      "locator": {
+        "fileSha256": "101aaaf9c0cbb161d4c0f59da1314bd427cbe954a43fec6d9483fdda4aa38a47",
+        "path": "ExcelBinOutput/DocumentExcelConfigData.json",
+        "pointer": "/1079"
+      }
     }
   ],
   "claims": [
@@ -1135,6 +1291,17 @@
           "stance": "supports",
           "verification": "cited",
           "limits": "Página citada por el dossier para este tema; no se ha vuelto a leer en esta revisión, no se ha localizado el pasaje concreto."
+        },
+        {
+          "sourceId": "imp-creencias-sangonomiya",
+          "locator": "Párrafo 38",
+          "fragment": {
+            "segmentId": "agd-document-101596-es-localization-200308",
+            "sha256": "347403e86ebbdb0ba538476dbbd79fb01c4c03b8be2ae9c4e9eb58e9015df334"
+          },
+          "stance": "context",
+          "verification": "verified",
+          "limits": "Dice que Omikami sacó a la gente de las profundidades por orden del cielo y que Orobashi «debía enfrentarse a su muerte»; no menciona guerra con Narukami ni a Ei."
         }
       ],
       "review": {
@@ -1440,6 +1607,17 @@
           "stance": "supports",
           "verification": "cited",
           "limits": "Página citada por el dossier para este tema; no se ha vuelto a leer en esta revisión, no se ha localizado el pasaje concreto."
+        },
+        {
+          "sourceId": "imp-compilacion-egeria",
+          "locator": "Párrafos 1–2",
+          "fragment": {
+            "segmentId": "agd-document-120484-es-localization-200673",
+            "sha256": "898b32067b3beb274457b0c2aaead77a5e60a9271a0c5cd99b9487f07f315463"
+          },
+          "stance": "context",
+          "verification": "verified",
+          "limits": "Cuenta que las Oceánidas nacieron cuando Egeria derramó su primera lágrima y una nota discute si preceden a Egeria y a Remuria. No habla de su acceso al trono."
         }
       ],
       "review": {
@@ -1465,6 +1643,17 @@
           "stance": "supports",
           "verification": "cited",
           "limits": "Página citada por el dossier para este tema; no se ha vuelto a leer en esta revisión, no se ha localizado el pasaje concreto."
+        },
+        {
+          "sourceId": "imp-creencias-sangonomiya",
+          "locator": "Párrafo 38",
+          "fragment": {
+            "segmentId": "agd-document-101596-es-localization-200308",
+            "sha256": "347403e86ebbdb0ba538476dbbd79fb01c4c03b8be2ae9c4e9eb58e9015df334"
+          },
+          "stance": "context",
+          "verification": "verified",
+          "limits": "Una tradición dice que Omikami de Watatsumi intentó huir al Mar Oscuro para escapar de la Guerra de los Arcontes; sirve de ejemplo de refugio en el Mar Oscuro, no del destino de todos los dioses."
         }
       ],
       "review": {
@@ -1756,6 +1945,416 @@
       "review": {
         "status": "pending",
         "note": "Hallazgo de la revisión, no afirmación del dossier: candidato a incorporar con su salvedad."
+      }
+    },
+    {
+      "id": "claim-lunar-tres-lunas",
+      "eventIds": ["evt-orden-lunar"],
+      "text": "Nibelung crea las tres lunas y sus diosas para mantener el mundo mientras viaja por el mar de estrellas.",
+      "kind": "explicit",
+      "support": [
+        {
+          "sourceId": "imp-hora-final-luna",
+          "locator": "Párrafos 1–5",
+          "fragment": {
+            "segmentId": "agd-document-185435-es-localization-285435",
+            "sha256": "b174bba5cc0ec06da1b6223a1331bfc85f456101ea34cee54ec8fa87d2656b4b"
+          },
+          "stance": "supports",
+          "verification": "verified",
+          "limits": "Cuenta que un «dragón primordial» levantó tres lunas y las ató a las mareas durante su viaje; habla de «tres guardianas». No nombra a Nibelung ni a Aria, Sonnet y Canon. Es un texto de artefacto con tono poético."
+        }
+      ],
+      "review": {
+        "status": "pending"
+      }
+    },
+    {
+      "id": "claim-lunar-nombres",
+      "eventIds": ["evt-orden-lunar"],
+      "text": "Aria corresponde a la Luna Eterna, Sonnet a la Luna Iridiscente y Canon a la Luna Escarchada.",
+      "kind": "explicit",
+      "support": [
+        {
+          "sourceId": "imp-espejo-tejenoches",
+          "locator": "Poema profético",
+          "fragment": {
+            "segmentId": "agd-document-194520-es-localization-294520",
+            "sha256": "60dd0288aa20f918922ecaffc276182abebb3d7cad4c7667b8dd6f2d823875d8"
+          },
+          "stance": "context",
+          "verification": "verified",
+          "limits": "Nombra las lunas (Eterna, Arcoíris y Escarchada) pero no a las diosas; «Arcoíris» no es exactamente «Iridiscente»."
+        },
+        {
+          "sourceId": "imp-letanias-iii",
+          "locator": "Letanía XXI",
+          "fragment": {
+            "segmentId": "agd-document-121393-es-localization-201121",
+            "sha256": "6e3ade0724b6f154d481295244c49a10a9a41dd30beed50fe88df35c1d1d05e8"
+          },
+          "stance": "context",
+          "verification": "verified",
+          "limits": "El culto del norte llama «Huurrekuutar» a la diosa de la Luna Escarchada, no Canon: los nombres dependen de la tradición que habla."
+        }
+      ],
+      "review": {
+        "status": "pending",
+        "note": "Posible discrepancia de nombres entre tradiciones; pendiente de decisión editorial."
+      }
+    },
+    {
+      "id": "claim-lunar-cuentos",
+      "eventIds": ["evt-orden-lunar"],
+      "text": "Los antiguos cuentos de tres hermanas que mueren tras una disputa no deben imponerse sobre revelaciones más específicas; la destrucción de una luna y el destino de su diosa pueden ocupar momentos distintos.",
+      "kind": "interpretation",
+      "support": [],
+      "review": {
+        "status": "pending",
+        "note": "Cautela editorial del dossier."
+      }
+    },
+    {
+      "id": "claim-llama-lunas",
+      "eventIds": ["evt-guerra-llama-funeraria"],
+      "text": "La respuesta celestial destruye la Luna Eterna y la Iridiscente y la Escarchada deja de girar.",
+      "kind": "explicit",
+      "support": [
+        {
+          "sourceId": "imp-espejo-tejenoches",
+          "locator": "Poema profético",
+          "fragment": {
+            "segmentId": "agd-document-194520-es-localization-294520",
+            "sha256": "60dd0288aa20f918922ecaffc276182abebb3d7cad4c7667b8dd6f2d823875d8"
+          },
+          "stance": "supports",
+          "verification": "verified",
+          "limits": "Dice que la Luna Eterna cayó, la Luna Arcoíris se hizo añicos y la Escarchada dejó de girar. Es una profecía recitada; no habla de una «respuesta celestial» ni de que la Escarchada fuera expulsada más allá del falso cielo."
+        }
+      ],
+      "review": {
+        "status": "pending"
+      }
+    },
+    {
+      "id": "claim-llama-hermanas",
+      "eventIds": ["evt-guerra-llama-funeraria"],
+      "text": "Las hermanas lunares discrepan sobre cómo responder.",
+      "kind": "explicit",
+      "support": [
+        {
+          "sourceId": "imp-hora-final-luna",
+          "locator": "Último tramo",
+          "fragment": {
+            "segmentId": "agd-document-185435-es-localization-285435",
+            "sha256": "b174bba5cc0ec06da1b6223a1331bfc85f456101ea34cee54ec8fa87d2656b4b"
+          },
+          "stance": "context",
+          "verification": "verified",
+          "limits": "Las tres guardianas «discutieron sin cesar» ante la llegada del Descendido alado, el Señor de los Ejércitos; no se dice que respondan al regreso de Nibelung: puede tratarse de otro momento."
+        }
+      ],
+      "review": {
+        "status": "pending",
+        "note": "Posible confusión de episodios; pendiente de revisión."
+      }
+    },
+    {
+      "id": "claim-pilares-vindagnyr",
+      "eventIds": ["evt-pilares-celestiales"],
+      "text": "En Vindagnyr, el pilar transforma un territorio fértil en una montaña congelada.",
+      "kind": "explicit",
+      "support": [
+        {
+          "sourceId": "imp-frio-eterno",
+          "locator": "Estrofas 1–3",
+          "fragment": {
+            "segmentId": "agd-document-194412-es-localization-294412",
+            "sha256": "69ebd1d47b156c8524d1394b5093df4ae72004232835b7c723608127ffe34f43"
+          },
+          "stance": "supports",
+          "verification": "verified",
+          "limits": "Dice que cuando «el pilar que congeló el mundo» descendió, el árbol sagrado se hizo pedazos y la ventisca cubrió la luna. Es un poema sobre un arma; no usa «montaña congelada»."
+        }
+      ],
+      "review": {
+        "status": "pending"
+      }
+    },
+    {
+      "id": "claim-vindagnyr-arbol",
+      "eventIds": ["evt-vindagnyr-khaenriah"],
+      "text": "En Sal Vindagnyr se intenta sobrevivir a la pérdida del clima y del árbol que sostenían su vida; la princesa busca una solución y su intento no salva a la población.",
+      "kind": "explicit",
+      "support": [
+        {
+          "sourceId": "imp-frio-eterno",
+          "locator": "Estrofas 1–3",
+          "fragment": {
+            "segmentId": "agd-document-194412-es-localization-294412",
+            "sha256": "69ebd1d47b156c8524d1394b5093df4ae72004232835b7c723608127ffe34f43"
+          },
+          "stance": "supports",
+          "verification": "verified",
+          "limits": "La hija del sacerdote de Vindagnyr toma una rama para dar vida al árbol y el esqueje no florece. No nombra a Imunlaukr ni a escribas que registren el desastre (sí a «historiadores» de sus anales)."
+        }
+      ],
+      "review": {
+        "status": "pending",
+        "note": "La mención de Imunlaukr en el dossier no se ha podido respaldar: la historia de arma «Gran Espada de Sacrificio» usa ese nombre para un clan guerrero de Mondstadt."
+      }
+    },
+    {
+      "id": "claim-irmin-tirania",
+      "eventIds": ["evt-khaenriah-irmin"],
+      "text": "Irmin gobierna la última etapa de la dinastía del Eclipse, con una tiranía creciente que tensa la relación con la superficie.",
+      "kind": "explicit",
+      "support": [
+        {
+          "sourceId": "imp-alas-encuentro",
+          "locator": "Párrafo 2",
+          "fragment": {
+            "segmentId": "agd-document-140018-es-localization-310018",
+            "sha256": "b0fa7a6e487cc7a7a4809e441b4ee082dfa02d8c9afa803ffec190e354883a78"
+          },
+          "stance": "supports",
+          "verification": "verified",
+          "limits": "Habla de «la creciente tiranía del rey Irmin» y de relaciones tensas entre la superficie y Khaenri’ah. Es un relato breve de ficción cotidiana; no nombra la dinastía del Eclipse ni a Dainsleif, y Vedrfolnir aparece como un joven, no como vidente advirtiendo al rey."
+        }
+      ],
+      "review": {
+        "status": "pending"
+      }
+    },
+    {
+      "id": "claim-gnosis-fin-guerra",
+      "eventIds": ["evt-gnosis-guerra-arcontes"],
+      "text": "La conclusión general de la Guerra de los Arcontes se sitúa hace unos dos mil años.",
+      "kind": "explicit",
+      "support": [
+        {
+          "sourceId": "imp-creencias-sangonomiya",
+          "locator": "Párrafo 2",
+          "fragment": {
+            "segmentId": "agd-document-101596-es-localization-200308",
+            "sha256": "347403e86ebbdb0ba538476dbbd79fb01c4c03b8be2ae9c4e9eb58e9015df334"
+          },
+          "stance": "supports",
+          "verification": "verified",
+          "limits": "Un estudio de creencias populares de Inazuma dice que «hace aproximadamente dos mil años» la guerra estaba llegando a su fin. Narrador regional; no dice que fuera simultánea en todas las regiones."
+        }
+      ],
+      "review": {
+        "status": "pending"
+      }
+    },
+    {
+      "id": "claim-gnosis-regional",
+      "eventIds": ["evt-gnosis-guerra-arcontes"],
+      "text": "La Guerra de los Arcontes reúne conflictos regionales por el nuevo orden, no una única batalla universal celebrada en un año.",
+      "kind": "interpretation",
+      "support": [],
+      "review": {
+        "status": "pending",
+        "note": "Lectura del dossier; no hay texto que la formule así."
+      }
+    },
+    {
+      "id": "claim-snezhnaya-luna",
+      "eventIds": ["evt-formacion-snezhnaya"],
+      "text": "La desaparición de Hiperbórea no borra todas las tradiciones del norte: los descendientes de la Luna Escarchada conservan su culto.",
+      "kind": "explicit",
+      "support": [
+        {
+          "sourceId": "imp-espejo-tejenoches",
+          "locator": "Estrofas 2–4",
+          "fragment": {
+            "segmentId": "agd-document-194520-es-localization-294520",
+            "sha256": "60dd0288aa20f918922ecaffc276182abebb3d7cad4c7667b8dd6f2d823875d8"
+          },
+          "stance": "supports",
+          "verification": "verified",
+          "limits": "Los «herederos de la ciudad dorada» construyen un santuario y rezan a la diosa ya fallecida; es un texto de arma con narrador poético."
+        },
+        {
+          "sourceId": "imp-snezhnaya-ii",
+          "locator": "Capítulo sobre Yalyane Morevna",
+          "fragment": {
+            "segmentId": "agd-document-121680-es-localization-201287",
+            "sha256": "7ccea1ab2d8ab44c47cfe6f0624ca5bfaffbf40c80a6d6e7945f69c0a5b78a86"
+          },
+          "stance": "context",
+          "verification": "verified",
+          "limits": "Presenta a Yalyane como una superviviente de Hiperbórea; es una leyenda popular de narrador cortesano."
+        }
+      ],
+      "review": {
+        "status": "pending"
+      }
+    },
+    {
+      "id": "claim-snezhnaya-monomaco",
+      "eventIds": ["evt-formacion-snezhnaya"],
+      "text": "Monomakh Snezhnyi figura como primer Arconte Cryo y se le atribuye la fundación de Kitezh más de tres mil años antes del presente.",
+      "kind": "explicit",
+      "support": [
+        {
+          "sourceId": "imp-snezhnaya-ii",
+          "locator": "Volumen III: El viaje de Monómaco",
+          "fragment": {
+            "segmentId": "agd-document-121680-es-localization-201287",
+            "sha256": "7ccea1ab2d8ab44c47cfe6f0624ca5bfaffbf40c80a6d6e7945f69c0a5b78a86"
+          },
+          "stance": "supports",
+          "verification": "verified",
+          "limits": "Monómaco es zar, funda Kitezhgrado tras años de viaje y reúne aliados. El texto no dice «primer Arconte Cryo» ni data la fundación en tres mil años."
+        }
+      ],
+      "review": {
+        "status": "pending"
+      }
+    },
+    {
+      "id": "claim-snezhnaya-propaganda",
+      "eventIds": ["evt-formacion-snezhnaya"],
+      "text": "La propaganda y las genealogías legendarias del norte requieren especial cautela: una crónica que legitima un linaje no demuestra neutralmente su origen.",
+      "kind": "interpretation",
+      "support": [
+        {
+          "sourceId": "imp-snezhnaya-i",
+          "locator": "Dedicatoria e introducción",
+          "fragment": {
+            "segmentId": "agd-document-121679-es-localization-201286",
+            "sha256": "0e2e7383e52c941fa59381d18faf1334c1fd4612bc9ba3c3f712bea1679d5f27"
+          },
+          "stance": "context",
+          "verification": "verified",
+          "limits": "El libro está dedicado a la Zarina y admite no poder verificar si los registros feéricos son hechos o imaginación."
+        }
+      ],
+      "review": {
+        "status": "pending"
+      }
+    },
+    {
+      "id": "claim-natlan-flogisto",
+      "eventIds": ["evt-fundacion-natlan"],
+      "text": "El Sabio Robafuegos transmite a los humanos el uso del flogisto.",
+      "kind": "explicit",
+      "support": [
+        {
+          "sourceId": "imp-hanan-pacha-ii",
+          "locator": "Texto completo",
+          "fragment": {
+            "segmentId": "agd-document-121062-es-localization-200942",
+            "sha256": "a95f11c276f7688192dd702357c26d24ba895b6fdae63af8fead5c0432d31c34"
+          },
+          "stance": "supports",
+          "verification": "verified",
+          "limits": "Cuenta cómo Waxaklahun Ubah Kan, el Sabio Robafuegos, enseña a las tribus a usar el flogisto. Relato legendario de un narrador de Natlan."
+        }
+      ],
+      "review": {
+        "status": "pending"
+      }
+    },
+    {
+      "id": "claim-natlan-xbalanque",
+      "eventIds": ["evt-fundacion-natlan"],
+      "text": "Xbalanque derrota a Xiuhcoatl y se convierte en el primer Arconte Pyro.",
+      "kind": "explicit",
+      "support": [
+        {
+          "sourceId": "imp-hanan-pacha-i",
+          "locator": "Párrafo 8",
+          "fragment": {
+            "segmentId": "agd-document-121061-es-localization-200941",
+            "sha256": "bb1c5326377a35746b3307a1434a43d996f149af1f6c72f00e1c66ebb9ac289f"
+          },
+          "stance": "supports",
+          "verification": "verified",
+          "limits": "Dice que quien derrotó a Xiuhcóatl fue el primer Arconte Pyro, «Ixbalanqué»; la ortografía difiere y el relato discute versiones de cuentacuentos."
+        }
+      ],
+      "review": {
+        "status": "pending"
+      }
+    },
+    {
+      "id": "claim-natlan-noche",
+      "eventIds": ["evt-fundacion-natlan"],
+      "text": "El Reino de la Noche, construido por Yohualtecuhtin con la intervención de Ronova, compensa las condiciones dañadas de las líneas ley.",
+      "kind": "explicit",
+      "support": [
+        {
+          "sourceId": "imp-hanan-pacha-i",
+          "locator": "Párrafos 2–3",
+          "fragment": {
+            "segmentId": "agd-document-121061-es-localization-200941",
+            "sha256": "bb1c5326377a35746b3307a1434a43d996f149af1f6c72f00e1c66ebb9ac289f"
+          },
+          "stance": "context",
+          "verification": "verified",
+          "limits": "Menciona al Señor de la Noche gobernando el Reino de la Noche. No nombra a Yohualtecuhtin ni a Ronova ni habla de líneas ley."
+        }
+      ],
+      "review": {
+        "status": "pending"
+      }
+    },
+    {
+      "id": "claim-natlan-ochkan",
+      "eventIds": ["evt-fundacion-natlan"],
+      "text": "Och-Kan encabeza posteriormente un imperio distinto del gobierno originario de Xbalanque.",
+      "kind": "explicit",
+      "support": [
+        {
+          "sourceId": "imp-sundiata",
+          "locator": "Párrafos 4–5",
+          "fragment": {
+            "segmentId": "agd-document-121304-es-localization-201073",
+            "sha256": "88d814b9affe7994776969fd621d65c4be8ee70e91b8840c5c59ca7dd42922a6"
+          },
+          "stance": "context",
+          "verification": "verified",
+          "limits": "Llama a Och-Kan «el primer jefe de Teteocán» con un legado «empañado»; no lo sitúa tras Xbalanque."
+        },
+        {
+          "sourceId": "imp-ochkanatlan-notas",
+          "locator": "Texto completo",
+          "fragment": {
+            "segmentId": "agd-document-121155-es-localization-200991",
+            "sha256": "ddcb6828c4c34e63e12964d557d42ca6bcc9811a46a7b0e9adfd1e2753ce97a7"
+          },
+          "stance": "context",
+          "verification": "verified",
+          "limits": "Habla del «soberano de Ochkanatlan» y de Och-Kan como «rey pitón» que controlaba la ciudad mecánica."
+        }
+      ],
+      "review": {
+        "status": "pending"
+      }
+    },
+    {
+      "id": "claim-ochkanatlan-caida",
+      "eventIds": ["evt-caida-ochkanatlan"],
+      "text": "El gobierno de Och-Kan termina enfrentado a una coalición encabezada por el joven de ojos escarlata.",
+      "kind": "explicit",
+      "support": [
+        {
+          "sourceId": "imp-ochkanatlan-notas",
+          "locator": "Texto completo",
+          "fragment": {
+            "segmentId": "agd-document-121155-es-localization-200991",
+            "sha256": "ddcb6828c4c34e63e12964d557d42ca6bcc9811a46a7b0e9adfd1e2753ce97a7"
+          },
+          "stance": "context",
+          "verification": "verified",
+          "limits": "Un explorador deduce que hubo una batalla y que el suministro de energía de la Ciudad de las Cenizas se cortó a propósito. No menciona coalición ni al «joven de ojos escarlata»."
+        }
+      ],
+      "review": {
+        "status": "pending"
       }
     }
   ]

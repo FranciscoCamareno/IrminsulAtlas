@@ -48,7 +48,8 @@
         "label": "Fecha desconocida"
       },
       "importance": "major",
-      "certainty": ["unknown"]
+      "certainty": ["unknown"],
+      "categories": ["Cosmología y orden celestial"]
     },
     {
       "id": "evt-orden-lunar",
@@ -66,7 +67,8 @@
         "label": "Anterior al dominio celestial"
       },
       "importance": "major",
-      "certainty": ["tradition", "unknown"]
+      "certainty": ["tradition", "unknown"],
+      "categories": ["Cosmología y orden celestial"]
     },
     {
       "id": "evt-conquista-celestial",
@@ -87,7 +89,8 @@
         "label": "Guerra de cuarenta años en la cronología del libro"
       },
       "importance": "major",
-      "certainty": ["tradition", "disputed"]
+      "certainty": ["tradition", "disputed"],
+      "categories": ["Cosmología y orden celestial"]
     },
     {
       "id": "evt-mundo-humano",
@@ -100,7 +103,8 @@
         "label": "Cuatrocientos años desde el comienzo de la cuenta del libro"
       },
       "importance": "major",
-      "certainty": ["tradition"]
+      "certainty": ["tradition"],
+      "categories": ["Cosmología y orden celestial"]
     },
     {
       "id": "evt-hiperborea",
@@ -118,7 +122,8 @@
         "label": "Antigüedad remota; la reconstrucción de unos seis mil años no es una fecha demostrada"
       },
       "importance": "major",
-      "certainty": ["approximate", "disputed"]
+      "certainty": ["approximate", "disputed"],
+      "categories": ["Caídas y ruinas"]
     },
     {
       "id": "evt-guerra-llama-funeraria",
@@ -139,7 +144,8 @@
         "label": "Posterior al establecimiento del orden humano"
       },
       "importance": "major",
-      "certainty": ["unknown"]
+      "certainty": ["unknown"],
+      "categories": ["Guerras y conflictos"]
     },
     {
       "id": "evt-pilares-celestiales",
@@ -158,7 +164,8 @@
         "label": "Distintos episodios antiguos; no necesariamente simultáneos"
       },
       "importance": "major",
-      "certainty": ["unknown"]
+      "certainty": ["unknown"],
+      "categories": ["Cosmología y orden celestial"]
     },
     {
       "id": "evt-vindagnyr-khaenriah",
@@ -175,7 +182,8 @@
         "label": "Khaenri’ah ya es mencionada en los textos de Vindagnyr"
       },
       "importance": "major",
-      "certainty": ["unknown"]
+      "certainty": ["unknown"],
+      "categories": ["Khaenri’ah y el Abismo"]
     },
     {
       "id": "evt-gnosis-guerra-arcontes",
@@ -194,7 +202,8 @@
         "label": "Conflictos regionales; conclusión general hace unos dos mil años"
       },
       "importance": "major",
-      "certainty": ["approximate", "disputed"]
+      "certainty": ["approximate", "disputed"],
+      "categories": ["Guerras y conflictos"]
     },
     {
       "id": "evt-caida-guili",
@@ -217,7 +226,8 @@
         "label": "Hace unos 3.700 años"
       },
       "importance": "major",
-      "certainty": ["approximate"]
+      "certainty": ["approximate"],
+      "categories": ["Guerras y conflictos"]
     },
     {
       "id": "evt-rebelion-decarabian",
@@ -237,7 +247,8 @@
         "label": "Hace unos 2.600 años"
       },
       "importance": "major",
-      "certainty": ["approximate"]
+      "certainty": ["approximate"],
+      "categories": ["Guerras y conflictos"]
     },
     {
       "id": "evt-enkanomiya-watatsumi",
@@ -258,7 +269,8 @@
         "label": "Recorrido largo: del aislamiento a Watatsumi; no queda enteramente antes de los Siete"
       },
       "importance": "major",
-      "certainty": ["unknown"]
+      "certainty": ["unknown"],
+      "categories": ["Fundaciones y naciones"]
     },
     {
       "id": "evt-tres-dioses-sumeru",
@@ -281,7 +293,8 @@
         "label": "Orden relativo conocido; sincronización regional desconocida"
       },
       "importance": "major",
-      "certainty": ["unknown"]
+      "certainty": ["unknown"],
+      "categories": ["Fundaciones y naciones"]
     },
     {
       "id": "evt-remuria",
@@ -300,7 +313,8 @@
         "label": "Remuria precede al gobierno de Egeria como Arconte"
       },
       "importance": "major",
-      "certainty": ["unknown"]
+      "certainty": ["unknown"],
+      "categories": ["Caídas y ruinas"]
     },
     {
       "id": "evt-fundacion-natlan",
@@ -323,7 +337,8 @@
         "label": "Etapas distintas: dragones, Xbalanque y el imperio posterior de Och-Kan"
       },
       "importance": "major",
-      "certainty": ["unknown"]
+      "certainty": ["unknown"],
+      "categories": ["Fundaciones y naciones"]
     },
     {
       "id": "evt-formacion-snezhnaya",
@@ -342,7 +357,8 @@
         "label": "Kitezh se atribuye a más de tres mil años antes del presente narrativo"
       },
       "importance": "major",
-      "certainty": ["approximate", "tradition"]
+      "certainty": ["approximate", "tradition"],
+      "categories": ["Fundaciones y naciones"]
     },
     {
       "id": "evt-caida-gurabad",
@@ -362,7 +378,8 @@
         "label": "Después de la muerte de Nabu Malikata y antes del desastre final de Deshret"
       },
       "importance": "minor",
-      "certainty": ["unknown"]
+      "certainty": ["unknown"],
+      "categories": ["Caídas y ruinas"]
     },
     {
       "id": "evt-caida-havria",
@@ -376,7 +393,8 @@
         "label": "Fecha desconocida"
       },
       "importance": "minor",
-      "certainty": ["unknown"]
+      "certainty": ["unknown"],
+      "categories": ["Caídas y ruinas"]
     },
     {
       "id": "evt-proteccion-chenyu",
@@ -390,7 +408,8 @@
         "label": "Durante el conflicto de la deidad local con Morax"
       },
       "importance": "minor",
-      "certainty": ["unknown"]
+      "certainty": ["unknown"],
+      "categories": ["Fundaciones y naciones"]
     },
     {
       "id": "evt-ruina-tsurumi",
@@ -404,7 +423,8 @@
         "label": "Sin sincronización exacta con las demás historias regionales"
       },
       "importance": "minor",
-      "certainty": ["unknown"]
+      "certainty": ["unknown"],
+      "categories": ["Caídas y ruinas"]
     },
     {
       "id": "evt-caida-ochkanatlan",
@@ -423,7 +443,8 @@
         "label": "Imperio posterior a Xbalanque; no se fija fecha para su caída"
       },
       "importance": "minor",
-      "certainty": ["unknown"]
+      "certainty": ["unknown"],
+      "categories": ["Guerras y conflictos", "Caídas y ruinas"]
     },
     {
       "id": "evt-era-siete",
@@ -449,7 +470,8 @@
         "label": "Hace unos 2.000 años"
       },
       "importance": "major",
-      "certainty": ["approximate"]
+      "certainty": ["approximate"],
+      "categories": ["Fundaciones y naciones"]
     },
     {
       "id": "evt-revolucion-vennessa",
@@ -469,7 +491,8 @@
         "label": "Hace unos 1.000 años"
       },
       "importance": "major",
-      "certainty": ["approximate"]
+      "certainty": ["approximate"],
+      "categories": ["Guerras y conflictos"]
     },
     {
       "id": "evt-sello-azhdaha",
@@ -488,7 +511,8 @@
         "label": "Ubicación de lectura temática; el dossier no fija su fecha"
       },
       "importance": "minor",
-      "certainty": ["unknown"]
+      "certainty": ["unknown"],
+      "categories": ["Caídas y ruinas"]
     },
     {
       "id": "evt-khaenriah-irmin",
@@ -511,7 +535,8 @@
         "label": "Última etapa del Eclipse, antes del desastre"
       },
       "importance": "major",
-      "certainty": ["unknown"]
+      "certainty": ["unknown"],
+      "categories": ["Khaenri’ah y el Abismo"]
     },
     {
       "id": "evt-llegada-gemelos",
@@ -531,7 +556,8 @@
         "label": "Época vinculada a hace unos 500 años; fecha exacta desconocida"
       },
       "importance": "major",
-      "certainty": ["approximate", "disputed"]
+      "certainty": ["approximate", "disputed"],
+      "categories": ["Khaenri’ah y el Abismo"]
     },
     {
       "id": "evt-cataclismo",
@@ -573,7 +599,8 @@
         "label": "Hace unos 500 años · cierre contextual"
       },
       "importance": "major",
-      "certainty": ["approximate"]
+      "certainty": ["approximate"],
+      "categories": ["Khaenri’ah y el Abismo"]
     },
     {
       "id": "evt-mare-jivari",
@@ -593,7 +620,8 @@
         "label": "Vinculado al Cataclismo, con discrepancias y separación de la línea temporal ordinaria"
       },
       "importance": "minor",
-      "certainty": ["disputed", "approximate"]
+      "certainty": ["disputed", "approximate"],
+      "categories": ["Khaenri’ah y el Abismo"]
     },
     {
       "id": "evt-amrita-pari",
@@ -614,7 +642,8 @@
         "label": "Cierre del Cataclismo"
       },
       "importance": "minor",
-      "certainty": ["unknown"]
+      "certainty": ["unknown"],
+      "categories": ["Khaenri’ah y el Abismo"]
     }
   ],
   "relations": [
@@ -898,5 +927,6 @@
       "explanation": "El cierre conecta la muerte de Egeria y los legados protectores de Sumeru.",
       "sectionId": "loc-vurukasha"
     }
-  ]
+  ],
+  "factions": ["per-primordial", "per-cinco-pecadores"]
 }

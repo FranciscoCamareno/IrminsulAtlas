@@ -1,9 +1,9 @@
 import type { APIRoute, GetStaticPaths } from 'astro';
-import { loadDossierContent } from '../../../content/dossier';
+import { loadAtlasContent } from '../../../content/corpora';
 import { buildAtlasData } from '../../../content/atlas-data';
 
 export const getStaticPaths = (async () => {
-  const { events } = buildAtlasData(await loadDossierContent());
+  const { events } = buildAtlasData(await loadAtlasContent());
   return [...events].map(([id, detail]) => ({
     params: { id },
     props: { detail },

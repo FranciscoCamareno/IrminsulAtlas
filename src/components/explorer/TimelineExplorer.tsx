@@ -14,6 +14,7 @@ import {
   filterEntities,
   filterEvents,
   filterOptions,
+  emptyFilters,
   hasFilters,
   sanitizeFilters,
   timelineContent,
@@ -128,7 +129,7 @@ export default function TimelineExplorer({
 
   // Full text is fetched only when something is actually searched.
   const searching = !!filters.q;
-  const [searchState] = useAsync(searching ? 'search' : null, () =>
+  const [searchState, retrySearch] = useAsync(searching ? 'search' : null, () =>
     source.search(),
   );
   const bodies = useMemo(
@@ -388,6 +389,7 @@ export default function TimelineExplorer({
             resultCount={filtered.length}
             totalCount={total}
             fullText={fullText}
+            onRetrySearch={retrySearch}
             onChange={(next) => go({ filters: next }, 'replace')}
           />
         </div>
@@ -446,20 +448,7 @@ export default function TimelineExplorer({
               <button
                 type="button"
                 className="text-button"
-                onClick={() =>
-                  go(
-                    {
-                      filters: {
-                        q: '',
-                        era: '',
-                        region: '',
-                        entity: '',
-                        type: '',
-                      },
-                    },
-                    'replace',
-                  )
-                }
+                onClick={() => go({ filters: emptyFilters }, 'replace')}
               >
                 Limpiar filtros
               </button>

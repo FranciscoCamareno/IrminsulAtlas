@@ -16,10 +16,11 @@
   "cacheDirectory": ".validation/p1/raw",
   "humanReview": "pending",
   "acquisition": {
-    "fileCount": 132,
-    "bytes": 106801449,
+    "fileCount": 142,
+    "bytes": 106832882,
     "policy": "Only Spanish TextMap dictionaries, selected lookup tables and individual sample files; no full clone or complete Dialog/Talk Excel tables",
-    "extension": "05/10/2026: se añadieron 32 archivos Readable/ES del lore antiguo; sus huellas (sha256, git blob SHA-1) se calcularon al descargarlos desde la URL fijada al commit, sin inventario Git independiente (la API de árboles no estaba disponible)."
+    "extension": "05/10/2026: se añadieron 32 archivos Readable/ES del lore antiguo; sus huellas (sha256, git blob SHA-1) se calcularon al descargarlos desde la URL fijada al commit, sin inventario Git independiente (la API de árboles no estaba disponible).",
+    "extension2": "05/10/2026 (N-01): 10 archivos Readable/ES más (historias de armas, artefactos y documentos sobre las lunas, Vindagnyr, Khaenri’ah, Ochkanatlan Egeria y la Guerra de los Arcontes); huellas calculadas al descargar, igual que en la ampliación anterior."
   },
   "files": [
     {
@@ -913,6 +914,66 @@
       "bytes": 4741,
       "sha256": "679845291ca74b42def5aae45379ae02db334dde7f1d16867ca8d74e6f3494ec",
       "gitBlobSha1": "f666d41b857a94f062de031b0435e15c6f2faf83"
+    },
+    {
+      "path": "Readable/ES/Weapon14412_ES.txt",
+      "bytes": 1726,
+      "sha256": "69ebd1d47b156c8524d1394b5093df4ae72004232835b7c723608127ffe34f43",
+      "gitBlobSha1": "7c91bef53be27a459fa2cf9aa81a9561edab7f17"
+    },
+    {
+      "path": "Readable/ES/Weapon14520_ES.txt",
+      "bytes": 5468,
+      "sha256": "60dd0288aa20f918922ecaffc276182abebb3d7cad4c7667b8dd6f2d823875d8",
+      "gitBlobSha1": "8c8c88edad50732d2f208049ed0bfbe4fd4b8a08"
+    },
+    {
+      "path": "Readable/ES/Relic15043_1_ES.txt",
+      "bytes": 1752,
+      "sha256": "d9b24ac4a9e1a9698382b57e22300bbff6e14c024e57b3404f769cf43e44a9d5",
+      "gitBlobSha1": "8ae5f575adb8301b23497063962339582d463302"
+    },
+    {
+      "path": "Readable/ES/Relic15043_4_ES.txt",
+      "bytes": 2038,
+      "sha256": "5e6266a713b655cf6bcd081f7692f563341c206ea7ba2eb02ad6aa10e6ee5de8",
+      "gitBlobSha1": "b62835cd67d2aecbf8ba13c90c5fefbff55c0273"
+    },
+    {
+      "path": "Readable/ES/Relic15043_5_ES.txt",
+      "bytes": 1801,
+      "sha256": "b174bba5cc0ec06da1b6223a1331bfc85f456101ea34cee54ec8fa87d2656b4b",
+      "gitBlobSha1": "3da8b57205622ae266afdccdd170e00c6a70e476"
+    },
+    {
+      "path": "Readable/ES/Wings140018_ES.txt",
+      "bytes": 2986,
+      "sha256": "b0fa7a6e487cc7a7a4809e441b4ee082dfa02d8c9afa803ffec190e354883a78",
+      "gitBlobSha1": "b9a3cc5c0fed742c457985c008a90afdbeb71c27"
+    },
+    {
+      "path": "Readable/ES/Book673_ES.txt",
+      "bytes": 4016,
+      "sha256": "898b32067b3beb274457b0c2aaead77a5e60a9271a0c5cd99b9487f07f315463",
+      "gitBlobSha1": "6df9f7aa0acfc497f78b6bca3380f175b32d4ccd"
+    },
+    {
+      "path": "Readable/ES/Book991_ES.txt",
+      "bytes": 924,
+      "sha256": "ddcb6828c4c34e63e12964d557d42ca6bcc9811a46a7b0e9adfd1e2753ce97a7",
+      "gitBlobSha1": "e1580b2ea20e11008e97e990704856a04e34d162"
+    },
+    {
+      "path": "Readable/ES/Book308_ES.txt",
+      "bytes": 7303,
+      "sha256": "347403e86ebbdb0ba538476dbbd79fb01c4c03b8be2ae9c4e9eb58e9015df334",
+      "gitBlobSha1": "27ec7f2d4866dc1aa18cc28fd4bc2b9e38005e0d"
+    },
+    {
+      "path": "Readable/ES/Book1073_ES.txt",
+      "bytes": 3419,
+      "sha256": "88d814b9affe7994776969fd621d65c4be8ee70e91b8840c5c59ca7dd42922a6",
+      "gitBlobSha1": "7ff68e26614a63ce69d3174092d02ee2b927e9a9"
     }
   ]
 }

@@ -105,9 +105,10 @@ describe('spoiler policy across every surface', () => {
         relations: view.relations,
       });
       // Names are checked where entities are listed or offered; a visible
-      // event's own text may legitimately mention a person.
+      // event's own text (and so its category label) may legitimately mention a person.
+      const options = filterOptions(view);
       const listings = JSON.stringify({
-        options: filterOptions(view),
+        options: { ...options, categories: undefined },
         entities: view.entities,
       });
       for (const event of events) {
@@ -286,7 +287,7 @@ describe('search, filters and addresses', () => {
   });
   it('round-trips selection, view and filters through the address', () => {
     const state = parseUrl(
-      '?id=evt-remuria&entity=per-x&vista=lista&q=agua&capitulo=era-a&region=Fontaine&con=per-y&tipo=principal',
+      '?id=evt-remuria&entity=per-x&vista=lista&q=agua&capitulo=era-a&region=Fontaine&con=per-y&faccion=per-f&categoria=Guerras&tipo=principal',
     );
     expect(state).toMatchObject({
       id: 'evt-remuria',
@@ -298,6 +299,8 @@ describe('search, filters and addresses', () => {
       era: 'era-a',
       region: 'Fontaine',
       entity: 'per-y',
+      faction: 'per-f',
+      category: 'Guerras',
       type: 'major',
     });
     expect(parseUrl(buildUrl(state).slice(1))).toEqual(state);
@@ -338,5 +341,40 @@ describe('data source failures', () => {
     await expect(source.event('evt-remuria'))
       .resolves.toBeDefined()
       .catch(() => undefined);
+  });
+  it('offers factions and categories separately from people and places, and filters by them', () => {
+    const options = filterOptions(everything);
+    expect(options.factions.map((item) => item.id).sort()).toEqual([
+      'per-cinco-pecadores',
+      'per-primordial',
+    ]);
+    expect(options.entities.every((item) => item.kind !== 'faction')).toBe(
+      true,
+    );
+    expect(options.categories.length).toBeGreaterThan(3);
+    const sinners = filterEvents(everything, {
+      ...emptyFilters,
+      faction: 'per-cinco-pecadores',
+    });
+    expect(sinners.length).toBeGreaterThan(0);
+    expect(
+      sinners.every((event) => event.entityIds.includes('per-cinco-pecadores')),
+    ).toBe(true);
+    const wars = filterEvents(everything, {
+      ...emptyFilters,
+      category: 'Guerras y conflictos',
+    });
+    expect(
+      wars.every((event) => event.categories.includes('Guerras y conflictos')),
+    ).toBe(true);
+    // An unknown address value is dropped and reported, not silently empty.
+    const cleaned = sanitizeFilters(
+      { ...emptyFilters, faction: 'per-nope', category: 'Nada' },
+      options,
+    );
+    expect(cleaned.ignored).toEqual(['categoría', 'facción']);
+    // Options never offer a faction or category the reader cannot see yet.
+    const early = filterOptions(at('hito-mondstadt'));
+    expect(early.factions).toEqual([]);
   });
 });

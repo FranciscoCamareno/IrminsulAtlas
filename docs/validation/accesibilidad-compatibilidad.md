@@ -39,3 +39,17 @@ npm run test:e2e   # E2E_CHROMIUM_PATH=/ruta/a/chrome si Playwright no tiene su 
 ```
 
 Informes JSON con todos los hallazgos de axe: `.validation/e2e/accessibility.json`.
+
+## Repetición N-07 (2026-10-05, rama `claude/sleepy-ritchie-7esvu5`)
+
+| Prueba                                                                                                                                                                            | Resultado                                                                                                                                                                                                                                         |
+| --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Suite e2e completa tras N-04…N-10 (27 pruebas: axe en tema oscuro/claro y diálogos, teclado y foco, movimiento reducido, reflujo a 320/390 px, spoilers, rendimiento, agrupación) | Cumple, Chromium 141                                                                                                                                                                                                                              |
+| Segunda familia de navegador (Firefox/WebKit)                                                                                                                                     | **Pendiente.** Solo hay Chromium en `/opt/pw-browsers`; la guía del entorno prohíbe `playwright install`. Tarea manual: ejecutar `npm run test:e2e` con un lanzador de Firefox y WebKit (el arnés de `tests/e2e/harness.ts` solo lanza Chromium). |
+| Revisión visual de trazos SVG y capas (capturas a 1366×768 y móvil)                                                                                                               | Capas, conectores discontinuos, columnas de capítulo y etiquetas se pintan sin solapes ni recortes visibles. Observaciones abajo.                                                                                                                 |
+| Teléfono físico (gestos, orientación, barras del navegador), lector de pantalla, red móvil, sesiones con personas (L-09)                                                          | **Pendiente, tarea humana.** El toque emulado de Chromium no sustituye un dispositivo real.                                                                                                                                                       |
+
+Observaciones de la revisión visual (no corregidas; sin impacto crítico):
+
+1. En escritorio, el encuadre inicial de la cronología completa se muestra al 15 %: las etiquetas de los nodos son ilegibles hasta acercar. Es coherente con el diseño de «ver el conjunto», pero la primera impresión depende del selector de capítulo; conviene validarlo con personas.
+2. En 390 px, el título «IRMINSUL ATLAS» queda pegado al botón de progreso (sin margen visible). Es estético; los objetivos táctiles son ≥ 24 px.

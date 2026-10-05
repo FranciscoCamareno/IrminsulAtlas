@@ -1,7 +1,9 @@
 import process from 'node:process';
 import console from 'node:console';
+import { readdir } from 'node:fs/promises';
 import { resolve } from 'node:path';
 import {
+  CorpusFileSchema,
   EvidenceRegistrySchema,
   DossierMapSchema,
   ImportSelectionSchema,
@@ -12,6 +14,7 @@ import {
   findDossierReviewIssues,
   verifyAgainstImport,
 } from '../../src/domain/evidence-integrity.ts';
+import { buildImpactReport } from '../../src/domain/impact.ts';
 import { acquireSnapshot } from './acquire.ts';
 import {
   acceptedSubset,
@@ -103,6 +106,43 @@ try {
         sources: current.dataset.sources.length,
       }),
     );
+  } else if (command === 'impact' && id) {
+    // Editorial impact of a candidate on the reviewed evidence. Read-only: it
+    // neither promotes the candidate nor edits any registry or decision.
+    const candidate = acceptedSubset(await readCandidate(candidates, id));
+    const registry = parse(
+      EvidenceRegistrySchema,
+      await readJson('content/editorial/genshin-evidence.json'),
+      'genshin-evidence.json',
+    );
+    const dossier = DossierMapSchema.parse(
+      await readJson('content/editorial/genshin-dossier.json'),
+    );
+    const registries = [registry];
+    const relations: { id: string; claimIds: readonly string[] }[] = [
+      ...dossier.relations,
+    ];
+    for (const name of (
+      await readdir(resolve('content/editorial/corpora')).catch(() => [])
+    )
+      .filter((file) => file.endsWith('.json'))
+      .sort()) {
+      const corpus = parse(
+        CorpusFileSchema,
+        await readJson(`content/editorial/corpora/${name}`),
+        name,
+      );
+      registries.push(corpus.evidence);
+      relations.push(...corpus.relations);
+    }
+    const current = await readAccepted(store);
+    console.log(
+      stableJson({
+        candidate: id,
+        diff: compareImports(current?.dataset ?? null, candidate),
+        impact: buildImpactReport(registries, relations, candidate),
+      }),
+    );
   } else if (command === 'evidence') {
     // Compares every pinned fragment with the accepted import. Without one it
     // cannot say anything, and says so instead of passing.
@@ -114,10 +154,32 @@ try {
     const dossier = DossierMapSchema.parse(
       await readJson('content/editorial/genshin-dossier.json'),
     );
-    const events = new Set(dossier.events.map((event) => event.id));
+    const corpusDirectory = resolve('content/editorial/corpora');
+    const corpora = [];
+    for (const name of (await readdir(corpusDirectory).catch(() => []))
+      .filter((file) => file.endsWith('.json'))
+      .sort())
+      corpora.push(
+        parse(
+          CorpusFileSchema,
+          await readJson(`content/editorial/corpora/${name}`),
+          name,
+        ),
+      );
+    const events = new Set([
+      ...dossier.events.map((event) => event.id),
+      ...corpora.flatMap((corpus) => corpus.events.map((event) => event.id)),
+    ]);
+    const allClaims = [
+      ...registry.claims,
+      ...corpora.flatMap((corpus) => corpus.evidence.claims),
+    ];
     const structural = [
       ...findRegistryIssues(registry, events),
       ...findDossierReviewIssues(dossier, registry),
+      ...corpora.flatMap((corpus) =>
+        findRegistryIssues(corpus.evidence, events),
+      ),
     ];
     // Candidate verification is read-only: a broken fragment cannot replace
     // the accepted import just to discover the mismatch afterwards.
@@ -133,7 +195,12 @@ try {
         null,
         'No hay importación aceptada: las referencias a fragmentos no pueden verificarse. Ejecutar acquire, import y promote.',
       );
-    const textual = verifyAgainstImport(registry, imported);
+    const textual = [
+      ...verifyAgainstImport(registry, imported),
+      ...corpora.flatMap((corpus) =>
+        verifyAgainstImport(corpus.evidence, imported),
+      ),
+    ];
     const issues = [...structural, ...textual];
     console.log(
       stableJson({
@@ -143,23 +210,28 @@ try {
         ...(id
           ? { candidate: id }
           : { importVersion: current!.pointer.version }),
-        claims: registry.claims.length,
-        sources: registry.sources.length,
+        corpora: corpora.map((corpus) => corpus.corpus),
+        claims: allClaims.length,
+        sources:
+          registry.sources.length +
+          corpora.reduce(
+            (sum, corpus) => sum + corpus.evidence.sources.length,
+            0,
+          ),
         // Coverage is reported, never hidden: events with no claim are unreviewed.
         coverage: {
           eventsWithClaims: [...events].filter((id) =>
-            registry.claims.some((claim) => claim.eventIds.includes(id)),
+            allClaims.some((claim) => claim.eventIds.includes(id)),
           ).length,
           eventsWithoutClaims: [...events].filter(
-            (id) =>
-              !registry.claims.some((claim) => claim.eventIds.includes(id)),
+            (id) => !allClaims.some((claim) => claim.eventIds.includes(id)),
           ),
-          verifiedSupports: registry.claims.flatMap((claim) =>
+          verifiedSupports: allClaims.flatMap((claim) =>
             claim.support.filter(
               (support) => support.verification === 'verified',
             ),
           ).length,
-          claimsReviewed: registry.claims.filter(
+          claimsReviewed: allClaims.filter(
             (claim) => claim.review.status === 'reviewed',
           ).length,
         },
@@ -170,7 +242,7 @@ try {
       process.exitCode = 1;
   } else {
     console.error(
-      'Uso: node scripts/import/cli.ts acquire|import|validate [ID]|diff ID|promote ID|evidence [ID]',
+      'Uso: node scripts/import/cli.ts acquire|import|validate [ID]|diff ID|promote ID|evidence [ID]|impact ID',
     );
     process.exitCode = 1;
   }

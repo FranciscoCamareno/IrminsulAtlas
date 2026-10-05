@@ -154,3 +154,47 @@ export function connectionPath(
   const middle = (from.x + to.x) / 2;
   return `M${from.x},${from.y} C${middle},${from.y} ${middle},${to.y} ${to.x},${to.y}`;
 }
+
+export interface NodeGroup {
+  id: string;
+  x: number;
+  y: number;
+  members: string[];
+}
+
+// Dense data sets only. Nodes whose screen positions fall in the same cell are
+// replaced by one group marker; nodes in `keep` (selection and its links) always
+// stay individual, and a cell with a single node is not a group. Cells are fixed
+// in screen size, so zooming in splits a group into its members.
+export function groupByDensity<T extends { id: string; x: number; y: number }>(
+  nodes: readonly T[],
+  k: number,
+  keep: ReadonlySet<string>,
+  cell = 110,
+): { singles: T[]; groups: NodeGroup[] } {
+  const size = cell / k;
+  const buckets = new Map<string, T[]>();
+  const singles: T[] = [];
+  for (const node of nodes) {
+    if (keep.has(node.id)) {
+      singles.push(node);
+      continue;
+    }
+    const key = `${Math.floor(node.x / size)}:${Math.floor(node.y / size)}`;
+    (buckets.get(key) ?? buckets.set(key, []).get(key)!).push(node);
+  }
+  const groups: NodeGroup[] = [];
+  for (const [key, members] of buckets) {
+    if (members.length === 1) {
+      singles.push(members[0]!);
+      continue;
+    }
+    groups.push({
+      id: 'grupo-' + key,
+      x: members.reduce((sum, item) => sum + item.x, 0) / members.length,
+      y: members.reduce((sum, item) => sum + item.y, 0) / members.length,
+      members: members.map((item) => item.id),
+    });
+  }
+  return { singles, groups };
+}

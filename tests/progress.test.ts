@@ -62,4 +62,27 @@ describe('progress when browser storage fails', () => {
       milestoneId: 'hito-mondstadt',
     });
   });
+
+  it('migrates a stored v1 choice without granting more and writes v2 afterwards', async () => {
+    const store = new Map([
+      [
+        'irminsul-atlas:progress:v1',
+        JSON.stringify({ kind: 'upto', milestoneId: 'hito-liyue' }),
+      ],
+    ]);
+    vi.stubGlobal('window', {
+      localStorage: {
+        getItem: (key: string) => store.get(key) ?? null,
+        setItem: (key: string, value: string) => void store.set(key, value),
+      },
+    });
+    const { storeChoice, getChoiceSnapshot, choiceFromSnapshot } =
+      await import('../src/application/progress');
+    expect(choiceFromSnapshot(getChoiceSnapshot())).toEqual({
+      kind: 'upto',
+      milestoneId: 'hito-liyue',
+    });
+    storeChoice({ kind: 'none' });
+    expect(store.get('irminsul-atlas:progress:v2')).toBe('{"kind":"none"}');
+  });
 });

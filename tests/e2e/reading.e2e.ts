@@ -189,6 +189,11 @@ describe('reading all events', () => {
       await page.waitForSelector('[data-event-id]');
       await page.selectOption('.chapter-jump select', event.eraId);
       await page.waitForTimeout(100);
+      // Chapters with several regional rows offer a second selector.
+      const threads = page.locator('.chapter-jump select').nth(1);
+      if (event.narrativeThread && (await threads.count()))
+        await threads.selectOption(event.narrativeThread);
+      await page.waitForTimeout(100);
       const node = page.locator(`[data-event-id="${event.id}"]`);
       if (!(await node.count())) {
         problems.push(`${event.id}: no aparece al saltar a su capítulo`);
@@ -211,6 +216,8 @@ describe('reading all events', () => {
       if (!opened) problems.push(`${event.id}: el clic no abre la ficha`);
     }
     record.push({ viewport: 'desktop', dragsToReach: drags });
+    // With the region selector no event needs more than one corrective drag.
+    expect(Math.max(...Object.values(drags))).toBeLessThanOrEqual(1);
     await save('reach');
     await context.close();
     expect(problems).toEqual([]);

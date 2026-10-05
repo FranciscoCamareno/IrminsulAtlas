@@ -87,6 +87,9 @@ export const MilestoneSchema = z.strictObject({
   universeId: IdSchema,
   // This is a deliberately safe selector label, not the title of a hidden mission.
   safeLabel: text,
+  // 'main' milestones form the ordered story ladder; 'optional' ones (side
+  // quests, hangouts) are granted one by one and never by reaching a region.
+  track: z.enum(['main', 'optional']).default('main'),
   editorialStatus,
 });
 export const EvidenceSchema = z.strictObject({
@@ -500,9 +503,13 @@ export const DossierMapSchema = z.strictObject({
       time: HistoricalTimeSchema,
       importance: z.enum(['major', 'minor']),
       certainty: EventSchema.shape.certainty,
+      // Editorial categories for the category filter; a proposal until reviewed.
+      categories: z.array(text).min(1).optional(),
       ...dossierEditorial,
     }),
   ),
+  // Groups that act as factions (shown under their own filter), not as people.
+  factions: ids.default([]),
   relations: z.array(
     z.strictObject({
       id: IdSchema,
@@ -529,6 +536,9 @@ export const RevelationMapSchema = z.strictObject({
   events: z.record(IdSchema, IdSchema),
   // Entities inherit the latest milestone of their events unless overridden.
   entityOverrides: z.record(IdSchema, IdSchema),
+  // A relation is visible when both ends are; an entry here adds a milestone of
+  // its own for a link that discloses more than either end does.
+  relationOverrides: z.record(IdSchema, IdSchema).default({}),
   unlinkedEntityMilestone: IdSchema,
 });
 export type RevelationMap = z.infer<typeof RevelationMapSchema>;
@@ -583,7 +593,13 @@ export const IndexRelationSchema = z.strictObject({
 export const AtlasIndexSchema = z.strictObject({
   schemaVersion: z.literal(1),
   universe: z.strictObject({ id: IdSchema, name: text, editorialStatus }),
-  milestones: z.array(z.strictObject({ id: IdSchema, safeLabel: text })),
+  milestones: z.array(
+    z.strictObject({
+      id: IdSchema,
+      safeLabel: text,
+      track: z.enum(['main', 'optional']),
+    }),
+  ),
   eras: z.array(IndexEraSchema),
   events: z.array(IndexEventSchema),
   entities: z.array(IndexEntitySchema),
@@ -697,3 +713,100 @@ export type Claim = z.infer<typeof ClaimSchema>;
 export type ClaimSupport = z.infer<typeof ClaimSupportSchema>;
 export type RegistrySource = z.infer<typeof RegistrySourceSchema>;
 export type EvidenceRegistry = z.infer<typeof EvidenceRegistrySchema>;
+
+// Coverage inventory (N-08). It counts what exists in the game up to a cut-off
+// and how much of it has been examined; it is not lore and never feeds the
+// timeline. Its states are independent of editorial approval.
+export const COVERAGE_CATEGORIES = [
+  'archon-quest',
+  'character-story',
+  'world-quest',
+  'event-quest',
+  'hangout',
+  'tribal',
+  'unclassified',
+] as const;
+export const CoverageUnitSchema = z
+  .strictObject({
+    id: IdSchema,
+    category: z.enum(COVERAGE_CATEGORIES),
+    // Region/arc label exactly as the provider text gives it; null when absent.
+    arc: text.nullable(),
+    // Act or chapter number label and title in Spanish; null when the text is missing.
+    actLabel: text.nullable(),
+    title: text.nullable(),
+    providerRef: z.strictObject({
+      chapterId: z.number().int().nonnegative(),
+      mainQuestIds: z.array(z.number().int().nonnegative()),
+    }),
+    // Version and date of publication need an accredited reference; otherwise null.
+    publication: z
+      .strictObject({ version: text, date: text, reference: text })
+      .nullable(),
+    spanish: z.enum(['available', 'title-missing']),
+    importStatus: z.enum(['not-imported', 'sampled', 'imported']),
+    examination: z.enum([
+      'not-examined',
+      'examined-with-events',
+      'examined-no-event',
+      'excluded',
+    ]),
+    sourceIds: ids,
+    eventIds: ids,
+    note: text.optional(),
+  })
+  .refine(
+    (unit) =>
+      (unit.examination !== 'examined-with-events' ||
+        unit.eventIds.length > 0) &&
+      (unit.examination !== 'excluded' || !!unit.note) &&
+      (unit.examination === 'not-examined' ||
+        unit.importStatus !== 'not-imported'),
+    {
+      message:
+        'Una unidad examinada con eventos los enumera, una excluida explica el motivo y una examinada exige haber sido importada',
+      path: ['examination'],
+    },
+  );
+export const CoverageRegistrySchema = z
+  .strictObject({
+    schemaVersion: z.literal(1),
+    snapshot: z.strictObject({
+      commit: z.string().regex(/^[a-f0-9]{40}$/),
+      providerBuild: text,
+      commitDate: text,
+    }),
+    // The public cut-off is a claim about the game, so it carries how it was checked.
+    publicCutoff: z.strictObject({
+      version: text,
+      date: text,
+      verification: z.enum(['official', 'secondary', 'unverified']),
+      reference: text,
+      note: text,
+    }),
+    units: z.array(CoverageUnitSchema),
+  })
+  .refine(
+    (registry) =>
+      new Set(registry.units.map((unit) => unit.id)).size ===
+      registry.units.length,
+    { message: 'IDs de cobertura duplicados', path: ['units'] },
+  );
+export type CoverageUnit = z.infer<typeof CoverageUnitSchema>;
+export type CoverageRegistry = z.infer<typeof CoverageRegistrySchema>;
+
+// An additional corpus (for example the Traveler's story) is authored apart
+// from the ancient dossier and composed with it before anything is published.
+// It carries its own evidence registry, verified with the same rules.
+export const CorpusFileSchema = z.strictObject({
+  schemaVersion: z.literal(1),
+  corpus: IdSchema,
+  // Appended after the base ladder, in this order.
+  milestones: z.array(MilestoneSchema),
+  eras: z.array(EraSchema),
+  entities: z.array(NarrativeEntitySchema),
+  events: z.array(EventSchema),
+  relations: z.array(RelationSchema),
+  evidence: EvidenceRegistrySchema,
+});
+export type CorpusFile = z.infer<typeof CorpusFileSchema>;

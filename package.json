@@ -26,7 +26,9 @@
     "content:validate": "node scripts/import/cli.ts validate",
     "content:diff": "node scripts/import/cli.ts diff",
     "content:promote": "node scripts/import/cli.ts promote",
-    "content:evidence": "node scripts/import/cli.ts evidence"
+    "content:evidence": "node scripts/import/cli.ts evidence",
+    "content:impact": "node scripts/import/cli.ts impact",
+    "content:coverage": "node scripts/research/coverage-inventory.ts && prettier --write content/editorial/genshin-coverage.json docs/validation/n08-inventario-cobertura-2026-10-05.md"
   },
   "dependencies": {
     "@astrojs/react": "7.0.0",
