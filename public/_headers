@@ -1,0 +1,7 @@
+# Cloudflare Pages: cabeceras de caché. Los archivos de /_astro/ llevan hash en el nombre.
+/_astro/*
+  Cache-Control: public, max-age=31536000, immutable
+
+# Los datos mantienen su URL entre versiones: se revalidan para no servir contenido antiguo.
+/data/*
+  Cache-Control: public, max-age=0, must-revalidate

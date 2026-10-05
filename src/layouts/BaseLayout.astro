@@ -22,7 +22,7 @@ const { immersive = false, preview = false, dossier = false } = Astro.props;
       name="description"
       content={
         dossier
-          ? 'Historia antigua de Teyvat: acontecimientos, personajes, lugares e incertidumbres. Primer borrador basado en el dossier.'
+          ? 'Historia antigua de Teyvat: acontecimientos, personajes, lugares e incertidumbres.'
           : 'Archivo para explorar acontecimientos, fuentes e incertidumbre histórica.'
       }
     />
@@ -39,7 +39,7 @@ const { immersive = false, preview = false, dossier = false } = Astro.props;
         </a>
         <span class="metadata">
           {dossier
-            ? 'Primer borrador · Historia antigua'
+            ? 'Historia antigua'
             : preview
               ? 'Vista previa temporal'
               : 'Archivo de demostración'}
@@ -47,21 +47,17 @@ const { immersive = false, preview = false, dossier = false } = Astro.props;
       </header>
     )}
     <main id="main" tabindex="-1" class:list={{ 'atlas-main': immersive }}>
-      {!immersive && (
+      {!immersive && !dossier && (
         <div class="demo-notice">
           <strong>
-            {dossier
-              ? 'Dossier de Genshin Impact · Borrador visible'
-              : preview
-                ? 'Vista previa de Genshin Impact'
-                : 'Datos de demostración'}
+            {preview
+              ? 'Vista previa de Genshin Impact'
+              : 'Datos de demostración'}
           </strong>
           <p>
-            {dossier
-              ? 'Contenido trasladado de los documentos aportados, con sus fuentes e incertidumbres. El contenido se muestra según tu progreso de lectura; el contraste de fuentes con textos primarios sigue pendiente.'
-              : preview
-                ? 'Textos reales del juego con distribución y conexiones provisionales para probar el diseño. Puede contener spoilers.'
-                : 'El Archivo de la Bruma es ficticio. Sus acontecimientos, personajes y fuentes no representan lore de Genshin Impact.'}
+            {preview
+              ? 'Textos reales del juego con distribución y conexiones provisionales para probar el diseño. Puede contener spoilers.'
+              : 'El Archivo de la Bruma es ficticio. Sus acontecimientos, personajes y fuentes no representan lore de Genshin Impact.'}
           </p>
         </div>
       )}

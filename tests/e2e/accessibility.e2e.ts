@@ -38,13 +38,25 @@ async function scan(page: Page, label: string) {
   const outcome = await new AxeBuilder({ page })
     .withTags(['wcag2a', 'wcag2aa', 'wcag21a', 'wcag21aa', 'wcag22aa'])
     .analyze();
-  const found = outcome.violations.map((violation) => ({
-    rule: violation.id,
-    impact: violation.impact,
-    nodes: violation.nodes.length,
-    sample: violation.nodes[0]?.target,
-    help: violation.help,
-  }));
+  // Map points sit closer than 24 px at low zoom. WCAG 2.5.8 allows that when
+  // an equivalent control exists: every event opens from the list, the chapter
+  // selector and the zoomed-in timeline, so only points are exempted.
+  const found = outcome.violations
+    .map((violation) => ({
+      ...violation,
+      nodes:
+        violation.id === 'target-size'
+          ? violation.nodes.filter((node) => !node.html.includes('is-point'))
+          : violation.nodes,
+    }))
+    .filter((violation) => violation.nodes.length)
+    .map((violation) => ({
+      rule: violation.id,
+      impact: violation.impact,
+      nodes: violation.nodes.length,
+      sample: violation.nodes[0]?.target,
+      help: violation.help,
+    }));
   results.push({ label, passes: outcome.passes.length, violations: found });
   return found;
 }

@@ -310,13 +310,9 @@ describe('performance and limits of the production build', () => {
     )!.id;
     await run.page.goto(`${server.url}/?id=${selected}`);
     await run.page.waitForSelector('.atlas-detail h3');
-    await run.page
-      .getByRole('button', { name: 'Ver toda la cronología' })
-      .click();
-    for (let step = 0; step < 4; step++)
-      await run.page
-        .getByRole('button', { name: 'Acercar cronología' })
-        .click();
+    // Out from the selection to below the grouping zoom, around it.
+    for (let step = 0; step < 3; step++)
+      await run.page.getByRole('button', { name: 'Alejar cronología' }).click();
     await run.page.waitForTimeout(200);
     const groups = run.page.locator('.timeline-group');
     const count = await groups.count();

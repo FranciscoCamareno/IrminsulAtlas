@@ -115,7 +115,7 @@ Puede entregarse en dos commits independientes.
 
 ## N-06 — Agrupación por densidad y rendimiento
 
-**Trabajo:** medir con el corpus real y una muestra sintética densa identificada. El recorte por viewport y las tarjetas de capítulos existen; falta agrupación general por densidad. Implementar agrupaciones solo con elementos permitidos, acceso a sus miembros, ancla estable y tratamiento de la selección. Calibrar umbrales con medidas, conservando lista accesible.
+**Trabajo:** medir con el corpus real y una muestra sintética densa identificada. El recorte por viewport y el mapa de puntos por debajo del 45 % existen; falta agrupación general por densidad. Implementar agrupaciones solo con elementos permitidos, acceso a sus miembros, ancla estable y tratamiento de la selección. Calibrar umbrales con medidas, conservando lista accesible.
 
 **Archivos:** `src/visualization/layout.ts`, `viewport.ts`, `TimelineCanvas.tsx`, `src/styles/timeline.css`, `tests/e2e/synthetic.ts`, `performance.e2e.ts`.
 

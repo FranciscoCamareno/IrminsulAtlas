@@ -89,14 +89,14 @@ export const narrow: BrowserContextOptions = {
 export const progressKey = 'irminsul-atlas:progress:v2';
 export const allProgress = JSON.stringify({ kind: 'all' });
 
-// With the whole corpus the first screen is the chapter overview (cards); a
-// test that needs the timeline enters it through the first chapter.
+// With the whole corpus the first screen is the map (points, no titles); a
+// test that needs readable events enters the first chapter from its name.
 export async function enterTimeline(page: Page): Promise<void> {
-  await page.waitForSelector('.chapter-card, [data-event-id]');
+  await page.waitForSelector('[data-event-id]');
   await page.waitForTimeout(300);
-  if (await page.locator('.chapter-card').count()) {
-    await page.locator('.chapter-card').first().click();
-    await page.waitForSelector('.chapter-jump select');
+  if (await page.locator('[data-level="map"]').count()) {
+    await page.locator('.era-label.is-map').first().click();
+    await page.waitForSelector('[data-level="events"]');
   }
   await page.waitForSelector('[data-event-id]');
 }

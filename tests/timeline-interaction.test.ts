@@ -117,7 +117,7 @@ async function click(element: HTMLElement) {
 }
 
 describe('timeline interaction', () => {
-  it('uses a compact overview at 320 px and opens its epochs', async () => {
+  it('draws every event as a point on a 320 px map and opens a chapter from its name', async () => {
     Object.defineProperty(HTMLElement.prototype, 'clientWidth', {
       configurable: true,
       get: () => 320,
@@ -128,52 +128,56 @@ describe('timeline interaction', () => {
     });
     await render();
     await click(button('Ver toda la cronología'));
-    expect(host.querySelector('.compact-overview')).not.toBeNull();
-    const groups = [...host.querySelectorAll<HTMLButtonElement>('.era-group')];
-    expect(groups).toHaveLength(4);
-    for (const group of groups) {
-      expect(parseFloat(group.style.left)).toBe(160);
-      expect(parseFloat(group.style.top)).toBeLessThan(450);
-    }
-    await click(groups[2]!);
+    expect(host.querySelector('[data-level="map"]')).not.toBeNull();
+    expect(host.querySelectorAll('[data-event-id]').length).toBeGreaterThan(0);
+    expect(host.querySelector('.node-label')).toBeNull();
+    expect(host.querySelector('.chapter-card')).toBeNull();
+    // A point opens its event straight from the map.
+    const point = host.querySelector<HTMLButtonElement>(
+      'button[data-event-id]',
+    )!;
+    await click(point);
+    expect(window.location.search).toBe('?id=' + point.dataset['eventId']);
+    expect(host.querySelector('.atlas-detail h3')).not.toBeNull();
+    await click(button('Cerrar detalle'));
+    await click(button('Ver toda la cronología'));
+    const chapters = [
+      ...host.querySelectorAll<HTMLButtonElement>('.era-label.is-map'),
+    ];
+    expect(chapters).toHaveLength(4);
+    await click(chapters[2]!);
     expect(host.querySelector('[data-level="events"]')).not.toBeNull();
   });
-  it('zooms with buttons, retains the timeline on fit, and groups eras below 10 percent', async () => {
+  it('zooms with buttons from the map to details without leaving the timeline', async () => {
     await render();
     expect(host.querySelector('[data-level="events"]')).not.toBeNull();
-    await click(button('Alejar cronología'));
-    await click(button('Alejar cronología'));
-    expect(host.querySelector('[data-event-id="demo-event-03"]')).toBeNull();
-    await click(button('Acercar cronología'));
-    expect(
-      host.querySelector('[data-event-id="demo-event-03"]'),
-    ).not.toBeNull();
     expect(host.querySelector('.node-time')).toBeNull();
-    await click(button('Alejar cronología'));
-    expect(host.querySelector('[data-event-id="demo-event-03"]')).toBeNull();
-    await click(button('Acercar cronología'));
-    await click(button('Acercar cronología'));
-    await click(button('Acercar cronología'));
-    await click(button('Acercar cronología'));
-    await click(button('Acercar cronología'));
-    expect(host.querySelector('[data-level="details"]')).not.toBeNull();
-    expect(
-      host.querySelector('[data-event-id="demo-event-03"]'),
-    ).not.toBeNull();
-    await click(button('Ver toda la cronología'));
-    expect(host.querySelector('[data-level="events"]')).not.toBeNull();
-    expect(host.querySelectorAll('.era-group')).toHaveLength(0);
     for (
       let step = 0;
-      step < 8 && !host.querySelector('[data-level="eras"]');
+      step < 12 && !host.querySelector('[data-level="map"]');
       step++
-    ) {
+    )
       await click(button('Alejar cronología'));
-    }
-    expect(host.querySelector('[data-level="eras"]')).not.toBeNull();
-    expect(host.querySelectorAll('.era-group')).toHaveLength(4);
-    await click(host.querySelector<HTMLButtonElement>('.era-group')!);
-    expect(host.querySelector('[data-level="events"]')).not.toBeNull();
+    expect(host.querySelector('[data-level="map"]')).not.toBeNull();
+    // Minor events stay on the map as points; titles wait for the event level.
+    expect(
+      host.querySelector('[data-event-id="demo-event-03"]'),
+    ).not.toBeNull();
+    expect(host.querySelector('.node-label')).toBeNull();
+    expect(host.querySelector('.chapter-card')).toBeNull();
+    for (
+      let step = 0;
+      step < 12 && !host.querySelector('[data-level="details"]');
+      step++
+    )
+      await click(button('Acercar cronología'));
+    expect(host.querySelector('[data-level="details"]')).not.toBeNull();
+    expect(host.querySelector('.node-time')).not.toBeNull();
+    await click(button('Ver toda la cronología'));
+    expect(host.querySelector('.chapter-card')).toBeNull();
+    expect(
+      host.querySelector('[data-event-id="demo-event-03"]'),
+    ).not.toBeNull();
   });
   it('selects a node, follows a connection, restores focus, and responds to history', async () => {
     await render();
@@ -318,8 +322,8 @@ describe('D3 gesture adapter', () => {
     expect(state.x).toBeGreaterThan(previous);
     controls.scale(100);
     expect(state.k).toBe(2.4);
-    controls.scale(0.001);
-    expect(state.k).toBe(0.08);
+    controls.scale(0.0001);
+    expect(state.k).toBe(0.01);
     controls.destroy();
     const final = { ...state };
     host.dispatchEvent(
@@ -330,35 +334,36 @@ describe('D3 gesture adapter', () => {
 });
 
 describe('dossier navigation', () => {
-  it('opens all chapters at 320 px without a fixed four-section limit', async () => {
+  it('keeps the timeline at every zoom at 320 px and shows chapter cards only in the list view', async () => {
     Object.defineProperty(HTMLElement.prototype, 'clientWidth', {
       configurable: true,
       get: () => 320,
     });
     await render(dossier, { kind: 'all' });
-    expect(host.querySelectorAll('.chapter-card')).toHaveLength(
-      dossier.eras.length,
+    expect(host.querySelector('[data-level="map"]')).not.toBeNull();
+    expect(host.querySelectorAll('[data-event-id]')).toHaveLength(
+      dossier.events.length,
     );
-    expect(host.textContent).toContain('Borrador basado');
-    expect(host.querySelector('input[type="checkbox"]')).toBeNull();
-    // The mobile fit starts at 8%; one zoom step reaches 10.4%.
-    await click(button('Acercar cronología'));
-    expect(host.querySelector('[data-level="events"]')).not.toBeNull();
-    expect(host.querySelectorAll('.chapter-card')).toHaveLength(0);
-    await click(button('Alejar cronología'));
-    expect(host.querySelectorAll('.chapter-card')).toHaveLength(
-      dossier.eras.length,
-    );
-    await click(host.querySelector<HTMLButtonElement>('.chapter-card')!);
-    expect(host.querySelector('[data-level="events"]')).not.toBeNull();
+    expect(host.querySelector('.chapter-card')).toBeNull();
+    expect(host.textContent).not.toContain('orrador');
+    for (let step = 0; step < 30; step++)
+      await click(button('Alejar cronología'));
+    expect(host.querySelector('[data-level="map"]')).not.toBeNull();
+    expect(host.querySelector('.chapter-card')).toBeNull();
     await click(button('Ver toda la cronología'));
-    expect(host.querySelectorAll('.chapter-card')).toHaveLength(
-      dossier.eras.length,
-    );
+    expect(host.querySelector('.chapter-card')).toBeNull();
     await click(button('Mostrar vista de lista'));
+    const cards = [
+      ...host.querySelectorAll<HTMLButtonElement>('.chapter-card'),
+    ];
+    expect(cards).toHaveLength(dossier.eras.length);
     expect(host.querySelectorAll('[data-list-event-id]')).toHaveLength(
       dossier.events.length,
     );
+    // jsdom has no layout, so no scrolling either.
+    Element.prototype.scrollIntoView ??= () => {};
+    await click(cards[1]!);
+    expect(document.activeElement?.id).toBe('capitulo-' + dossier.eras[1]!.id);
   });
   it('preserves event context through entity cards, Escape, direct links and history', async () => {
     window.history.replaceState(null, '', '/?id=evt-hiperborea');
@@ -610,17 +615,29 @@ describe('progress, search and loading', () => {
       '[data-claim-id="claim-vennessa-tirania"]',
     )!;
     expect(tyranny.textContent).toContain('Dato explícito');
-    expect(tyranny.textContent).toContain('Texto del juego');
-    expect(tyranny.textContent).toContain('Contrastada con el fragmento');
-    expect(tyranny.textContent).toContain('Citada, sin contrastar');
+    expect(tyranny.textContent).toContain(
+      'Fuente: Aquila Favonia · historia del arma; ',
+    );
     const separate = host.querySelector(
       '[data-claim-id="claim-vennessa-no-decarabian"]',
     )!;
     expect(separate.textContent).toContain('Interpretación');
-    expect(separate.textContent).toContain('Sin fuente que la respalde');
-    expect(host.querySelector('.atlas-detail')?.textContent).toContain(
-      'Revisión pendiente',
+    expect(separate.textContent).toContain(
+      'Sin confirmación directa en el juego',
     );
+    // Locators, review state and working notes stay out of the reader's view.
+    const detail = host.querySelector('.atlas-detail')!.textContent;
+    for (const internal of [
+      'Revisión pendiente',
+      'Contrastada',
+      'sin contrastar',
+      'Límites',
+      'Párrafo',
+      'docs/',
+      '(ES)',
+      'orrador',
+    ])
+      expect(detail).not.toContain(internal);
     window.history.replaceState(null, '', '/?id=evt-hiperborea');
     await act(async () => window.dispatchEvent(new PopStateEvent('popstate')));
     await settle();
