@@ -182,7 +182,10 @@
 .timeline-surface {
   position: absolute;
   inset: 0;
-  overflow: hidden;
+  /* clip, not hidden: a hidden box can still be scrolled programmatically, and
+     focusing a node near the edge would scroll it out of sync with the D3
+     transform, losing the click. */
+  overflow: clip;
   cursor: grab;
   touch-action: none;
 }

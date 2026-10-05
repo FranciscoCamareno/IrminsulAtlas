@@ -275,8 +275,15 @@ export function Detail({
                 {evidence.locator} · {evidence.availability}
               </p>
               <p>
-                {evidence.stance === 'supports' ? 'Respalda' : 'Contradice'}:{' '}
-                {evidence.claim}
+                {evidence.availability === 'Texto del dossier'
+                  ? 'Origen del texto'
+                  : evidence.availability ===
+                      'Referencia externa sin contrastar'
+                    ? 'Citada, sin contrastar'
+                    : evidence.stance === 'supports'
+                      ? 'Respalda'
+                      : 'Contradice'}
+                : {evidence.claim}
               </p>
               {evidence.note && <p>{evidence.note}</p>}
             </li>

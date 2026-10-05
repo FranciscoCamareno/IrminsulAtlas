@@ -167,3 +167,14 @@ Añadir en cada iteración: fecha, fase, cambios, comprobaciones, limitaciones y
 - [Alcance de la v1](11-alcance-primera-version.md): lista de aceptación y propuesta de no perseguir 30–50 eventos (pendiente de aprobación). Puntos 2–11 del plan de cierre sin iniciar; 3, 8, 10 y 11 requieren fuentes primarias, personas y dispositivos reales.
 - Limitación: no se ejecutó en Windows real. Sin despliegue.
 
+### 2026-10-05 — Primera versión: lectura, spoilers, búsqueda, evidencias, accesibilidad y rendimiento
+
+- Aceptado por el usuario el alcance de la v1 (techo de 29 acontecimientos). Rama `claude/sleepy-ritchie-7esvu5`.
+- **Spoilers (P4):** política de progreso con hitos provisionales (`genshin-revelation.json`), diálogo en la primera visita, filtrado antes de búsqueda, sugerencias, conteos, conexiones y referencias en el texto; enlaces bloqueados neutros; HTML inicial sin títulos ni textos; documentos completos del dossier solo con «Mostrar todo».
+- **Búsqueda, filtros y estado:** búsqueda por nombre, participantes, región y texto completo diferido; filtros por capítulo, región, personaje o lugar y tipo; estado en la dirección; vacíos, filtros inexistentes y fallos con reintento.
+- **Índice ligero (P4/P5):** `/data/index.json` + detalles y texto bajo demanda; carga inicial 152 KB → 118 KB (−22 %).
+- **Evidencias (P3):** registro de afirmaciones N:M con fragmentos fijados por hash, detección de referencias rotas/incompletas y `npm run content:evidence`; muestra de 10 eventos, **todo `pending`**; 4 apoyos contrastados con texto primario. Informe y hallazgos críticos en `docs/validation/revision-editorial-muestra.md`.
+- **Cronología (P5):** corregido el clic perdido en nodos cercanos a los bordes (alta); conexiones largas solo al seleccionar; recorte por viewport en corpus densos (p95 de 383 ms a 16,8 ms con 290 eventos sintéticos).
+- **Pruebas:** 101 pruebas unitarias/de integración (`validate`) y 24 de navegador (`test:e2e`): lectura de los 29 eventos en tres tamaños, solapes de 15 % a 240 %, táctil emulado, axe (0 infracciones en 14 análisis), teclado, movimiento reducido, reflujo al 200 %/400 %, spoilers en el HTML construido y rendimiento.
+- **Pendiente y límites:** aprobación editorial de afirmaciones, revelación y clasificaciones; respaldo primario para 16 eventos (exige ampliar la selección de P1); lector de pantalla, teléfono real, Firefox/WebKit y sesiones con participantes. Sin despliegue.
+

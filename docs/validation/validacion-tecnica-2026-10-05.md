@@ -49,3 +49,17 @@ npm run validate
 ## Límites
 
 Se validó en Linux con Node 24. No se repitió en Windows real; el comportamiento con `core.autocrlf=true` se comprobó mediante simulación de checkout. Esto no acredita navegadores, accesibilidad, gestos táctiles ni rendimiento.
+
+## Actualización posterior (mismo día, tras la entrega de la primera versión)
+
+Misma máquina y herramientas (Node 24.21.0, npm 11.19.0). `npm run validate` sigue terminando con código 0 con los cambios de spoilers, búsqueda, índice ligero, evidencias y cronología:
+
+| Paso        | Resultado                                                                                                        |
+| ----------- | ---------------------------------------------------------------------------------------------------------------- |
+| Formato     | Prettier: todos los archivos coinciden                                                                           |
+| Lint        | ESLint sin diagnósticos                                                                                          |
+| Tipos       | `astro check`: 0 errores, 0 advertencias, 0 sugerencias                                                          |
+| Pruebas     | Vitest: 8 archivos, **101** pruebas aprobadas                                                                    |
+| Compilación | `astro build`: 8 páginas y 117 archivos de datos estáticos (índice, texto, 29 eventos, 82 fichas y 4 documentos) |
+
+Aparte, `npm run test:e2e` (5 archivos, **24** pruebas de navegador en Chromium 141) pasa en dos ejecuciones consecutivas; no forma parte de `validate` porque necesita un navegador (véase el README). Los resultados de la sección anterior se conservan como estaban en su momento: el recuento de 71 pruebas era el del commit `7ae8060`.
