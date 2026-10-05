@@ -1,10 +1,80 @@
-import type { EvidenceRegistry, ImportedDataset } from './schema';
+import type { DossierMap, EvidenceRegistry, ImportedDataset } from './schema';
 
 export interface RegistryIssue {
   severity: 'error' | 'warning';
   code: string;
   path: string;
   message: string;
+}
+
+// Approving a claim never implicitly approves its whole card or a relationship.
+// The dossier has its own explicit review decision, backed by reviewed claims.
+export function findDossierReviewIssues(
+  mapping: DossierMap,
+  registry: EvidenceRegistry,
+): RegistryIssue[] {
+  const issues: RegistryIssue[] = [];
+  const claims = new Map(registry.claims.map((claim) => [claim.id, claim]));
+  const add = (code: string, path: string, message: string) =>
+    issues.push({ severity: 'error', code, path, message });
+  for (const item of [...mapping.events, ...mapping.relations]) {
+    if (item.editorialStatus !== 'reviewed') continue;
+    if (!item.review)
+      add(
+        'dossier-review-incomplete',
+        item.id,
+        'Una ficha revisada necesita responsable y fecha',
+      );
+    const selected =
+      'claimIds' in item
+        ? item.claimIds.flatMap((id) =>
+            claims.get(id) ? [claims.get(id)!] : [],
+          )
+        : registry.claims.filter((claim) => claim.eventIds.includes(item.id));
+    if (!selected.length)
+      add(
+        'dossier-review-without-claims',
+        item.id,
+        'Una ficha revisada necesita afirmaciones revisadas',
+      );
+    if (selected.some((claim) => claim.review.status !== 'reviewed'))
+      add(
+        'dossier-review-with-pending-claims',
+        item.id,
+        'La ficha contiene afirmaciones pendientes o discutidas',
+      );
+    if ('claimIds' in item) {
+      for (const eventId of [item.fromEventId, item.toEventId])
+        if (!selected.some((claim) => claim.eventIds.includes(eventId)))
+          add(
+            'relation-review-without-endpoint',
+            item.id,
+            'Las afirmaciones deben cubrir ambos acontecimientos de la relación',
+          );
+    }
+  }
+  for (const relation of mapping.relations) {
+    for (const id of relation.claimIds) {
+      const claim = claims.get(id);
+      if (!claim)
+        add(
+          'unknown-relation-claim',
+          relation.id,
+          `Afirmación inexistente: ${id}`,
+        );
+      else if (
+        !claim.eventIds.some((eventId) =>
+          [relation.fromEventId, relation.toEventId].includes(eventId),
+        )
+      )
+        add(
+          'unrelated-relation-claim',
+          relation.id,
+          `Afirmación ajena a la relación: ${id}`,
+        );
+    }
+  }
+  return issues;
 }
 
 // Structural checks: they need no imported text, so they run on every load and

@@ -11,6 +11,11 @@ const ids = z
 const order = z.number().int().nonnegative();
 const editorialStatus = z.enum(['draft', 'provisional', 'reviewed', 'demo']);
 const claimStatus = z.enum(['fact', 'interpretation', 'theory']);
+export const EditorialReviewSchema = z.strictObject({
+  reviewer: text,
+  date: z.iso.date(),
+  note: text.optional(),
+});
 const scoped = {
   id: IdSchema,
   universeId: IdSchema,
@@ -155,6 +160,7 @@ export const EventSchema = z
     entityIds: ids,
     evidence: z.array(EvidenceSchema),
     claimStatus,
+    review: EditorialReviewSchema.optional(),
   })
   .refine(
     (event) =>
@@ -174,6 +180,8 @@ export const RelationSchema = z
     explanation: text,
     evidence: z.array(EvidenceSchema),
     claimStatus,
+    review: EditorialReviewSchema.optional(),
+    claimIds: ids.default([]),
   })
   .refine(
     (relation) =>
@@ -470,6 +478,13 @@ export type ImportDiff = z.infer<typeof ImportDiffSchema>;
 export type AcceptedImport = z.infer<typeof AcceptedImportSchema>;
 
 // Local dossier annotations. Prose remains in the supplied Markdown documents.
+const dossierEditorial = {
+  editorialStatus: EventSchema.shape.editorialStatus
+    .exclude(['demo'])
+    .default('provisional'),
+  claimStatus: EventSchema.shape.claimStatus.default('interpretation'),
+  review: EventSchema.shape.review,
+};
 export const DossierMapSchema = z.strictObject({
   eras: z.array(
     z.strictObject({ id: IdSchema, name: text, description: text }),
@@ -485,6 +500,7 @@ export const DossierMapSchema = z.strictObject({
       time: HistoricalTimeSchema,
       importance: z.enum(['major', 'minor']),
       certainty: EventSchema.shape.certainty,
+      ...dossierEditorial,
     }),
   ),
   relations: z.array(
@@ -495,6 +511,9 @@ export const DossierMapSchema = z.strictObject({
       kind: z.enum(['association', 'precedes', 'causes', 'mentions']),
       explanation: text,
       sectionId: IdSchema,
+      ...dossierEditorial,
+      // Assertions selected by the reviewer to support this relationship.
+      claimIds: RelationSchema.shape.claimIds,
     }),
   ),
 });

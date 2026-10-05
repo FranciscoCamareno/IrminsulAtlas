@@ -1,6 +1,8 @@
 # Plan de trabajo y validación
 
-Estado al 25 de septiembre de 2026: base implementada y prototipo de fase 2 con cronología a pantalla completa, gestos y ficha. Hay pruebas automatizadas de dominio, React/D3 en DOM simulado y HTTP. La revisión visual en navegador y el cierre de la fase 2 siguen pendientes. El MVP no está completo.
+Estado al 05/10/2026: explorador de historia antigua implementado con 29 acontecimientos, búsqueda, filtros, progreso, lista, detalles diferidos y evidencias por afirmación. El [cierre técnico de la v1](validation/cierre-tecnico-v1.md) incorpora revisión individual de fichas y relaciones, respaldo de progreso en memoria y comprobación textual en `validate`. La aprobación del corpus y de la revelación sigue pendiente. La primera versión no está cerrada editorialmente ni cubre aún el viaje del Viajero.
+
+La meta continúa siendo una cronología completa de historia antigua y del Viajero hasta un corte público comprobado del juego. Los 29 acontecimientos son el techo de esta primera parte, no del proyecto completo. Los registros fechados de abajo conservan los resultados históricos de cada iteración.
 
 ## Fase 0 — Inspección y decisiones
 
@@ -19,7 +21,8 @@ Entrega: decisiones documentadas y plan concreto de la primera iteración. Si no
 - [x] Preparar fixtures identificados para los casos solicitados en esta etapa: incertidumbre, relaciones, spoilers y fuentes múltiples.
 - [x] Implementar validación de IDs y referencias.
 - [x] Generar página inicial y ruta de evento básica.
-- [ ] Completar revisión visual y de interacción: hidratación, teclado, historial y móvil a 320 px.
+- [x] Comprobar hidratación, teclado, historial y reflujo a 320 px en navegador automatizado; informes de lectura y accesibilidad.
+- [ ] Completar comprobación con lector de pantalla, teléfono físico y otros navegadores.
 
 Entrega: proyecto ejecutable localmente y contenido validado. Actualizar README con los comandos que realmente existan.
 
@@ -30,35 +33,43 @@ Entrega: proyecto ejecutable localmente y contenido validado. Actualizar README 
 - [x] Tres niveles de detalle y agrupación inicial por épocas.
 - [x] Selección y ficha contextual.
 - [x] Relaciones del evento seleccionado.
-- [ ] Validar visualmente el prototipo en escritorio y móvil, incluidos gestos físicos.
+- [x] Revisar lectura y navegación en escritorio y móvil emulado con los 29 acontecimientos.
+- [ ] Validar gestos físicos y resolver los pendientes L-06/L-08 de la revisión de lectura.
 - [ ] Ajustar umbrales, densidad y colisiones con un corpus representativo; la agrupación general por densidad sigue pendiente.
 
 Entrega: explorar, abrir y volver sin perder contexto. Verificar eventos densos, simultáneos y desconocidos.
 
 ## Fase 3 — Exploración y accesibilidad
 
-- [ ] Búsqueda y filtros.
-- [ ] Reglas de spoilers en todas las superficies.
-- [ ] Enlaces directos e historial.
-- [ ] Móvil, teclado, vista de lista y movimiento reducido.
-- [ ] Estados vacíos y de error.
+- [x] Búsqueda de texto y filtros por capítulo, región, personaje/lugar y principal/secundario.
+- [ ] Completar filtros por facción y categoría del requisito original.
+- [x] Aplicar reglas de spoilers a las superficies implementadas, con enlaces bloqueados neutros.
+- [ ] Revisar y aprobar los hitos y la revelación de cada ficha; la política regional sigue provisional.
+- [x] Enlaces directos e historial de selección, filtros y vista.
+- [x] Teclado, vista de lista, movimiento reducido y móvil emulado.
+- [x] Estados vacíos y errores de datos principales/detalles con reintento.
+- [ ] Completar recuperación explícita de la búsqueda de texto ante fallo de su índice.
 
 Entrega: flujo completo usable sin depender del ratón o de una API disponible.
 
 ## Fase 4 — Fuente real y contenido
 
-- [ ] Evaluar API real y registrar contrato, cobertura y condiciones.
-- [ ] Implementar adaptador, snapshots y detección de cambios.
-- [ ] Vincular fuentes importadas a eventos editoriales.
-- [ ] Revisar 30–50 eventos para completar contenido del MVP.
-- [ ] Mantener compilación reproducible y fallos seguros.
+- [x] Evaluar proveedor de archivos, fijar snapshot y registrar cobertura y exclusiones P1.
+- [x] Implementar adaptador, snapshots, validación, diferencias y promoción local segura P2.
+- [x] Vincular fuentes y fragmentos por hash a la muestra de afirmaciones editoriales.
+- [x] Permitir estados y clasificación por evento/relación con decisión explícita de revisión.
+- [ ] Completar y aprobar el corpus de los 29 acontecimientos; quedan 12 sin afirmaciones y ninguna aprobada.
+- [x] Conservar build sin red y verificar fuentes/fragmentos en la validación completa, con candidato comprobable antes de promover.
+- [ ] Identificar acontecimientos afectados por nuevos snapshots y ensayar su revisión/recuperación editorial P7.
 
 Si no se identifica una API adecuada, registrar la limitación y usar contenido editorial manual verificado. No afirmar que existe integración.
 
 ## Fase 5 — Validación final y publicación solicitada
 
-- [ ] Medir rendimiento con datos y dispositivos representativos.
-- [ ] Revisar coherencia visual y enlaces.
+- [x] Medir corpus real y conjunto sintético denso en Chromium con condiciones documentadas.
+- [ ] Repetir mediciones en teléfono físico, red móvil y otra máquina.
+- [x] Revisar lectura y enlaces de los 29 acontecimientos en los tamaños documentados.
+- [ ] Completar sesiones con participantes y las filas pendientes de la matriz de accesibilidad.
 - [ ] Completar documentación operativa.
 - [ ] Solo si el usuario pide publicar: configurar alojamiento y desplegar.
 - [ ] Comprobar el resultado publicado y conservar una versión recuperable.
@@ -85,7 +96,24 @@ Si no se identifica una API adecuada, registrar la limitación y usar contenido 
 
 RF-01 a RF-12 implementados, contenido revisado, casos difíciles comprobados, compilación válida, navegación accesible, sin secretos publicados y documentación ajustada a lo construido. La publicación no es obligatoria para considerar listo el prototipo local.
 
+## Siguientes pasos desde el estado actual
+
+1. **Cerrar la historia antigua:** completar las 12 fichas sin afirmaciones, resolver discrepancias y revisar los cuerpos completos, conexiones e hitos de revelación. Registrar decisiones humanas; ejecutar `validate` con la importación compatible.
+2. **Comprobar la experiencia:** teléfono físico, lector de pantalla, otros navegadores y sesiones con personas. Resolver navegación entre hilos regionales y decidir agrupación por densidad según mediciones.
+3. **Incorporar el Viajero por arcos:** crear un inventario verificable de historia principal y fuentes complementarias, distinguir acontecimiento y misión, y ampliar hitos por acto/misión y progreso opcional. Reutilizar el modelo y separar la nueva entrada del dossier antiguo; no convertir todas las fuentes en eventos automáticamente.
+4. **Declarar cobertura y mantenerla:** fijar una versión pública como corte, registrar categorías incluidas/ausentes (misiones de mundo/personaje, eventos temporales, libros y otras fuentes) y separar fecha histórica, revelación y publicación. Implementar impacto de cambios y recuperación antes de afirmar que el atlas está actualizado hasta ese corte.
+
+El corte del juego y la cobertura completa no están verificados en este cierre técnico. No se amplía el corpus ni se añade infraestructura anticipada para resolverlos.
+
 ## Registro de avances
+
+### 2026-10-05 — Cierre técnico de la primera parte
+
+- Rama `codex/cierre-tecnico-v1` desde `ddf148e`. Corregido progreso cuando acceder/escribir almacenamiento falla, incluida la prioridad del estado en memoria frente a un valor persistido anterior.
+- Estados y clasificación por acontecimiento/relación desde los esquemas; revisión completa explícita con responsable, fecha y afirmaciones aprobadas. Las relaciones seleccionan afirmaciones por ID. Ninguna afirmación ni ficha real se aprobó.
+- Importación ampliada sincronizada: candidato `9af75c4c…`, versión `675999db…`, 51 fuentes/428 segmentos, cuatro exclusiones existentes y versión anterior conservada. Comprobación del candidato antes de promover, sin incidencias.
+- `validate` incluye las evidencias textuales; `validate:code` permite comprobar la base sin material importado. Las comprobaciones no descargan. Documentación operativa y alcance actualizado para conservar la meta del Viajero.
+- Windows: formato, lint, tipos sin diagnósticos, 109 pruebas, ocho páginas y evidencias correctas; 26 pruebas de navegador en Edge/Chromium, incluidos dos casos de almacenamiento bloqueado. [Informe y límites](validation/cierre-tecnico-v1.md). No se certifica Linux para esta iteración, ni teléfono físico, lector de pantalla o participantes. Sin despliegue.
 
 Añadir en cada iteración: fecha, fase, cambios, comprobaciones, limitaciones y siguiente paso. No rellenar avances hipotéticos.
 

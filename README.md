@@ -2,6 +2,8 @@
 
 Explorador de lore con cronología interactiva a pantalla completa. La página muestra el **primer borrador de la historia antigua de Genshin Impact**, basado en los cuatro documentos aportados en `docs/`.
 
+La meta del proyecto incluye la historia del Viajero y una cronología con cobertura comprobada hasta una versión pública identificada del juego. Esta entrega conserva el alcance antiguo; el [plan actualizado](docs/06-plan-de-trabajo.md) separa su cierre de la ampliación por arcos.
+
 **Estado al 05/10/2026:** 29 acontecimientos (techo de la primera versión), siete capítulos, 35 conexiones, 48 fichas de personajes/grupos y 34 lugares, todo `provisional`. El contenido se muestra **según el progreso que elige el lector** (al entrar por primera vez se le pregunta; «Mostrar todo» lo abre entero). La asignación de hitos es **provisional**, hecha por el asistente y pendiente de revisión. Hay búsqueda, filtros, índice ligero con detalles bajo demanda y un registro de evidencias por afirmación (46 afirmaciones en 17 acontecimientos; **ninguna aprobada**; 37 apoyos contrastados con 20 textos primarios del juego). Alcance y criterios: [docs/11](docs/11-alcance-primera-version.md).
 
 ## Ejecutar localmente
@@ -24,13 +26,14 @@ Astro sirve normalmente en `http://localhost:4321/`. En PowerShell usar `npm.cmd
 | `npm test`                 | Pruebas de dominio, contenido e interacción                                       |
 | `npm run lint`             | ESLint                                                                            |
 | `npm run format:check`     | Comprobar formato                                                                 |
-| `npm run validate`         | Formato, lint, tipos, pruebas y build                                             |
+| `npm run validate`         | Validación de código y evidencias contra la importación local aceptada            |
+| `npm run validate:code`    | Formato, lint, tipos, pruebas y build; sin exigir importación local               |
 | `npm run test:e2e`         | Pruebas de navegador (requiere `npm run build` y un Chromium; ver abajo)          |
 | `npm run content:evidence` | Verifica los fragmentos del registro de evidencias contra la importación aceptada |
 
 **Finales de línea:** el repositorio guarda LF y `.gitattributes` fuerza `eol=lf`, de modo que `npm run validate` pasa también en Windows con `core.autocrlf=true`; los fixtures de `tests/fixtures/import/raw/` conservan sus bytes exactos. En un checkout de Windows anterior al cambio, renormalizar con `git add --renormalize .`. Resultados y pasos completos en [validación técnica del 05/10/2026](docs/validation/validacion-tecnica-2026-10-05.md). Alcance y criterios de la primera versión (propuesta): [docs/11](docs/11-alcance-primera-version.md).
 
-Se conservan las dependencias instaladas y `package-lock.json`. La compilación del dossier no requiere red, credenciales ni el snapshot P2. Puede desactivarse la telemetría de Astro con `$env:ASTRO_TELEMETRY_DISABLED='1'` en PowerShell.
+Se conservan las dependencias instaladas y `package-lock.json`. `build` y `validate:code` no requieren red, credenciales ni el snapshot P2. **`validate` exige la importación aceptada compatible con el registro de evidencias**: prepararla con los comandos del importador que figuran abajo. Descargar código con Git no descarga los datos ignorados. Ninguna validación descarga automáticamente. Puede desactivarse la telemetría de Astro con `$env:ASTRO_TELEMETRY_DISABLED='1'` en PowerShell.
 
 ## Pruebas de navegador
 
@@ -68,7 +71,7 @@ Los textos originales permanecen en:
 3. [Regiones y lugares](docs/02_regiones_y_locaciones.md).
 4. [Personajes](docs/03_personajes_fundamentales.md).
 
-`content/editorial/genshin-dossier.json` contiene únicamente anotaciones: capítulos, orden de lectura, hilos regionales, tiempos, referencias a entidades y relaciones. `src/content/dossier.ts` carga los apartados por sus IDs, sin reescribir sus cuerpos. Los ocho episodios complementarios reutilizan apartados de lugares/personajes y se identifican como secundarios.
+`content/editorial/genshin-dossier.json` contiene anotaciones: capítulos, orden de lectura, hilos regionales, tiempos, referencias, relaciones y decisiones editoriales individuales. Eventos y relaciones admiten `editorialStatus` (`draft`, `provisional`, `reviewed`), `claimStatus` (`fact`, `interpretation`, `theory`) y `review` con responsable y fecha. Si se omiten, conservan `provisional` e `interpretation`. Aprobar una ficha exige afirmaciones aprobadas; aprobar una relación exige seleccionar `claimIds` que cubran sus extremos. [Procedimiento](docs/12-procedimiento-revision-editorial.md). `src/content/dossier.ts` carga los apartados por sus IDs, sin reescribir sus cuerpos. Los ocho episodios complementarios reutilizan apartados de lugares/personajes y se identifican como secundarios.
 
 Para ampliar, conservar IDs existentes, añadir el texto y su ID en el documento correspondiente, y anotar el nuevo evento en el JSON. Añadir un capítulo no requiere cambiar componentes. Un evento de la cronología sin anotaciones, una sección ausente, un ID duplicado, una referencia rota o un ciclo de anterioridad hace fallar la carga.
 
@@ -98,26 +101,28 @@ Los fixtures demo permanecen en `content/editorial/demo.json` y `content/importe
 
 ## Importador P2
 
-El [importador P2](docs/validation/importador-p2.md) permanece separado del dossier y del cliente. Trabaja con la muestra [aprobada en P1](docs/validation/p1/revision-humana.md): 23 fuentes procesadas, 19 aceptadas y 396 segmentos. Ninguna misión se convierte automáticamente en evento.
+El [importador P2](docs/validation/importador-p2.md) permanece separado del dossier y del cliente. La muestra [aprobada en P1](docs/validation/p1/revision-humana.md) se amplió con los textos primarios del lore antiguo: 55 fuentes procesadas, 51 aceptadas y 428 segmentos. Se mantienen cuatro exclusiones conocidas. Ninguna misión se convierte automáticamente en evento.
 
 ```sh
 npm run content:acquire
 npm run content:import
 npm run content:validate -- ID_DEL_CANDIDATO
 npm run content:diff -- ID_DEL_CANDIDATO
+npm run content:evidence -- ID_DEL_CANDIDATO
 npm run content:promote -- ID_DEL_CANDIDATO
 npm run content:validate
+npm run validate
 ```
 
-Solo `content:acquire` descarga. Las demás órdenes trabajan localmente; la promoción exige validación y conserva versiones anteriores. Candidatos en `.validation/p2/`; fuentes normalizadas en `content/imported/animegame/`, ignoradas por Git. Su aceptación técnica no equivale a revisión editorial del dossier.
+Solo `content:acquire` descarga. Las demás órdenes trabajan localmente. `content:evidence -- ID` comprueba el candidato sin cambiar la versión aceptada; ejecutar y resolver sus errores antes de promover. La promoción valida las fuentes y conserva versiones anteriores, pero por sí sola no verifica su compatibilidad con el registro editorial. Candidatos en `.validation/p2/`; fuentes normalizadas en `content/imported/animegame/`, ignoradas por Git. Su aceptación técnica no equivale a revisión editorial del dossier.
 
 ## Git, validación y límites
 
-Repositorio: [FranciscoCamareno/IrminsulAtlas](https://github.com/FranciscoCamareno/IrminsulAtlas). Esta fase parte de `d68840a8f832e7c4f64f19cff1e74d8208b8853d`, en `codex/cronologia-dossier`. El ZIP de P0 permanece en `.validation/p0/` como respaldo adicional; no se usa ni se versiona.
+Repositorio: [FranciscoCamareno/IrminsulAtlas](https://github.com/FranciscoCamareno/IrminsulAtlas). El cierre técnico de la v1 parte de `ddf148ec10e3019a52601e82792d028415655fa2`, en `codex/cierre-tecnico-v1`. El ZIP de P0 permanece en `.validation/p0/` como respaldo adicional; no se usa ni se versiona.
 
 La [validación de este borrador](docs/validation/dossier-historia-antigua.md) registra pruebas, compilación, capturas de escritorio y viewports estrechos. Las pruebas de DOM y las capturas no certifican gestos táctiles físicos, lector de pantalla, todos los navegadores ni usabilidad con participantes.
 
-Pendiente: contraste de fuentes, aprobación editorial, spoilers por progreso, búsqueda/filtros completos de acontecimientos, carga de detalle separada y mediciones de rendimiento. No se publicó ni desplegó.
+El [cierre técnico](docs/validation/cierre-tecnico-v1.md) registra la sincronización de fuentes, el progreso con almacenamiento bloqueado y el flujo de revisión individual. Pendientes: completar respaldo de los 29 acontecimientos, resolver discrepancias, aprobación humana de fichas y revelación, agrupación por densidad, pruebas con dispositivos y personas y actualización editorial ante nuevos snapshots. Los filtros por facción/categoría del requisito original tampoco están completos. La primera parte no se declara aprobada ni la cronología completa.
 
 ## Documentación de arquitectura y planes
 

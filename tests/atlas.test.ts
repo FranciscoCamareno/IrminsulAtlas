@@ -208,7 +208,7 @@ describe('spoiler policy across every surface', () => {
       expect(html.replaceAll('Irminsul', '')).not.toContain(entity.name);
     expect(html).toContain('Cargando el atlas');
   });
-  it('lets progress storage fail without breaking and ignores corrupt values', () => {
+  it('parses stored choices and ignores corrupt values', () => {
     expect(choiceFromSnapshot('{not json')).toBeNull();
     expect(choiceFromSnapshot(null)).toBeNull();
     expect(choiceFromSnapshot('{"kind":"upto"}')).toBeNull();

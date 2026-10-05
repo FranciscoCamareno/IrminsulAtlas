@@ -4,6 +4,8 @@
 
 # Plan de integración de lore y validación — Irminsul Atlas
 
+> **Seguimiento del cierre técnico, 05/10/2026:** la [matriz vigente del plan general](06-plan-de-trabajo.md) y el [informe del cierre](validation/cierre-tecnico-v1.md) prevalecen sobre los estados históricos siguientes. P3 dispone de registro de evidencias y revisión individual de eventos/relaciones, pero ninguna afirmación real está aprobada. P4 tiene búsqueda, filtros, progreso y detalles diferidos; faltan revisión de revelación y filtros por facción/categoría. P5 conserva pendientes de agrupación y navegación entre hilos. P6 tiene mediciones y pruebas automatizadas, no sesiones humanas. P7 no cierra aún impacto de cambios ni recuperación editorial. La meta posterior incluye el viaje del Viajero y cobertura hasta una versión pública comprobada.
+
 Fecha: 25 de septiembre de 2026, Costa Rica.
 Archivo: `docs/10-plan-integracion-lore-y-pruebas.md`.
 Estado al 27/09/2026: P0 auditada; Git/GitHub verificados. P1 aprobada por el usuario con los límites de cobertura documentados. P2 implementa adquisición, normalización, validación, comparación y promoción local; evidencia en [importador P2](validation/importador-p2.md). P3–P7 pendientes. Antecedentes: [estado actual P0](validation/estado-actual.md), [cobertura P1](validation/cobertura-fuentes.md) y [aprobación humana](validation/p1/revision-humana.md).
@@ -342,7 +344,7 @@ P0 debe reutilizar los comandos existentes y documentar su equivalencia. Si falt
 | `npm run build`            | Generación estática desde datos aceptados; no descarga implícita |
 | `npm run test:e2e`         | Pruebas sobre salida compilada servida localmente                |
 
-Estos comandos no existen por el hecho de aparecer aquí. P2 añadió `content:acquire`, `content:import`, `content:validate`, `content:diff` y `content:promote`; su validación se limita al material fuente, no certifica todavía evidencias editoriales ni sus estados de publicación. `test:e2e` sigue pendiente. README y el informe P2 documentan los argumentos reales. El mecanismo de promoción/restauración de datos se define en P2 y se documenta en P7.
+Los comandos actuales están en README y `package.json`. Existen `content:acquire`, `content:import`, `content:validate`, `content:diff`, `content:promote`, `content:evidence [ID]` y `test:e2e`. `content:evidence -- ID` permite comprobar fragmentos contra un candidato sin promoverlo; `validate` incluye la verificación contra el aceptado y exige prepararlo localmente. `validate:code` comprueba la base sin exigir datos importados. La aceptación de fuentes y la comprobación de hashes no aprueban contenido editorial. El ensayo completo de impacto y recuperación sigue pendiente de P7.
 
 Cada incremento entrega: resumen de cambios, archivos afectados, snapshot/configuración utilizados, comandos ejecutados y resultado, fallos previos, nuevas limitaciones, evidencia manual cuando aplique y siguiente fase habilitada. No basta «todo funciona».
 

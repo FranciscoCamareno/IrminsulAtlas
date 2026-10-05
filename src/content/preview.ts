@@ -169,6 +169,7 @@ export async function loadSiteContent(): Promise<Dataset> {
         'Conexión de muestra para probar el diseño; no afirma una relación de lore.',
       evidence: [],
       claimStatus: 'interpretation',
+      claimIds: [],
     });
   };
   for (let index = 1; index < data.events.length; index++)

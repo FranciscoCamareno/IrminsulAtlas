@@ -65,8 +65,10 @@ function storage(): Storage | undefined {
 
 // Snapshots are raw strings, so equal values never trigger a re-render.
 export function getChoiceSnapshot(): string | null {
+  // A failed write must not let an older persisted value override this choice.
+  if (memory !== null) return memory;
   try {
-    return storage()?.getItem(STORAGE_KEY) ?? memory;
+    return storage()?.getItem(STORAGE_KEY) ?? null;
   } catch {
     return memory;
   }
@@ -84,11 +86,15 @@ export const choiceFromSnapshot = parseChoice;
 
 export function storeChoice(choice: ProgressChoice): void {
   const raw = JSON.stringify(choice);
+  memory = raw;
   try {
-    storage()?.setItem(STORAGE_KEY, raw);
-    memory = null;
+    const target = storage();
+    if (target) {
+      target.setItem(STORAGE_KEY, raw);
+      memory = null;
+    }
   } catch {
-    memory = raw;
+    // Keep the latest choice in memory when access or writes are blocked.
   }
   listeners.forEach((listener) => listener());
 }

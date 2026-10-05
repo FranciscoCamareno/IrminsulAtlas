@@ -27,6 +27,52 @@ afterAll(async () => {
 // The files of a static site stay public: what is guaranteed is that no page's
 // initial HTML, title or description names hidden content.
 describe('spoiler surfaces in the built site', () => {
+  it.each(['access', 'write'] as const)(
+    'lets the reader choose and lower progress when storage fails on %s',
+    async (failure) => {
+      const context = await browser.newContext(desktop);
+      await context.addInitScript((mode) => {
+        if (mode === 'access')
+          Object.defineProperty(window, 'localStorage', {
+            get() {
+              throw new DOMException('Blocked', 'SecurityError');
+            },
+          });
+        else
+          Storage.prototype.setItem = () => {
+            throw new DOMException('Blocked', 'QuotaExceededError');
+          };
+      }, failure);
+      const page = await context.newPage();
+      try {
+        await page.goto(server.url + '/?id=evt-cataclismo');
+        await page.waitForSelector('dialog.progress-dialog[open]');
+        await page.getByRole('radio', { name: /Mostrar todo/ }).check();
+        await page.getByRole('button', { name: 'Aplicar' }).click();
+        await page.locator('.atlas-detail h3').waitFor();
+        expect(await page.locator('.atlas-detail h3').textContent()).toContain(
+          'Cataclismo',
+        );
+        await page.getByRole('button', { name: /Progreso de lectura/ }).click();
+        await page.getByRole('radio', { name: /Aún no he jugado/ }).check();
+        await page.getByRole('button', { name: 'Aplicar' }).click();
+        await page
+          .getByText('Contenido no disponible con tu progreso actual.', {
+            exact: true,
+          })
+          .waitFor();
+        expect(await page.locator('body').innerText()).not.toContain(
+          'Cataclismo',
+        );
+        await page.goto(server.url + '/dossier/historia/');
+        await page.getByRole('button', { name: 'Mostrar todo y leer' }).click();
+        await page.locator('.dossier-prose').waitFor();
+      } finally {
+        await context.close();
+      }
+    },
+  );
+
   it('serves pages whose HTML, title and description reveal no title, name or text', async () => {
     const real = await Promise.all(
       index.events.map(async (event) => [

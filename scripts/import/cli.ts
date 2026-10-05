@@ -3,11 +3,13 @@ import console from 'node:console';
 import { resolve } from 'node:path';
 import {
   EvidenceRegistrySchema,
+  DossierMapSchema,
   ImportSelectionSchema,
   SnapshotManifestSchema,
 } from '../../src/domain/schema.ts';
 import {
   findRegistryIssues,
+  findDossierReviewIssues,
   verifyAgainstImport,
 } from '../../src/domain/evidence-integrity.ts';
 import { acquireSnapshot } from './acquire.ts';
@@ -101,7 +103,7 @@ try {
         sources: current.dataset.sources.length,
       }),
     );
-  } else if (command === 'evidence' && !id) {
+  } else if (command === 'evidence') {
     // Compares every pinned fragment with the accepted import. Without one it
     // cannot say anything, and says so instead of passing.
     const registry = parse(
@@ -109,15 +111,21 @@ try {
       await readJson('content/editorial/genshin-evidence.json'),
       'genshin-evidence.json',
     );
-    const dossier = (await readJson(
-      'content/editorial/genshin-dossier.json',
-    )) as {
-      events: Array<{ id: string }>;
-    };
+    const dossier = DossierMapSchema.parse(
+      await readJson('content/editorial/genshin-dossier.json'),
+    );
     const events = new Set(dossier.events.map((event) => event.id));
-    const structural = findRegistryIssues(registry, events);
-    const current = await readAccepted(store);
-    if (!current)
+    const structural = [
+      ...findRegistryIssues(registry, events),
+      ...findDossierReviewIssues(dossier, registry),
+    ];
+    // Candidate verification is read-only: a broken fragment cannot replace
+    // the accepted import just to discover the mismatch afterwards.
+    const current = id ? null : await readAccepted(store);
+    const imported = id
+      ? acceptedSubset(await readCandidate(candidates, id))
+      : current?.dataset;
+    if (!imported)
       fail(
         'NO_ACCEPTED_VERSION',
         'content/imported/animegame/accepted.json',
@@ -125,14 +133,16 @@ try {
         null,
         'No hay importación aceptada: las referencias a fragmentos no pueden verificarse. Ejecutar acquire, import y promote.',
       );
-    const textual = verifyAgainstImport(registry, current.dataset);
+    const textual = verifyAgainstImport(registry, imported);
     const issues = [...structural, ...textual];
     console.log(
       stableJson({
         status: issues.some((issue) => issue.severity === 'error')
           ? 'rejected'
           : 'valid',
-        importVersion: current.pointer.version,
+        ...(id
+          ? { candidate: id }
+          : { importVersion: current!.pointer.version }),
         claims: registry.claims.length,
         sources: registry.sources.length,
         // Coverage is reported, never hidden: events with no claim are unreviewed.
@@ -160,7 +170,7 @@ try {
       process.exitCode = 1;
   } else {
     console.error(
-      'Uso: node scripts/import/cli.ts acquire|import|validate [ID]|diff ID|promote ID|evidence',
+      'Uso: node scripts/import/cli.ts acquire|import|validate [ID]|diff ID|promote ID|evidence [ID]',
     );
     process.exitCode = 1;
   }

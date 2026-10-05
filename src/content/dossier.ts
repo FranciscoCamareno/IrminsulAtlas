@@ -7,11 +7,16 @@ import {
   EvidenceRegistrySchema,
   RevelationMapSchema,
   type Dataset,
+  type DossierMap,
   type Evidence,
+  type EvidenceRegistry,
   type RevelationMap,
 } from '../domain/schema';
 import { findIntegrityIssues } from '../domain/integrity';
-import { findRegistryIssues } from '../domain/evidence-integrity';
+import {
+  findDossierReviewIssues,
+  findRegistryIssues,
+} from '../domain/evidence-integrity';
 
 export const dossierFiles = [
   {
@@ -108,15 +113,7 @@ export function extractDossierSections(body: string) {
 
 // The registry is editorial data; incomplete or broken references stop the
 // load, exactly like a broken event reference would.
-async function applyEvidenceRegistry(data: Dataset) {
-  const registry = EvidenceRegistrySchema.parse(
-    JSON.parse(
-      await readFile(
-        resolve('content/editorial/genshin-evidence.json'),
-        'utf8',
-      ),
-    ),
-  );
+function applyEvidenceRegistry(data: Dataset, registry: EvidenceRegistry) {
   const problems = findRegistryIssues(
     registry,
     new Set(data.events.map((event) => event.id)),
@@ -230,13 +227,36 @@ const scope = {
   editorialStatus: 'provisional' as const,
 };
 
-export async function loadDossierContent(): Promise<Dataset> {
+export async function loadDossierContent(
+  overrides: { mapping?: DossierMap; registry?: EvidenceRegistry } = {},
+): Promise<Dataset> {
   const documents = await loadDossierDocuments();
   const mapping = DossierMapSchema.parse(
-    JSON.parse(
-      await readFile(resolve('content/editorial/genshin-dossier.json'), 'utf8'),
-    ),
+    overrides.mapping ??
+      JSON.parse(
+        await readFile(
+          resolve('content/editorial/genshin-dossier.json'),
+          'utf8',
+        ),
+      ),
   );
+  const registry = EvidenceRegistrySchema.parse(
+    overrides.registry ??
+      JSON.parse(
+        await readFile(
+          resolve('content/editorial/genshin-evidence.json'),
+          'utf8',
+        ),
+      ),
+  );
+  const reviewIssues = findDossierReviewIssues(mapping, registry);
+  if (reviewIssues.length)
+    throw new Error(
+      'Revisión del dossier inválida:\n' +
+        reviewIssues
+          .map((issue) => `${issue.code} ${issue.path}: ${issue.message}`)
+          .join('\n'),
+    );
   const sections = documents.flatMap((document) =>
     extractDossierSections(document.body).map((section) => ({
       ...section,
@@ -374,7 +394,6 @@ export async function loadDossierContent(): Promise<Dataset> {
       ],
       dossierSection: sectionId,
       evidence: evidenceFor(sectionId),
-      claimStatus: 'interpretation',
     });
   }
   for (const relation of mapping.relations) {
@@ -383,7 +402,6 @@ export async function loadDossierContent(): Promise<Dataset> {
       ...scope,
       ...fields,
       directed: ['precedes', 'causes', 'mentions'].includes(relation.kind),
-      claimStatus: 'interpretation',
       evidence: evidenceFor(sectionId),
     });
   }
@@ -394,7 +412,7 @@ export async function loadDossierContent(): Promise<Dataset> {
     if (!mappedIds.has(section.id))
       throw new Error('Acontecimiento sin anotaciones: ' + section.id);
   }
-  await applyEvidenceRegistry(data);
+  applyEvidenceRegistry(data, registry);
   applyRevelation(data, await loadRevelationMap());
   const parsed = DatasetSchema.parse(data);
   const issues = findIntegrityIssues(parsed);
