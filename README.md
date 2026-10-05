@@ -4,6 +4,8 @@ Explorador de lore con cronología interactiva a pantalla completa. La página m
 
 La meta del proyecto incluye la historia del Viajero y una cronología con cobertura comprobada hasta una versión pública identificada del juego. Esta entrega conserva el alcance antiguo; el [plan actualizado](docs/06-plan-de-trabajo.md) separa su cierre de la ampliación por arcos.
 
+Para continuar con un agente en la nube: [guía técnica del código y preparación del entorno](docs/13-guia-tecnica-agente-nube.md) y [desglose de pendientes por tarea, dependencias y criterios de aceptación](docs/14-trabajo-pendiente.md). Incluyen un prompt de inicio; los datos importados locales deben reconstruirse en el nuevo entorno.
+
 **Estado al 05/10/2026:** 29 acontecimientos (techo de la primera versión), siete capítulos, 35 conexiones, 48 fichas de personajes/grupos y 34 lugares, todo `provisional`. El contenido se muestra **según el progreso que elige el lector** (al entrar por primera vez se le pregunta; «Mostrar todo» lo abre entero). La asignación de hitos es **provisional**, hecha por el asistente y pendiente de revisión. Hay búsqueda, filtros, índice ligero con detalles bajo demanda y un registro de evidencias por afirmación (46 afirmaciones en 17 acontecimientos; **ninguna aprobada**; 37 apoyos contrastados con 20 textos primarios del juego). Alcance y criterios: [docs/11](docs/11-alcance-primera-version.md).
 
 ## Ejecutar localmente

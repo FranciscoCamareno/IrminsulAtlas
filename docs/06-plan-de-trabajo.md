@@ -4,6 +4,8 @@ Estado al 05/10/2026: explorador de historia antigua implementado con 29 acontec
 
 La meta continúa siendo una cronología completa de historia antigua y del Viajero hasta un corte público comprobado del juego. Los 29 acontecimientos son el techo de esta primera parte, no del proyecto completo. Los registros fechados de abajo conservan los resultados históricos de cada iteración.
 
+La continuación operativa se desglosa en [N-00 a N-14](14-trabajo-pendiente.md), con archivos, dependencias, validaciones y pendientes humanos. La [guía técnica para el agente en la nube](13-guia-tecnica-agente-nube.md) documenta el código base `02104fc` y cómo reconstruir las fuentes ignoradas por Git. Este desglose no completa ni aprueba ninguna fase de contenido.
+
 ## Fase 0 — Inspección y decisiones
 
 - [x] Inspeccionar el repositorio y preservar trabajo existente.
