@@ -4,6 +4,7 @@ import { getVisibleTimeline } from '../src/application/catalog';
 import {
   detailLevel,
   fitViewport,
+  groupByDensity,
   layoutTimeline,
   project,
 } from '../src/visualization/layout';
@@ -76,5 +77,36 @@ describe('timeline projection', () => {
     expect(detailLevel(0.3)).toBe('events');
     expect(detailLevel(0.8)).toBe('events');
     expect(detailLevel(1.4)).toBe('details');
+  });
+});
+
+describe('density grouping', () => {
+  const nodes = [
+    { id: 'a', x: 10, y: 10 },
+    { id: 'b', x: 20, y: 15 },
+    { id: 'c', x: 900, y: 900 },
+    { id: 'd', x: 15, y: 12 },
+  ];
+  it('collapses crowded cells into groups and leaves isolated nodes alone', () => {
+    const result = groupByDensity(nodes, 0.3, new Set());
+    expect(result.groups).toHaveLength(1);
+    expect(result.groups[0]!.members.sort()).toEqual(['a', 'b', 'd']);
+    expect(result.singles.map((node) => node.id)).toEqual(['c']);
+  });
+  it('keeps the selection and its links individual and splits groups when zooming in', () => {
+    const kept = groupByDensity(nodes, 0.3, new Set(['b']));
+    expect(kept.singles.map((node) => node.id)).toContain('b');
+    expect(kept.groups[0]!.members).not.toContain('b');
+    const closer = groupByDensity(nodes, 40, new Set());
+    expect(closer.groups).toHaveLength(0);
+    expect(closer.singles).toHaveLength(nodes.length);
+  });
+  it('loses no node: every input is either single or in exactly one group', () => {
+    const { singles, groups } = groupByDensity(nodes, 0.3, new Set(['c']));
+    const all = [
+      ...singles.map((n) => n.id),
+      ...groups.flatMap((g) => g.members),
+    ];
+    expect(all.sort()).toEqual(['a', 'b', 'c', 'd']);
   });
 });

@@ -285,4 +285,59 @@ describe('performance and limits of the production build', () => {
     expect(interaction['searchMs']).toBeLessThan(5000);
     await run.context.close();
   });
+
+  it('groups a dense set into markers, keeps the selection individual, and splits groups when zooming in', async () => {
+    const details = async (id: string) =>
+      (await (
+        await fetch(`${server.url}/data/events/${id}.json`)
+      ).json()) as EventDetailFile;
+    const dense = densify(realIndex, details, 10);
+    const run = await session(desktop, async (page) => {
+      await page.route('**/data/index.json', (route) =>
+        route.fulfill({ json: dense.index }),
+      );
+      await page.route('**/data/events/sintetico-*.json', async (route) => {
+        const id = decodeURIComponent(
+          route.request().url().split('/').pop()!.replace('.json', ''),
+        );
+        await route.fulfill({ json: await dense.detail(id) });
+      });
+    });
+    const selected = dense.index.events.find(
+      (event) => event.importance === 'major',
+    )!.id;
+    await run.page.goto(`${server.url}/?id=${selected}`);
+    await run.page.waitForSelector('.atlas-detail h3');
+    await run.page
+      .getByRole('button', { name: 'Ver toda la cronología' })
+      .click();
+    for (let step = 0; step < 4; step++)
+      await run.page
+        .getByRole('button', { name: 'Acercar cronología' })
+        .click();
+    await run.page.waitForTimeout(200);
+    const groups = run.page.locator('.timeline-group');
+    const count = await groups.count();
+    // The selected node is never swallowed by a group.
+    expect(
+      await run.page.locator(`[data-event-id="${selected}"]`).count(),
+    ).toBe(1);
+    if (count > 0) {
+      const members = (await groups.allTextContents()).reduce(
+        (sum, text) => sum + Number(text),
+        0,
+      );
+      expect(members).toBeGreaterThan(count);
+      const before = await run.page
+        .getByRole('status', { name: 'Nivel de zoom' })
+        .textContent();
+      await groups.first().click();
+      const after = await run.page
+        .getByRole('status', { name: 'Nivel de zoom' })
+        .textContent();
+      expect(parseInt(after ?? '0')).toBeGreaterThan(parseInt(before ?? '0'));
+    }
+    report['agrupación densa'] = { groupsAtFit: count };
+    await run.context.close();
+  });
 });

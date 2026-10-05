@@ -1,5 +1,6 @@
 import { useId } from 'react';
 import {
+  emptyFilters,
   hasFilters,
   type AtlasFilters,
   type FilterOptions,
@@ -13,6 +14,7 @@ export default function SearchPanel({
   totalCount,
   fullText,
   onChange,
+  onRetrySearch,
 }: {
   filters: AtlasFilters;
   options: FilterOptions;
@@ -21,6 +23,7 @@ export default function SearchPanel({
   totalCount: number;
   fullText: 'idle' | 'loading' | 'ready' | 'error';
   onChange: (filters: AtlasFilters) => void;
+  onRetrySearch: () => void;
 }) {
   const id = useId();
   const set = (patch: Partial<AtlasFilters>) =>
@@ -88,6 +91,38 @@ export default function SearchPanel({
           ))}
         </select>
       </label>
+      <label htmlFor={id + '-category'}>
+        <span>Categoría</span>
+        <select
+          id={id + '-category'}
+          value={filters.category}
+          onChange={(event) => set({ category: event.target.value })}
+        >
+          <option value="">Todas</option>
+          {options.categories.map((category) => (
+            <option key={category.name} value={category.name}>
+              {category.name} ({category.count})
+            </option>
+          ))}
+        </select>
+      </label>
+      {options.factions.length > 0 && (
+        <label htmlFor={id + '-faction'}>
+          <span>Facción</span>
+          <select
+            id={id + '-faction'}
+            value={filters.faction}
+            onChange={(event) => set({ faction: event.target.value })}
+          >
+            <option value="">Todas</option>
+            {options.factions.map((faction) => (
+              <option key={faction.id} value={faction.id}>
+                {faction.name} ({faction.count})
+              </option>
+            ))}
+          </select>
+        </label>
+      )}
       <label htmlFor={id + '-type'}>
         <span>Tipo</span>
         <select
@@ -111,7 +146,14 @@ export default function SearchPanel({
         {filters.q && fullText === 'error' && (
           <p>
             La búsqueda en el texto completo no está disponible; se muestran
-            coincidencias por nombre.
+            coincidencias por nombre.{' '}
+            <button
+              type="button"
+              className="text-button"
+              onClick={onRetrySearch}
+            >
+              Reintentar
+            </button>
           </p>
         )}
         {ignored.length > 0 && (
@@ -124,9 +166,7 @@ export default function SearchPanel({
           <button
             type="button"
             className="text-button"
-            onClick={() =>
-              onChange({ q: '', era: '', region: '', entity: '', type: '' })
-            }
+            onClick={() => onChange(emptyFilters)}
           >
             Limpiar filtros
           </button>

@@ -299,9 +299,11 @@ export async function loadDossierContent(
       .map((section) => ({
         ...scope,
         id: section.id,
-        kind: section.id.startsWith('per-')
-          ? ('character' as const)
-          : ('place' as const),
+        kind: mapping.factions.includes(section.id)
+          ? ('faction' as const)
+          : section.id.startsWith('per-')
+            ? ('character' as const)
+            : ('place' as const),
         name: section.title,
         aliases: [],
         body: section.body,
@@ -375,7 +377,7 @@ export async function loadDossierContent(
   }
   for (const [displayOrder, annotation] of mapping.events.entries()) {
     const section = required(annotation.sectionId);
-    const { sectionId, ...fields } = annotation;
+    const { sectionId, categories, ...fields } = annotation;
     data.events.push({
       ...scope,
       ...fields,
@@ -388,9 +390,10 @@ export async function loadDossierContent(
       displayOrder,
       revelation: { order: 0, milestoneIds: [] },
       categories: [
-        annotation.eraId === 'era-cierre-cataclismo'
-          ? 'Cierre contextual'
-          : 'Historia antigua',
+        ...(categories ?? ['Historia antigua']),
+        ...(annotation.eraId === 'era-cierre-cataclismo'
+          ? ['Cierre contextual']
+          : []),
       ],
       dossierSection: sectionId,
       evidence: evidenceFor(sectionId),

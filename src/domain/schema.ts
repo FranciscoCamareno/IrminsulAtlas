@@ -500,9 +500,13 @@ export const DossierMapSchema = z.strictObject({
       time: HistoricalTimeSchema,
       importance: z.enum(['major', 'minor']),
       certainty: EventSchema.shape.certainty,
+      // Editorial categories for the category filter; a proposal until reviewed.
+      categories: z.array(text).min(1).optional(),
       ...dossierEditorial,
     }),
   ),
+  // Groups that act as factions (shown under their own filter), not as people.
+  factions: ids.default([]),
   relations: z.array(
     z.strictObject({
       id: IdSchema,

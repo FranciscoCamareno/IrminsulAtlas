@@ -114,7 +114,9 @@ describe('automated accessibility checks (WCAG 2.2 A/AA rules)', () => {
     await page.getByRole('button', { name: 'Abrir menú' }).click();
     found.push(...(await scan(page, 'menú')));
     await page.goto(server.url + '/dossier/historia/');
-    await page.getByRole('heading', { name: 'Historia de Teyvat' }).waitFor();
+    await page
+      .getByRole('heading', { name: 'Historia de Teyvat', exact: true })
+      .waitFor();
     await page.waitForSelector('.dossier-prose');
     found.push(...(await scan(page, 'documento del dossier (todo visible)')));
     await context.close();

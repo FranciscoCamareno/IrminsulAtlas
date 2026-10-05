@@ -236,6 +236,8 @@ export interface AtlasFilters {
   era: string;
   region: string;
   entity: string;
+  faction: string;
+  category: string;
   type: '' | 'major' | 'minor';
 }
 export const emptyFilters: AtlasFilters = {
@@ -243,6 +245,8 @@ export const emptyFilters: AtlasFilters = {
   era: '',
   region: '',
   entity: '',
+  faction: '',
+  category: '',
   type: '',
 };
 const typeParam = { major: 'principal', minor: 'secundario' } as const;
@@ -254,6 +258,8 @@ export function parseFilters(params: URLSearchParams): AtlasFilters {
     era: params.get('capitulo') ?? '',
     region: params.get('region') ?? '',
     entity: params.get('con') ?? '',
+    faction: params.get('faccion') ?? '',
+    category: params.get('categoria') ?? '',
     type:
       type === typeParam.major
         ? 'major'
@@ -269,6 +275,8 @@ export function writeFilters(params: URLSearchParams, filters: AtlasFilters) {
   set('capitulo', filters.era);
   set('region', filters.region);
   set('con', filters.entity);
+  set('faccion', filters.faction);
+  set('categoria', filters.category);
   set('tipo', filters.type ? typeParam[filters.type] : '');
 }
 export const hasFilters = (filters: AtlasFilters) =>
@@ -289,6 +297,15 @@ export function filterOptions(view: VisibleView) {
     event.entityIds.filter((id) => view.entityById.has(id)),
   );
   const eras = count(view.events, (event) => [event.eraId]);
+  const categories = count(view.events, (event) => event.categories);
+  const entityList = [...participants].map(([id, total]) => ({
+    id,
+    name: view.entityById.get(id)!.name,
+    kind: view.entityById.get(id)!.kind,
+    count: total,
+  }));
+  const byName = (a: { name: string }, b: { name: string }) =>
+    a.name.localeCompare(b.name, 'es');
   return {
     eras: view.eras
       .filter((era) => eras.has(era.id))
@@ -296,14 +313,12 @@ export function filterOptions(view: VisibleView) {
     regions: [...regions]
       .map(([name, total]) => ({ name, count: total }))
       .sort((a, b) => a.name.localeCompare(b.name, 'es')),
-    entities: [...participants]
-      .map(([id, total]) => ({
-        id,
-        name: view.entityById.get(id)!.name,
-        kind: view.entityById.get(id)!.kind,
-        count: total,
-      }))
-      .sort((a, b) => a.name.localeCompare(b.name, 'es')),
+    // People and places, and factions, are offered under separate filters.
+    entities: entityList.filter((item) => item.kind !== 'faction').sort(byName),
+    factions: entityList.filter((item) => item.kind === 'faction').sort(byName),
+    categories: [...categories]
+      .map(([name, total]) => ({ name, count: total }))
+      .sort(byName),
     types: {
       major: view.events.filter((event) => event.importance === 'major').length,
       minor: view.events.filter((event) => event.importance === 'minor').length,
@@ -327,6 +342,20 @@ export function sanitizeFilters(filters: AtlasFilters, options: FilterOptions) {
   ) {
     ignored.push('región');
     next.region = '';
+  }
+  if (
+    next.category &&
+    !options.categories.some((item) => item.name === next.category)
+  ) {
+    ignored.push('categoría');
+    next.category = '';
+  }
+  if (
+    next.faction &&
+    !options.factions.some((item) => item.id === next.faction)
+  ) {
+    ignored.push('facción');
+    next.faction = '';
   }
   if (
     next.entity &&
@@ -365,6 +394,10 @@ export function filterEvents(
   return view.events.filter((event) => {
     if (filters.era && event.eraId !== filters.era) return false;
     if (filters.region && !event.regions.includes(filters.region)) return false;
+    if (filters.faction && !event.entityIds.includes(filters.faction))
+      return false;
+    if (filters.category && !event.categories.includes(filters.category))
+      return false;
     if (filters.entity && !event.entityIds.includes(filters.entity))
       return false;
     if (filters.type && event.importance !== filters.type) return false;

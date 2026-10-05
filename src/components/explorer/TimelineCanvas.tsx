@@ -11,6 +11,7 @@ import {
   connectionPath,
   detailLevel,
   fitViewport,
+  groupByDensity,
   layoutTimeline,
   project,
   type Size,
@@ -24,6 +25,7 @@ import {
 import Icon from './Icon';
 
 const cullingThreshold = 120;
+const groupingZoom = 0.6;
 const cullingMargin = 240;
 
 function keyboardFocus(element: HTMLElement): boolean {
@@ -127,6 +129,25 @@ export default function TimelineCanvas({
     }
   }, [selectedId, selectedX, selectedY]);
 
+  const [jumpEra, setJumpEra] = useState('');
+  const [jumpThread, setJumpThread] = useState('');
+  // Regions or threads of the chosen chapter, in layout order: every row of a
+  // tall chapter is one choice away instead of a series of drags.
+  const jumpThreads = [
+    ...new Set(
+      layout.nodes
+        .filter((node) => node.eraId === jumpEra && node.narrativeThread)
+        .map((node) => node.narrativeThread!),
+    ),
+  ];
+  // Aim a little below the middle so the target clears the selectors above.
+  function jumpTo(point: { x: number; y: number }) {
+    controller.current?.center(
+      point,
+      { width: size.current.width, height: size.current.height * 1.2 },
+      0.9,
+    );
+  }
   const connected = new Set(
     layout.edges
       .filter(
@@ -155,9 +176,22 @@ export default function TimelineCanvas({
       at.y < dimensions.height + cullingMargin
     );
   };
-  const renderedNodes = culling
+  const nearby = culling
     ? shownByLevel.filter((node) => node.id === selectedId || onScreen(node))
     : shownByLevel;
+  // Below the grouping zoom, dense sets collapse crowded cells into markers.
+  const grouping = culling && viewport.k < groupingZoom;
+  const { singles: renderedNodes, groups } = grouping
+    ? groupByDensity(
+        nearby,
+        viewport.k,
+        new Set([...connected, selectedId ?? '']),
+      )
+    : { singles: nearby, groups: [] };
+  // Connections attach to drawn nodes only: grouped ones have no marker of their own.
+  const edgeIds = grouping
+    ? new Set(renderedNodes.map((node) => node.id))
+    : renderedIds;
   // In dense data sets a connection is drawn only when both ends are near the
   // window, or when it belongs to the selection: very long dashed paths are
   // what makes zooming slow, and they carry little at that scale.
@@ -309,8 +343,8 @@ export default function TimelineCanvas({
                             edge.to.id === selectedId
                           : edge.kind === 'precedes' ||
                             edge.from.eraId === edge.to.eraId)) &&
-                      renderedIds.has(edge.from.id) &&
-                      renderedIds.has(edge.to.id) &&
+                      edgeIds.has(edge.from.id) &&
+                      edgeIds.has(edge.to.id) &&
                       edgeShown(edge.from, edge.to),
                   )
                   .map((edge) => {
@@ -480,28 +514,83 @@ export default function TimelineCanvas({
           </div>
         </section>
       )}
-      {dossier && !overview && (
-        <label className="chapter-jump">
-          Ir a capítulo
-          <select
-            defaultValue=""
-            onChange={(event) => {
-              const first = layout.nodes.find(
-                (node) => node.eraId === event.target.value,
-              );
-              if (first) controller.current?.center(first, size.current, 0.9);
-            }}
+      {groups.map((group) => {
+        const position = project(group, viewport);
+        return (
+          <button
+            type="button"
+            key={group.id}
+            className="timeline-group"
+            style={{ left: position.x, top: position.y }}
+            aria-label={`${group.members.length} acontecimientos agrupados; acercar para verlos`}
+            onClick={() =>
+              controller.current?.center(
+                group,
+                size.current,
+                Math.min(zoomLimits[1], Math.max(viewport.k * 2, groupingZoom)),
+              )
+            }
           >
-            <option value="" disabled>
-              Seleccionar…
-            </option>
-            {layout.eras.map((era) => (
-              <option value={era.id} key={era.id}>
-                {era.name}
+            {group.members.length}
+          </button>
+        );
+      })}
+      {dossier && !overview && (
+        <div
+          className="chapter-jump"
+          role="group"
+          aria-label="Ir a una parte de la cronología"
+        >
+          <label>
+            Ir a capítulo
+            <select
+              value={jumpEra}
+              onChange={(event) => {
+                setJumpEra(event.target.value);
+                setJumpThread('');
+                const first = layout.nodes.find(
+                  (node) => node.eraId === event.target.value,
+                );
+                if (first) jumpTo(first);
+              }}
+            >
+              <option value="" disabled>
+                Seleccionar…
               </option>
-            ))}
-          </select>
-        </label>
+              {layout.eras.map((era) => (
+                <option value={era.id} key={era.id}>
+                  {era.name}
+                </option>
+              ))}
+            </select>
+          </label>
+          {jumpThreads.length > 1 && (
+            <label>
+              Ir a región o hilo
+              <select
+                value={jumpThread}
+                onChange={(event) => {
+                  setJumpThread(event.target.value);
+                  const target = layout.nodes.find(
+                    (node) =>
+                      node.eraId === jumpEra &&
+                      (node.narrativeThread ?? '') === event.target.value,
+                  );
+                  if (target) jumpTo(target);
+                }}
+              >
+                <option value="" disabled>
+                  Seleccionar…
+                </option>
+                {jumpThreads.map((thread) => (
+                  <option value={thread} key={thread}>
+                    {thread}
+                  </option>
+                ))}
+              </select>
+            </label>
+          )}
+        </div>
       )}
       <div className="canvas-bottom">
         <div className="canvas-caption">

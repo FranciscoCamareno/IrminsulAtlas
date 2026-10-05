@@ -627,4 +627,37 @@ describe('progress, search and loading', () => {
         ?.textContent,
     ).toContain('Cuestión abierta');
   });
+  it('lets the reader retry the full-text index without losing the query', async () => {
+    const real = createMemorySource(buildAtlasData(dossier));
+    let failures = 1;
+    const flaky: AtlasSource = {
+      ...real,
+      search: () =>
+        failures-- > 0
+          ? Promise.reject(new AtlasLoadError('sin red'))
+          : real.search(),
+    };
+    await render(dossier, { kind: 'all' }, flaky);
+    await click(button('Buscar y filtrar'));
+    await type(
+      host.querySelector<HTMLInputElement>(
+        '.search-panel input[type="search"]',
+      )!,
+      'robafuegos',
+    );
+    expect(host.querySelector('.search-status')?.textContent).toContain(
+      'La búsqueda en el texto completo no está disponible',
+    );
+    // Name-only results are shown meanwhile and the query is kept.
+    expect(window.location.search).toContain('q=robafuegos');
+    await click(
+      [
+        ...host.querySelectorAll<HTMLButtonElement>('.search-status button'),
+      ].find((item) => item.textContent === 'Reintentar')!,
+    );
+    expect(host.querySelector('.search-status')?.textContent).not.toContain(
+      'no está disponible',
+    );
+    expect(window.location.search).toContain('q=robafuegos');
+  });
 });
