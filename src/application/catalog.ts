@@ -11,10 +11,12 @@ import {
   type Progress,
 } from '../domain/visibility';
 
-function timeLabel(
+export type VisibleTitleLookup = (eventId: string) => string | undefined;
+
+// Relative order may only name events the reader is allowed to see.
+export function formatTime(
   time: HistoricalTime,
-  data: Dataset,
-  progress: Progress,
+  visibleTitle: VisibleTitleLookup,
 ): string {
   switch (time.kind) {
     case 'unknown':
@@ -30,10 +32,10 @@ function timeLabel(
     case 'relative': {
       const parts = (['after', 'before'] as const).flatMap((direction) =>
         time[direction].flatMap((id) => {
-          const event = data.events.find((item) => item.id === id);
-          return event && isEventVisible(event, data, progress)
+          const title = visibleTitle(id);
+          return title
             ? [
-                `${direction === 'after' ? 'Después de' : 'Antes de'} «${event.title}»`,
+                `${direction === 'after' ? 'Después de' : 'Antes de'} «${title}»`,
               ]
             : [];
         }),
@@ -43,6 +45,19 @@ function timeLabel(
         : 'Orden relativo · referencias no disponibles con este progreso';
     }
   }
+}
+
+function timeLabel(
+  time: HistoricalTime,
+  data: Dataset,
+  progress: Progress,
+): string {
+  return formatTime(time, (id) => {
+    const event = data.events.find((item) => item.id === id);
+    return event && isEventVisible(event, data, progress)
+      ? event.title
+      : undefined;
+  });
 }
 
 function eventSummary(event: LoreEvent, data: Dataset, progress: Progress) {
@@ -63,45 +78,56 @@ function eventSummary(event: LoreEvent, data: Dataset, progress: Progress) {
   };
 }
 
+// Source lookup without any visibility decision; callers decide who sees it.
+export function resolveEvidence(evidence: Evidence, data: Dataset) {
+  const source = data.sources.find((item) => item.id === evidence.sourceId);
+  if (!source) return undefined;
+  return {
+    source,
+    view: {
+      sourceId: source.id,
+      sourceTitle: source.title,
+      locator: evidence.locator,
+      claim: evidence.claim,
+      stance: evidence.stance,
+      note: evidence.note,
+      sourceUrl:
+        source.url ??
+        (source.id.startsWith('source-dossier-')
+          ? '/dossier/' +
+            source.id.slice('source-dossier-'.length) +
+            '/#' +
+            evidence.locator.split('#')[1]
+          : undefined),
+      availability:
+        source.kind === 'document'
+          ? source.id.startsWith('source-dossier-')
+            ? 'Texto del dossier'
+            : 'Referencia externa sin contrastar'
+          : source.text.status === 'missing'
+            ? 'Solo metadatos'
+            : 'Texto disponible',
+    },
+  };
+}
+export type EvidenceView = NonNullable<
+  ReturnType<typeof resolveEvidence>
+>['view'];
+
 function visibleEvidence(
   items: readonly Evidence[],
   data: Dataset,
   progress: Progress,
 ) {
   return items.flatMap((evidence) => {
-    const source = data.sources.find((item) => item.id === evidence.sourceId);
+    const resolved = resolveEvidence(evidence, data);
     if (
-      !source ||
-      !isVisible(source, progress) ||
+      !resolved ||
+      !isVisible(resolved.source, progress) ||
       !isVisible(evidence, progress)
     )
       return [];
-    return [
-      {
-        sourceId: source.id,
-        sourceTitle: source.title,
-        locator: evidence.locator,
-        claim: evidence.claim,
-        stance: evidence.stance,
-        note: evidence.note,
-        sourceUrl:
-          source.url ??
-          (source.id.startsWith('source-dossier-')
-            ? '/dossier/' +
-              source.id.slice('source-dossier-'.length) +
-              '/#' +
-              evidence.locator.split('#')[1]
-            : undefined),
-        availability:
-          source.kind === 'document'
-            ? source.id.startsWith('source-dossier-')
-              ? 'Texto del dossier'
-              : 'Referencia externa sin contrastar'
-            : source.text.status === 'missing'
-              ? 'Solo metadatos'
-              : 'Texto disponible',
-      },
-    ];
+    return [resolved.view];
   });
 }
 
@@ -216,7 +242,11 @@ export function getVisibleTimeline(data: Dataset, progress: Progress) {
   };
 }
 
-export type TimelineContent = ReturnType<typeof getVisibleTimeline>;
+// The canvas needs no prose: the lightweight index can satisfy it on its own.
+export type TimelineContent = Omit<
+  ReturnType<typeof getVisibleTimeline>,
+  'events'
+> & { events: Array<Omit<EventSummary, 'summary'>> };
 
 export type EventSummary = ReturnType<typeof listVisibleEvents>[number];
 export type EventDetail = Extract<

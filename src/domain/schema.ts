@@ -441,3 +441,128 @@ export const DossierMapSchema = z.strictObject({
   ),
 });
 export type DossierMap = z.infer<typeof DossierMapSchema>;
+
+// Revelation order is editorial data kept apart from the dossier prose. It says
+// when a reader of the game may meet a piece of content, never when it happened.
+export const RevelationMapSchema = z.strictObject({
+  status: z.enum(['provisional', 'reviewed']),
+  note: text,
+  // Ordered ladder: choosing a milestone also grants every earlier one.
+  milestones: z.array(z.strictObject({ id: IdSchema, safeLabel: text })).min(1),
+  events: z.record(IdSchema, IdSchema),
+  // Entities inherit the latest milestone of their events unless overridden.
+  entityOverrides: z.record(IdSchema, IdSchema),
+  unlinkedEntityMilestone: IdSchema,
+});
+export type RevelationMap = z.infer<typeof RevelationMapSchema>;
+
+// Public static files. The lightweight index serves search, filters and the
+// timeline; long prose and evidence live in per-item detail files.
+export const IndexEraSchema = z.strictObject({
+  id: IdSchema,
+  name: text,
+  description: text.optional(),
+  displayOrder: order,
+  spoilerRequirements: ids,
+  editorialStatus,
+});
+export const IndexEventSchema = z.strictObject({
+  id: IdSchema,
+  title: text,
+  aliases: z.array(text),
+  eraId: IdSchema,
+  narrativeThread: text.optional(),
+  regions: z.array(text),
+  categories: z.array(text),
+  importance: z.enum(['major', 'minor']),
+  certainty: EventSchema.shape.certainty,
+  entityIds: ids,
+  time: HistoricalTimeSchema,
+  claimStatus,
+  editorialStatus,
+  displayOrder: order,
+  spoilerRequirements: ids,
+  dossierSection: IdSchema.optional(),
+});
+export const IndexEntitySchema = z.strictObject({
+  id: IdSchema,
+  kind: NarrativeEntitySchema.shape.kind,
+  name: text,
+  aliases: z.array(text),
+  spoilerRequirements: ids,
+  editorialStatus,
+  dossierSection: IdSchema.optional(),
+});
+export const IndexRelationSchema = z.strictObject({
+  id: IdSchema,
+  fromEventId: IdSchema,
+  toEventId: IdSchema,
+  kind: RelationSchema.shape.kind,
+  directed: z.boolean(),
+  claimStatus,
+  editorialStatus,
+  spoilerRequirements: ids,
+});
+export const AtlasIndexSchema = z.strictObject({
+  schemaVersion: z.literal(1),
+  universe: z.strictObject({ id: IdSchema, name: text, editorialStatus }),
+  milestones: z.array(z.strictObject({ id: IdSchema, safeLabel: text })),
+  eras: z.array(IndexEraSchema),
+  events: z.array(IndexEventSchema),
+  entities: z.array(IndexEntitySchema),
+  relations: z.array(IndexRelationSchema),
+});
+export const EvidenceViewSchema = z.strictObject({
+  sourceId: IdSchema,
+  sourceTitle: text,
+  locator: text,
+  claim: text,
+  stance: z.enum(['supports', 'contradicts']),
+  note: text.optional(),
+  sourceUrl: z.string().optional(),
+  availability: text,
+  // Union of the evidence and source requirements.
+  spoilerRequirements: ids,
+});
+export const EventDetailFileSchema = z.strictObject({
+  schemaVersion: z.literal(1),
+  id: IdSchema,
+  summary: text,
+  body: text,
+  evidence: z.array(EvidenceViewSchema),
+  relations: z.array(
+    z.strictObject({
+      id: IdSchema,
+      explanation: text,
+      evidence: z.array(EvidenceViewSchema),
+    }),
+  ),
+});
+export const EntityDetailFileSchema = z.strictObject({
+  schemaVersion: z.literal(1),
+  id: IdSchema,
+  body: text.optional(),
+});
+// Normalized plain text per item, fetched only when the reader searches.
+export const SearchIndexSchema = z.strictObject({
+  schemaVersion: z.literal(1),
+  events: z.array(z.strictObject({ id: IdSchema, text: z.string() })),
+  entities: z.array(z.strictObject({ id: IdSchema, text: z.string() })),
+});
+export type AtlasIndex = z.infer<typeof AtlasIndexSchema>;
+export type IndexEvent = z.infer<typeof IndexEventSchema>;
+export type IndexEntity = z.infer<typeof IndexEntitySchema>;
+export type IndexRelation = z.infer<typeof IndexRelationSchema>;
+export type EvidenceViewData = z.infer<typeof EvidenceViewSchema>;
+export type EventDetailFile = z.infer<typeof EventDetailFileSchema>;
+export type EntityDetailFile = z.infer<typeof EntityDetailFileSchema>;
+export type SearchIndex = z.infer<typeof SearchIndexSchema>;
+
+// Full dossier documents are served as data, gated by the reader's progress.
+export const DossierDocumentFileSchema = z.strictObject({
+  schemaVersion: z.literal(1),
+  id: IdSchema,
+  title: text,
+  body: text,
+});
+export type DossierDocumentFile = z.infer<typeof DossierDocumentFileSchema>;

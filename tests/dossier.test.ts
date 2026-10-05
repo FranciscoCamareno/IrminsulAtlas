@@ -23,6 +23,7 @@ const sections = documents.flatMap((document) =>
   extractDossierSections(document.body),
 );
 const none = new Set<string>();
+const all = new Set(data.milestones.map((milestone) => milestone.id));
 
 describe('dossier integration', () => {
   it('preserves every supplied event and entity ID and the full section prose', () => {
@@ -50,19 +51,46 @@ describe('dossier integration', () => {
     ).toBe(true);
     expect(findIntegrityIssues(data)).toEqual([]);
   });
-  it('shows the entire provisional dossier without presenting it as reviewed or demo', () => {
+  it('classifies every event and entity by revelation, never by default-visible, and never from historical order', () => {
     expect(
       data.events.every((event) => event.editorialStatus === 'provisional'),
-    ).toBe(true);
-    expect(listVisibleEvents(data, none)).toHaveLength(data.events.length);
-    expect(
-      data.events.every((event) => event.spoilerRequirements.length === 0),
     ).toBe(true);
     expect(data.universes.map((universe) => universe.id)).toEqual(['genshin']);
     expect(data.sources.some((source) => source.kind === 'mission')).toBe(
       false,
     );
-    expect(data.milestones).toEqual([]);
+    for (const item of [...data.events, ...data.entities])
+      expect(item.spoilerRequirements).toHaveLength(1);
+    // Nothing is visible before the reader declares any progress...
+    expect(listVisibleEvents(data, none)).toHaveLength(0);
+    // ...everything is visible once all milestones are granted...
+    expect(listVisibleEvents(data, all)).toHaveLength(data.events.length);
+    // ...and the ladder is not the chronological order of the events.
+    const rank = (id: string) =>
+      data.milestones.findIndex((milestone) => milestone.id === id);
+    const oldest = data.events.find(
+      (event) => event.id === 'evt-mundo-elemental',
+    )!;
+    const mondstadt = data.events.find(
+      (event) => event.id === 'evt-rebelion-decarabian',
+    )!;
+    expect(rank(oldest.spoilerRequirements[0]!)).toBeGreaterThan(
+      rank(mondstadt.spoilerRequirements[0]!),
+    );
+    // An entity opens with the event that is its own text, or otherwise only
+    // after every event that mentions it.
+    for (const entity of data.entities) {
+      const home = data.events.find(
+        (event) => event.dossierSection === entity.id,
+      );
+      const required = home
+        ? [home]
+        : data.events.filter((event) => event.entityIds.includes(entity.id));
+      for (const event of required)
+        expect(rank(entity.spoilerRequirements[0]!)).toBeGreaterThanOrEqual(
+          rank(event.spoilerRequirements[0]!),
+        );
+    }
   });
   it('retains narrative years, uncertain visits and the disputed Mare Jivari chronology', () => {
     expect(
@@ -97,8 +125,8 @@ describe('dossier integration', () => {
     ).toContain('Cierre contextual');
   });
   it('keeps event/entity navigation bidirectional and document references honest', () => {
-    const event = getEventById(data, 'evt-hiperborea', none);
-    const person = getEntityById(data, 'per-koitar', none);
+    const event = getEventById(data, 'evt-hiperborea', all);
+    const person = getEntityById(data, 'per-koitar', all);
     expect(event.status).toBe('visible');
     expect(person.status).toBe('visible');
     if (event.status !== 'visible' || person.status !== 'visible')
@@ -121,7 +149,7 @@ describe('dossier integration', () => {
             evidence.availability === 'Referencia externa sin contrastar',
         ),
     ).toBe(true);
-    expect(getEntityById(data, 'missing', none)).toEqual({
+    expect(getEntityById(data, 'missing', all)).toEqual({
       status: 'not-found',
     });
   });
@@ -133,16 +161,16 @@ describe('dossier integration', () => {
     copy.events.find(
       (event) => event.id === 'evt-hiperborea',
     )!.editorialStatus = 'draft';
-    expect(getEntityById(copy, 'per-koitar', none)).toEqual({
+    expect(getEntityById(copy, 'per-koitar', all)).toEqual({
       status: 'blocked',
     });
     expect(
-      getVisibleTimeline(copy, none).events.some(
+      getVisibleTimeline(copy, all).events.some(
         (event) => event.id === 'evt-hiperborea',
       ),
     ).toBe(false);
-    expect(getEntityById(copy, 'loc-hiperborea', none)).not.toEqual(
-      getEntityById(data, 'loc-hiperborea', none),
+    expect(getEntityById(copy, 'loc-hiperborea', all)).not.toEqual(
+      getEntityById(data, 'loc-hiperborea', all),
     );
   });
   it('does not truncate a section at a table and does not absorb later unnumbered material', () => {
@@ -170,7 +198,7 @@ describe('dossier integration', () => {
   });
   it('expands layout from data, keeps regional threads distinct, and never mutates historical records', () => {
     const copy = structuredClone(data);
-    const content = getVisibleTimeline(copy, none);
+    const content = getVisibleTimeline(copy, all);
     const layout = layoutTimeline(content);
     const sumeru = layout.nodes.filter(
       (node) =>

@@ -28,7 +28,12 @@ function safeHref(raw: string): string | undefined {
   return document ? '/dossier/' + document + '/' : undefined;
 }
 type Navigate = (event: MouseEvent<HTMLAnchorElement>) => void;
-function inline(text: string, onNavigate?: Navigate): ReactNode[] {
+type LabelFor = (id: string) => string | null;
+function inline(
+  text: string,
+  onNavigate?: Navigate,
+  labelFor?: LabelFor,
+): ReactNode[] {
   const pattern = /(\[[^\]]+\]\([^\s)]+\)|\*\*[^*]+\*\*|\*[^*]+\*|`[^`]+`)/g;
   return text.split(pattern).map((part, i) => {
     const link = part.match(/^\[([^\]]+)\]\(([^\s)]+)\)$/);
@@ -49,6 +54,25 @@ function inline(text: string, onNavigate?: Navigate): ReactNode[] {
     if (part.startsWith('`') && part.endsWith('`')) {
       const id = part.slice(1, -1);
       if (/^(evt|per|loc)-[a-z0-9-]+$/.test(id)) {
+        if (labelFor) {
+          // Neutral placeholder: never reveal the ID or title of hidden content.
+          const label = labelFor(id);
+          if (label === null)
+            return (
+              <span key={i} className="blocked-reference">
+                (ficha no disponible con tu progreso)
+              </span>
+            );
+          return (
+            <a
+              key={i}
+              href={'/?' + (id.startsWith('evt-') ? 'id' : 'entity') + '=' + id}
+              onClick={onNavigate}
+            >
+              {label}
+            </a>
+          );
+        }
         return (
           <a
             key={i}
@@ -67,9 +91,11 @@ function inline(text: string, onNavigate?: Navigate): ReactNode[] {
 export default function DossierText({
   text,
   onNavigate,
+  labelFor,
 }: {
   text: string;
   onNavigate?: Navigate | undefined;
+  labelFor?: LabelFor | undefined;
 }) {
   const blocks = text.split(/\n\s*\n/).filter(Boolean);
   return (
@@ -99,7 +125,7 @@ export default function DossierText({
                   <tr>
                     {head?.map((cell, i) => (
                       <th key={i} scope="col">
-                        {inline(cell, onNavigate)}
+                        {inline(cell, onNavigate, labelFor)}
                       </th>
                     ))}
                   </tr>
@@ -108,7 +134,7 @@ export default function DossierText({
                   {body.map((row, i) => (
                     <tr key={i} id={row[0]?.match(/`(per-[a-z0-9-]+)`/)?.[1]}>
                       {row.map((cell, j) => (
-                        <td key={j}>{inline(cell, onNavigate)}</td>
+                        <td key={j}>{inline(cell, onNavigate, labelFor)}</td>
                       ))}
                     </tr>
                   ))}
@@ -125,6 +151,7 @@ export default function DossierText({
               {inline(
                 heading[2]!.replace(/\s+—\s+`(?:evt|per|loc)-[a-z0-9-]+`/, ''),
                 onNavigate,
+                labelFor,
               )}
             </h3>
           );
@@ -133,7 +160,7 @@ export default function DossierText({
           return (
             <ul key={index}>
               {lines.map((line, i) => (
-                <li key={i}>{inline(line.slice(2), onNavigate)}</li>
+                <li key={i}>{inline(line.slice(2), onNavigate, labelFor)}</li>
               ))}
             </ul>
           );
@@ -142,12 +169,12 @@ export default function DossierText({
             <ol key={index}>
               {lines.map((line, i) => (
                 <li key={i}>
-                  {inline(line.replace(/^\d+\. /, ''), onNavigate)}
+                  {inline(line.replace(/^\d+\. /, ''), onNavigate, labelFor)}
                 </li>
               ))}
             </ol>
           );
-        return <p key={index}>{inline(block, onNavigate)}</p>;
+        return <p key={index}>{inline(block, onNavigate, labelFor)}</p>;
       })}
     </div>
   );

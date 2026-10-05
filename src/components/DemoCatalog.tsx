@@ -96,20 +96,26 @@ function EventMeta({ event }: { event: EventSummary }) {
 export function Detail({
   event,
   onNavigate = navigate,
+  labelFor,
 }: {
   event: EventDetail;
   onNavigate?: (event: MouseEvent<HTMLAnchorElement>) => void;
+  labelFor?: (id: string) => string | null;
 }) {
   return (
     <article className="panel detail">
-      <EventMeta event={event} />
       <h3>{event.title}</h3>
+      <EventMeta event={event} />
       {event.dossierSection ? (
         <>
           <p className="metadata">
             {event.narrativeThread} · {event.categories.join(' · ')}
           </p>
-          <DossierText text={event.body} onNavigate={onNavigate} />
+          <DossierText
+            text={event.body}
+            onNavigate={onNavigate}
+            labelFor={labelFor}
+          />
           <a href={dossierHref(event.dossierSection)}>
             Leer el apartado en su contexto
           </a>

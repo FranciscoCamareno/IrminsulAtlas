@@ -4,8 +4,10 @@ import { resolve } from 'node:path';
 import {
   DatasetSchema,
   DossierMapSchema,
+  RevelationMapSchema,
   type Dataset,
   type Evidence,
+  type RevelationMap,
 } from '../domain/schema';
 import { findIntegrityIssues } from '../domain/integrity';
 
@@ -100,6 +102,65 @@ export function extractDossierSections(body: string) {
     seen.add(section.id);
   }
   return sections;
+}
+
+async function loadRevelationMap() {
+  return RevelationMapSchema.parse(
+    JSON.parse(
+      await readFile(
+        resolve('content/editorial/genshin-revelation.json'),
+        'utf8',
+      ),
+    ),
+  );
+}
+
+// Requirements come only from the editorial revelation map. An event without an
+// assignment is a loading error: unclassified content must never default to visible.
+function applyRevelation(data: Dataset, map: RevelationMap) {
+  const rank = new Map(map.milestones.map((item, index) => [item.id, index]));
+  const known = new Set(data.events.map((event) => event.id));
+  for (const id of Object.keys(map.events))
+    if (!known.has(id))
+      throw new Error('Revelación de evento inexistente: ' + id);
+  const latest = (ids: readonly string[]) =>
+    ids.reduce((a, b) => (rank.get(b)! > rank.get(a)! ? b : a));
+  const assigned = (id: string) => {
+    const milestone = map.events[id];
+    if (!milestone || !rank.has(milestone))
+      throw new Error('Evento sin hito de revelación válido: ' + id);
+    return milestone;
+  };
+  data.milestones = map.milestones.map((item) => ({
+    universeId: 'genshin',
+    editorialStatus: map.status === 'reviewed' ? 'reviewed' : 'provisional',
+    ...item,
+  }));
+  for (const event of data.events) {
+    const milestone = assigned(event.id);
+    event.spoilerRequirements = [milestone];
+    event.revelation = {
+      order: rank.get(milestone)! + 1,
+      milestoneIds: [milestone],
+    };
+  }
+  for (const entity of data.entities) {
+    const linked = data.events
+      .filter((event) => event.entityIds.includes(entity.id))
+      .map((event) => event.spoilerRequirements[0]!);
+    // A complementary event is the very text of its place/person section, so
+    // the entity opens together with that event, never later.
+    const home = data.events.find(
+      (event) => event.dossierSection === entity.id,
+    );
+    const milestone =
+      map.entityOverrides[entity.id] ??
+      home?.spoilerRequirements[0] ??
+      (linked.length ? latest(linked) : map.unlinkedEntityMilestone);
+    if (!rank.has(milestone))
+      throw new Error('Hito de ficha inexistente: ' + milestone);
+    entity.spoilerRequirements = [milestone];
+  }
 }
 
 const scope = {
@@ -271,6 +332,7 @@ export async function loadDossierContent(): Promise<Dataset> {
     if (!mappedIds.has(section.id))
       throw new Error('Acontecimiento sin anotaciones: ' + section.id);
   }
+  applyRevelation(data, await loadRevelationMap());
   const parsed = DatasetSchema.parse(data);
   const issues = findIntegrityIssues(parsed);
   if (issues.length)

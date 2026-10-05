@@ -5,6 +5,14 @@ import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 import TimelineExplorer from '../src/components/explorer/TimelineExplorer';
 import { loadLocalContent } from '../src/content/local';
 import { loadDossierContent } from '../src/content/dossier';
+import { buildAtlasData } from '../src/content/atlas-data';
+import {
+  createMemorySource,
+  AtlasLoadError,
+  type AtlasSource,
+} from '../src/application/data-source';
+import { storeChoice, type ProgressChoice } from '../src/application/progress';
+import type { Dataset } from '../src/domain/schema';
 import { attachViewport } from '../src/visualization/viewport';
 import type { Viewport } from '../src/visualization/layout';
 
@@ -54,10 +62,47 @@ afterEach(async () => {
   host.remove();
   vi.unstubAllGlobals();
 });
-async function render(content = dataset) {
+// Data arrives asynchronously through the source; wait until the UI is quiet.
+async function settle() {
+  for (let i = 0; i < 4; i++)
+    await act(async () => {
+      await new Promise((resolve) => setTimeout(resolve, 0));
+    });
+}
+async function render(
+  content: Dataset = dataset,
+  choice: ProgressChoice | null | 'keep' = { kind: 'none' },
+  source: AtlasSource = createMemorySource(buildAtlasData(content)),
+) {
+  if (choice !== 'keep') {
+    localStorage.clear();
+    if (choice) storeChoice(choice);
+  }
   await act(async () =>
-    root.render(createElement(TimelineExplorer, { dataset: content })),
+    root.render(createElement(TimelineExplorer, { source })),
   );
+  await settle();
+}
+async function type(input: HTMLInputElement, value: string) {
+  // React tracks the value setter; use the native one so onChange fires.
+  Object.getOwnPropertyDescriptor(
+    HTMLInputElement.prototype,
+    'value',
+  )!.set!.call(input, value);
+  await act(async () => {
+    input.dispatchEvent(new Event('input', { bubbles: true }));
+  });
+  await settle();
+}
+async function choose(select: HTMLSelectElement, value: string) {
+  Object.getOwnPropertyDescriptor(
+    HTMLSelectElement.prototype,
+    'value',
+  )!.set!.call(select, value);
+  await act(async () => {
+    select.dispatchEvent(new Event('change', { bubbles: true }));
+  });
+  await settle();
 }
 function button(label: string) {
   const found = host.querySelector<HTMLButtonElement>(
@@ -68,6 +113,7 @@ function button(label: string) {
 }
 async function click(element: HTMLElement) {
   await act(async () => element.click());
+  await settle();
 }
 
 describe('timeline interaction', () => {
@@ -157,25 +203,41 @@ describe('timeline interaction', () => {
     );
   });
   it('keeps direct links neutral until progress is explicitly changed, and hides them again', async () => {
-    window.history.replaceState(
-      null,
-      '',
-      '/evento/?id=demo-event-05&progress=all',
-    );
+    window.history.replaceState(null, '', '/evento/?id=demo-event-05');
     await render();
     expect(host.textContent).not.toContain('Hallazgo de la sala interior');
     expect(host.textContent).toContain('Contenido no disponible');
-    await click(button('Abrir menú'));
-    const checkbox = host.querySelector<HTMLInputElement>(
-      'input[type="checkbox"]',
-    )!;
-    await click(checkbox);
+    const choose = async (value: string) => {
+      await click(
+        [...host.querySelectorAll<HTMLButtonElement>('button')].find((item) =>
+          /Revisar progreso|Progreso de lectura/.test(
+            item.textContent ?? item.ariaLabel ?? '',
+          ),
+        ) ?? button('Abrir menú'),
+      );
+      await click(
+        host.querySelector<HTMLInputElement>(`input[value="${value}"]`)!,
+      );
+      await click(
+        host.querySelector<HTMLButtonElement>('.progress-actions button')!,
+      );
+    };
+    await choose('upto:demo-milestone-01');
     expect(host.querySelector('.atlas-detail')?.textContent).toContain(
       'Hallazgo de la sala interior',
     );
-    await click(checkbox);
+    await click(
+      button('Progreso de lectura: Hasta Lectura de demostración A. Cambiar'),
+    );
+    await click(host.querySelector<HTMLInputElement>('input[value="none"]')!);
+    await click(
+      host.querySelector<HTMLButtonElement>('.progress-actions button')!,
+    );
     expect(host.textContent).not.toContain('Hallazgo de la sala interior');
     expect(host.querySelector('[data-event-id="demo-event-05"]')).toBeNull();
+    expect(host.querySelector('.atlas-detail')?.textContent).toContain(
+      'Contenido no disponible',
+    );
   });
   it('provides a list with the same spoiler filtering and works after changing themes', async () => {
     await render();
@@ -271,7 +333,7 @@ describe('dossier navigation', () => {
       configurable: true,
       get: () => 320,
     });
-    await render(dossier);
+    await render(dossier, { kind: 'all' });
     expect(host.querySelectorAll('.chapter-card')).toHaveLength(
       dossier.eras.length,
     );
@@ -298,7 +360,7 @@ describe('dossier navigation', () => {
   });
   it('preserves event context through entity cards, Escape, direct links and history', async () => {
     window.history.replaceState(null, '', '/?id=evt-hiperborea');
-    await render(dossier);
+    await render(dossier, { kind: 'all' });
     expect(host.querySelector('.atlas-detail')?.textContent).toContain(
       'Hiperbórea, Koitar y Seutervoinen',
     );
@@ -340,7 +402,7 @@ describe('dossier navigation', () => {
     );
   });
   it('opens the complete people directory and handles unknown entity IDs neutrally', async () => {
-    await render(dossier);
+    await render(dossier, { kind: 'all' });
     await click(button('Abrir menú'));
     const people = [
       ...host.querySelectorAll<HTMLButtonElement>('.atlas-menu button'),
@@ -363,6 +425,178 @@ describe('dossier navigation', () => {
     });
     expect(host.querySelector('.atlas-detail')?.textContent).toContain(
       'No se encontró la ficha solicitada.',
+    );
+  });
+});
+
+describe('progress, search and loading', () => {
+  const titleOf = (id: string) =>
+    dossier.events.find((event) => event.id === id)!.title;
+
+  it('asks for progress on the first visit, shows only permitted content, and remembers the choice', async () => {
+    await render(dossier, null);
+    const dialog = host.querySelector<HTMLDialogElement>(
+      'dialog.progress-dialog',
+    )!;
+    expect(dialog.open).toBe(true);
+    expect(host.textContent).not.toContain(titleOf('evt-cataclismo'));
+    expect(host.querySelectorAll('[data-event-id]')).toHaveLength(0);
+    await click(
+      host.querySelector<HTMLInputElement>(
+        'input[value="upto:hito-mondstadt"]',
+      )!,
+    );
+    await click(
+      host.querySelector<HTMLButtonElement>('.progress-actions button')!,
+    );
+    expect(dialog.open).toBe(false);
+    expect(
+      host.querySelector('[data-event-id="evt-rebelion-decarabian"]'),
+    ).not.toBeNull();
+    expect(host.querySelector('[data-event-id="evt-cataclismo"]')).toBeNull();
+    expect(host.textContent).not.toContain(titleOf('evt-cataclismo'));
+    // A new visit keeps the choice and does not ask again.
+    await act(async () => root.unmount());
+    root = createRoot(host);
+    await render(dossier, 'keep');
+    expect(
+      host.querySelector<HTMLDialogElement>('dialog.progress-dialog')!.open,
+    ).toBe(false);
+    expect(
+      host.querySelector('[data-event-id="evt-rebelion-decarabian"]'),
+    ).not.toBeNull();
+  });
+  it('declining to decide keeps everything hidden without storing a choice', async () => {
+    await render(dossier, null);
+    await click(
+      [
+        ...host.querySelectorAll<HTMLButtonElement>('.progress-actions button'),
+      ].find((item) => item.textContent === 'Decidir más tarde')!,
+    );
+    expect(host.querySelectorAll('[data-event-id]')).toHaveLength(0);
+    expect(host.textContent).toContain(
+      'aún no hay acontecimientos disponibles',
+    );
+    expect(localStorage.getItem('irminsul-atlas:progress:v1')).toBeNull();
+  });
+  it('turns an open ficha neutral when progress is lowered, without leaving its text behind', async () => {
+    window.history.replaceState(null, '', '/?id=evt-cataclismo');
+    await render(dossier, { kind: 'all' });
+    expect(host.querySelector('.atlas-detail h3')?.textContent).toBe(
+      titleOf('evt-cataclismo'),
+    );
+    await click(host.querySelector<HTMLButtonElement>('.progress-trigger')!);
+    await click(
+      host.querySelector<HTMLInputElement>(
+        'input[value="upto:hito-mondstadt"]',
+      )!,
+    );
+    await click(
+      host.querySelector<HTMLButtonElement>('.progress-actions button')!,
+    );
+    expect(host.querySelector('.atlas-detail h3')).toBeNull();
+    expect(host.querySelector('.atlas-detail')?.textContent).toContain(
+      'Contenido no disponible',
+    );
+    expect(host.textContent).not.toContain(titleOf('evt-cataclismo'));
+  });
+  it('searches and filters, keeping list and timeline in step and the address restorable', async () => {
+    window.history.replaceState(null, '', '/?vista=lista');
+    await render(dossier, { kind: 'all' });
+    expect(host.querySelectorAll('[data-list-event-id]')).toHaveLength(
+      dossier.events.length,
+    );
+    await click(button('Buscar y filtrar'));
+    await type(
+      host.querySelector<HTMLInputElement>(
+        '.search-panel input[type="search"]',
+      )!,
+      'KOITAR',
+    );
+    expect(window.location.search).toContain('q=KOITAR');
+    const ids = [
+      ...host.querySelectorAll<HTMLElement>('[data-list-event-id]'),
+    ].map((item) => item.dataset.listEventId);
+    expect(ids).toContain('evt-hiperborea');
+    expect(ids.length).toBeLessThan(dossier.events.length);
+    await click(button('Mostrar cronología'));
+    const nodes = [
+      ...host.querySelectorAll<HTMLElement>('[data-event-id]'),
+    ].map((item) => item.dataset.eventId);
+    // Secondary events appear only when zoomed in; every drawn node is in the list.
+    expect(nodes.every((id) => ids.includes(id!))).toBe(true);
+    expect(host.querySelector('.search-status')?.textContent).toContain(
+      `${ids.length} de ${dossier.events.length}`,
+    );
+    // Incompatible filters give an explained empty state with a way out.
+    await choose(
+      host.querySelector<HTMLSelectElement>('.search-panel select')!,
+      'era-cierre-cataclismo',
+    );
+    expect(host.querySelector('.atlas-empty')?.textContent).toContain(
+      'Ningún acontecimiento coincide',
+    );
+    await click(host.querySelector<HTMLButtonElement>('.atlas-empty button')!);
+    expect(window.location.search).not.toContain('q=');
+    expect(host.querySelector('.atlas-empty')).toBeNull();
+  });
+  it('restores view and filters from a reloaded address and ignores filters that do not exist', async () => {
+    window.history.replaceState(
+      null,
+      '',
+      '/?vista=lista&region=Liyue&capitulo=nope',
+    );
+    await render(dossier, { kind: 'all' });
+    const expected = dossier.events.filter((event) =>
+      event.narrativeThread
+        ?.split('/')
+        .map((part) => part.trim())
+        .includes('Liyue'),
+    );
+    expect(host.querySelectorAll('[data-list-event-id]')).toHaveLength(
+      expected.length,
+    );
+    await click(button('Buscar y filtrar'));
+    expect(host.querySelector('.search-status')?.textContent).toContain(
+      'capítulo',
+    );
+  });
+  it('lets the reader retry after the atlas or a ficha fails to load', async () => {
+    const real = createMemorySource(buildAtlasData(dossier));
+    let indexFailures = 1;
+    let eventFailures = 1;
+    const flaky: AtlasSource = {
+      ...real,
+      index: () =>
+        indexFailures-- > 0
+          ? Promise.reject(new AtlasLoadError('sin red'))
+          : real.index(),
+      event: (id) =>
+        eventFailures-- > 0
+          ? Promise.reject(
+              new AtlasLoadError('Sin conexión con los datos del atlas.'),
+            )
+          : real.event(id),
+    };
+    window.history.replaceState(null, '', '/?id=evt-rebelion-decarabian');
+    await render(dossier, { kind: 'all' }, flaky);
+    expect(host.querySelector('[role="alert"]')?.textContent).toContain(
+      'No se pudo cargar el atlas',
+    );
+    expect(host.querySelector('[data-event-id]')).toBeNull();
+    await click(
+      host.querySelector<HTMLButtonElement>('[role="alert"] button')!,
+    );
+    expect(
+      host.querySelector('.atlas-detail [role="alert"]')?.textContent,
+    ).toContain('Sin conexión');
+    await click(
+      host.querySelector<HTMLButtonElement>(
+        '.atlas-detail [role="alert"] button',
+      )!,
+    );
+    expect(host.querySelector('.atlas-detail h3')?.textContent).toBe(
+      titleOf('evt-rebelion-decarabian'),
     );
   });
 });
