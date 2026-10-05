@@ -8,6 +8,7 @@ import {
   chromium,
   type Browser,
   type BrowserContextOptions,
+  type Page,
 } from 'playwright-core';
 
 const types: Record<string, string> = {
@@ -87,3 +88,15 @@ export const narrow: BrowserContextOptions = {
 // Stored choice, set before the page loads so tests start past the first-visit prompt.
 export const progressKey = 'irminsul-atlas:progress:v2';
 export const allProgress = JSON.stringify({ kind: 'all' });
+
+// With the whole corpus the first screen is the chapter overview (cards); a
+// test that needs the timeline enters it through the first chapter.
+export async function enterTimeline(page: Page): Promise<void> {
+  await page.waitForSelector('.chapter-card, [data-event-id]');
+  await page.waitForTimeout(300);
+  if (await page.locator('.chapter-card').count()) {
+    await page.locator('.chapter-card').first().click();
+    await page.waitForSelector('.chapter-jump select');
+  }
+  await page.waitForSelector('[data-event-id]');
+}

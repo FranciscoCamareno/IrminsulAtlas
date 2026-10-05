@@ -9,6 +9,7 @@ import type {
 import {
   allProgress,
   desktop,
+  enterTimeline,
   launch,
   narrow,
   phone,
@@ -186,7 +187,7 @@ describe('reading all events', () => {
     const drags: Record<string, number> = {};
     for (const event of index.events) {
       await page.goto(`${server.url}/`);
-      await page.waitForSelector('[data-event-id]');
+      await enterTimeline(page);
       await page.selectOption('.chapter-jump select', event.eraId);
       await page.waitForTimeout(100);
       // Chapters with several regional rows offer a second selector.

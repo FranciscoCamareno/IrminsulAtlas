@@ -370,6 +370,27 @@ describe('P2 rejected input preserves accepted versions', () => {
     expect(await readFile(acceptedPath)).toEqual(beforeData);
   });
 
+  it('accepts a quest with declared gaps only when recordGaps is on, and reads it back', async () => {
+    const { options, edit, save } = await fixture();
+    edit('BinOutput/Talk/Quest/90011.json', (row) => {
+      (row.PCIAMAFDDAA as Record<string, unknown>[])[0]!.GLJCECCOEDP = [999999];
+    });
+    await save();
+    options.selection.recordGaps = true;
+    const candidate = await importSnapshot(options);
+    expect(candidate.report.status).toBe('valid');
+    const source = (
+      await readCandidate(options.candidates, candidate.id)
+    ).dataset.sources.find((item) => item.id === 'agd-quest-9001-es')!;
+    expect(source.incomplete).toEqual(['1 enlaces a diálogos inexistentes']);
+    await promoteCandidate(options.candidates, candidate.id, options.store);
+    // The declared gap is a warning: the accepted version stays readable.
+    const accepted = await readAccepted(options.store);
+    expect(
+      accepted!.dataset.sources.some((item) => item.id === source.id),
+    ).toBe(true);
+  });
+
   it('reports explicit missing-text exclusions and promotes only complete sources', async () => {
     const { options, edit, save } = await fixture();
     edit('TextMap/TextMap_MediumES.json', (row) => {

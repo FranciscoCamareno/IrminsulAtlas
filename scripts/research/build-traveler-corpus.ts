@@ -108,23 +108,50 @@ const created = new Map<string, Entity>();
 const existingByName = new Map(
   [...existing].map(([id, name]) => [norm(name), id]),
 );
+// Same person or place under a shorter/longer name, merged on purpose. A target
+// starting with '#' is an id of the ancient dossier.
+const CANONICAL: Record<string, string> = {
+  cariberto: 'cariberto alberich',
+  barbeloth: 'barbeloth trismegistus',
+  'colombina hiposelenia': 'colombina',
+  'los once': 'los once de los fatui',
+  'siete estrellas': 'siete estrellas de liyue',
+  eter: '#per-gemelos',
+  lumina: '#per-gemelos',
+};
+// Links an agent made by inference that the act's text does not support.
+const DROP: Record<number, string[]> = { 1201: ['per-makoto-ei'] };
+const byName = new Map<string, string>();
 function resolveEntity(item: any, chapter: number): string | null {
   if (item.existingId) {
     if (!existing.has(item.existingId)) {
       warn(`${chapter}: existingId desconocido ${item.existingId}`);
       return null;
     }
-    return item.existingId;
+    return DROP[chapter]?.includes(item.existingId) ? null : item.existingId;
   }
-  const name = clean(String(item.name ?? ''));
-  if (!name || !['character', 'place', 'faction'].includes(item.kind))
+  const raw = clean(String(item.name ?? ''));
+  if (
+    !raw ||
+    !slug(raw) ||
+    !['character', 'place', 'faction'].includes(item.kind)
+  )
     return null;
-  const prefix = item.kind === 'place' ? 'loc' : 'per';
-  const id = `${prefix}-${slug(name)}`;
-  if (!slug(name)) return null;
+  const key = CANONICAL[norm(raw)] ?? norm(raw);
+  if (key.startsWith('#')) return key.slice(1);
+  const aliases = (item.aliases ?? [])
+    .map((alias: unknown) => clean(String(alias)))
+    .filter(Boolean);
+  const known =
+    existingByName.get(key) ??
+    byName.get(key) ??
+    aliases
+      .map((alias: string) => byName.get(CANONICAL[norm(alias)] ?? norm(alias)))
+      .find(Boolean);
+  if (known && existing.has(known)) return known;
+  const name = known ? created.get(known)!.name : raw;
+  const id = known ?? `${item.kind === 'place' ? 'loc' : 'per'}-${slug(key)}`;
   if (existing.has(id)) return id;
-  const match = existingByName.get(norm(name));
-  if (match) return match;
   const entity: Entity = created.get(id) ?? {
     id,
     kind: item.kind,
@@ -132,9 +159,10 @@ function resolveEntity(item: any, chapter: number): string | null {
     aliases: new Set<string>(),
     chapters: [],
   };
-  for (const alias of item.aliases ?? [])
-    if (clean(String(alias)) && clean(String(alias)) !== name)
-      entity.aliases.add(clean(String(alias)));
+  for (const alias of [raw, ...aliases])
+    if (alias !== entity.name) entity.aliases.add(alias);
+  for (const alias of [key, ...aliases.map(norm)])
+    if (!byName.has(alias)) byName.set(alias, id);
   if (!entity.chapters.includes(chapter)) entity.chapters.push(chapter);
   created.set(id, entity);
   return id;
@@ -350,7 +378,17 @@ const eras = BLOCKS.filter((block) =>
 });
 
 // ---- entities output ------------------------------------------------------------
-const entities = [...created.values()].map((entity) => {
+// A name met in a single act stays in that act's text and search; only people,
+// places and groups that recur across acts get their own card.
+const kept = [...created.values()].filter(
+  (entity) => entity.chapters.length >= 2,
+);
+const keptIds = new Set(kept.map((entity) => entity.id));
+for (const event of events)
+  event.entityIds = event.entityIds.filter(
+    (id: string) => existing.has(id) || keptIds.has(id),
+  );
+const entities = kept.map((entity) => {
   const first = Math.min(...entity.chapters.map((c) => ORDER.indexOf(c)));
   return {
     id: entity.id,

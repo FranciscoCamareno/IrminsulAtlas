@@ -10,7 +10,7 @@
     "date": "2026-09-23",
     "verification": "secondary",
     "reference": "https://www.pockettactics.com/genshin-impact/update ; https://game8.co/games/Genshin-Impact/archives/615781 (consulta del 2026-10-05)",
-    "note": "Solo fuentes secundarias: la página oficial (genshin.hoyoverse.com) estaba bloqueada por el proxy de red del entorno. Coherente con la build 7.1.0 y el commit del 22/09/2026, pero NO acreditada oficialmente. Tarea humana: confirmar versión y fecha en el aviso oficial."
+    "note": "Versión pública 7.1 (23/09/2026) confirmada por el usuario el 05/10/2026; fuentes oficiales inaccesibles desde este entorno. Corte editorial elegido por el usuario: una versión de margen (contenido hasta la 7.0), por lo que los actos III y IV del capítulo VII (7.1) quedan fuera."
   },
   "units": [
     {
@@ -27,10 +27,24 @@
       },
       "publication": null,
       "spanish": "available",
-      "importStatus": "not-imported",
-      "examination": "not-examined",
-      "sourceIds": [],
-      "eventIds": []
+      "importStatus": "imported",
+      "examination": "examined-with-events",
+      "sourceIds": [
+        "imp-quest-306",
+        "imp-quest-307",
+        "imp-quest-308",
+        "imp-quest-311",
+        "imp-quest-352",
+        "imp-quest-353",
+        "imp-quest-354",
+        "imp-quest-355",
+        "imp-quest-356",
+        "imp-quest-357",
+        "imp-quest-358",
+        "imp-quest-360"
+      ],
+      "eventIds": ["evt-viajero-1001"],
+      "note": "Resumen por acto redactado con asistencia de IA a partir de los diálogos importados; afirmaciones pendientes de revisión humana."
     },
     {
       "id": "cov-1002",
@@ -47,10 +61,23 @@
       },
       "publication": null,
       "spanish": "available",
-      "importStatus": "not-imported",
-      "examination": "not-examined",
-      "sourceIds": [],
-      "eventIds": []
+      "importStatus": "imported",
+      "examination": "examined-with-events",
+      "sourceIds": [
+        "imp-quest-20101",
+        "imp-quest-370",
+        "imp-quest-372",
+        "imp-quest-373",
+        "imp-quest-374",
+        "imp-quest-375",
+        "imp-quest-376",
+        "imp-quest-377",
+        "imp-quest-379",
+        "imp-quest-383",
+        "imp-quest-384"
+      ],
+      "eventIds": ["evt-viajero-1002"],
+      "note": "Resumen por acto redactado con asistencia de IA a partir de los diálogos importados; afirmaciones pendientes de revisión humana."
     },
     {
       "id": "cov-1003",
@@ -64,10 +91,18 @@
       },
       "publication": null,
       "spanish": "available",
-      "importStatus": "not-imported",
-      "examination": "not-examined",
-      "sourceIds": [],
-      "eventIds": []
+      "importStatus": "imported",
+      "examination": "examined-with-events",
+      "sourceIds": [
+        "imp-quest-389",
+        "imp-quest-390",
+        "imp-quest-393",
+        "imp-quest-396",
+        "imp-quest-397",
+        "imp-quest-398"
+      ],
+      "eventIds": ["evt-viajero-1003"],
+      "note": "Resumen por acto redactado con asistencia de IA a partir de los diálogos importados; afirmaciones pendientes de revisión humana."
     },
     {
       "id": "cov-1004",
@@ -81,10 +116,11 @@
       },
       "publication": null,
       "spanish": "available",
-      "importStatus": "not-imported",
-      "examination": "not-examined",
-      "sourceIds": [],
-      "eventIds": []
+      "importStatus": "imported",
+      "examination": "examined-with-events",
+      "sourceIds": ["imp-quest-600", "imp-quest-601", "imp-quest-602"],
+      "eventIds": ["evt-viajero-1004"],
+      "note": "Resumen por acto redactado con asistencia de IA a partir de los diálogos importados; afirmaciones pendientes de revisión humana."
     },
     {
       "id": "cov-1101",
@@ -98,10 +134,18 @@
       },
       "publication": null,
       "spanish": "available",
-      "importStatus": "not-imported",
-      "examination": "not-examined",
-      "sourceIds": [],
-      "eventIds": []
+      "importStatus": "imported",
+      "examination": "examined-with-events",
+      "sourceIds": [
+        "imp-quest-1000",
+        "imp-quest-1002",
+        "imp-quest-1003",
+        "imp-quest-1008",
+        "imp-quest-1009",
+        "imp-quest-1018"
+      ],
+      "eventIds": ["evt-viajero-1101"],
+      "note": "Resumen por acto redactado con asistencia de IA a partir de los diálogos importados; afirmaciones pendientes de revisión humana."
     },
     {
       "id": "cov-1102",
@@ -115,10 +159,19 @@
       },
       "publication": null,
       "spanish": "available",
-      "importStatus": "not-imported",
-      "examination": "not-examined",
-      "sourceIds": [],
-      "eventIds": []
+      "importStatus": "imported",
+      "examination": "examined-with-events",
+      "sourceIds": [
+        "imp-quest-1010",
+        "imp-quest-1011",
+        "imp-quest-1012",
+        "imp-quest-1013",
+        "imp-quest-1014",
+        "imp-quest-1015",
+        "imp-quest-1016"
+      ],
+      "eventIds": ["evt-viajero-1102"],
+      "note": "Resumen por acto redactado con asistencia de IA a partir de los diálogos importados; afirmaciones pendientes de revisión humana."
     },
     {
       "id": "cov-1103",
@@ -132,10 +185,18 @@
       },
       "publication": null,
       "spanish": "available",
-      "importStatus": "not-imported",
-      "examination": "not-examined",
-      "sourceIds": [],
-      "eventIds": []
+      "importStatus": "imported",
+      "examination": "examined-with-events",
+      "sourceIds": [
+        "imp-quest-1020",
+        "imp-quest-1021",
+        "imp-quest-1022",
+        "imp-quest-1023",
+        "imp-quest-1024",
+        "imp-quest-1025"
+      ],
+      "eventIds": ["evt-viajero-1103"],
+      "note": "Resumen por acto redactado con asistencia de IA a partir de los diálogos importados; afirmaciones pendientes de revisión humana."
     },
     {
       "id": "cov-1104",
@@ -149,10 +210,16 @@
       },
       "publication": null,
       "spanish": "available",
-      "importStatus": "not-imported",
-      "examination": "not-examined",
-      "sourceIds": [],
-      "eventIds": []
+      "importStatus": "imported",
+      "examination": "examined-with-events",
+      "sourceIds": [
+        "imp-quest-8000",
+        "imp-quest-8001",
+        "imp-quest-8002",
+        "imp-quest-8003"
+      ],
+      "eventIds": ["evt-viajero-1104"],
+      "note": "Resumen por acto redactado con asistencia de IA a partir de los diálogos importados; afirmaciones pendientes de revisión humana."
     },
     {
       "id": "cov-1105",
@@ -183,10 +250,11 @@
       },
       "publication": null,
       "spanish": "available",
-      "importStatus": "not-imported",
-      "examination": "not-examined",
-      "sourceIds": [],
-      "eventIds": []
+      "importStatus": "imported",
+      "examination": "examined-with-events",
+      "sourceIds": ["imp-quest-2000", "imp-quest-2001", "imp-quest-2002"],
+      "eventIds": ["evt-viajero-1201"],
+      "note": "Resumen por acto redactado con asistencia de IA a partir de los diálogos importados; afirmaciones pendientes de revisión humana."
     },
     {
       "id": "cov-1202",
@@ -200,10 +268,19 @@
       },
       "publication": null,
       "spanish": "available",
-      "importStatus": "not-imported",
-      "examination": "not-examined",
-      "sourceIds": [],
-      "eventIds": []
+      "importStatus": "imported",
+      "examination": "examined-with-events",
+      "sourceIds": [
+        "imp-quest-2003",
+        "imp-quest-2004",
+        "imp-quest-2005",
+        "imp-quest-2006",
+        "imp-quest-2007",
+        "imp-quest-2012",
+        "imp-quest-2013"
+      ],
+      "eventIds": ["evt-viajero-1202"],
+      "note": "Resumen por acto redactado con asistencia de IA a partir de los diálogos importados; afirmaciones pendientes de revisión humana."
     },
     {
       "id": "cov-1203",
@@ -217,10 +294,11 @@
       },
       "publication": null,
       "spanish": "available",
-      "importStatus": "not-imported",
-      "examination": "not-examined",
-      "sourceIds": [],
-      "eventIds": []
+      "importStatus": "imported",
+      "examination": "examined-with-events",
+      "sourceIds": ["imp-quest-2008", "imp-quest-2009"],
+      "eventIds": ["evt-viajero-1203"],
+      "note": "Resumen por acto redactado con asistencia de IA a partir de los diálogos importados; afirmaciones pendientes de revisión humana."
     },
     {
       "id": "cov-1204",
@@ -236,10 +314,21 @@
       },
       "publication": null,
       "spanish": "available",
-      "importStatus": "not-imported",
-      "examination": "not-examined",
-      "sourceIds": [],
-      "eventIds": []
+      "importStatus": "imported",
+      "examination": "examined-with-events",
+      "sourceIds": [
+        "imp-quest-2010",
+        "imp-quest-2014",
+        "imp-quest-2015",
+        "imp-quest-2016",
+        "imp-quest-2017",
+        "imp-quest-2018",
+        "imp-quest-2019",
+        "imp-quest-2020",
+        "imp-quest-2021"
+      ],
+      "eventIds": ["evt-viajero-1204"],
+      "note": "Resumen por acto redactado con asistencia de IA a partir de los diálogos importados; afirmaciones pendientes de revisión humana."
     },
     {
       "id": "cov-1205",
@@ -253,10 +342,16 @@
       },
       "publication": null,
       "spanish": "available",
-      "importStatus": "not-imported",
-      "examination": "not-examined",
-      "sourceIds": [],
-      "eventIds": []
+      "importStatus": "imported",
+      "examination": "examined-with-events",
+      "sourceIds": [
+        "imp-quest-11009",
+        "imp-quest-11013",
+        "imp-quest-11014",
+        "imp-quest-11015"
+      ],
+      "eventIds": ["evt-viajero-1205"],
+      "note": "Resumen por acto redactado con asistencia de IA a partir de los diálogos importados; afirmaciones pendientes de revisión humana."
     },
     {
       "id": "cov-1206",
@@ -270,10 +365,16 @@
       },
       "publication": null,
       "spanish": "available",
-      "importStatus": "not-imported",
-      "examination": "not-examined",
-      "sourceIds": [],
-      "eventIds": []
+      "importStatus": "imported",
+      "examination": "examined-with-events",
+      "sourceIds": [
+        "imp-quest-8004",
+        "imp-quest-8005",
+        "imp-quest-8006",
+        "imp-quest-8007"
+      ],
+      "eventIds": ["evt-viajero-1206"],
+      "note": "Resumen por acto redactado con asistencia de IA a partir de los diálogos importados; afirmaciones pendientes de revisión humana."
     },
     {
       "id": "cov-1207",
@@ -287,10 +388,17 @@
       },
       "publication": null,
       "spanish": "available",
-      "importStatus": "not-imported",
-      "examination": "not-examined",
-      "sourceIds": [],
-      "eventIds": []
+      "importStatus": "imported",
+      "examination": "examined-with-events",
+      "sourceIds": [
+        "imp-quest-1019",
+        "imp-quest-1028",
+        "imp-quest-1029",
+        "imp-quest-1030",
+        "imp-quest-1031"
+      ],
+      "eventIds": ["evt-viajero-1207"],
+      "note": "Resumen por acto redactado con asistencia de IA a partir de los diálogos importados; afirmaciones pendientes de revisión humana."
     },
     {
       "id": "cov-1301",
@@ -304,10 +412,19 @@
       },
       "publication": null,
       "spanish": "available",
-      "importStatus": "not-imported",
-      "examination": "not-examined",
-      "sourceIds": [],
-      "eventIds": []
+      "importStatus": "imported",
+      "examination": "examined-with-events",
+      "sourceIds": [
+        "imp-quest-3000",
+        "imp-quest-3001",
+        "imp-quest-3002",
+        "imp-quest-3003",
+        "imp-quest-3004",
+        "imp-quest-3005",
+        "imp-quest-3006"
+      ],
+      "eventIds": ["evt-viajero-1301"],
+      "note": "Resumen por acto redactado con asistencia de IA a partir de los diálogos importados; afirmaciones pendientes de revisión humana."
     },
     {
       "id": "cov-1302",
@@ -321,10 +438,19 @@
       },
       "publication": null,
       "spanish": "available",
-      "importStatus": "not-imported",
-      "examination": "not-examined",
-      "sourceIds": [],
-      "eventIds": []
+      "importStatus": "imported",
+      "examination": "examined-with-events",
+      "sourceIds": [
+        "imp-quest-3007",
+        "imp-quest-3008",
+        "imp-quest-3009",
+        "imp-quest-3010",
+        "imp-quest-3011",
+        "imp-quest-3012",
+        "imp-quest-3014"
+      ],
+      "eventIds": ["evt-viajero-1302"],
+      "note": "Resumen por acto redactado con asistencia de IA a partir de los diálogos importados; afirmaciones pendientes de revisión humana."
     },
     {
       "id": "cov-1303",
@@ -338,10 +464,11 @@
       },
       "publication": null,
       "spanish": "available",
-      "importStatus": "not-imported",
-      "examination": "not-examined",
-      "sourceIds": [],
-      "eventIds": []
+      "importStatus": "imported",
+      "examination": "examined-with-events",
+      "sourceIds": ["imp-quest-3016", "imp-quest-3017", "imp-quest-3018"],
+      "eventIds": ["evt-viajero-1303"],
+      "note": "Resumen por acto redactado con asistencia de IA a partir de los diálogos importados; afirmaciones pendientes de revisión humana."
     },
     {
       "id": "cov-1304",
@@ -355,10 +482,11 @@
       },
       "publication": null,
       "spanish": "available",
-      "importStatus": "not-imported",
-      "examination": "not-examined",
-      "sourceIds": [],
-      "eventIds": []
+      "importStatus": "imported",
+      "examination": "examined-with-events",
+      "sourceIds": ["imp-quest-3019", "imp-quest-3020", "imp-quest-3021"],
+      "eventIds": ["evt-viajero-1304"],
+      "note": "Resumen por acto redactado con asistencia de IA a partir de los diálogos importados; afirmaciones pendientes de revisión humana."
     },
     {
       "id": "cov-1305",
@@ -372,10 +500,17 @@
       },
       "publication": null,
       "spanish": "available",
-      "importStatus": "not-imported",
-      "examination": "not-examined",
-      "sourceIds": [],
-      "eventIds": []
+      "importStatus": "imported",
+      "examination": "examined-with-events",
+      "sourceIds": [
+        "imp-quest-3022",
+        "imp-quest-3024",
+        "imp-quest-3025",
+        "imp-quest-3026",
+        "imp-quest-3028"
+      ],
+      "eventIds": ["evt-viajero-1305"],
+      "note": "Resumen por acto redactado con asistencia de IA a partir de los diálogos importados; afirmaciones pendientes de revisión humana."
     },
     {
       "id": "cov-1306",
@@ -389,10 +524,11 @@
       },
       "publication": null,
       "spanish": "available",
-      "importStatus": "not-imported",
-      "examination": "not-examined",
-      "sourceIds": [],
-      "eventIds": []
+      "importStatus": "imported",
+      "examination": "examined-with-events",
+      "sourceIds": ["imp-quest-3013"],
+      "eventIds": ["evt-viajero-1306"],
+      "note": "Resumen por acto redactado con asistencia de IA a partir de los diálogos importados; afirmaciones pendientes de revisión humana."
     },
     {
       "id": "cov-1307",
@@ -406,10 +542,16 @@
       },
       "publication": null,
       "spanish": "available",
-      "importStatus": "not-imported",
-      "examination": "not-examined",
-      "sourceIds": [],
-      "eventIds": []
+      "importStatus": "imported",
+      "examination": "examined-with-events",
+      "sourceIds": [
+        "imp-quest-3029",
+        "imp-quest-3030",
+        "imp-quest-3031",
+        "imp-quest-3032"
+      ],
+      "eventIds": ["evt-viajero-1307"],
+      "note": "Resumen por acto redactado con asistencia de IA a partir de los diálogos importados; afirmaciones pendientes de revisión humana."
     },
     {
       "id": "cov-1308",
@@ -423,10 +565,16 @@
       },
       "publication": null,
       "spanish": "available",
-      "importStatus": "not-imported",
-      "examination": "not-examined",
-      "sourceIds": [],
-      "eventIds": []
+      "importStatus": "imported",
+      "examination": "examined-with-events",
+      "sourceIds": [
+        "imp-quest-8009",
+        "imp-quest-8010",
+        "imp-quest-8011",
+        "imp-quest-8012"
+      ],
+      "eventIds": ["evt-viajero-1308"],
+      "note": "Resumen por acto redactado con asistencia de IA a partir de los diálogos importados; afirmaciones pendientes de revisión humana."
     },
     {
       "id": "cov-1401",
@@ -440,10 +588,11 @@
       },
       "publication": null,
       "spanish": "available",
-      "importStatus": "not-imported",
-      "examination": "not-examined",
-      "sourceIds": [],
-      "eventIds": []
+      "importStatus": "imported",
+      "examination": "examined-with-events",
+      "sourceIds": ["imp-quest-4004", "imp-quest-4005", "imp-quest-4006"],
+      "eventIds": ["evt-viajero-1401"],
+      "note": "Resumen por acto redactado con asistencia de IA a partir de los diálogos importados; afirmaciones pendientes de revisión humana."
     },
     {
       "id": "cov-1402",
@@ -457,10 +606,11 @@
       },
       "publication": null,
       "spanish": "available",
-      "importStatus": "not-imported",
-      "examination": "not-examined",
-      "sourceIds": [],
-      "eventIds": []
+      "importStatus": "imported",
+      "examination": "examined-with-events",
+      "sourceIds": ["imp-quest-4000", "imp-quest-4001", "imp-quest-4002"],
+      "eventIds": ["evt-viajero-1402"],
+      "note": "Resumen por acto redactado con asistencia de IA a partir de los diálogos importados; afirmaciones pendientes de revisión humana."
     },
     {
       "id": "cov-1403",
@@ -474,10 +624,16 @@
       },
       "publication": null,
       "spanish": "available",
-      "importStatus": "not-imported",
-      "examination": "not-examined",
-      "sourceIds": [],
-      "eventIds": []
+      "importStatus": "imported",
+      "examination": "examined-with-events",
+      "sourceIds": [
+        "imp-quest-4011",
+        "imp-quest-4012",
+        "imp-quest-4015",
+        "imp-quest-4018"
+      ],
+      "eventIds": ["evt-viajero-1403"],
+      "note": "Resumen por acto redactado con asistencia de IA a partir de los diálogos importados; afirmaciones pendientes de revisión humana."
     },
     {
       "id": "cov-1404",
@@ -491,10 +647,17 @@
       },
       "publication": null,
       "spanish": "available",
-      "importStatus": "not-imported",
-      "examination": "not-examined",
-      "sourceIds": [],
-      "eventIds": []
+      "importStatus": "imported",
+      "examination": "examined-with-events",
+      "sourceIds": [
+        "imp-quest-4007",
+        "imp-quest-4008",
+        "imp-quest-4009",
+        "imp-quest-4010",
+        "imp-quest-4019"
+      ],
+      "eventIds": ["evt-viajero-1404"],
+      "note": "Resumen por acto redactado con asistencia de IA a partir de los diálogos importados; afirmaciones pendientes de revisión humana."
     },
     {
       "id": "cov-1405",
@@ -508,10 +671,18 @@
       },
       "publication": null,
       "spanish": "available",
-      "importStatus": "not-imported",
-      "examination": "not-examined",
-      "sourceIds": [],
-      "eventIds": []
+      "importStatus": "imported",
+      "examination": "examined-with-events",
+      "sourceIds": [
+        "imp-quest-4020",
+        "imp-quest-4021",
+        "imp-quest-4022",
+        "imp-quest-4023",
+        "imp-quest-4024",
+        "imp-quest-4025"
+      ],
+      "eventIds": ["evt-viajero-1405"],
+      "note": "Resumen por acto redactado con asistencia de IA a partir de los diálogos importados; afirmaciones pendientes de revisión humana."
     },
     {
       "id": "cov-1406",
@@ -525,10 +696,11 @@
       },
       "publication": null,
       "spanish": "available",
-      "importStatus": "not-imported",
-      "examination": "not-examined",
-      "sourceIds": [],
-      "eventIds": []
+      "importStatus": "imported",
+      "examination": "examined-with-events",
+      "sourceIds": ["imp-quest-8019", "imp-quest-8020", "imp-quest-8021"],
+      "eventIds": ["evt-viajero-1406"],
+      "note": "Resumen por acto redactado con asistencia de IA a partir de los diálogos importados; afirmaciones pendientes de revisión humana."
     },
     {
       "id": "cov-1500",
@@ -542,10 +714,11 @@
       },
       "publication": null,
       "spanish": "available",
-      "importStatus": "not-imported",
-      "examination": "not-examined",
-      "sourceIds": [],
-      "eventIds": []
+      "importStatus": "imported",
+      "examination": "examined-with-events",
+      "sourceIds": ["imp-quest-5000", "imp-quest-5001", "imp-quest-5002"],
+      "eventIds": ["evt-viajero-1500"],
+      "note": "Resumen por acto redactado con asistencia de IA a partir de los diálogos importados; afirmaciones pendientes de revisión humana."
     },
     {
       "id": "cov-1501",
@@ -559,10 +732,17 @@
       },
       "publication": null,
       "spanish": "available",
-      "importStatus": "not-imported",
-      "examination": "not-examined",
-      "sourceIds": [],
-      "eventIds": []
+      "importStatus": "imported",
+      "examination": "examined-with-events",
+      "sourceIds": [
+        "imp-quest-5003",
+        "imp-quest-5004",
+        "imp-quest-5005",
+        "imp-quest-5006",
+        "imp-quest-5007"
+      ],
+      "eventIds": ["evt-viajero-1501"],
+      "note": "Resumen por acto redactado con asistencia de IA a partir de los diálogos importados; afirmaciones pendientes de revisión humana."
     },
     {
       "id": "cov-1502",
@@ -576,10 +756,11 @@
       },
       "publication": null,
       "spanish": "available",
-      "importStatus": "not-imported",
-      "examination": "not-examined",
-      "sourceIds": [],
-      "eventIds": []
+      "importStatus": "imported",
+      "examination": "examined-with-events",
+      "sourceIds": ["imp-quest-5015", "imp-quest-5016", "imp-quest-5017"],
+      "eventIds": ["evt-viajero-1502"],
+      "note": "Resumen por acto redactado con asistencia de IA a partir de los diálogos importados; afirmaciones pendientes de revisión humana."
     },
     {
       "id": "cov-1503",
@@ -593,10 +774,17 @@
       },
       "publication": null,
       "spanish": "available",
-      "importStatus": "not-imported",
-      "examination": "not-examined",
-      "sourceIds": [],
-      "eventIds": []
+      "importStatus": "imported",
+      "examination": "examined-with-events",
+      "sourceIds": [
+        "imp-quest-5009",
+        "imp-quest-5010",
+        "imp-quest-5011",
+        "imp-quest-5012",
+        "imp-quest-5014"
+      ],
+      "eventIds": ["evt-viajero-1503"],
+      "note": "Resumen por acto redactado con asistencia de IA a partir de los diálogos importados; afirmaciones pendientes de revisión humana."
     },
     {
       "id": "cov-1504",
@@ -610,10 +798,16 @@
       },
       "publication": null,
       "spanish": "available",
-      "importStatus": "not-imported",
-      "examination": "not-examined",
-      "sourceIds": [],
-      "eventIds": []
+      "importStatus": "imported",
+      "examination": "examined-with-events",
+      "sourceIds": [
+        "imp-quest-5022",
+        "imp-quest-5023",
+        "imp-quest-5024",
+        "imp-quest-5029"
+      ],
+      "eventIds": ["evt-viajero-1504"],
+      "note": "Resumen por acto redactado con asistencia de IA a partir de los diálogos importados; afirmaciones pendientes de revisión humana."
     },
     {
       "id": "cov-1505",
@@ -627,10 +821,11 @@
       },
       "publication": null,
       "spanish": "available",
-      "importStatus": "not-imported",
-      "examination": "not-examined",
-      "sourceIds": [],
-      "eventIds": []
+      "importStatus": "imported",
+      "examination": "examined-with-events",
+      "sourceIds": ["imp-quest-5026"],
+      "eventIds": ["evt-viajero-1505"],
+      "note": "Resumen por acto redactado con asistencia de IA a partir de los diálogos importados; afirmaciones pendientes de revisión humana."
     },
     {
       "id": "cov-1506",
@@ -644,10 +839,11 @@
       },
       "publication": null,
       "spanish": "available",
-      "importStatus": "not-imported",
-      "examination": "not-examined",
-      "sourceIds": [],
-      "eventIds": []
+      "importStatus": "imported",
+      "examination": "examined-with-events",
+      "sourceIds": ["imp-quest-8016", "imp-quest-8017", "imp-quest-8018"],
+      "eventIds": ["evt-viajero-1506"],
+      "note": "Resumen por acto redactado con asistencia de IA a partir de los diálogos importados; afirmaciones pendientes de revisión humana."
     },
     {
       "id": "cov-1600",
@@ -661,10 +857,11 @@
       },
       "publication": null,
       "spanish": "available",
-      "importStatus": "not-imported",
-      "examination": "not-examined",
-      "sourceIds": [],
-      "eventIds": []
+      "importStatus": "imported",
+      "examination": "examined-with-events",
+      "sourceIds": ["imp-quest-6000", "imp-quest-6001", "imp-quest-6002"],
+      "eventIds": ["evt-viajero-1600"],
+      "note": "Resumen por acto redactado con asistencia de IA a partir de los diálogos importados; afirmaciones pendientes de revisión humana."
     },
     {
       "id": "cov-1601",
@@ -678,10 +875,17 @@
       },
       "publication": null,
       "spanish": "available",
-      "importStatus": "not-imported",
-      "examination": "not-examined",
-      "sourceIds": [],
-      "eventIds": []
+      "importStatus": "imported",
+      "examination": "examined-with-events",
+      "sourceIds": [
+        "imp-quest-6007",
+        "imp-quest-6008",
+        "imp-quest-6009",
+        "imp-quest-6010",
+        "imp-quest-6011"
+      ],
+      "eventIds": ["evt-viajero-1601"],
+      "note": "Resumen por acto redactado con asistencia de IA a partir de los diálogos importados; afirmaciones pendientes de revisión humana."
     },
     {
       "id": "cov-1602",
@@ -695,10 +899,11 @@
       },
       "publication": null,
       "spanish": "available",
-      "importStatus": "not-imported",
-      "examination": "not-examined",
-      "sourceIds": [],
-      "eventIds": []
+      "importStatus": "imported",
+      "examination": "examined-with-events",
+      "sourceIds": ["imp-quest-6004", "imp-quest-6005", "imp-quest-6006"],
+      "eventIds": ["evt-viajero-1602"],
+      "note": "Resumen por acto redactado con asistencia de IA a partir de los diálogos importados; afirmaciones pendientes de revisión humana."
     },
     {
       "id": "cov-1603",
@@ -712,10 +917,11 @@
       },
       "publication": null,
       "spanish": "available",
-      "importStatus": "not-imported",
-      "examination": "not-examined",
-      "sourceIds": [],
-      "eventIds": []
+      "importStatus": "imported",
+      "examination": "examined-with-events",
+      "sourceIds": ["imp-quest-6012", "imp-quest-6013", "imp-quest-6014"],
+      "eventIds": ["evt-viajero-1603"],
+      "note": "Resumen por acto redactado con asistencia de IA a partir de los diálogos importados; afirmaciones pendientes de revisión humana."
     },
     {
       "id": "cov-1604",
@@ -729,10 +935,11 @@
       },
       "publication": null,
       "spanish": "available",
-      "importStatus": "not-imported",
-      "examination": "not-examined",
-      "sourceIds": [],
-      "eventIds": []
+      "importStatus": "imported",
+      "examination": "examined-with-events",
+      "sourceIds": ["imp-quest-6018", "imp-quest-6019", "imp-quest-6020"],
+      "eventIds": ["evt-viajero-1604"],
+      "note": "Resumen por acto redactado con asistencia de IA a partir de los diálogos importados; afirmaciones pendientes de revisión humana."
     },
     {
       "id": "cov-1605",
@@ -746,10 +953,11 @@
       },
       "publication": null,
       "spanish": "available",
-      "importStatus": "not-imported",
-      "examination": "not-examined",
-      "sourceIds": [],
-      "eventIds": []
+      "importStatus": "imported",
+      "examination": "examined-with-events",
+      "sourceIds": ["imp-quest-6025", "imp-quest-6026"],
+      "eventIds": ["evt-viajero-1605"],
+      "note": "Resumen por acto redactado con asistencia de IA a partir de los diálogos importados; afirmaciones pendientes de revisión humana."
     },
     {
       "id": "cov-1606",
@@ -763,10 +971,11 @@
       },
       "publication": null,
       "spanish": "available",
-      "importStatus": "not-imported",
-      "examination": "not-examined",
-      "sourceIds": [],
-      "eventIds": []
+      "importStatus": "imported",
+      "examination": "examined-with-events",
+      "sourceIds": ["imp-quest-6024", "imp-quest-6027", "imp-quest-6028"],
+      "eventIds": ["evt-viajero-1606"],
+      "note": "Resumen por acto redactado con asistencia de IA a partir de los diálogos importados; afirmaciones pendientes de revisión humana."
     },
     {
       "id": "cov-1607",
@@ -780,10 +989,11 @@
       },
       "publication": null,
       "spanish": "available",
-      "importStatus": "not-imported",
-      "examination": "not-examined",
-      "sourceIds": [],
-      "eventIds": []
+      "importStatus": "imported",
+      "examination": "examined-with-events",
+      "sourceIds": ["imp-quest-6003", "imp-quest-6022", "imp-quest-6023"],
+      "eventIds": ["evt-viajero-1607"],
+      "note": "Resumen por acto redactado con asistencia de IA a partir de los diálogos importados; afirmaciones pendientes de revisión humana."
     },
     {
       "id": "cov-1608",
@@ -797,10 +1007,11 @@
       },
       "publication": null,
       "spanish": "available",
-      "importStatus": "not-imported",
-      "examination": "not-examined",
-      "sourceIds": [],
-      "eventIds": []
+      "importStatus": "imported",
+      "examination": "examined-with-events",
+      "sourceIds": ["imp-quest-6015", "imp-quest-6016", "imp-quest-6017"],
+      "eventIds": ["evt-viajero-1608"],
+      "note": "Resumen por acto redactado con asistencia de IA a partir de los diálogos importados; afirmaciones pendientes de revisión humana."
     },
     {
       "id": "cov-1609",
@@ -814,10 +1025,11 @@
       },
       "publication": null,
       "spanish": "available",
-      "importStatus": "not-imported",
-      "examination": "not-examined",
-      "sourceIds": [],
-      "eventIds": []
+      "importStatus": "imported",
+      "examination": "examined-with-events",
+      "sourceIds": ["imp-quest-3034", "imp-quest-3035", "imp-quest-3036"],
+      "eventIds": ["evt-viajero-1609"],
+      "note": "Resumen por acto redactado con asistencia de IA a partir de los diálogos importados; afirmaciones pendientes de revisión humana."
     },
     {
       "id": "cov-1611",
@@ -831,10 +1043,16 @@
       },
       "publication": null,
       "spanish": "available",
-      "importStatus": "not-imported",
-      "examination": "not-examined",
-      "sourceIds": [],
-      "eventIds": []
+      "importStatus": "imported",
+      "examination": "examined-with-events",
+      "sourceIds": [
+        "imp-quest-6034",
+        "imp-quest-6035",
+        "imp-quest-6036",
+        "imp-quest-6038"
+      ],
+      "eventIds": ["evt-viajero-1611"],
+      "note": "Resumen por acto redactado con asistencia de IA a partir de los diálogos importados; afirmaciones pendientes de revisión humana."
     },
     {
       "id": "cov-1700",
@@ -846,12 +1064,22 @@
         "chapterId": 1700,
         "mainQuestIds": [7011, 7012, 7013, 7014]
       },
-      "publication": null,
+      "publication": {
+        "version": "7.0",
+        "date": "agosto de 2026 (aproximada, fuente secundaria)",
+        "reference": "https://allthings.how/genshin-impact-7-1-archon-quest-walkthrough-snezhnaya-act-3-and-act-4/ (secundaria; consulta 2026-10-05)"
+      },
       "spanish": "available",
-      "importStatus": "not-imported",
-      "examination": "not-examined",
-      "sourceIds": [],
-      "eventIds": []
+      "importStatus": "imported",
+      "examination": "examined-with-events",
+      "sourceIds": [
+        "imp-quest-7011",
+        "imp-quest-7012",
+        "imp-quest-7013",
+        "imp-quest-7014"
+      ],
+      "eventIds": ["evt-viajero-1700"],
+      "note": "Resumen por acto redactado con asistencia de IA a partir de los diálogos importados; afirmaciones pendientes de revisión humana."
     },
     {
       "id": "cov-1701",
@@ -863,12 +1091,23 @@
         "chapterId": 1701,
         "mainQuestIds": [7005, 7006, 7007, 7008, 7009]
       },
-      "publication": null,
+      "publication": {
+        "version": "7.0",
+        "date": "agosto de 2026 (aproximada, fuente secundaria)",
+        "reference": "https://allthings.how/genshin-impact-7-1-archon-quest-walkthrough-snezhnaya-act-3-and-act-4/ (secundaria; consulta 2026-10-05)"
+      },
       "spanish": "available",
-      "importStatus": "not-imported",
-      "examination": "not-examined",
-      "sourceIds": [],
-      "eventIds": []
+      "importStatus": "imported",
+      "examination": "examined-with-events",
+      "sourceIds": [
+        "imp-quest-7005",
+        "imp-quest-7006",
+        "imp-quest-7007",
+        "imp-quest-7008",
+        "imp-quest-7009"
+      ],
+      "eventIds": ["evt-viajero-1701"],
+      "note": "Resumen por acto redactado con asistencia de IA a partir de los diálogos importados; afirmaciones pendientes de revisión humana."
     },
     {
       "id": "cov-1702",
@@ -880,12 +1119,17 @@
         "chapterId": 1702,
         "mainQuestIds": [7015, 7016, 7017]
       },
-      "publication": null,
+      "publication": {
+        "version": "7.1",
+        "date": "2026-09-23",
+        "reference": "https://www.gamespress.com/en-US/Genshin-Impact-Version-71-Launches-September-23-as-Forces-Gather-in-Sn (secundaria; consulta 2026-10-05)"
+      },
       "spanish": "available",
       "importStatus": "not-imported",
       "examination": "not-examined",
       "sourceIds": [],
-      "eventIds": []
+      "eventIds": [],
+      "note": "Fuera del corte editorial: se mantiene una versión de margen respecto de la última pública (7.1), según decisión del usuario del 05/10/2026."
     },
     {
       "id": "cov-1703",
@@ -897,12 +1141,17 @@
         "chapterId": 1703,
         "mainQuestIds": [7018, 7019, 7020]
       },
-      "publication": null,
+      "publication": {
+        "version": "7.1",
+        "date": "2026-09-23",
+        "reference": "https://www.gamespress.com/en-US/Genshin-Impact-Version-71-Launches-September-23-as-Forces-Gather-in-Sn (secundaria; consulta 2026-10-05)"
+      },
       "spanish": "available",
       "importStatus": "not-imported",
       "examination": "not-examined",
       "sourceIds": [],
-      "eventIds": []
+      "eventIds": [],
+      "note": "Fuera del corte editorial: se mantiene una versión de margen respecto de la última pública (7.1), según decisión del usuario del 05/10/2026."
     },
     {
       "id": "cov-2001",

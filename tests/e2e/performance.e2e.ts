@@ -10,6 +10,7 @@ import type {
 import {
   allProgress,
   desktop,
+  enterTimeline,
   launch,
   phone,
   progressKey,
@@ -239,6 +240,7 @@ describe('performance and limits of the production build', () => {
     );
     expect(first.some((url) => url.startsWith('/data/events/'))).toBe(false);
     expect(first.some((url) => url.endsWith('search.json'))).toBe(false);
+    await enterTimeline(run.page);
     await run.page.locator('[data-event-id]').first().click();
     await run.page.waitForSelector('.atlas-detail h3');
     expect(

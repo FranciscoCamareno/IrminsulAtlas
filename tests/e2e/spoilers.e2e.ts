@@ -120,7 +120,7 @@ describe('spoiler surfaces in the built site', () => {
     const body = (await page.locator('body').innerText()).toLowerCase();
     for (const event of index.events)
       expect(body).not.toContain(event.title.toLowerCase());
-    await page.getByRole('radio', { name: /hasta Mondstadt/ }).check();
+    await page.getByRole('radio', { name: /fin de Mondstadt/ }).check();
     await page.getByRole('button', { name: 'Aplicar' }).click();
     expect(await page.locator('.atlas-detail').textContent()).toContain(
       'Contenido no disponible',

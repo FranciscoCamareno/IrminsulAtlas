@@ -4,27 +4,27 @@
   "milestones": [
     {
       "id": "hito-mondstadt",
-      "safeLabel": "Mondstadt"
+      "safeLabel": "Prólogo: acto III · fin de Mondstadt"
     },
     {
       "id": "hito-liyue",
-      "safeLabel": "Liyue"
+      "safeLabel": "Capítulo I: acto IV · fin de Liyue"
     },
     {
       "id": "hito-inazuma",
-      "safeLabel": "Inazuma"
+      "safeLabel": "Capítulo II: acto IV · fin de Inazuma"
     },
     {
       "id": "hito-sumeru",
-      "safeLabel": "Sumeru"
+      "safeLabel": "Capítulo III: acto VI · fin de Sumeru"
     },
     {
       "id": "hito-fontaine",
-      "safeLabel": "Fontaine"
+      "safeLabel": "Capítulo IV: acto VI · fin de Fontaine"
     },
     {
       "id": "hito-natlan",
-      "safeLabel": "Natlan"
+      "safeLabel": "Capítulo V: acto VI · fin de Natlan"
     }
   ],
   "events": {

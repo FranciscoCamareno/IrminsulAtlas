@@ -459,7 +459,7 @@ export default function TimelineExplorer({
           <section className="atlas-list" aria-label="Vista de lista">
             <div className="atlas-list-heading">
               <span className="atlas-kicker">
-                Genshin Impact · Historia antigua
+                Genshin Impact · Historia antigua y viaje del Viajero
               </span>
               <h2>Acontecimientos</h2>
               <p role="status">
@@ -533,7 +533,7 @@ export default function TimelineExplorer({
             <div className="detail-toolbar">
               <h2 id="detail-heading" ref={detailHeading} tabIndex={-1}>
                 {entityId
-                  ? 'Ficha del dossier'
+                  ? 'Ficha'
                   : eventState === 'visible'
                     ? 'Acontecimiento'
                     : 'Detalle del archivo'}
@@ -754,9 +754,9 @@ export default function TimelineExplorer({
               {light ? 'Cambiar a tema oscuro' : 'Cambiar a tema claro'}
             </button>
             <p>
-              Primer borrador basado en el dossier. El contenido se muestra
-              según tu progreso; el filtro protege tu experiencia, no es un
-              control de acceso.
+              Borrador basado en el dossier y en los diálogos de la Misión de
+              Arconte. El contenido se muestra según tu progreso; el filtro
+              protege tu experiencia, no es un control de acceso.
             </p>
           </div>
         </div>

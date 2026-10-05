@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { composeCorpora, loadCorpusFiles } from '../src/content/corpora';
+import { composeCorpora } from '../src/content/corpora';
 import { loadDossierContent } from '../src/content/dossier';
 import { buildAtlasData } from '../src/content/atlas-data';
 import type { CorpusFile } from '../src/domain/schema';
@@ -126,8 +126,7 @@ describe('corpus composition', () => {
     broken.evidence.claims[1]!.eventIds = ['no-existe'];
     expect(() => composeCorpora(base, [broken])).toThrow(/Evento inexistente/);
   });
-  it('leaves the ancient dataset untouched when there are no corpora', async () => {
+  it('leaves the ancient dataset untouched when there are no corpora', () => {
     expect(composeCorpora(base, [])).toEqual(base);
-    expect(await loadCorpusFiles()).toEqual([]);
   });
 });

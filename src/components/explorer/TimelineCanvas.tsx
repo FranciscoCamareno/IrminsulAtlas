@@ -148,6 +148,33 @@ export default function TimelineCanvas({
       0.9,
     );
   }
+  // A long row (one region told act by act) is framed whole, zooming out only
+  // as far as the labels stay apart, so no act needs a series of drags.
+  function jumpToAll(targets: readonly { x: number; y: number }[]) {
+    if (!targets.length) return;
+    const xs = targets.map((point) => point.x);
+    const ys = targets.map((point) => point.y);
+    const width = Math.max(...xs) - Math.min(...xs) + 420;
+    const height = Math.max(...ys) - Math.min(...ys) + 320;
+    const k = Math.min(
+      0.9,
+      Math.max(
+        0.4,
+        Math.min(
+          size.current.width / width,
+          (size.current.height * 0.8) / height,
+        ),
+      ),
+    );
+    controller.current?.center(
+      {
+        x: (Math.max(...xs) + Math.min(...xs)) / 2,
+        y: (Math.max(...ys) + Math.min(...ys)) / 2,
+      },
+      { width: size.current.width, height: size.current.height * 1.15 },
+      k,
+    );
+  }
   const connected = new Set(
     layout.edges
       .filter(
@@ -255,7 +282,7 @@ export default function TimelineCanvas({
         </span>
         <span>
           {dossier
-            ? 'Historia antigua · Primer borrador visible'
+            ? 'Historia antigua y viaje del Viajero · Borrador visible'
             : preview
               ? 'Vista previa · historias y conexiones'
               : 'Cronología de demostración'}
@@ -474,7 +501,7 @@ export default function TimelineCanvas({
           aria-label="Capítulos de la historia"
         >
           <div className="overview-intro">
-            <h2>Del mundo elemental al Cataclismo</h2>
+            <h2>De la historia antigua al viaje del Viajero</h2>
             <p>
               Elige un capítulo para explorar sus acontecimientos. Las
               trayectorias regionales se solapan; el orden de lectura no fija
@@ -548,10 +575,14 @@ export default function TimelineCanvas({
               onChange={(event) => {
                 setJumpEra(event.target.value);
                 setJumpThread('');
-                const first = layout.nodes.find(
+                const chapter = layout.nodes.filter(
                   (node) => node.eraId === event.target.value,
                 );
-                if (first) jumpTo(first);
+                const threads = new Set(
+                  chapter.map((node) => node.narrativeThread ?? ''),
+                );
+                if (threads.size === 1) jumpToAll(chapter);
+                else if (chapter[0]) jumpTo(chapter[0]);
               }}
             >
               <option value="" disabled>
@@ -571,12 +602,13 @@ export default function TimelineCanvas({
                 value={jumpThread}
                 onChange={(event) => {
                   setJumpThread(event.target.value);
-                  const target = layout.nodes.find(
-                    (node) =>
-                      node.eraId === jumpEra &&
-                      (node.narrativeThread ?? '') === event.target.value,
+                  jumpToAll(
+                    layout.nodes.filter(
+                      (node) =>
+                        node.eraId === jumpEra &&
+                        (node.narrativeThread ?? '') === event.target.value,
+                    ),
                   );
-                  if (target) jumpTo(target);
                 }}
               >
                 <option value="" disabled>

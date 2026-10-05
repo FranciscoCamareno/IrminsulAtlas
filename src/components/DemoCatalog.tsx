@@ -90,7 +90,9 @@ function EventMeta({ event }: { event: EventSummary }) {
           {event.id.startsWith('preview-')
             ? 'Material fuente'
             : event.editorialStatus === 'provisional'
-              ? 'Síntesis del dossier'
+              ? event.id.startsWith('evt-viajero-')
+                ? 'Resumen del acto'
+                : 'Síntesis del dossier'
               : claimLabels[event.claimStatus]}
         </span>
         <span className="tag">
@@ -100,7 +102,9 @@ function EventMeta({ event }: { event: EventSummary }) {
           <span className="tag" key={certainty}>
             {
               {
-                documented: 'Documentado en el dossier',
+                documented: event.id.startsWith('evt-viajero-')
+                  ? 'Documentado en los diálogos'
+                  : 'Documentado en el dossier',
                 tradition: 'Testimonio o tradición',
                 approximate: 'Aproximado',
                 disputed: 'Discutido',

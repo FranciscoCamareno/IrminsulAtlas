@@ -339,7 +339,7 @@ describe('dossier navigation', () => {
     expect(host.querySelectorAll('.chapter-card')).toHaveLength(
       dossier.eras.length,
     );
-    expect(host.textContent).toContain('Primer borrador');
+    expect(host.textContent).toContain('Borrador basado');
     expect(host.querySelector('input[type="checkbox"]')).toBeNull();
     // The mobile fit starts at 8%; one zoom step reaches 10.4%.
     await click(button('Acercar cronología'));

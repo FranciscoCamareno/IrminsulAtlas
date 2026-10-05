@@ -5,7 +5,8 @@ import { CoverageRegistrySchema } from '../src/domain/schema';
 const registry = CoverageRegistrySchema.parse(
   JSON.parse(readFileSync('content/editorial/genshin-coverage.json', 'utf8')),
 );
-const unit = registry.units[0]!;
+// A unit without a note, so that the exclusion rule can be exercised.
+const unit = { ...registry.units[0]!, note: undefined };
 
 describe('coverage registry', () => {
   it('keeps the committed inventory valid with unique ids and an explicit cut-off check', () => {

@@ -5,6 +5,7 @@ import type { Browser, BrowserContextOptions, Page } from 'playwright-core';
 import {
   allProgress,
   desktop,
+  enterTimeline,
   launch,
   narrow,
   phone,
@@ -188,7 +189,7 @@ describe('keyboard, focus and motion', () => {
   it('lets a keyboard user pan and zoom the timeline without a pointer', async () => {
     const { context, page } = await open(desktop);
     await page.goto(server.url + '/');
-    await page.waitForSelector('[data-event-id]');
+    await enterTimeline(page);
     await page.locator('.timeline-surface').focus();
     const x = async () =>
       (await page.locator('[data-event-id]').first().boundingBox())!.x;

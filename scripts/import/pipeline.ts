@@ -141,7 +141,10 @@ export async function readAccepted(
       null,
       'La versión aceptada fue modificada',
     );
-  const issues = findImportIssues(dataset, []);
+  // Declared gaps of incomplete sources are warnings; only errors invalidate.
+  const issues = findImportIssues(dataset, []).filter(
+    (issue) => issue.severity === 'error',
+  );
   if (issues.length) throw new ImportFailure(issues[0]!);
   return { pointer, dataset };
 }

@@ -232,3 +232,11 @@ Añadir en cada iteración: fecha, fase, cambios, comprobaciones, limitaciones y
 - **N-13:** `npm run content:impact` y procedimiento de recuperación probado ([n13](validation/n13-actualizaciones-recuperacion-2026-10-05.md)).
 - **No hecho:** N-11 y N-12 (contenido del Viajero), N-01 restante (4 eventos), N-02 (decisiones humanas). Por tanto la meta completa del documento 14 **no** está cumplida. Sin despliegue.
 
+### 2026-10-05 — Recorrido del Viajero, revelación por actos y rediseño visual
+
+- **N-11/N-12:** 49 actos de la Misión de Arconte, hasta la 7.0 (corte con una versión de margen elegido por el usuario). Detalle en [n11-n12](validation/n11-n12-viajero-2026-10-05.md). Todo `pending`; las afirmaciones son `cited`.
+- **N-03 (decisión del usuario B):** `entityOverrides` para Liyue, Sumeru y Fontaine. Mondstadt e Inazuma **no** se rebajaron porque su texto menciona el Cataclismo y la muerte de Makoto; proponer división del texto.
+- **Decisiones C del usuario:** versión pública 7.1 confirmada; D-01…D-12 aprobadas y pruebas manuales hechas según el usuario. Esta documentación no tiene constancia propia de esas pruebas, y los registros de revisión individual siguen sin rellenar.
+- **Rediseño visual** «Cuaderno de viaje» con tema Día por defecto ([guía](styles.md)).
+- **Pendiente:** revisión humana de los actos; misiones de mundo, historias de personajes, encuentros y eventos; las 4 fichas antiguas sin afirmaciones (puede ayudar la nueva importación de misiones).
+

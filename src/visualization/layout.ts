@@ -59,29 +59,40 @@ function layoutDossier(content: TimelineContent) {
     const threads = [
       ...new Set(events.map((event) => event.narrativeThread ?? 'Historia')),
     ];
-    const maxColumns = Math.max(
-      1,
-      ...threads.map(
-        (thread) =>
-          events.filter(
-            (event) => (event.narrativeThread ?? 'Historia') === thread,
-          ).length,
-      ),
+    // A thread longer than WRAP acts continues on the next line of its row.
+    const WRAP = 4;
+    const counts = threads.map(
+      (thread) =>
+        events.filter(
+          (event) => (event.narrativeThread ?? 'Historia') === thread,
+        ).length,
     );
+    const lines = counts.map((count) => Math.max(1, Math.ceil(count / WRAP)));
+    // Wrapped lines sit further apart than separate rows: long titles of the
+    // line above must clear the symbols below at every zoom.
+    const span = (count: number) => 340 + (count - 1) * 460;
+    const offsets = lines.map((_, index) =>
+      lines.slice(0, index).reduce((sum, value) => sum + span(value), 0),
+    );
+    const maxColumns = Math.min(WRAP, Math.max(1, ...counts));
     const width = Math.max(680, maxColumns * 440 + 240);
     const columns = new Map<string, number>();
     events.forEach((event) => {
       const thread = event.narrativeThread ?? 'Historia';
       const column = columns.get(thread) ?? 0;
       columns.set(thread, column + 1);
+      const row = threads.indexOf(thread);
       nodes.push({
         ...event,
-        x: cursor + 150 + column * 440,
-        y: 210 + threads.indexOf(thread) * 340,
+        x: cursor + 150 + (column % WRAP) * 440,
+        y: 210 + offsets[row]! + Math.floor(column / WRAP) * 460,
         index: nodes.length + 1,
       });
     });
-    height = Math.max(height, 420 + threads.length * 340);
+    height = Math.max(
+      height,
+      420 + lines.reduce((sum, value) => sum + span(value), 0),
+    );
     const group = {
       ...era,
       x: cursor,
