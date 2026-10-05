@@ -97,6 +97,7 @@ export function buildAtlasData(data: Dataset): AtlasData {
       .map((milestone) => ({
         id: milestone.id,
         safeLabel: milestone.safeLabel,
+        track: milestone.track,
       })),
     eras: data.eras
       .filter((era) => era.editorialStatus !== 'draft')

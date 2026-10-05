@@ -85,5 +85,5 @@ export const narrow: BrowserContextOptions = {
 };
 
 // Stored choice, set before the page loads so tests start past the first-visit prompt.
-export const progressKey = 'irminsul-atlas:progress:v1';
+export const progressKey = 'irminsul-atlas:progress:v2';
 export const allProgress = JSON.stringify({ kind: 'all' });

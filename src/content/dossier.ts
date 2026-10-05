@@ -194,6 +194,7 @@ function applyRevelation(data: Dataset, map: RevelationMap) {
   };
   data.milestones = map.milestones.map((item) => ({
     universeId: 'genshin',
+    track: 'main' as const,
     editorialStatus: map.status === 'reviewed' ? 'reviewed' : 'provisional',
     ...item,
   }));

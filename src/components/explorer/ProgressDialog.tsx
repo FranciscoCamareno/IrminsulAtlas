@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
 import type { AtlasIndex } from '../../domain/schema';
-import type { ProgressChoice } from '../../application/progress';
+import { progressSet, type ProgressChoice } from '../../application/progress';
 
 export function choiceLabel(
   choice: ProgressChoice | null,
@@ -9,9 +9,15 @@ export function choiceLabel(
   if (!choice) return 'Sin elegir';
   if (choice.kind === 'none') return 'Aún no he jugado';
   if (choice.kind === 'all') return 'Mostrar todo';
+  const extra = progressSet(choice, milestones);
+  const optional = milestones.filter(
+    (item) => item.track === 'optional' && extra.has(item.id),
+  ).length;
   return (
     'Hasta ' +
-    (milestones.find((item) => item.id === choice.milestoneId)?.safeLabel ?? '')
+    (milestones.find((item) => item.id === choice.milestoneId)?.safeLabel ??
+      '') +
+    (optional ? ` + ${optional} opcional${optional === 1 ? '' : 'es'}` : '')
   );
 }
 
@@ -21,10 +27,14 @@ const keyOf = (choice: ProgressChoice | null) =>
     : choice.kind === 'upto'
       ? 'upto:' + choice.milestoneId
       : choice.kind;
-const fromKey = (key: string): ProgressChoice =>
+const fromKey = (key: string, optional: readonly string[]): ProgressChoice =>
   key === 'none' || key === 'all'
     ? { kind: key }
-    : { kind: 'upto', milestoneId: key.slice('upto:'.length) };
+    : {
+        kind: 'upto',
+        milestoneId: key.slice('upto:'.length),
+        ...(optional.length ? { optional } : {}),
+      };
 
 function ProgressForm({
   firstVisit,
@@ -42,12 +52,20 @@ function ProgressForm({
   // Mounted only while open, so the draft selection always starts from the
   // current choice without synchronizing state in an effect.
   const [selected, setSelected] = useState(keyOf(choice));
+  const [optional, setOptional] = useState<string[]>(
+    choice?.kind === 'upto' ? [...(choice.optional ?? [])] : [],
+  );
+  const optionalMilestones = milestones.filter(
+    (item) => item.track === 'optional',
+  );
   const options = [
     { key: 'none', label: 'Aún no he jugado' },
-    ...milestones.map((item) => ({
-      key: 'upto:' + item.id,
-      label: 'Historia principal hasta ' + item.safeLabel,
-    })),
+    ...milestones
+      .filter((item) => item.track === 'main')
+      .map((item) => ({
+        key: 'upto:' + item.id,
+        label: 'Historia principal hasta ' + item.safeLabel,
+      })),
     { key: 'all', label: 'Mostrar todo (puede revelar tramas)' },
   ];
   return (
@@ -55,7 +73,7 @@ function ProgressForm({
       className="menu-content"
       onSubmit={(event) => {
         event.preventDefault();
-        onApply(fromKey(selected));
+        onApply(fromKey(selected, optional));
       }}
     >
       <h2 id="progress-title">
@@ -82,6 +100,27 @@ function ProgressForm({
           </label>
         ))}
       </fieldset>
+      {optionalMilestones.length > 0 && (
+        <fieldset disabled={!selected.startsWith('upto:')}>
+          <legend>Misiones opcionales que has completado</legend>
+          {optionalMilestones.map((item) => (
+            <label key={item.id} className="progress-choice">
+              <input
+                type="checkbox"
+                checked={optional.includes(item.id)}
+                onChange={(event) =>
+                  setOptional((current) =>
+                    event.target.checked
+                      ? [...current, item.id]
+                      : current.filter((id) => id !== item.id),
+                  )
+                }
+              />
+              {item.safeLabel}
+            </label>
+          ))}
+        </fieldset>
+      )}
       <small>
         Se guarda solo en este navegador. Puedes cambiarlo cuando quieras.
       </small>

@@ -477,7 +477,7 @@ describe('progress, search and loading', () => {
     expect(host.textContent).toContain(
       'aún no hay acontecimientos disponibles',
     );
-    expect(localStorage.getItem('irminsul-atlas:progress:v1')).toBeNull();
+    expect(localStorage.getItem('irminsul-atlas:progress:v2')).toBeNull();
   });
   it('turns an open ficha neutral when progress is lowered, without leaving its text behind', async () => {
     window.history.replaceState(null, '', '/?id=evt-cataclismo');

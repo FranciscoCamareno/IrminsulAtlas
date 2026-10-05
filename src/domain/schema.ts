@@ -87,6 +87,9 @@ export const MilestoneSchema = z.strictObject({
   universeId: IdSchema,
   // This is a deliberately safe selector label, not the title of a hidden mission.
   safeLabel: text,
+  // 'main' milestones form the ordered story ladder; 'optional' ones (side
+  // quests, hangouts) are granted one by one and never by reaching a region.
+  track: z.enum(['main', 'optional']).default('main'),
   editorialStatus,
 });
 export const EvidenceSchema = z.strictObject({
@@ -590,7 +593,13 @@ export const IndexRelationSchema = z.strictObject({
 export const AtlasIndexSchema = z.strictObject({
   schemaVersion: z.literal(1),
   universe: z.strictObject({ id: IdSchema, name: text, editorialStatus }),
-  milestones: z.array(z.strictObject({ id: IdSchema, safeLabel: text })),
+  milestones: z.array(
+    z.strictObject({
+      id: IdSchema,
+      safeLabel: text,
+      track: z.enum(['main', 'optional']),
+    }),
+  ),
   eras: z.array(IndexEraSchema),
   events: z.array(IndexEventSchema),
   entities: z.array(IndexEntitySchema),

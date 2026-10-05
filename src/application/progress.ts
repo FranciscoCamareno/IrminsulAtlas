@@ -1,9 +1,16 @@
 import type { AtlasIndex } from '../domain/schema';
 
-// A choice is either nothing, "up to" an ordered milestone (which also grants
-// every earlier one), or everything. It never depends on historical order.
+// A choice is nothing, "up to" an ordered main-story milestone (which also
+// grants every earlier main one) plus any optional milestones ticked one by
+// one, or everything. Reaching a region never grants an optional milestone, and
+// it never depends on historical order.
 export type ProgressChoice =
-  { kind: 'none' } | { kind: 'upto'; milestoneId: string } | { kind: 'all' };
+  | { kind: 'none' }
+  | { kind: 'upto'; milestoneId: string; optional?: readonly string[] }
+  | { kind: 'all' };
+
+const mainLadder = (milestones: AtlasIndex['milestones']) =>
+  milestones.filter((item) => item.track === 'main');
 
 export function progressSet(
   choice: ProgressChoice,
@@ -15,10 +22,16 @@ export function progressSet(
     case 'all':
       return new Set(milestones.map((milestone) => milestone.id));
     case 'upto': {
-      const end = milestones.findIndex(
-        (item) => item.id === choice.milestoneId,
-      );
-      return new Set(milestones.slice(0, end + 1).map((item) => item.id));
+      const ladder = mainLadder(milestones);
+      const end = ladder.findIndex((item) => item.id === choice.milestoneId);
+      const granted = new Set(ladder.slice(0, end + 1).map((item) => item.id));
+      // An unknown milestone, or a main one passed as optional, grants nothing.
+      for (const id of choice.optional ?? [])
+        if (
+          milestones.some((item) => item.id === id && item.track === 'optional')
+        )
+          granted.add(id);
+      return granted;
     }
   }
 }
@@ -29,21 +42,31 @@ export function isValidChoice(
 ): boolean {
   return (
     choice.kind !== 'upto' ||
-    milestones.some((item) => item.id === choice.milestoneId)
+    mainLadder(milestones).some((item) => item.id === choice.milestoneId)
   );
 }
 
-const STORAGE_KEY = 'irminsul-atlas:progress:v1';
+// v2 added optional milestones. A v1 value is read as is (it never carried
+// optional ones, so it grants exactly what it did before) and replaced by v2 on
+// the next choice.
+const STORAGE_KEY = 'irminsul-atlas:progress:v2';
+const LEGACY_KEY = 'irminsul-atlas:progress:v1';
 
 function parseChoice(raw: string | null): ProgressChoice | null {
   try {
     if (!raw) return null;
     const value = JSON.parse(raw) as unknown;
     if (typeof value !== 'object' || value === null) return null;
-    const { kind, milestoneId } = value as Record<string, unknown>;
+    const { kind, milestoneId, optional } = value as Record<string, unknown>;
     if (kind === 'none' || kind === 'all') return { kind };
-    if (kind === 'upto' && typeof milestoneId === 'string')
-      return { kind, milestoneId };
+    if (kind === 'upto' && typeof milestoneId === 'string') {
+      const picked = Array.isArray(optional)
+        ? [...new Set(optional.filter((id) => typeof id === 'string'))]
+        : [];
+      return picked.length
+        ? { kind, milestoneId, optional: picked }
+        : { kind, milestoneId };
+    }
   } catch {
     // Corrupt storage is treated as "undecided".
   }
@@ -68,7 +91,8 @@ export function getChoiceSnapshot(): string | null {
   // A failed write must not let an older persisted value override this choice.
   if (memory !== null) return memory;
   try {
-    return storage()?.getItem(STORAGE_KEY) ?? null;
+    const target = storage();
+    return target?.getItem(STORAGE_KEY) ?? target?.getItem(LEGACY_KEY) ?? null;
   } catch {
     return memory;
   }
