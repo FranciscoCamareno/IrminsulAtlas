@@ -159,3 +159,11 @@ Añadir en cada iteración: fecha, fase, cambios, comprobaciones, limitaciones y
 - Validación completa correcta: formato, lint, tipos sin diagnósticos, 71 pruebas y ocho páginas compiladas. Edge local: sin intersecciones entre las cajas de nodos/etiquetas al 16 %, 44 %, 46 %, 60 % y 116 % en escritorio; también al 16 % en un viewport móvil de 390 px. Al 44 % hay 21 nodos y al 46 % hay 29, sin fechas hasta el detalle.
 - Evidencia local en .validation/zoom/. La vista lejana sirve para apreciar la estructura; para leer textos se acerca la vista, y el título completo también está disponible al posar el cursor sobre el nodo. No se certifican gestos táctiles físicos.
 - Siguiente paso: valoración del usuario sobre el tamaño y el umbral elegidos. Sin cambios al contenido, dependencias ni despliegue.
+
+### 2026-10-05 — Validación técnica recuperada y alcance de la v1
+
+- Rama `claude/sleepy-ritchie-7esvu5` desde 7ae8060. Causa del fallo de `npm run validate` en Windows: CRLF por `core.autocrlf` frente a Prettier (LF). Reproducido con un clon simulado (60 archivos señalados) y corregido con `.gitattributes` (`eol=lf`, fixtures `-text` intactos), `endOfLine: lf` y `.editorconfig`. Sin cambios en código, contenido ni dependencias.
+- Nueva ejecución en Node 24.21.0 / npm 11.19.0 (Linux): formato, lint, tipos (0 diagnósticos), 71 pruebas y 8 páginas compiladas, código 0. Informe nuevo: [validación técnica](validation/validacion-tecnica-2026-10-05.md); los informes anteriores no se modifican.
+- [Alcance de la v1](11-alcance-primera-version.md): lista de aceptación y propuesta de no perseguir 30–50 eventos (pendiente de aprobación). Puntos 2–11 del plan de cierre sin iniciar; 3, 8, 10 y 11 requieren fuentes primarias, personas y dispositivos reales.
+- Limitación: no se ejecutó en Windows real. Sin despliegue.
+

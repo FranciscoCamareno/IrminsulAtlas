@@ -26,6 +26,8 @@ Astro sirve normalmente en `http://localhost:4321/`. En PowerShell usar `npm.cmd
 | `npm run format:check` | Comprobar formato                               |
 | `npm run validate`     | Formato, lint, tipos, pruebas y build           |
 
+**Finales de línea:** el repositorio guarda LF y `.gitattributes` fuerza `eol=lf`, de modo que `npm run validate` pasa también en Windows con `core.autocrlf=true`; los fixtures de `tests/fixtures/import/raw/` conservan sus bytes exactos. En un checkout de Windows anterior al cambio, renormalizar con `git add --renormalize .`. Resultados y pasos completos en [validación técnica del 05/10/2026](docs/validation/validacion-tecnica-2026-10-05.md). Alcance y criterios de la primera versión (propuesta): [docs/11](docs/11-alcance-primera-version.md).
+
 Se conservan las dependencias instaladas y `package-lock.json`. La compilación del dossier no requiere red, credenciales ni el snapshot P2. Puede desactivarse la telemetría de Astro con `$env:ASTRO_TELEMETRY_DISABLED='1'` en PowerShell.
 
 ## Explorar la historia
