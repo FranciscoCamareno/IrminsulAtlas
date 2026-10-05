@@ -533,6 +533,9 @@ export const RevelationMapSchema = z.strictObject({
   events: z.record(IdSchema, IdSchema),
   // Entities inherit the latest milestone of their events unless overridden.
   entityOverrides: z.record(IdSchema, IdSchema),
+  // A relation is visible when both ends are; an entry here adds a milestone of
+  // its own for a link that discloses more than either end does.
+  relationOverrides: z.record(IdSchema, IdSchema).default({}),
   unlinkedEntityMilestone: IdSchema,
 });
 export type RevelationMap = z.infer<typeof RevelationMapSchema>;

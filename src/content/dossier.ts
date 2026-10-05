@@ -219,6 +219,17 @@ function applyRevelation(data: Dataset, map: RevelationMap) {
       throw new Error('Hito de ficha inexistente: ' + milestone);
     entity.spoilerRequirements = [milestone];
   }
+  const relationIds = new Set(data.relations.map((relation) => relation.id));
+  for (const [id, milestone] of Object.entries(map.relationOverrides)) {
+    if (!relationIds.has(id))
+      throw new Error('Revelación de relación inexistente: ' + id);
+    if (!rank.has(milestone))
+      throw new Error('Hito de relación inexistente: ' + milestone);
+  }
+  for (const relation of data.relations) {
+    const own = map.relationOverrides[relation.id];
+    relation.spoilerRequirements = own ? [own] : [];
+  }
 }
 
 const scope = {
@@ -228,7 +239,11 @@ const scope = {
 };
 
 export async function loadDossierContent(
-  overrides: { mapping?: DossierMap; registry?: EvidenceRegistry } = {},
+  overrides: {
+    mapping?: DossierMap;
+    registry?: EvidenceRegistry;
+    revelation?: RevelationMap;
+  } = {},
 ): Promise<Dataset> {
   const documents = await loadDossierDocuments();
   const mapping = DossierMapSchema.parse(
@@ -416,7 +431,7 @@ export async function loadDossierContent(
       throw new Error('Acontecimiento sin anotaciones: ' + section.id);
   }
   applyEvidenceRegistry(data, registry);
-  applyRevelation(data, await loadRevelationMap());
+  applyRevelation(data, overrides.revelation ?? (await loadRevelationMap()));
   const parsed = DatasetSchema.parse(data);
   const issues = findIntegrityIssues(parsed);
   if (issues.length)
