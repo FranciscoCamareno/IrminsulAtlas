@@ -2,7 +2,7 @@
 
 ## Contexto y alcance
 
-Este repositorio contiene un prototipo de explorador de lore con cronología interactiva. Lee README.md y todos los documentos de docs, incluido styles.md, antes de implementar. La documentación original es una propuesta de arquitectura; consulta docs/08-base-inicial.md, docs/09-cronologia-inmersiva.md y el plan para distinguir lo implementado de lo pendiente.
+Este repositorio contiene un prototipo de explorador de lore con cronología interactiva. Lee README.md y todos los documentos de docs, incluido styles.md (guía visual «Cuaderno de viaje»), antes de implementar. La documentación original es una propuesta de arquitectura; consulta docs/08-base-inicial.md, docs/09-cronologia-inmersiva.md y el plan para distinguir lo implementado de lo pendiente.
 
 Respeta las instrucciones actuales del usuario y cualquier instrucción de mayor prioridad. El trabajo se realiza por fases. La existencia de este documento no autoriza por sí sola publicar ni modificar servicios externos.
 

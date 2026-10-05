@@ -61,15 +61,16 @@ const blocking = (items: Awaited<ReturnType<typeof scan>>) =>
   );
 
 describe('automated accessibility checks (WCAG 2.2 A/AA rules)', () => {
-  for (const light of [false, true]) {
-    const theme = light ? 'claro' : 'oscuro';
+  for (const night of [false, true]) {
+    // The default theme is the light «Día»; the toggle switches to «Noche».
+    const theme = night ? 'oscuro' : 'claro';
     it(`has no serious or critical violations across the main flows (${theme} theme)`, async () => {
       const { context, page } = await open(desktop);
       await page.goto(server.url + '/');
       await page.waitForSelector('[data-event-id]');
-      if (light) {
+      if (night) {
         await page.getByRole('button', { name: 'Abrir menú' }).click();
-        await page.getByRole('button', { name: /tema claro/ }).click();
+        await page.getByRole('button', { name: /tema oscuro/ }).click();
         await page.keyboard.press('Escape');
       }
       const found = [...(await scan(page, `cronología (${theme})`))];
@@ -78,17 +79,17 @@ describe('automated accessibility checks (WCAG 2.2 A/AA rules)', () => {
       found.push(...(await scan(page, `búsqueda abierta (${theme})`)));
       await page.goto(server.url + '/?vista=lista');
       await page.waitForSelector('[data-list-event-id]');
-      if (light) {
+      if (night) {
         await page.getByRole('button', { name: 'Abrir menú' }).click();
-        await page.getByRole('button', { name: /tema claro/ }).click();
+        await page.getByRole('button', { name: /tema oscuro/ }).click();
         await page.keyboard.press('Escape');
       }
       found.push(...(await scan(page, `lista (${theme})`)));
       await page.goto(server.url + '/?id=evt-revolucion-vennessa');
       await page.waitForSelector('[data-claim-id]');
-      if (light) {
+      if (night) {
         await page.getByRole('button', { name: 'Abrir menú' }).click();
-        await page.getByRole('button', { name: /tema claro/ }).click();
+        await page.getByRole('button', { name: /tema oscuro/ }).click();
         await page.keyboard.press('Escape');
       }
       found.push(...(await scan(page, `ficha con afirmaciones (${theme})`)));

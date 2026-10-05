@@ -1,26 +1,42 @@
+/* Cuaderno de viaje de Teyvat: papel crema, tinta de cacao, pegatinas de colores
+   pastel. Los contrastes de texto se comprobaron para AA (ver docs/styles.md). */
 :root {
-  --background: #f4f1eb;
-  --surface: #ffffff;
-  --surface-subtle: #e8e3da;
-  --surface-inverse: #191c21;
-  --text-primary: #111827;
-  --text-secondary: #4b5563;
-  --text-inverse: #f4f1eb;
-  --text-inverse-secondary: #d5d0c8;
-  --action: #000000;
-  --on-action: #ffffff;
-  --border-subtle: #d5cec4;
-  --border-strong: #8f8880;
-  --focus: #245cc5;
-  --focus-inverse: #a8c7ff;
-  --connection: #736b62;
-  --connection-active: #111827;
-  --status-info: #245cc5;
-  --status-warning: #855800;
+  --background: #fff6e6;
+  --surface: #fffdf7;
+  --surface-subtle: #ffeccc;
+  --surface-inverse: #2a2150;
+  --text-primary: #3f2f22;
+  --text-secondary: #6b4f38;
+  --text-inverse: #fff6e6;
+  --text-inverse-secondary: #e6d9ff;
+  --action: #ffb25b;
+  --on-action: #3f2f22;
+  --action-edge: #e08a2e;
+  --border-subtle: #ead6b8;
+  --border-strong: #a9763f;
+  --focus: #1c5fd1;
+  --focus-inverse: #ffd96b;
+  --connection: #b98550;
+  --connection-active: #0b6e7a;
+  --accent: #0b6e7a;
+  --status-info: #1c5fd1;
+  --status-warning: #8a4b10;
   --status-error: #a12d35;
-  --status-success: #246744;
-  --font-body: Inter, system-ui, sans-serif;
-  --font-meta: 'JetBrains Mono', ui-monospace, monospace;
+  --status-success: #1f6b44;
+  --sun: #ffb25b;
+  --sky: #7cc4ff;
+  --mint: #7fdcb9;
+  --rose: #ff8fa8;
+  --lilac: #b7a2ff;
+  --butter: #ffd96b;
+  --font-display:
+    'Iowan Old Style', 'Palatino Linotype', Palatino, 'Book Antiqua',
+    'Hoefler Text', Georgia, serif;
+  --font-body:
+    ui-rounded, 'SF Pro Rounded', 'Hiragino Maru Gothic ProN', Nunito,
+    'Segoe UI', system-ui, -apple-system, sans-serif;
+  --font-meta:
+    ui-rounded, 'SF Pro Rounded', Nunito, 'Segoe UI', system-ui, sans-serif;
   --space-1: 0.25rem;
   --space-2: 0.5rem;
   --space-3: 0.75rem;
@@ -29,9 +45,9 @@
   --space-8: 2rem;
   --space-12: 3rem;
   --space-16: 4rem;
-  --radius-panel: 1rem;
-  --radius-control: 0.5rem;
+  --radius-panel: 1.5rem;
+  --radius-control: 0.9rem;
   --radius-pill: 999px;
   --touch-target: 2.75rem;
-  --shadow-panel: 0 8px 28px rgb(17 24 39 / 10%);
+  --shadow-panel: 0 4px 0 #ead6b8, 0 14px 30px -12px rgb(122 78 28 / 28%);
 }

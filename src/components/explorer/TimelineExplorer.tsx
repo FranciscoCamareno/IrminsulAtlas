@@ -101,7 +101,7 @@ export default function TimelineExplorer({
   const undecided = !!index && choice === null && !declined;
 
   const [menuOpen, setMenuOpen] = useState(false);
-  const [light, setLight] = useState(false);
+  const [light, setLight] = useState(true);
   const [searchOpen, setSearchOpen] = useState(false);
   const selection = useSyncExternalStore(
     subscribeLocation,

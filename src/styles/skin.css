@@ -1,0 +1,924 @@
+/* Piel visual «Cuaderno de viaje»: formas, colores y efectos.
+   Solo presentación: no cambia estructura, datos ni interacciones. Se importa
+   después de timeline.css y redefine su apariencia. Las animaciones respetan
+   prefers-reduced-motion (regla global al final de timeline.css). */
+
+.atlas-shell {
+  --sun: #ffb25b;
+  --sun-edge: #e08a2e;
+  --sky: #7cc4ff;
+  --mint: #7fdcb9;
+  --rose: #ff8fa8;
+  --lilac: #b7a2ff;
+  --butter: #ffd96b;
+  --atlas-pop: 0 3px 0 var(--atlas-border-strong);
+  --atlas-card-shadow:
+    0 5px 0 var(--atlas-border), 0 18px 30px -16px var(--atlas-shadow);
+  --font-display-italic: var(--font-display);
+}
+
+/* ——— Base ——————————————————————————————————————————— */
+.atlas-shell button,
+.atlas-shell select,
+.atlas-shell input {
+  font-family: inherit;
+}
+.atlas-shell ::selection {
+  background: var(--butter);
+  color: #3f2f22;
+}
+.atlas-shell :focus-visible {
+  outline: 3px solid var(--atlas-focus);
+  outline-offset: 3px;
+  border-radius: 0.6rem;
+}
+.atlas-shell h2,
+.atlas-shell h3 {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+}
+
+/* ——— Barra superior ————————————————————————————————— */
+.atlas-navbar {
+  background: color-mix(in srgb, var(--atlas-panel) 86%, transparent);
+  backdrop-filter: blur(12px) saturate(1.25);
+  border-bottom: 2px dashed var(--atlas-border);
+  flex-basis: 4.75rem;
+}
+.atlas-wordmark {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-weight: 700;
+  font-size: 1.45rem;
+  letter-spacing: -0.01em;
+  text-transform: none;
+}
+.atlas-wordmark::before {
+  content: '✦' / '';
+  display: inline-grid;
+  place-items: center;
+  width: 2rem;
+  height: 2rem;
+  border-radius: 50%;
+  font-style: normal;
+  font-size: 1rem;
+  color: var(--atlas-ink);
+  background: var(--sun);
+  box-shadow:
+    0 2px 0 var(--sun-edge),
+    0 0 0 3px color-mix(in srgb, var(--sun) 35%, transparent);
+  transform: rotate(-8deg);
+}
+.atlas-wordmark span {
+  font-weight: 400;
+  color: var(--atlas-accent);
+}
+.atlas-icon-button {
+  border: 2px solid var(--atlas-border-strong);
+  border-radius: 999px;
+  background: var(--atlas-panel);
+  box-shadow: var(--atlas-pop);
+  transition:
+    translate 0.15s ease,
+    box-shadow 0.15s ease;
+}
+.atlas-icon-button:hover {
+  border-color: var(--atlas-border-strong);
+  background: color-mix(in srgb, var(--atlas-accent) 16%, var(--atlas-panel));
+  translate: 0 -2px;
+  box-shadow: 0 5px 0 var(--atlas-border-strong);
+}
+.atlas-icon-button:active {
+  translate: 0 2px;
+  box-shadow: 0 1px 0 var(--atlas-border-strong);
+}
+.menu-trigger {
+  padding-inline: 1rem;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+}
+.atlas-icon-button.progress-trigger,
+.progress-trigger {
+  color: var(--atlas-ink) !important;
+  font-weight: 800;
+  background: var(--sun);
+  border-color: var(--sun-edge);
+  box-shadow: 0 3px 0 var(--sun-edge);
+}
+.progress-trigger:hover {
+  background: #ffc27a;
+  border-color: var(--sun-edge);
+  box-shadow: 0 5px 0 var(--sun-edge);
+}
+.demo-label {
+  padding: 0.3rem 0.7rem;
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--mint) 30%, var(--atlas-panel));
+  border: 1.5px solid color-mix(in srgb, var(--mint) 70%, var(--atlas-border));
+  font-weight: 700;
+}
+.demo-label > span {
+  width: 8px;
+  height: 8px;
+  background: var(--mint);
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--mint) 35%, transparent);
+}
+
+/* ——— Lienzo: papel cuadriculado con luces pastel ———————————— */
+.timeline-stage {
+  background:
+    radial-gradient(
+      60rem 34rem at 8% 4%,
+      color-mix(in srgb, var(--sky) 30%, transparent),
+      transparent 70%
+    ),
+    radial-gradient(
+      52rem 30rem at 96% 96%,
+      color-mix(in srgb, var(--rose) 24%, transparent),
+      transparent 70%
+    ),
+    radial-gradient(
+      34rem 22rem at 70% 8%,
+      color-mix(in srgb, var(--butter) 22%, transparent),
+      transparent 70%
+    ),
+    linear-gradient(var(--atlas-grid) 1px, transparent 1px) 0 0 / 28px 28px,
+    linear-gradient(90deg, var(--atlas-grid) 1px, transparent 1px) 0 0 / 28px
+      28px,
+    var(--atlas-bg);
+}
+.timeline-stage::after {
+  box-shadow: none;
+}
+.canvas-heading {
+  padding: 0.6rem 1rem 0.7rem;
+  border-radius: 1.1rem;
+  background: color-mix(in srgb, var(--atlas-panel) 80%, transparent);
+  backdrop-filter: blur(8px);
+  border: 2px solid var(--atlas-border);
+  box-shadow: 0 4px 0 var(--atlas-border);
+  top: 1.4rem;
+  rotate: -1deg;
+}
+.atlas-kicker {
+  font-family: var(--font-meta);
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  color: var(--atlas-accent);
+}
+.canvas-heading > span:last-child {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: 1.05rem;
+  color: var(--atlas-text);
+}
+
+/* ——— Conexiones y épocas ——————————————————————————————— */
+.timeline-connection {
+  stroke: var(--atlas-line);
+  stroke-width: 2;
+  stroke-linecap: round;
+}
+.timeline-connection.is-inferred {
+  stroke-dasharray: 1 7;
+  stroke-width: 3;
+}
+.timeline-connection.is-active {
+  stroke: var(--rose);
+  stroke-width: 3.2;
+  filter: drop-shadow(0 0 5px color-mix(in srgb, var(--rose) 60%, transparent));
+}
+.era-divider {
+  stroke: var(--atlas-border-strong);
+  stroke-width: 2;
+  stroke-dasharray: 1 9;
+  stroke-linecap: round;
+  opacity: 0.45;
+}
+.era-axis {
+  stroke: var(--atlas-border-strong);
+  stroke-width: 2;
+  stroke-linecap: round;
+  opacity: 0.55;
+}
+.era-order-line {
+  stroke: var(--atlas-border-strong);
+  stroke-width: 2.5;
+  stroke-dasharray: 1 10;
+  stroke-linecap: round;
+}
+.era-label > span {
+  display: inline-grid;
+  place-items: center;
+  min-width: 2.1rem;
+  padding: 0.3rem 0.6rem;
+  border: 0;
+  border-radius: 999px;
+  font-family: var(--font-meta);
+  font-weight: 800;
+  font-size: 0.8rem;
+  color: var(--atlas-ink);
+  background: var(--sky);
+  box-shadow: 0 2px 0 rgb(0 0 0 / 16%);
+  rotate: -3deg;
+}
+.era-label:nth-of-type(6n + 2) > span {
+  background: var(--mint);
+}
+.era-label:nth-of-type(6n + 3) > span {
+  background: var(--butter);
+}
+.era-label:nth-of-type(6n + 4) > span {
+  background: var(--rose);
+}
+.era-label:nth-of-type(6n + 5) > span {
+  background: var(--lilac);
+}
+.era-label:nth-of-type(6n) > span {
+  background: var(--sun);
+}
+.era-label strong {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: 1.15rem;
+  font-weight: 700;
+  letter-spacing: 0;
+  text-transform: none;
+  color: var(--atlas-text);
+}
+
+/* ——— Nodos: pegatinas con destello ———————————————————————— */
+.node-symbol {
+  border: 3px solid var(--atlas-panel);
+  background: var(--sun);
+  box-shadow:
+    0 0 0 2.5px var(--sun-edge),
+    0 5px 0 2.5px color-mix(in srgb, var(--sun-edge) 80%, black),
+    0 10px 18px -6px var(--atlas-shadow);
+  transition:
+    scale 0.18s cubic-bezier(0.3, 1.6, 0.5, 1),
+    box-shadow 0.18s ease;
+}
+.timeline-node.minor .node-symbol {
+  background: var(--sky);
+  box-shadow:
+    0 0 0 2.5px #3d8fd1,
+    0 4px 0 2.5px #2f72a8,
+    0 10px 18px -6px var(--atlas-shadow);
+}
+.node-diamond {
+  width: 1.7rem;
+  height: 1.7rem;
+  border: 0;
+  background: var(--atlas-panel);
+  transform: none;
+  clip-path: polygon(
+    50% 0,
+    62% 38%,
+    100% 50%,
+    62% 62%,
+    50% 100%,
+    38% 62%,
+    0 50%,
+    38% 38%
+  );
+}
+.timeline-node.minor .node-diamond {
+  border-radius: 0;
+}
+.node-core {
+  width: 0.4rem;
+  height: 0.4rem;
+  background: var(--sun-edge);
+}
+.timeline-node.minor .node-core {
+  background: #2f72a8;
+}
+.timeline-node:hover .node-symbol {
+  scale: 1.1;
+  border-color: var(--atlas-panel);
+  box-shadow:
+    0 0 0 2.5px var(--sun-edge),
+    0 7px 0 2.5px color-mix(in srgb, var(--sun-edge) 80%, black),
+    0 14px 22px -6px var(--atlas-shadow);
+}
+.timeline-node.is-connected .node-symbol {
+  border-color: var(--rose);
+}
+.timeline-node.is-selected .node-symbol {
+  scale: 1.14;
+  background: var(--rose);
+  border-color: var(--atlas-panel);
+  box-shadow:
+    0 0 0 3px #d8537a,
+    0 6px 0 3px #a93a5b,
+    0 0 0 9px color-mix(in srgb, var(--rose) 35%, transparent),
+    0 16px 26px -6px var(--atlas-shadow);
+  animation: node-bob 2.6s ease-in-out infinite;
+}
+.timeline-node.is-selected .node-core {
+  background: #a93a5b;
+}
+@keyframes node-bob {
+  50% {
+    translate: 0 -4px;
+  }
+}
+.timeline-node.is-muted {
+  opacity: 0.62;
+}
+.node-label {
+  gap: 0.3rem;
+}
+.node-order {
+  padding: 0.12rem 0.5rem;
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--atlas-panel) 88%, transparent);
+  font-weight: 800;
+  letter-spacing: 0.06em;
+  color: var(--atlas-accent);
+}
+.node-label strong {
+  padding: 0.35rem 0.8rem 0.4rem;
+  border-radius: 1rem;
+  border: 2px solid var(--atlas-border);
+  background: var(--atlas-panel);
+  font-family: var(--font-display);
+  font-style: italic;
+  font-weight: 700;
+  font-size: 0.95rem;
+  box-shadow: 0 3px 0 var(--atlas-border);
+}
+.timeline-node.is-selected .node-label strong {
+  color: var(--atlas-text);
+  border-color: var(--rose);
+  box-shadow: 0 3px 0 var(--rose);
+}
+.node-time {
+  padding: 0.15rem 0.5rem;
+  border-radius: 0.7rem;
+  background: color-mix(in srgb, var(--atlas-panel) 88%, transparent);
+}
+
+/* Grupos y órbitas */
+.timeline-group {
+  border: 3px solid var(--atlas-panel);
+  border-radius: 50%;
+  background: var(--lilac);
+  color: var(--atlas-ink);
+  font-weight: 800;
+  box-shadow:
+    0 0 0 2.5px #8a73e6,
+    0 5px 0 2.5px #6b57c4,
+    0 10px 18px -6px var(--atlas-shadow);
+  transition: scale 0.18s cubic-bezier(0.3, 1.6, 0.5, 1);
+}
+.timeline-group:hover {
+  scale: 1.12;
+}
+.era-orbit {
+  border: 3px solid var(--atlas-panel);
+  outline: 2.5px dashed var(--atlas-border-strong);
+  outline-offset: 6px;
+  background: var(--sky);
+  box-shadow: 0 6px 0 #3d8fd1;
+}
+.era-orbit > span {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-weight: 700;
+  color: var(--atlas-ink);
+}
+.era-group strong {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-weight: 700;
+  font-size: 1rem;
+}
+.era-group:hover .era-orbit {
+  border-color: var(--atlas-panel);
+  background: var(--butter);
+}
+.compact-overview .era-group {
+  background: transparent;
+}
+
+/* ——— Controles de zoom y pie del lienzo ——————————————————— */
+.canvas-caption {
+  max-width: 36rem;
+  padding: 0.5rem 1rem 0.6rem;
+  border-radius: 1.1rem;
+  background: color-mix(in srgb, var(--atlas-panel) 84%, transparent);
+  backdrop-filter: blur(8px);
+  border: 2px solid var(--atlas-border);
+}
+.zoom-controls {
+  border: 2px solid var(--atlas-border-strong);
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--atlas-panel) 88%, transparent);
+  backdrop-filter: blur(10px);
+  box-shadow: var(--atlas-pop);
+  padding: 0.15rem;
+}
+.zoom-controls button {
+  border-radius: 50%;
+}
+.zoom-controls button:hover {
+  background: var(--butter);
+  color: #3f2f22;
+}
+.zoom-controls output {
+  font-weight: 800;
+}
+.control-divider {
+  border-left: 2px dotted var(--atlas-border-strong);
+}
+
+/* ——— Capítulos (vista general): postales con cinta ———————————— */
+.chapter-grid {
+  gap: 1.5rem 1.25rem;
+  padding-top: 0.6rem;
+}
+.chapter-card {
+  position: relative;
+  border: 2px solid var(--atlas-border);
+  border-radius: 1.5rem;
+  background: var(--atlas-panel);
+  box-shadow: var(--atlas-card-shadow);
+  transition:
+    translate 0.2s cubic-bezier(0.3, 1.5, 0.5, 1),
+    rotate 0.2s ease,
+    box-shadow 0.2s ease;
+}
+.chapter-card:nth-child(odd) {
+  rotate: -0.7deg;
+}
+.chapter-card:nth-child(even) {
+  rotate: 0.6deg;
+}
+.chapter-card::before {
+  content: '';
+  position: absolute;
+  top: -0.7rem;
+  left: 50%;
+  width: 5.5rem;
+  height: 1.4rem;
+  translate: -50% 0;
+  rotate: -3deg;
+  background:
+    radial-gradient(circle, rgb(255 255 255 / 55%) 1.5px, transparent 2px) 0 0 /
+      9px 9px,
+    color-mix(in srgb, var(--butter) 82%, transparent);
+  border-radius: 3px;
+  box-shadow: 0 1px 2px rgb(0 0 0 / 14%);
+}
+.chapter-card:nth-child(3n + 2)::before {
+  background:
+    radial-gradient(circle, rgb(255 255 255 / 55%) 1.5px, transparent 2px) 0 0 /
+      9px 9px,
+    color-mix(in srgb, var(--mint) 82%, transparent);
+}
+.chapter-card:nth-child(3n)::before {
+  background:
+    radial-gradient(circle, rgb(255 255 255 / 55%) 1.5px, transparent 2px) 0 0 /
+      9px 9px,
+    color-mix(in srgb, var(--rose) 78%, transparent);
+}
+.chapter-card:hover {
+  border-color: var(--atlas-border-strong);
+  translate: 0 -5px;
+  rotate: 0deg;
+  box-shadow:
+    0 9px 0 var(--atlas-border),
+    0 26px 34px -16px var(--atlas-shadow);
+}
+.chapter-card .atlas-kicker {
+  align-self: flex-start;
+  padding: 0.2rem 0.65rem;
+  border-radius: 999px;
+  color: var(--atlas-ink);
+  background: var(--sky);
+}
+.chapter-card:nth-child(3n + 2) .atlas-kicker {
+  background: var(--mint);
+}
+.chapter-card:nth-child(3n) .atlas-kicker {
+  background: var(--lilac);
+}
+.chapter-card strong {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-weight: 700;
+  font-size: 1.35rem;
+}
+.chapter-card .chapter-action {
+  align-self: flex-start;
+  padding: 0.4rem 0.9rem;
+  border-radius: 999px;
+  font-weight: 800;
+  color: var(--atlas-ink) !important;
+  background: var(--sun);
+  box-shadow: 0 3px 0 var(--sun-edge);
+}
+.overview-intro h2 {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-weight: 700;
+}
+.chapter-jump label {
+  font-weight: 800;
+}
+.chapter-jump select,
+.directory-search input {
+  border: 2px solid var(--atlas-border-strong);
+  border-radius: 999px;
+  padding-inline: 1rem;
+  background: var(--atlas-panel);
+  box-shadow: var(--atlas-pop);
+}
+
+/* ——— Ficha lateral: sello postal ——————————————————————— */
+.atlas-detail {
+  background: var(--atlas-panel);
+  border-left: 3px dashed var(--atlas-border-strong);
+}
+.detail-toolbar {
+  background: color-mix(in srgb, var(--atlas-panel) 90%, transparent);
+  backdrop-filter: blur(10px);
+  border-bottom: 2px dashed var(--atlas-border);
+}
+.detail-toolbar h2 {
+  display: inline-block;
+  padding: 0.25rem 0.8rem;
+  border-radius: 999px;
+  font-family: var(--font-meta);
+  font-style: normal;
+  font-weight: 800;
+  color: var(--atlas-ink);
+  background: var(--butter);
+  rotate: -2deg;
+}
+.atlas-detail .detail h3 {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-weight: 700;
+  font-size: 2rem;
+  line-height: 1.15;
+}
+.atlas-detail h4 {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  font-family: var(--font-meta);
+  font-style: normal;
+  font-weight: 800;
+  color: var(--atlas-accent);
+  border-top: 2px dotted var(--atlas-border-strong);
+}
+.atlas-detail h4::before {
+  content: '✦' / '';
+  font-size: 0.8rem;
+  color: var(--sun-edge);
+}
+.atlas-detail .tags .tag,
+.tag {
+  border: 0;
+  padding: 0.2rem 0.75rem;
+  font-weight: 700;
+  color: #3f2f22;
+  background: var(--sky);
+  box-shadow: 0 2px 0 rgb(0 0 0 / 14%);
+}
+.tags .tag:nth-child(5n + 2) {
+  background: var(--mint);
+}
+.tags .tag:nth-child(5n + 3) {
+  background: var(--butter);
+}
+.tags .tag:nth-child(5n + 4) {
+  background: var(--rose);
+}
+.tags .tag:nth-child(5n) {
+  background: var(--lilac);
+}
+.atlas-detail .detail-list a,
+.atlas-detail .detail a {
+  text-decoration-color: color-mix(in srgb, var(--sun) 80%, transparent);
+  text-decoration-thickness: 2px;
+  text-underline-offset: 0.25em;
+}
+.atlas-detail .detail a:hover {
+  background: color-mix(in srgb, var(--atlas-accent) 16%, transparent);
+  border-radius: 0.3rem;
+}
+.text-button {
+  border: 2px solid var(--atlas-border-strong);
+  border-radius: 999px;
+  padding-inline: 1.1rem;
+  font-weight: 800;
+  background: var(--atlas-panel);
+  box-shadow: var(--atlas-pop);
+  transition:
+    translate 0.15s ease,
+    box-shadow 0.15s ease;
+}
+.text-button:hover {
+  translate: 0 -2px;
+  box-shadow: 0 5px 0 var(--atlas-border-strong);
+  background: color-mix(in srgb, var(--atlas-accent) 16%, var(--atlas-panel));
+}
+.text-button:active {
+  translate: 0 2px;
+  box-shadow: 0 1px 0 var(--atlas-border-strong);
+}
+.progress-actions .text-button:first-child {
+  color: var(--atlas-ink);
+  background: var(--sun);
+  border-color: var(--sun-edge);
+  box-shadow: 0 3px 0 var(--sun-edge);
+}
+
+/* ——— Menú lateral y diálogos ————————————————————————— */
+.atlas-menu {
+  border-right: 3px dashed var(--atlas-border-strong);
+  border-radius: 0 1.75rem 1.75rem 0;
+  box-shadow: 14px 0 40px -18px var(--atlas-shadow);
+}
+.progress-dialog {
+  border: 3px solid var(--atlas-border-strong);
+  border-radius: 1.75rem;
+  background: var(--atlas-panel);
+  box-shadow:
+    0 8px 0 var(--atlas-border),
+    0 30px 50px -20px var(--atlas-shadow);
+}
+.atlas-menu::backdrop {
+  background:
+    radial-gradient(circle at 20% 10%, rgb(124 196 255 / 35%), transparent 55%),
+    rgb(40 22 70 / 55%);
+  backdrop-filter: blur(5px);
+}
+.menu-top h2,
+.progress-dialog h2 {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-weight: 700;
+  font-size: 1.5rem;
+}
+.menu-current {
+  margin-bottom: 0.6rem;
+  padding-inline: 1rem;
+  border: 2px solid var(--atlas-border);
+  border-radius: 1.1rem;
+  background: var(--atlas-panel);
+  box-shadow: 0 3px 0 var(--atlas-border);
+  font-weight: 700;
+  text-decoration: none;
+  transition: translate 0.15s ease;
+}
+.menu-current:hover {
+  translate: 4px 0;
+  border-color: var(--atlas-border-strong);
+  background: color-mix(in srgb, var(--atlas-accent) 16%, var(--atlas-panel));
+}
+.menu-current svg:first-child {
+  color: var(--sun-edge);
+}
+.menu-future {
+  border-bottom: 2px dotted var(--atlas-border-strong);
+}
+.progress-choice {
+  padding: 0.35rem 0.8rem;
+  margin-block: 0.25rem;
+  border-radius: 1rem;
+  border: 2px solid transparent;
+}
+.progress-choice:hover,
+.menu-progress label:hover {
+  background: color-mix(in srgb, var(--atlas-accent) 14%, transparent);
+}
+.progress-choice:has(input:checked) {
+  border-color: var(--sun-edge);
+  background: color-mix(in srgb, var(--sun) 24%, transparent);
+  font-weight: 700;
+}
+.progress-choice input,
+.menu-progress input {
+  accent-color: var(--sun-edge);
+}
+.theme-button {
+  padding-inline: 0.9rem;
+  border-radius: 999px;
+  border: 2px solid var(--atlas-border-strong);
+  box-shadow: var(--atlas-pop);
+  background: var(--atlas-panel);
+  font-weight: 800;
+}
+
+/* ——— Búsqueda y filtros ——————————————————————————————— */
+.search-region {
+  border-bottom: 2px dashed var(--atlas-border);
+  background: color-mix(in srgb, var(--atlas-panel) 92%, transparent);
+  backdrop-filter: blur(10px);
+}
+.search-panel label {
+  font-weight: 800;
+  color: var(--atlas-muted);
+}
+.search-panel input,
+.search-panel select {
+  border: 2px solid var(--atlas-border-strong);
+  border-radius: 999px;
+  padding-inline: 1rem;
+  background: var(--atlas-bg);
+  box-shadow: inset 0 2px 0 rgb(0 0 0 / 5%);
+  transition:
+    box-shadow 0.15s ease,
+    border-color 0.15s ease;
+}
+.search-panel input:focus,
+.search-panel select:focus {
+  border-color: var(--sun-edge);
+  box-shadow: 0 0 0 4px color-mix(in srgb, var(--sun) 35%, transparent);
+}
+.search-status {
+  font-weight: 700;
+}
+
+/* ——— Vista de lista: tarjetas ——————————————————————— */
+.atlas-list-heading h2 {
+  font-size: 2.4rem;
+}
+.atlas-list ol {
+  display: grid;
+  gap: 0.9rem;
+}
+.atlas-list li {
+  border: 2px solid var(--atlas-border);
+  border-radius: 1.3rem;
+  background: var(--atlas-panel);
+  box-shadow: 0 4px 0 var(--atlas-border);
+  transition:
+    translate 0.18s cubic-bezier(0.3, 1.5, 0.5, 1),
+    box-shadow 0.18s ease;
+}
+.atlas-list li:hover {
+  translate: 0 -3px;
+  border-color: var(--atlas-border-strong);
+  box-shadow: 0 8px 0 var(--atlas-border);
+}
+.atlas-list li button {
+  padding: 1.1rem 1.3rem;
+  border-radius: 1.3rem;
+}
+.atlas-list li button strong {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-weight: 700;
+  font-size: 1.2rem;
+}
+.atlas-list li button:hover strong {
+  color: var(--atlas-accent);
+}
+.blocked-reference {
+  padding: 0.1rem 0.6rem;
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--lilac) 28%, transparent);
+}
+
+/* ——— Estados vacíos ——————————————————————————————————— */
+.atlas-empty,
+.atlas-status,
+.canvas-empty {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: 1.15rem;
+  color: var(--atlas-text);
+}
+
+/* ——— Páginas del dossier y sitio ——————————————————————— */
+body:not(.atlas-page) {
+  color: var(--text-primary);
+  background:
+    radial-gradient(
+      48rem 26rem at 6% 0%,
+      color-mix(in srgb, var(--sky) 26%, transparent),
+      transparent 70%
+    ),
+    radial-gradient(
+      44rem 24rem at 100% 100%,
+      color-mix(in srgb, var(--rose) 20%, transparent),
+      transparent 70%
+    ),
+    linear-gradient(rgb(169 118 63 / 10%) 1px, transparent 1px) 0 0 / 28px 28px,
+    linear-gradient(90deg, rgb(169 118 63 / 10%) 1px, transparent 1px) 0 0 /
+      28px 28px,
+    var(--background);
+}
+body:not(.atlas-page) h1,
+body:not(.atlas-page) h2,
+body:not(.atlas-page) h3 {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-weight: 700;
+}
+.site-header {
+  border-bottom: 2px dashed var(--border-subtle);
+}
+.brand {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: 1.4rem;
+  text-transform: none;
+  letter-spacing: -0.01em;
+}
+.brand span {
+  color: var(--accent);
+}
+.demo-notice,
+.panel {
+  border: 2px solid var(--border-subtle);
+  border-radius: var(--radius-panel);
+  background: var(--surface);
+  box-shadow: 0 5px 0 var(--border-subtle);
+}
+.demo-notice {
+  background: color-mix(in srgb, var(--butter) 24%, var(--surface));
+}
+.progress-panel {
+  border-radius: var(--radius-panel);
+  box-shadow: 0 6px 0 #1a1340;
+}
+.site-footer {
+  border-top: 2px dashed var(--border-subtle);
+}
+.skip-link {
+  border-radius: 999px;
+  font-weight: 800;
+  box-shadow: 0 3px 0 var(--action-edge);
+}
+.dossier-navigation a {
+  padding-inline: 1rem;
+  border-radius: 999px;
+  border: 2px solid var(--border-strong);
+  background: var(--surface);
+  box-shadow: 0 3px 0 var(--border-strong);
+  text-decoration: none;
+  font-weight: 700;
+}
+.dossier-navigation [aria-current] {
+  color: #3f2f22;
+  background: var(--sun);
+  border-color: var(--action-edge);
+  box-shadow: 0 3px 0 var(--action-edge);
+}
+.dossier-table table {
+  border-radius: 1rem;
+  overflow: hidden;
+}
+.dossier-table th {
+  background: color-mix(in srgb, var(--butter) 40%, transparent);
+}
+
+/* ——— Pantallas estrechas ——————————————————————————————— */
+.progress-dialog {
+  height: fit-content;
+  max-height: calc(100dvh - 2rem);
+}
+@media (max-width: 767px) {
+  .canvas-heading {
+    padding: 0;
+    border: 0;
+    border-radius: 0;
+    background: transparent;
+    backdrop-filter: none;
+    box-shadow: none;
+    rotate: none;
+  }
+  .canvas-caption {
+    padding: 0.4rem 0.8rem;
+  }
+}
+@media (max-width: 640px) {
+  .atlas-wordmark {
+    font-size: 1.05rem;
+    white-space: nowrap;
+  }
+  .atlas-wordmark::before {
+    display: none;
+  }
+  .atlas-navbar {
+    flex-basis: 4.25rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .atlas-shell *,
+  .atlas-shell *::before,
+  .atlas-shell *::after {
+    animation: none !important;
+    transition: none !important;
+  }
+}

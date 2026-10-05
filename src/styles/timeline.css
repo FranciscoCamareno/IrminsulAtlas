@@ -1,20 +1,25 @@
 .atlas-page {
   margin: 0;
-  background: #111615;
+  background: #fff6e6;
 }
 .atlas-page main.atlas-main {
   width: 100%;
   margin: 0;
 }
+/* Tema «Noche»: cielo índigo con pegatinas pastel. */
 .atlas-shell {
-  --atlas-bg: #111615;
-  --atlas-panel: #191f1d;
-  --atlas-text: #eae8df;
-  --atlas-muted: #a1aaa3;
-  --atlas-line: #66796c;
-  --atlas-border: #36443b;
-  --atlas-accent: #c4d5af;
-  --atlas-focus: #a8c7ff;
+  --atlas-bg: #1d1838;
+  --atlas-panel: #271f4a;
+  --atlas-text: #fbf1ff;
+  --atlas-muted: #cdbfe8;
+  --atlas-line: #a99be0;
+  --atlas-border: #4a3f80;
+  --atlas-border-strong: #8d7fd0;
+  --atlas-accent: #ffc27a;
+  --atlas-focus: #ffd96b;
+  --atlas-grid: rgb(183 162 255 / 9%);
+  --atlas-shadow: rgb(8 4 28 / 55%);
+  --atlas-ink: #2a1b4d;
   color: var(--atlas-text);
   background: var(--atlas-bg);
   height: 100svh;
@@ -25,15 +30,20 @@
   font-family: var(--font-body);
   overflow: hidden;
 }
+/* Tema «Día»: papel crema, tinta de cacao, acentos verde azulado. */
 .atlas-light {
-  --atlas-bg: #f4f1eb;
-  --atlas-panel: #fffdf8;
-  --atlas-text: #202b25;
-  --atlas-muted: #536257;
-  --atlas-line: #748274;
-  --atlas-border: #c5cbbf;
-  --atlas-accent: #3e6244;
-  --atlas-focus: #245cc5;
+  --atlas-bg: #fff6e6;
+  --atlas-panel: #fffdf7;
+  --atlas-text: #3f2f22;
+  --atlas-muted: #6b4f38;
+  --atlas-line: #b98550;
+  --atlas-border: #ead6b8;
+  --atlas-border-strong: #a9763f;
+  --atlas-accent: #0b6e7a;
+  --atlas-focus: #1c5fd1;
+  --atlas-grid: rgb(169 118 63 / 11%);
+  --atlas-shadow: rgb(122 78 28 / 30%);
+  --atlas-ink: #3f2f22;
 }
 .sr-only {
   position: absolute;
@@ -1200,19 +1210,6 @@
   width: 100%;
   min-width: 0;
   box-sizing: border-box;
-}
-.timeline-group {
-  position: absolute;
-  transform: translate(-50%, -50%);
-  min-width: 2.75rem;
-  min-height: 2.75rem;
-  border: 1px solid var(--atlas-line);
-  border-radius: 50%;
-  background: var(--atlas-panel);
-  color: var(--atlas-text);
-  font-family: var(--font-meta);
-  font-size: 0.8125rem;
-  z-index: 1;
 }
 .timeline-group {
   position: absolute;

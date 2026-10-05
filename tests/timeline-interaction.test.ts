@@ -247,8 +247,10 @@ describe('timeline interaction', () => {
       'Hallazgo de la sala interior',
     );
     await click(button('Abrir menú'));
-    await click(host.querySelector<HTMLButtonElement>('.theme-button')!);
+    // The light «Día» theme is the default; the button switches to «Noche».
     expect(host.querySelector('.atlas-light')).not.toBeNull();
+    await click(host.querySelector<HTMLButtonElement>('.theme-button')!);
+    expect(host.querySelector('.atlas-light')).toBeNull();
     await click(button('Cerrar menú'));
     await click(button('Mostrar cronología'));
     expect(host.querySelector('.canvas-container.is-hidden')).toBeNull();
