@@ -14,6 +14,7 @@ import {
   findDossierReviewIssues,
   verifyAgainstImport,
 } from '../../src/domain/evidence-integrity.ts';
+import { buildImpactReport } from '../../src/domain/impact.ts';
 import { acquireSnapshot } from './acquire.ts';
 import {
   acceptedSubset,
@@ -103,6 +104,43 @@ try {
         status: 'valid',
         ...current.pointer,
         sources: current.dataset.sources.length,
+      }),
+    );
+  } else if (command === 'impact' && id) {
+    // Editorial impact of a candidate on the reviewed evidence. Read-only: it
+    // neither promotes the candidate nor edits any registry or decision.
+    const candidate = acceptedSubset(await readCandidate(candidates, id));
+    const registry = parse(
+      EvidenceRegistrySchema,
+      await readJson('content/editorial/genshin-evidence.json'),
+      'genshin-evidence.json',
+    );
+    const dossier = DossierMapSchema.parse(
+      await readJson('content/editorial/genshin-dossier.json'),
+    );
+    const registries = [registry];
+    const relations: { id: string; claimIds: readonly string[] }[] = [
+      ...dossier.relations,
+    ];
+    for (const name of (
+      await readdir(resolve('content/editorial/corpora')).catch(() => [])
+    )
+      .filter((file) => file.endsWith('.json'))
+      .sort()) {
+      const corpus = parse(
+        CorpusFileSchema,
+        await readJson(`content/editorial/corpora/${name}`),
+        name,
+      );
+      registries.push(corpus.evidence);
+      relations.push(...corpus.relations);
+    }
+    const current = await readAccepted(store);
+    console.log(
+      stableJson({
+        candidate: id,
+        diff: compareImports(current?.dataset ?? null, candidate),
+        impact: buildImpactReport(registries, relations, candidate),
       }),
     );
   } else if (command === 'evidence') {
@@ -204,7 +242,7 @@ try {
       process.exitCode = 1;
   } else {
     console.error(
-      'Uso: node scripts/import/cli.ts acquire|import|validate [ID]|diff ID|promote ID|evidence [ID]',
+      'Uso: node scripts/import/cli.ts acquire|import|validate [ID]|diff ID|promote ID|evidence [ID]|impact ID',
     );
     process.exitCode = 1;
   }

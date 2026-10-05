@@ -462,6 +462,42 @@ describe('P2 rejected input preserves accepted versions', () => {
     );
   });
 
+  it('recovers a previous accepted version by restoring its pointer, reproducing its dataset', async () => {
+    const { options, edit, save } = await fixture();
+    const first = await importSnapshot(options);
+    const initial = await promoteCandidate(
+      options.candidates,
+      first.id,
+      options.store,
+    );
+    const before = (await readAccepted(options.store))!.dataset;
+    edit('TextMap/TextMap_MediumES.json', (row) => {
+      row['4'] = '[DEMO] Changed segment';
+    });
+    await save();
+    const second = await importSnapshot(options);
+    const accepted = await promoteCandidate(
+      options.candidates,
+      second.id,
+      options.store,
+    );
+    expect((await readAccepted(options.store))!.dataset).not.toEqual(before);
+    // Recovery procedure: the immutable version stays on disk, so the pointer
+    // returns to it (there is no rollback command).
+    await writeFile(
+      resolve(options.store, 'accepted.json'),
+      stableJson({
+        schemaVersion: 1,
+        version: initial.version,
+        previousVersion: initial.previousVersion,
+      }),
+    );
+    const recovered = await readAccepted(options.store);
+    expect(recovered!.pointer.version).toBe(initial.version);
+    expect(recovered!.dataset).toEqual(before);
+    expect(accepted.previousVersion).toBe(initial.version);
+  });
+
   it('keeps the previous pointer if the target version cannot be written; rejects a concurrent promotion', async () => {
     const { options, edit, save } = await fixture();
     const first = await importSnapshot(options);
