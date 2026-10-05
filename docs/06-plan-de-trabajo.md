@@ -1,6 +1,6 @@
 # Plan de trabajo y validación
 
-Estado al 5 de octubre de 2026: base, importador P2 y borrador del dossier implementados. La cronología muestra 29 acontecimientos, siete capítulos y fichas de personajes/lugares; incorpora los ajustes de zoom del 28/09. Hay pruebas automatizadas y capturas locales de escritorio y viewports estrechos. Siguen pendientes la revisión editorial, spoilers del dossier, validación con dispositivos y personas, rendimiento y cierre del MVP. Las casillas de las fases originales conservan sus criterios de aceptación; los avances parciales y sus límites se detallan en el registro.
+Estado al 25 de septiembre de 2026: base implementada y prototipo de fase 2 con cronología a pantalla completa, gestos y ficha. Hay pruebas automatizadas de dominio, React/D3 en DOM simulado y HTTP. La revisión visual en navegador y el cierre de la fase 2 siguen pendientes. El MVP no está completo.
 
 ## Fase 0 — Inspección y decisiones
 
@@ -85,16 +85,6 @@ Si no se identifica una API adecuada, registrar la limitación y usar contenido 
 
 RF-01 a RF-12 implementados, contenido revisado, casos difíciles comprobados, compilación válida, navegación accesible, sin secretos publicados y documentación ajustada a lo construido. La publicación no es obligatoria para considerar listo el prototipo local.
 
-## Siguientes pasos desde el estado actual
-
-1. **Revisar el borrador y la lectura del zoom con el usuario.** Comprobar vista general, aparición de los ocho episodios complementarios al 45 %, lectura de fichas y navegación entre eventos/entidades. Registrar correcciones concretas y conservar IDs. Las comprobaciones técnicas del 28/09 no sustituyen la valoración de lectura ni gestos táctiles físicos.
-2. **Completar P3 con una muestra editorial verificable.** Seleccionar 8–12 eventos, contrastar afirmaciones con fuentes y fragmentos localizables, registrar incertidumbre y revisión humana. Vincular solo material pertinente del importador P2; el dossier provisional no equivale a contenido aprobado. Mantener explícitas las fuentes españolas ausentes y las rutas Coop incompletas.
-3. **Definir spoilers y completar P4.** Acordar hitos de progreso y orden de revelación; aplicar visibilidad a eventos, entidades, relaciones, fragmentos, resultados, conteos, HTML y metadatos. Incorporar búsqueda/filtros de acontecimientos y separar índice de detalles. Verificar enlaces bloqueados, reducción de progreso, historial, estados vacíos y errores; no deducir spoilers del orden de lectura.
-4. **Cerrar las brechas de P5–P6.** Reutilizar la cronología existente y comprobar densidad, equivalencia con la lista, teclado, movimiento reducido, zoom de página al 200 %, lector de pantalla y móvil real. Medir la compilación de producción con condiciones registradas; preparar y registrar sesiones reales de usabilidad. Una prueba no realizada permanece pendiente.
-5. **Completar P7 y preparar una eventual publicación.** Probar actualización de snapshots, revisión de eventos afectados y recuperación de la versión anterior sin perder editorial. Actualizar la documentación operativa y ejecutar validación completa. La publicación del sitio requiere una solicitud explícita; subir commits a GitHub no acredita estos criterios ni despliega el sitio.
-
-Antes del siguiente cambio de implementación, resolver la diferencia de finales de línea entre el checkout Windows (`core.autocrlf=true`) y Prettier, preservando los bytes de fixtures protegidos, y repetir la validación completa en un entorno con acceso a las rutas temporales del importador. Los criterios detallados siguen en [el plan de integración](10-plan-integracion-lore-y-pruebas.md). No se implementan esas fases mediante esta actualización documental.
-
 ## Registro de avances
 
 Añadir en cada iteración: fecha, fase, cambios, comprobaciones, limitaciones y siguiente paso. No rellenar avances hipotéticos.
@@ -170,10 +160,27 @@ Añadir en cada iteración: fecha, fase, cambios, comprobaciones, limitaciones y
 - Evidencia local en .validation/zoom/. La vista lejana sirve para apreciar la estructura; para leer textos se acerca la vista, y el título completo también está disponible al posar el cursor sobre el nodo. No se certifican gestos táctiles físicos.
 - Siguiente paso: valoración del usuario sobre el tamaño y el umbral elegidos. Sin cambios al contenido, dependencias ni despliegue.
 
+### 2026-10-05 — Validación técnica recuperada y alcance de la v1
 
-### 2026-10-05 — Revisión de GitHub y próximos pasos
+- Rama `claude/sleepy-ritchie-7esvu5` desde 7ae8060. Causa del fallo de `npm run validate` en Windows: CRLF por `core.autocrlf` frente a Prettier (LF). Reproducido con un clon simulado (60 archivos señalados) y corregido con `.gitattributes` (`eol=lf`, fixtures `-text` intactos), `endOfLine: lf` y `.editorconfig`. Sin cambios en código, contenido ni dependencias.
+- Nueva ejecución en Node 24.21.0 / npm 11.19.0 (Linux): formato, lint, tipos (0 diagnósticos), 71 pruebas y 8 páginas compiladas, código 0. Informe nuevo: [validación técnica](validation/validacion-tecnica-2026-10-05.md); los informes anteriores no se modifican.
+- [Alcance de la v1](11-alcance-primera-version.md): lista de aceptación y propuesta de no perseguir 30–50 eventos (pendiente de aprobación). Puntos 2–11 del plan de cierre sin iniciar; 3, 8, 10 y 11 requieren fuentes primarias, personas y dispositivos reales.
+- Limitación: no se ejecutó en Windows real. Sin despliegue.
 
-- Comprobación mediante actualización de referencias y consulta de la rama remota: `main`, `origin/main` y GitHub coinciden en `7ae8060dae8c8bffa750996a7591a4cf596264d6`; cero commits de diferencia y árbol limpio antes de esta edición. No había cambios de código pendientes de subir.
-- README corregido para identificar `main` como rama actual; las ramas de los informes anteriores permanecen como antecedentes históricos.
-- Estado inicial del plan actualizado y próximos pasos priorizados con criterios pendientes de revisión, integración editorial, spoilers, accesibilidad, rendimiento y recuperación. P3–P7 y el MVP no se declaran completos.
-- Validación de esta actualización: lint correcto; tipos en 37 archivos sin diagnósticos; compilación de ocho páginas correcta. `npm run validate` se detiene en formato: 40 archivos previos tienen finales de línea Windows; `prettier --check . --end-of-line auto` pasa. Con TEMP/TMP en el workspace, pasan 50 de 71 pruebas; las 21 restantes del importador fallan con EPERM en `realpath` de directorios temporales de `.validation/p2/tests/` dentro de este entorno restringido. No se certifica la suite completa; debe repetirse con acceso adecuado. Sin cambios de implementación, contenido del dossier ni dependencias; sin despliegue.
+### 2026-10-05 — Primera versión: lectura, spoilers, búsqueda, evidencias, accesibilidad y rendimiento
+
+- Aceptado por el usuario el alcance de la v1 (techo de 29 acontecimientos). Rama `claude/sleepy-ritchie-7esvu5`.
+- **Spoilers (P4):** política de progreso con hitos provisionales (`genshin-revelation.json`), diálogo en la primera visita, filtrado antes de búsqueda, sugerencias, conteos, conexiones y referencias en el texto; enlaces bloqueados neutros; HTML inicial sin títulos ni textos; documentos completos del dossier solo con «Mostrar todo».
+- **Búsqueda, filtros y estado:** búsqueda por nombre, participantes, región y texto completo diferido; filtros por capítulo, región, personaje o lugar y tipo; estado en la dirección; vacíos, filtros inexistentes y fallos con reintento.
+- **Índice ligero (P4/P5):** `/data/index.json` + detalles y texto bajo demanda; carga inicial 152 KB → 118 KB (−22 %).
+- **Evidencias (P3):** registro de afirmaciones N:M con fragmentos fijados por hash, detección de referencias rotas/incompletas y `npm run content:evidence`; muestra de 10 eventos, **todo `pending`**; 4 apoyos contrastados con texto primario. Informe y hallazgos críticos en `docs/validation/revision-editorial-muestra.md`.
+- **Cronología (P5):** corregido el clic perdido en nodos cercanos a los bordes (alta); conexiones largas solo al seleccionar; recorte por viewport en corpus densos (p95 de 383 ms a 16,8 ms con 290 eventos sintéticos).
+- **Pruebas:** 101 pruebas unitarias/de integración (`validate`) y 24 de navegador (`test:e2e`): lectura de los 29 eventos en tres tamaños, solapes de 15 % a 240 %, táctil emulado, axe (0 infracciones en 14 análisis), teclado, movimiento reducido, reflujo al 200 %/400 %, spoilers en el HTML construido y rendimiento.
+- **Pendiente y límites:** aprobación editorial de afirmaciones, revelación y clasificaciones; respaldo primario para 16 eventos (exige ampliar la selección de P1); lector de pantalla, teléfono real, Firefox/WebKit y sesiones con participantes. Sin despliegue.
+
+### 2026-10-05 — Ampliación de textos primarios del lore antiguo
+
+- Por instrucción del usuario se amplió la selección de P1: 32 documentos de `Readable/ES` (libros y crónicas sobre Vennessa, Decarabian, Enkanomiya, Mare Jivari, Remuria, Gurabad, Khaenri’ah, Hiperbórea y el orden celestial), importados con P2 (candidato `9af75c4c…`, versión aceptada `675999db…`: 51 fuentes, sin errores). Nuevo tipo de fuente `document`. Las huellas de los archivos nuevos se calcularon al descargarlos (sin inventario Git independiente), anotado en el manifiesto.
+- Registro de evidencias: 46 afirmaciones, 51 fuentes, 37 apoyos contrastados con fragmento fijado en 27 afirmaciones y 13 de 29 acontecimientos; todo sigue `pending`. Hallazgos críticos (cifra de Decarabian «tres mil años» frente a 2.600, tensiones de orden en Gurabad/Deshret y Watatsumi, partes del dossier sin respaldo primario) en `docs/validation/revision-editorial-muestra.md`.
+- Pendiente: decisiones editoriales sobre esos hallazgos, 12 acontecimientos sin afirmaciones (varios exigen importar misiones o diálogos), aprobación humana.
+

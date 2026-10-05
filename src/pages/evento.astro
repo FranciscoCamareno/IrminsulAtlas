@@ -1,11 +1,8 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import TimelineExplorer from '../components/explorer/TimelineExplorer';
-import { loadDossierContent } from '../content/dossier';
-
-const dataset = await loadDossierContent();
 ---
 
 <BaseLayout immersive dossier>
-  <TimelineExplorer dataset={dataset} client:load />
+  <TimelineExplorer client:load />
 </BaseLayout>

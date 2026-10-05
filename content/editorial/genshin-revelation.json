@@ -1,0 +1,63 @@
+{
+  "status": "provisional",
+  "note": "Asignación provisional hecha por el asistente, sin contrastar con el juego. Criterio conservador: cada ficha exige el hito en que su contenido más avanzado podría haberse revelado, porque el cuerpo completo se muestra al abrirla. Requiere revisión y aprobación del usuario antes de considerarse editorial. Nunca se deduce del orden histórico.",
+  "milestones": [
+    {
+      "id": "hito-mondstadt",
+      "safeLabel": "Mondstadt"
+    },
+    {
+      "id": "hito-liyue",
+      "safeLabel": "Liyue"
+    },
+    {
+      "id": "hito-inazuma",
+      "safeLabel": "Inazuma"
+    },
+    {
+      "id": "hito-sumeru",
+      "safeLabel": "Sumeru"
+    },
+    {
+      "id": "hito-fontaine",
+      "safeLabel": "Fontaine"
+    },
+    {
+      "id": "hito-natlan",
+      "safeLabel": "Natlan"
+    }
+  ],
+  "events": {
+    "evt-mundo-elemental": "hito-natlan",
+    "evt-orden-lunar": "hito-natlan",
+    "evt-conquista-celestial": "hito-natlan",
+    "evt-mundo-humano": "hito-natlan",
+    "evt-hiperborea": "hito-natlan",
+    "evt-guerra-llama-funeraria": "hito-natlan",
+    "evt-pilares-celestiales": "hito-natlan",
+    "evt-vindagnyr-khaenriah": "hito-natlan",
+    "evt-gnosis-guerra-arcontes": "hito-sumeru",
+    "evt-caida-guili": "hito-liyue",
+    "evt-rebelion-decarabian": "hito-mondstadt",
+    "evt-enkanomiya-watatsumi": "hito-inazuma",
+    "evt-tres-dioses-sumeru": "hito-sumeru",
+    "evt-remuria": "hito-fontaine",
+    "evt-fundacion-natlan": "hito-natlan",
+    "evt-formacion-snezhnaya": "hito-natlan",
+    "evt-caida-gurabad": "hito-sumeru",
+    "evt-caida-havria": "hito-liyue",
+    "evt-proteccion-chenyu": "hito-liyue",
+    "evt-ruina-tsurumi": "hito-inazuma",
+    "evt-caida-ochkanatlan": "hito-natlan",
+    "evt-era-siete": "hito-natlan",
+    "evt-revolucion-vennessa": "hito-mondstadt",
+    "evt-sello-azhdaha": "hito-liyue",
+    "evt-khaenriah-irmin": "hito-natlan",
+    "evt-llegada-gemelos": "hito-natlan",
+    "evt-cataclismo": "hito-natlan",
+    "evt-mare-jivari": "hito-natlan",
+    "evt-amrita-pari": "hito-fontaine"
+  },
+  "entityOverrides": {},
+  "unlinkedEntityMilestone": "hito-natlan"
+}

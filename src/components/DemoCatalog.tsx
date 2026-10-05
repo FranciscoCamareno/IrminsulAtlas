@@ -32,6 +32,27 @@ const editorialLabels = {
   provisional: 'Borrador visible',
   reviewed: 'Revisado',
 };
+const claimKindLabels = {
+  explicit: 'Dato explícito',
+  testimony: 'Testimonio',
+  interpretation: 'Interpretación',
+  unknown: 'Cuestión abierta',
+};
+const reviewLabels = {
+  pending: 'Revisión pendiente',
+  reviewed: 'Revisada',
+  disputed: 'En disputa',
+};
+const tierLabels = {
+  primary: 'Texto del juego',
+  secondary: 'Fuente secundaria',
+  dossier: 'Dossier',
+};
+const stanceLabels = {
+  supports: 'Respalda',
+  contradicts: 'Contradice',
+  context: 'Da contexto',
+};
 const eventHref = (id: string) => `/evento/?id=${encodeURIComponent(id)}`;
 const currentLocation = () => window.location.pathname + window.location.search;
 function subscribeLocation(onChange: () => void) {
@@ -96,20 +117,26 @@ function EventMeta({ event }: { event: EventSummary }) {
 export function Detail({
   event,
   onNavigate = navigate,
+  labelFor,
 }: {
   event: EventDetail;
   onNavigate?: (event: MouseEvent<HTMLAnchorElement>) => void;
+  labelFor?: (id: string) => string | null;
 }) {
   return (
     <article className="panel detail">
-      <EventMeta event={event} />
       <h3>{event.title}</h3>
+      <EventMeta event={event} />
       {event.dossierSection ? (
         <>
           <p className="metadata">
             {event.narrativeThread} · {event.categories.join(' · ')}
           </p>
-          <DossierText text={event.body} onNavigate={onNavigate} />
+          <DossierText
+            text={event.body}
+            onNavigate={onNavigate}
+            labelFor={labelFor}
+          />
           <a href={dossierHref(event.dossierSection)}>
             Leer el apartado en su contexto
           </a>
@@ -177,6 +204,59 @@ export function Detail({
       ) : (
         <p>Sin relaciones visibles con este progreso.</p>
       )}
+      {event.claims && event.claims.length > 0 && (
+        <>
+          <h4>Afirmaciones y respaldo</h4>
+          <p className="metadata">
+            Cada afirmación indica qué clase de enunciado es y qué la respalda.
+            «Contrastada» significa que se comprobó el fragmento; «citada», que
+            la fuente es la que menciona el dossier pero no se ha vuelto a leer.
+            Una interpretación o una cuestión abierta no es un dato.
+          </p>
+          <ul className="detail-list claim-list">
+            {event.claims.map((claim) => (
+              <li key={claim.id} data-claim-id={claim.id}>
+                <p className="metadata">
+                  {claimKindLabels[claim.kind]} ·{' '}
+                  {reviewLabels[claim.reviewStatus]}
+                </p>
+                <p>{claim.text}</p>
+                {claim.supports.length === 0 ? (
+                  <p className="metadata">
+                    Sin fuente que la respalde: es una lectura editorial o una
+                    pregunta que las fuentes dejan abierta.
+                  </p>
+                ) : (
+                  <ul>
+                    {claim.supports.map((support, index) => (
+                      <li key={index}>
+                        <strong>
+                          {support.sourceUrl ? (
+                            <a href={support.sourceUrl} rel="noreferrer">
+                              {support.sourceTitle}
+                            </a>
+                          ) : (
+                            support.sourceTitle
+                          )}
+                        </strong>
+                        <p className="metadata">
+                          {tierLabels[support.tier]} ·{' '}
+                          {stanceLabels[support.stance]} ·{' '}
+                          {support.verification === 'verified'
+                            ? 'Contrastada con el fragmento'
+                            : 'Citada, sin contrastar'}{' '}
+                          · {support.locator}
+                        </p>
+                        <p>Límites: {support.limits}</p>
+                      </li>
+                    ))}
+                  </ul>
+                )}
+              </li>
+            ))}
+          </ul>
+        </>
+      )}
       <h4>Fuentes y evidencia</h4>
       {event.evidence.length ? (
         <ul className="detail-list">
@@ -195,8 +275,15 @@ export function Detail({
                 {evidence.locator} · {evidence.availability}
               </p>
               <p>
-                {evidence.stance === 'supports' ? 'Respalda' : 'Contradice'}:{' '}
-                {evidence.claim}
+                {evidence.availability === 'Texto del dossier'
+                  ? 'Origen del texto'
+                  : evidence.availability ===
+                      'Referencia externa sin contrastar'
+                    ? 'Citada, sin contrastar'
+                    : evidence.stance === 'supports'
+                      ? 'Respalda'
+                      : 'Contradice'}
+                : {evidence.claim}
               </p>
               {evidence.note && <p>{evidence.note}</p>}
             </li>

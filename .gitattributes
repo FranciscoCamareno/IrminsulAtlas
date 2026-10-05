@@ -1,2 +1,6 @@
+# Text files are checked out with LF on every platform, so Prettier (endOfLine: lf)
+# and the committed bytes agree on Windows even with core.autocrlf=true.
+* text=auto eol=lf
+
 # Preserve exact fixture bytes across checkouts, including text hashes and line endings.
 tests/fixtures/import/raw/** -text

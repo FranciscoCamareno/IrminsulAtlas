@@ -16,9 +16,10 @@
   "cacheDirectory": ".validation/p1/raw",
   "humanReview": "pending",
   "acquisition": {
-    "fileCount": 100,
-    "bytes": 106693778,
-    "policy": "Only Spanish TextMap dictionaries, selected lookup tables and individual sample files; no full clone or complete Dialog/Talk Excel tables"
+    "fileCount": 132,
+    "bytes": 106801449,
+    "policy": "Only Spanish TextMap dictionaries, selected lookup tables and individual sample files; no full clone or complete Dialog/Talk Excel tables",
+    "extension": "05/10/2026: se añadieron 32 archivos Readable/ES del lore antiguo; sus huellas (sha256, git blob SHA-1) se calcularon al descargarlos desde la URL fijada al commit, sin inventario Git independiente (la API de árboles no estaba disponible)."
   },
   "files": [
     {
@@ -720,6 +721,198 @@
       "sha256": "40100da3d62c01a36a3bee21f7784d130f17cf3ae42d711bbfdb18777842af86",
       "gitBlobSha1": "bd6bde55579f2567f90e979cf9e71327bc23c75a",
       "acquiredAt": "2026-09-26T17:07:40.975Z"
+    },
+    {
+      "path": "Readable/ES/Book5_ES.txt",
+      "bytes": 1250,
+      "sha256": "4ec78dd56d9b9025821f824ead60e627559e0aa5e2df36b75a3ea03511c0f43c",
+      "gitBlobSha1": "60bd28a34853a50bea5aa3943fbc997bf63f81e8"
+    },
+    {
+      "path": "Readable/ES/Book6_ES.txt",
+      "bytes": 1349,
+      "sha256": "254c7b248c9381be233eb173b082b676b254710692baeabb1bc1cb5c2fe3f78b",
+      "gitBlobSha1": "080b2893c903f40792bf70677232707ccdfaea38"
+    },
+    {
+      "path": "Readable/ES/Book83_ES.txt",
+      "bytes": 3274,
+      "sha256": "520d1b1c229cc1baf8e2f7c4fe728f0b0a55a6f1ad4b9f80ac6a57a8e0a71f69",
+      "gitBlobSha1": "2d78b8bd17ebb9014a66a305d05acc082221a1c3"
+    },
+    {
+      "path": "Readable/ES/Book243_ES.txt",
+      "bytes": 1378,
+      "sha256": "bb0acca740da733356de14cbbab3bedddae090303d4eb4884c18f2f19ca22638",
+      "gitBlobSha1": "5265723156c84b10f92fa6048647e9b91cce197e"
+    },
+    {
+      "path": "Readable/ES/Book332_ES.txt",
+      "bytes": 2988,
+      "sha256": "9ed16916b08a08979846964ce4ec7d95288634861c2e8d840b2d578400dd9ce5",
+      "gitBlobSha1": "813a876bbc755b41ece8e5cca42fb327711b2cfb"
+    },
+    {
+      "path": "Readable/ES/Book333_ES.txt",
+      "bytes": 7965,
+      "sha256": "e47018da49a6590d474a2c7c688b69901e0eee94dfc170b4a48e95debc39a9d4",
+      "gitBlobSha1": "00e1d41da31e567d28e974a9a89fc749d86b5b7a"
+    },
+    {
+      "path": "Readable/ES/Book334_ES.txt",
+      "bytes": 4874,
+      "sha256": "471854bb26d95c2255f84f06416906c3d018f956f3d8ebf2918fe98bc4dab14b",
+      "gitBlobSha1": "7779ec261ea460d8629bcf7df70fab3de1b54d20"
+    },
+    {
+      "path": "Readable/ES/Book336_ES.txt",
+      "bytes": 5416,
+      "sha256": "1db9e71f2aa3ed8a56d730729ea22e6e5a9fadda456f20dcc7d99a007c08070f",
+      "gitBlobSha1": "26fa733f28e63c88b28de14e80303456349df031"
+    },
+    {
+      "path": "Readable/ES/Book511_ES.txt",
+      "bytes": 1494,
+      "sha256": "18671dd8d31109164cd23f4841bde4c115501eb01fb15247d4fbaf4bab5a2b35",
+      "gitBlobSha1": "cc6984c0c81bdc31e32cdb2aec47ed619677a083"
+    },
+    {
+      "path": "Readable/ES/Book512_ES.txt",
+      "bytes": 1742,
+      "sha256": "faf957367be7fd43d75f7e8c7b4468acb4b13aaeb32009cb77d5a9c86debdedd",
+      "gitBlobSha1": "33d207b3a42f49bbeb07bcb1bf6799330f33b1c7"
+    },
+    {
+      "path": "Readable/ES/Book513_ES.txt",
+      "bytes": 1442,
+      "sha256": "c2f5a52c43b5fe80e3871c3ca9928848f92f79b0d9185ef20d4528296d72c430",
+      "gitBlobSha1": "e14585cbfe96c609625a64d7d88046cc83105dff"
+    },
+    {
+      "path": "Readable/ES/Book514_ES.txt",
+      "bytes": 884,
+      "sha256": "0889bf5549cc20e997391bc73669fa017eccc0ad3b8e935591eb3152e1483331",
+      "gitBlobSha1": "33ac81aed1e78564b8acb06750844f61aed96e81"
+    },
+    {
+      "path": "Readable/ES/Book515_ES.txt",
+      "bytes": 1236,
+      "sha256": "c146779795ccf30e2010ba19646a9c088bbce0e7724105fac146de2e979693b9",
+      "gitBlobSha1": "cdb7c8e11e828d7fb38c8a2f59c57a88ef14fec0"
+    },
+    {
+      "path": "Readable/ES/Book517_ES.txt",
+      "bytes": 983,
+      "sha256": "fc91b37737f21ef31fdeeed0af91fb454e4369aa160301fceb7e7a33903d8d3b",
+      "gitBlobSha1": "a929668ce402d01650c9b051221fd23f841be6de"
+    },
+    {
+      "path": "Readable/ES/Book518_ES.txt",
+      "bytes": 1395,
+      "sha256": "ebd813636dc5f8e457634fe478bb49b2922975eb69c8a2e1a514afc015ee1a1f",
+      "gitBlobSha1": "12d6b16952eae1dc9a577d93de5f1b5166a9b2e3"
+    },
+    {
+      "path": "Readable/ES/Book519_ES.txt",
+      "bytes": 1167,
+      "sha256": "68e06a3364f57189afc9977f57ba97514894844f38dc8904e744d851205786bb",
+      "gitBlobSha1": "0e7b73fe99c698e2feb450d6c20131502757c677"
+    },
+    {
+      "path": "Readable/ES/Book640_ES.txt",
+      "bytes": 3144,
+      "sha256": "aea995e6e07eb56af0b34820316e0ddac4b899d563b9bd8253c036f5f398d831",
+      "gitBlobSha1": "769a3e4bced0abc5b3a64f41898f0a749a8d4bc4"
+    },
+    {
+      "path": "Readable/ES/Book641_ES.txt",
+      "bytes": 3599,
+      "sha256": "6282793f9e2be148be7a06910047cda13d5d0002ce3893f573087d2cffaf834a",
+      "gitBlobSha1": "a10200b0aeecbf35f9191b06fafaaa3fd961931b"
+    },
+    {
+      "path": "Readable/ES/Book642_ES.txt",
+      "bytes": 2755,
+      "sha256": "7b26da174718afa770bb76bec034ff0c7689c7ebb39ca5b2c13fa7793271f065",
+      "gitBlobSha1": "9d8f6c19599bfcf54be84d71e5473ebfa4f0ae07"
+    },
+    {
+      "path": "Readable/ES/Book800_ES.txt",
+      "bytes": 4071,
+      "sha256": "a16d6bdfaed6390a04d80465725af4ca92f9e6c8f6a79f81de7391b747d9e0be",
+      "gitBlobSha1": "563138bd48d61dc42cd9af156cbb342aa824eeb7"
+    },
+    {
+      "path": "Readable/ES/Book801_ES.txt",
+      "bytes": 4772,
+      "sha256": "493266f88d4b0560f582bf45e63b810c6b621176e903818b1ce8b19c1d964355",
+      "gitBlobSha1": "732fb4bc9b9e4b400891cde13cc44a881fd98202"
+    },
+    {
+      "path": "Readable/ES/Book941_ES.txt",
+      "bytes": 5310,
+      "sha256": "bb1c5326377a35746b3307a1434a43d996f149af1f6c72f00e1c66ebb9ac289f",
+      "gitBlobSha1": "fd8481b641e9d6dc0e06cb86f754c42ea4fa5b86"
+    },
+    {
+      "path": "Readable/ES/Book942_ES.txt",
+      "bytes": 2473,
+      "sha256": "a95f11c276f7688192dd702357c26d24ba895b6fdae63af8fead5c0432d31c34",
+      "gitBlobSha1": "f7b5d5347a9f9cf4f0d3772641b8d3d546468caa"
+    },
+    {
+      "path": "Readable/ES/Book943_ES.txt",
+      "bytes": 3189,
+      "sha256": "416c39f0ebbe0cebc19231aead302135b21b9b1742df6f690373a110313c5e2e",
+      "gitBlobSha1": "02ea8d91afa5b3e8eea0eb7fbcc85905e8cddffa"
+    },
+    {
+      "path": "Readable/ES/Book1061_ES.txt",
+      "bytes": 699,
+      "sha256": "20c9efc9a6e5e058fb528327c3dd2f70e5a1594b3310e96af343a27aa64478f3",
+      "gitBlobSha1": "ee2758324e4470a86b393432ba6a09f34d29a9fe"
+    },
+    {
+      "path": "Readable/ES/Book1062_ES.txt",
+      "bytes": 833,
+      "sha256": "f65c85ecbf336e3df5a3003c4d433e0652090f8553affc1381a3db25bf1fe998",
+      "gitBlobSha1": "bb1ab9cd25b6f7c1fb29e6c2291308bb4bcc484a"
+    },
+    {
+      "path": "Readable/ES/Book1119_ES.txt",
+      "bytes": 8581,
+      "sha256": "22d9bacb041bda1f596300eaa0ce2c6dc689cae6f0a014301cf3aa94c97991a4",
+      "gitBlobSha1": "99922947ad4b4f8021a9b9e68c222cc7986d0c6a"
+    },
+    {
+      "path": "Readable/ES/Book1120_ES.txt",
+      "bytes": 5116,
+      "sha256": "cb9bc14b717cec0382c7135caa24e9603b560b4ad898d8d9a36987103baa36c3",
+      "gitBlobSha1": "80d07a224a022c1695c9b9283fd441a4968b7995"
+    },
+    {
+      "path": "Readable/ES/Book1121_ES.txt",
+      "bytes": 1815,
+      "sha256": "6e3ade0724b6f154d481295244c49a10a9a41dd30beed50fe88df35c1d1d05e8",
+      "gitBlobSha1": "64d862ac8c6144109b179b5d72af707621c96126"
+    },
+    {
+      "path": "Readable/ES/Book1286_ES.txt",
+      "bytes": 4890,
+      "sha256": "0e2e7383e52c941fa59381d18faf1334c1fd4612bc9ba3c3f712bea1679d5f27",
+      "gitBlobSha1": "946ed822cd09fadbeff487e02c93d2cc359a299d"
+    },
+    {
+      "path": "Readable/ES/Book1287_ES.txt",
+      "bytes": 12846,
+      "sha256": "7ccea1ab2d8ab44c47cfe6f0624ca5bfaffbf40c80a6d6e7945f69c0a5b78a86",
+      "gitBlobSha1": "96d29d8e0330a13a6729c398ef08e406989f57fc"
+    },
+    {
+      "path": "Readable/ES/Book335_ES.txt",
+      "bytes": 4741,
+      "sha256": "679845291ca74b42def5aae45379ae02db334dde7f1d16867ca8d74e6f3494ec",
+      "gitBlobSha1": "f666d41b857a94f062de031b0435e15c6f2faf83"
     }
   ]
 }

@@ -23,6 +23,18 @@ import {
 } from '../../visualization/viewport';
 import Icon from './Icon';
 
+const cullingThreshold = 120;
+const cullingMargin = 240;
+
+function keyboardFocus(element: HTMLElement): boolean {
+  try {
+    return element.matches(':focus-visible');
+  } catch {
+    // Engines without :focus-visible keep the keyboard behaviour.
+    return true;
+  }
+}
+
 export default function TimelineCanvas({
   content,
   selectedId,
@@ -122,14 +134,41 @@ export default function TimelineCanvas({
       )
       .flatMap((edge) => [edge.from.id, edge.to.id]),
   );
-  const renderedNodes = layout.nodes.filter(
+  const shownByLevel = layout.nodes.filter(
     (node) =>
       viewport.k >= 0.45 ||
       node.importance === 'major' ||
       node.id === selectedId ||
       connected.has(node.id),
   );
-  const renderedIds = new Set(renderedNodes.map((node) => node.id));
+  const renderedIds = new Set(shownByLevel.map((node) => node.id));
+  // Dense data sets only: draw what is near the window. The real corpus keeps
+  // every node in the DOM so Tab can still reach all of them; beyond this
+  // size the list and search are the way to every event.
+  const culling = layout.nodes.length > cullingThreshold;
+  const onScreen = (point: { x: number; y: number }) => {
+    const at = project(point, viewport);
+    return (
+      at.x > -cullingMargin &&
+      at.x < dimensions.width + cullingMargin &&
+      at.y > -cullingMargin &&
+      at.y < dimensions.height + cullingMargin
+    );
+  };
+  const renderedNodes = culling
+    ? shownByLevel.filter((node) => node.id === selectedId || onScreen(node))
+    : shownByLevel;
+  // In dense data sets a connection is drawn only when both ends are near the
+  // window, or when it belongs to the selection: very long dashed paths are
+  // what makes zooming slow, and they carry little at that scale.
+  const edgeShown = (
+    a: { id: string; x: number; y: number },
+    b: { id: string; x: number; y: number },
+  ) =>
+    !culling ||
+    a.id === selectedId ||
+    b.id === selectedId ||
+    (onScreen(a) && onScreen(b));
   const compactOverview = dimensions.width < 640 && level === 'eras';
   function eraPosition(era: (typeof layout.eras)[number]) {
     return compactOverview
@@ -261,12 +300,18 @@ export default function TimelineCanvas({
               : layout.edges
                   .filter(
                     (edge) =>
+                      // Without a selection, only expressed order and links inside
+                      // one chapter are drawn; the long associations across chapters
+                      // tangle the overview and appear when an event is selected.
                       (!dossier ||
-                        !selectedId ||
-                        edge.from.id === selectedId ||
-                        edge.to.id === selectedId) &&
+                        (selectedId
+                          ? edge.from.id === selectedId ||
+                            edge.to.id === selectedId
+                          : edge.kind === 'precedes' ||
+                            edge.from.eraId === edge.to.eraId)) &&
                       renderedIds.has(edge.from.id) &&
-                      renderedIds.has(edge.to.id),
+                      renderedIds.has(edge.to.id) &&
+                      edgeShown(edge.from, edge.to),
                   )
                   .map((edge) => {
                     const active =
@@ -341,7 +386,11 @@ export default function TimelineCanvas({
               title={node.title}
               aria-pressed={node.id === selectedId}
               onClick={() => onSelect(node.id)}
-              onFocus={() => {
+              onFocus={(event) => {
+                // Keep a keyboard-focused node in view, but never move the
+                // canvas on a pointer press: the node would slip from under the
+                // pointer between press and release and the click would be lost.
+                if (!keyboardFocus(event.currentTarget)) return;
                 const width = size.current.width;
                 const height = size.current.height;
                 if (
@@ -477,7 +526,7 @@ export default function TimelineCanvas({
           </p>
           <small>
             {dossier
-              ? 'Orden de lectura; distancias y filas no representan duración ni simultaneidad. Conexiones discontinuas: interpretación del dossier.'
+              ? 'Orden de lectura; distancias y filas no representan duración ni simultaneidad. Conexiones discontinuas: interpretación del dossier; al seleccionar un evento se muestran todas las suyas.'
               : preview
                 ? 'Vista previa: distribución y conexiones provisionales. Contiene spoilers.'
                 : 'Orden narrativo; las distancias no representan duración.'}

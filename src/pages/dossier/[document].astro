@@ -1,14 +1,14 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
-import DossierText from '../../components/DossierText';
+import DossierReader from '../../components/DossierReader';
 import { loadDossierDocuments, dossierFiles } from '../../content/dossier';
 export async function getStaticPaths() {
   return (await loadDossierDocuments()).map((document) => ({
     params: { document: document.id },
-    props: { document },
+    props: { id: document.id, title: document.title },
   }));
 }
-const { document } = Astro.props;
+const { id, title } = Astro.props;
 ---
 
 <BaseLayout dossier>
@@ -16,14 +16,20 @@ const { document } = Astro.props;
     {dossierFiles.map((item) => (
       <a
         href={'/dossier/' + item.id + '/'}
-        aria-current={item.id === document.id ? 'page' : undefined}
+        aria-current={item.id === id ? 'page' : undefined}
       >
         {item.title}
       </a>
     ))}
   </nav>
   <article class="dossier-document">
-    <h1>{document.title}</h1>
-    <DossierText text={document.body} />
+    <h1>{title}</h1>
+    <DossierReader id={id} client:load />
+    <noscript>
+      <p>
+        El documento completo se muestra según tu progreso y necesita JavaScript
+        para comprobarlo.
+      </p>
+    </noscript>
   </article>
 </BaseLayout>

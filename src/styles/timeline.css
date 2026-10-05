@@ -182,7 +182,10 @@
 .timeline-surface {
   position: absolute;
   inset: 0;
-  overflow: hidden;
+  /* clip, not hidden: a hidden box can still be scrolled programmatically, and
+     focusing a node near the edge would scroll it out of sync with the D3
+     transform, losing the click. */
+  overflow: clip;
   cursor: grab;
   touch-action: none;
 }
@@ -504,6 +507,9 @@
   border-bottom: 1px solid var(--atlas-border);
   padding: 0.8rem 1.5rem;
   z-index: 1;
+}
+.detail-toolbar h2:focus-visible {
+  outline: none;
 }
 .detail-toolbar h2 {
   font-size: 0.6875rem;
@@ -1047,4 +1053,144 @@
 }
 .atlas-light {
   color-scheme: light;
+}
+
+/* Progress, search and loading states */
+.navbar-actions {
+  gap: 0.5rem;
+}
+.progress-trigger {
+  width: auto;
+  padding-inline: 0.8rem;
+  font-size: 0.75rem !important;
+  color: var(--atlas-muted) !important;
+  border-color: var(--atlas-border);
+}
+.search-region {
+  flex: 0 0 auto;
+  border-bottom: 1px solid var(--atlas-border);
+  background: var(--atlas-panel);
+  padding: 0.9rem clamp(1rem, 3vw, 2rem);
+  max-height: 45vh;
+  overflow: auto;
+  z-index: 2;
+}
+.search-panel {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(11rem, 1fr));
+  gap: 0.8rem 1rem;
+  align-items: end;
+}
+.search-panel label {
+  display: grid;
+  gap: 0.3rem;
+  font-size: 0.75rem;
+  color: var(--atlas-muted);
+}
+.search-panel .search-field {
+  grid-column: 1 / -1;
+}
+.search-panel input,
+.search-panel select {
+  min-height: 2.75rem;
+  border: 1px solid var(--atlas-border);
+  border-radius: 0.3rem;
+  color: var(--atlas-text);
+  background: var(--atlas-bg);
+  font: inherit;
+  font-size: 0.875rem;
+  padding: 0.5rem;
+  max-width: 100%;
+}
+.search-status {
+  grid-column: 1 / -1;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.4rem 1rem;
+  font-size: 0.8125rem;
+  color: var(--atlas-muted);
+}
+.atlas-status,
+.atlas-empty {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-content: center;
+  justify-items: center;
+  gap: 1rem;
+  text-align: center;
+  padding: 2rem;
+  pointer-events: none;
+  z-index: 1;
+}
+.atlas-empty > *,
+.atlas-status > * {
+  pointer-events: auto;
+}
+.atlas-workspace {
+  position: relative;
+}
+.progress-dialog {
+  margin: auto;
+  width: min(30rem, 100%);
+  height: auto;
+  max-height: 100%;
+  overflow: auto;
+  border: 1px solid var(--atlas-border);
+  border-radius: 0.4rem;
+}
+.progress-dialog p,
+.progress-dialog small {
+  color: var(--atlas-muted);
+  font-size: 0.8125rem;
+}
+.progress-dialog fieldset {
+  border: 0;
+  padding: 0;
+  margin: 1.2rem 0;
+}
+.progress-choice {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  min-height: 2.75rem;
+  font-size: 0.9375rem;
+  cursor: pointer;
+}
+.progress-choice input {
+  accent-color: var(--atlas-accent);
+  width: 1.2rem;
+  height: 1.2rem;
+}
+.progress-actions {
+  display: flex;
+  gap: 0.8rem;
+  margin-top: 1.4rem;
+  flex-wrap: wrap;
+}
+.blocked-reference {
+  color: var(--atlas-muted);
+  font-style: italic;
+}
+@media (max-width: 767px) {
+  .progress-trigger {
+    width: 2.75rem;
+    padding-inline: 0;
+  }
+  .progress-trigger span {
+    display: none;
+  }
+  .atlas-navbar {
+    padding-inline: 0.5rem;
+  }
+}
+.progress-dialog .menu-content {
+  min-height: 0;
+}
+.search-panel input,
+.search-panel select {
+  width: 100%;
+  min-width: 0;
+  box-sizing: border-box;
 }

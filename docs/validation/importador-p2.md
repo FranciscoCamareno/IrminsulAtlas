@@ -101,3 +101,7 @@ Las pruebas nuevas ejercitan Medium, colisiones iguales y distintas, JSON trunca
 No se repitieron pruebas visuales ni de gestos físicos: P2 no cambia la interfaz. La aceptación técnica local está completada; P3 sigue pendiente.
 
 Siguiente fase: P3, seleccionar y redactar 8–12 eventos con evidencias verificables, incertidumbre y revisión editorial. La aprobación de cobertura P1 no aprueba automáticamente esos futuros textos. No se ejecuta P3 ni se despliega en esta entrega.
+
+## Ampliación del 05/10/2026 (registro posterior; no modifica lo anterior)
+
+Con autorización del usuario se añadieron 32 archivos `Readable/ES` y 32 documentos a `scripts/import/selection.json` (kind `book` si están en `BooksCodex`, `document` si no; este último tipo es nuevo). El manifiesto pasa a 132 archivos; las huellas de los nuevos se calcularon al descargarlos desde la URL fijada al commit. El candidato resultante (`9af75c4c…`) se aceptó localmente como `675999db…` (51 fuentes, 428 segmentos, 2 textos sin resolver ya conocidos). Los resultados de este informe sobre el candidato anterior (`216c2918…`) siguen siendo los de su fecha.
