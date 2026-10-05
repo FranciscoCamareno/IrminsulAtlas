@@ -68,6 +68,134 @@
     {
       "id": 185015,
       "kind": "artifact-story"
+    },
+    {
+      "id": 100182,
+      "kind": "book"
+    },
+    {
+      "id": 100183,
+      "kind": "book"
+    },
+    {
+      "id": 100410,
+      "kind": "document"
+    },
+    {
+      "id": 101528,
+      "kind": "document"
+    },
+    {
+      "id": 101680,
+      "kind": "book"
+    },
+    {
+      "id": 101681,
+      "kind": "book"
+    },
+    {
+      "id": 101682,
+      "kind": "book"
+    },
+    {
+      "id": 101684,
+      "kind": "book"
+    },
+    {
+      "id": 120182,
+      "kind": "document"
+    },
+    {
+      "id": 120183,
+      "kind": "document"
+    },
+    {
+      "id": 120184,
+      "kind": "document"
+    },
+    {
+      "id": 120185,
+      "kind": "document"
+    },
+    {
+      "id": 120186,
+      "kind": "document"
+    },
+    {
+      "id": 120188,
+      "kind": "document"
+    },
+    {
+      "id": 120189,
+      "kind": "document"
+    },
+    {
+      "id": 120190,
+      "kind": "document"
+    },
+    {
+      "id": 120404,
+      "kind": "book"
+    },
+    {
+      "id": 120405,
+      "kind": "book"
+    },
+    {
+      "id": 120406,
+      "kind": "book"
+    },
+    {
+      "id": 120797,
+      "kind": "book"
+    },
+    {
+      "id": 120798,
+      "kind": "book"
+    },
+    {
+      "id": 121061,
+      "kind": "book"
+    },
+    {
+      "id": 121062,
+      "kind": "book"
+    },
+    {
+      "id": 121063,
+      "kind": "book"
+    },
+    {
+      "id": 121280,
+      "kind": "document"
+    },
+    {
+      "id": 121281,
+      "kind": "document"
+    },
+    {
+      "id": 121391,
+      "kind": "book"
+    },
+    {
+      "id": 121392,
+      "kind": "book"
+    },
+    {
+      "id": 121393,
+      "kind": "book"
+    },
+    {
+      "id": 121679,
+      "kind": "book"
+    },
+    {
+      "id": 121680,
+      "kind": "book"
+    },
+    {
+      "id": 101683,
+      "kind": "book"
     }
   ],
   "characterStories": [10202],

@@ -2,7 +2,7 @@
 
 Explorador de lore con cronología interactiva a pantalla completa. La página muestra el **primer borrador de la historia antigua de Genshin Impact**, basado en los cuatro documentos aportados en `docs/`.
 
-**Estado al 05/10/2026:** 29 acontecimientos (techo de la primera versión), siete capítulos, 35 conexiones, 48 fichas de personajes/grupos y 34 lugares, todo `provisional`. El contenido se muestra **según el progreso que elige el lector** (al entrar por primera vez se le pregunta; «Mostrar todo» lo abre entero). La asignación de hitos es **provisional**, hecha por el asistente y pendiente de revisión. Hay búsqueda, filtros, índice ligero con detalles bajo demanda y un registro de evidencias por afirmación (38 afirmaciones, 10 acontecimientos; **ninguna aprobada** y solo 4 apoyos contrastados con texto primario). Alcance y criterios: [docs/11](docs/11-alcance-primera-version.md).
+**Estado al 05/10/2026:** 29 acontecimientos (techo de la primera versión), siete capítulos, 35 conexiones, 48 fichas de personajes/grupos y 34 lugares, todo `provisional`. El contenido se muestra **según el progreso que elige el lector** (al entrar por primera vez se le pregunta; «Mostrar todo» lo abre entero). La asignación de hitos es **provisional**, hecha por el asistente y pendiente de revisión. Hay búsqueda, filtros, índice ligero con detalles bajo demanda y un registro de evidencias por afirmación (46 afirmaciones en 17 acontecimientos; **ninguna aprobada**; 37 apoyos contrastados con 20 textos primarios del juego). Alcance y criterios: [docs/11](docs/11-alcance-primera-version.md).
 
 ## Ejecutar localmente
 

@@ -321,7 +321,14 @@ export const ImportSelectionSchema = z.strictObject({
   documents: z.array(
     z.strictObject({
       id: z.number().int().positive(),
-      kind: z.enum(['book', 'letter', 'weapon-story', 'artifact-story']),
+      kind: z.enum([
+        'book',
+        'letter',
+        'document',
+        'document',
+        'weapon-story',
+        'artifact-story',
+      ]),
     }),
   ),
   characterStories: z.array(z.number().int().positive()),
@@ -375,6 +382,7 @@ export const SourceRecordSchema = z.strictObject({
     'hangout',
     'book',
     'letter',
+    'document',
     'character-story',
     'weapon-story',
     'artifact-story',

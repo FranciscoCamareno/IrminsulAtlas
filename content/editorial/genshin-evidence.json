@@ -261,6 +261,253 @@
       "url": "https://genshin-impact.fandom.com/wiki/Court_of_Khaenri%27ah",
       "tier": "secondary",
       "note": "Referencia citada por el dossier; no vuelta a leer en esta revisión."
+    },
+    {
+      "kind": "imported",
+      "id": "imp-vennessa-i",
+      "importedId": "agd-document-100182-es",
+      "snapshotCommit": "b061b403c8afc7bca633cf4f201edc4a3baa75fe",
+      "title": "La leyenda de Vennessa (I) · libro (ES)",
+      "sourceKind": "book",
+      "locator": {
+        "fileSha256": "101aaaf9c0cbb161d4c0f59da1314bd427cbe954a43fec6d9483fdda4aa38a47",
+        "path": "ExcelBinOutput/DocumentExcelConfigData.json",
+        "pointer": "/10"
+      }
+    },
+    {
+      "kind": "imported",
+      "id": "imp-vennessa-ii",
+      "importedId": "agd-document-100183-es",
+      "snapshotCommit": "b061b403c8afc7bca633cf4f201edc4a3baa75fe",
+      "title": "La leyenda de Vennessa (II) · libro (ES)",
+      "sourceKind": "book",
+      "locator": {
+        "fileSha256": "101aaaf9c0cbb161d4c0f59da1314bd427cbe954a43fec6d9483fdda4aa38a47",
+        "path": "ExcelBinOutput/DocumentExcelConfigData.json",
+        "pointer": "/11"
+      }
+    },
+    {
+      "kind": "imported",
+      "id": "imp-genealogia-gunnhildr",
+      "importedId": "agd-document-100410-es",
+      "snapshotCommit": "b061b403c8afc7bca633cf4f201edc4a3baa75fe",
+      "title": "Genealogía de los Gunnhildr · libro (ES)",
+      "sourceKind": "document",
+      "locator": {
+        "fileSha256": "101aaaf9c0cbb161d4c0f59da1314bd427cbe954a43fec6d9483fdda4aa38a47",
+        "path": "ExcelBinOutput/DocumentExcelConfigData.json",
+        "pointer": "/95"
+      }
+    },
+    {
+      "kind": "imported",
+      "id": "imp-antes-sol-luna",
+      "importedId": "agd-document-101681-es",
+      "snapshotCommit": "b061b403c8afc7bca633cf4f201edc4a3baa75fe",
+      "title": "Lo ocurrido antes del sol y la luna · libro (ES)",
+      "sourceKind": "book",
+      "locator": {
+        "fileSha256": "101aaaf9c0cbb161d4c0f59da1314bd427cbe954a43fec6d9483fdda4aa38a47",
+        "path": "ExcelBinOutput/DocumentExcelConfigData.json",
+        "pointer": "/333"
+      }
+    },
+    {
+      "kind": "imported",
+      "id": "imp-tokoyo-serpiente",
+      "importedId": "agd-document-101680-es",
+      "snapshotCommit": "b061b403c8afc7bca633cf4f201edc4a3baa75fe",
+      "title": "La serpiente y los dragones del reino de Tokoyo · libro (ES)",
+      "sourceKind": "book",
+      "locator": {
+        "fileSha256": "101aaaf9c0cbb161d4c0f59da1314bd427cbe954a43fec6d9483fdda4aa38a47",
+        "path": "ExcelBinOutput/DocumentExcelConfigData.json",
+        "pointer": "/332"
+      }
+    },
+    {
+      "kind": "imported",
+      "id": "imp-hidrologia-byakuya",
+      "importedId": "agd-document-101682-es",
+      "snapshotCommit": "b061b403c8afc7bca633cf4f201edc4a3baa75fe",
+      "title": "Hidrología del reino de Byakuya · libro (ES)",
+      "sourceKind": "book",
+      "locator": {
+        "fileSha256": "101aaaf9c0cbb161d4c0f59da1314bd427cbe954a43fec6d9483fdda4aa38a47",
+        "path": "ExcelBinOutput/DocumentExcelConfigData.json",
+        "pointer": "/334"
+      }
+    },
+    {
+      "kind": "imported",
+      "id": "imp-luces-sombras",
+      "importedId": "agd-document-101684-es",
+      "snapshotCommit": "b061b403c8afc7bca633cf4f201edc4a3baa75fe",
+      "title": "Luces y sombras · libro (ES)",
+      "sourceKind": "book",
+      "locator": {
+        "fileSha256": "101aaaf9c0cbb161d4c0f59da1314bd427cbe954a43fec6d9483fdda4aa38a47",
+        "path": "ExcelBinOutput/DocumentExcelConfigData.json",
+        "pointer": "/336"
+      }
+    },
+    {
+      "kind": "imported",
+      "id": "imp-sangonomiya",
+      "importedId": "agd-document-101528-es",
+      "snapshotCommit": "b061b403c8afc7bca633cf4f201edc4a3baa75fe",
+      "title": "Crónicas de Sangonomiya · documento (ES)",
+      "sourceKind": "document",
+      "locator": {
+        "fileSha256": "101aaaf9c0cbb161d4c0f59da1314bd427cbe954a43fec6d9483fdda4aa38a47",
+        "path": "ExcelBinOutput/DocumentExcelConfigData.json",
+        "pointer": "/270"
+      }
+    },
+    {
+      "kind": "imported",
+      "id": "imp-bakunawa",
+      "importedId": "agd-document-121280-es",
+      "snapshotCommit": "b061b403c8afc7bca633cf4f201edc4a3baa75fe",
+      "title": "Informe de investigación: Bakunawa · documento (ES)",
+      "sourceKind": "document",
+      "locator": {
+        "fileSha256": "101aaaf9c0cbb161d4c0f59da1314bd427cbe954a43fec6d9483fdda4aa38a47",
+        "path": "ExcelBinOutput/DocumentExcelConfigData.json",
+        "pointer": "/1027"
+      }
+    },
+    {
+      "kind": "imported",
+      "id": "imp-mare-jivari",
+      "importedId": "agd-document-121281-es",
+      "snapshotCommit": "b061b403c8afc7bca633cf4f201edc4a3baa75fe",
+      "title": "Informe de investigación: Mare Jivari · documento (ES)",
+      "sourceKind": "document",
+      "locator": {
+        "fileSha256": "101aaaf9c0cbb161d4c0f59da1314bd427cbe954a43fec6d9483fdda4aa38a47",
+        "path": "ExcelBinOutput/DocumentExcelConfigData.json",
+        "pointer": "/1028"
+      }
+    },
+    {
+      "kind": "imported",
+      "id": "imp-remuria-i",
+      "importedId": "agd-document-120404-es",
+      "snapshotCommit": "b061b403c8afc7bca633cf4f201edc4a3baa75fe",
+      "title": "La caída de Remuria (I) · libro (ES)",
+      "sourceKind": "book",
+      "locator": {
+        "fileSha256": "101aaaf9c0cbb161d4c0f59da1314bd427cbe954a43fec6d9483fdda4aa38a47",
+        "path": "ExcelBinOutput/DocumentExcelConfigData.json",
+        "pointer": "/623"
+      }
+    },
+    {
+      "kind": "imported",
+      "id": "imp-remuria-ii",
+      "importedId": "agd-document-120405-es",
+      "snapshotCommit": "b061b403c8afc7bca633cf4f201edc4a3baa75fe",
+      "title": "La caída de Remuria (II) · libro (ES)",
+      "sourceKind": "book",
+      "locator": {
+        "fileSha256": "101aaaf9c0cbb161d4c0f59da1314bd427cbe954a43fec6d9483fdda4aa38a47",
+        "path": "ExcelBinOutput/DocumentExcelConfigData.json",
+        "pointer": "/624"
+      }
+    },
+    {
+      "kind": "imported",
+      "id": "imp-remuria-iii",
+      "importedId": "agd-document-120406-es",
+      "snapshotCommit": "b061b403c8afc7bca633cf4f201edc4a3baa75fe",
+      "title": "La caída de Remuria (III) · libro (ES)",
+      "sourceKind": "book",
+      "locator": {
+        "fileSha256": "101aaaf9c0cbb161d4c0f59da1314bd427cbe954a43fec6d9483fdda4aa38a47",
+        "path": "ExcelBinOutput/DocumentExcelConfigData.json",
+        "pointer": "/625"
+      }
+    },
+    {
+      "kind": "imported",
+      "id": "imp-gurabad-iii",
+      "importedId": "agd-document-120184-es",
+      "snapshotCommit": "b061b403c8afc7bca633cf4f201edc4a3baa75fe",
+      "title": "Crónicas de Gurabad (III) · documento (ES)",
+      "sourceKind": "document",
+      "locator": {
+        "fileSha256": "101aaaf9c0cbb161d4c0f59da1314bd427cbe954a43fec6d9483fdda4aa38a47",
+        "path": "ExcelBinOutput/DocumentExcelConfigData.json",
+        "pointer": "/496"
+      }
+    },
+    {
+      "kind": "imported",
+      "id": "imp-perinheri-i",
+      "importedId": "agd-document-120797-es",
+      "snapshotCommit": "b061b403c8afc7bca633cf4f201edc4a3baa75fe",
+      "title": "Perinheri (I) · libro (ES)",
+      "sourceKind": "book",
+      "locator": {
+        "fileSha256": "101aaaf9c0cbb161d4c0f59da1314bd427cbe954a43fec6d9483fdda4aa38a47",
+        "path": "ExcelBinOutput/DocumentExcelConfigData.json",
+        "pointer": "/784"
+      }
+    },
+    {
+      "kind": "imported",
+      "id": "imp-perinheri-ii",
+      "importedId": "agd-document-120798-es",
+      "snapshotCommit": "b061b403c8afc7bca633cf4f201edc4a3baa75fe",
+      "title": "Perinheri (II) · libro (ES)",
+      "sourceKind": "book",
+      "locator": {
+        "fileSha256": "101aaaf9c0cbb161d4c0f59da1314bd427cbe954a43fec6d9483fdda4aa38a47",
+        "path": "ExcelBinOutput/DocumentExcelConfigData.json",
+        "pointer": "/785"
+      }
+    },
+    {
+      "kind": "imported",
+      "id": "imp-snezhnaya-i",
+      "importedId": "agd-document-121679-es",
+      "snapshotCommit": "b061b403c8afc7bca633cf4f201edc4a3baa75fe",
+      "title": "Historia general de Snezhnaya (I) · libro (ES)",
+      "sourceKind": "book",
+      "locator": {
+        "fileSha256": "101aaaf9c0cbb161d4c0f59da1314bd427cbe954a43fec6d9483fdda4aa38a47",
+        "path": "ExcelBinOutput/DocumentExcelConfigData.json",
+        "pointer": "/1196"
+      }
+    },
+    {
+      "kind": "imported",
+      "id": "imp-letanias-i",
+      "importedId": "agd-document-121391-es",
+      "snapshotCommit": "b061b403c8afc7bca633cf4f201edc4a3baa75fe",
+      "title": "Letanías del Lejano Norte (I) · libro (ES)",
+      "sourceKind": "book",
+      "locator": {
+        "fileSha256": "101aaaf9c0cbb161d4c0f59da1314bd427cbe954a43fec6d9483fdda4aa38a47",
+        "path": "ExcelBinOutput/DocumentExcelConfigData.json",
+        "pointer": "/1077"
+      }
+    },
+    {
+      "kind": "imported",
+      "id": "imp-letanias-ii",
+      "importedId": "agd-document-121392-es",
+      "snapshotCommit": "b061b403c8afc7bca633cf4f201edc4a3baa75fe",
+      "title": "Letanías del Lejano Norte (II) · libro (ES)",
+      "sourceKind": "book",
+      "locator": {
+        "fileSha256": "101aaaf9c0cbb161d4c0f59da1314bd427cbe954a43fec6d9483fdda4aa38a47",
+        "path": "ExcelBinOutput/DocumentExcelConfigData.json",
+        "pointer": "/1078"
+      }
     }
   ],
   "claims": [
@@ -300,6 +547,17 @@
       "kind": "explicit",
       "support": [
         {
+          "sourceId": "imp-vennessa-i",
+          "locator": "Texto completo (primeras estrofas)",
+          "fragment": {
+            "segmentId": "agd-document-100182-es-localization-200011",
+            "sha256": "4ec78dd56d9b9025821f824ead60e627559e0aa5e2df36b75a3ea03511c0f43c"
+          },
+          "stance": "supports",
+          "verification": "verified",
+          "limits": "Presenta a una joven de las «australes praderas» prisionera de un tirano y la llama «la primera caballera». No dice «obligada a combatir» ni la libera de la esclavitud en el mismo texto; la derrota del dragón aparece en el volumen II."
+        },
+        {
           "sourceId": "imp-aquila-favonia",
           "locator": "Párrafo 2 (líneas 6–8 del texto importado)",
           "fragment": {
@@ -330,6 +588,17 @@
       "kind": "explicit",
       "support": [
         {
+          "sourceId": "imp-vennessa-i",
+          "locator": "Texto completo (primera estrofa)",
+          "fragment": {
+            "segmentId": "agd-document-100182-es-localization-200011",
+            "sha256": "4ec78dd56d9b9025821f824ead60e627559e0aa5e2df36b75a3ea03511c0f43c"
+          },
+          "stance": "context",
+          "verification": "verified",
+          "limits": "Solo la llama «la primera caballera»; no relata la fundación de los Caballeros de Favonius ni de las instituciones actuales."
+        },
+        {
           "sourceId": "imp-aquila-favonia",
           "locator": "Párrafo 2 (línea 8 del texto importado)",
           "fragment": {
@@ -358,6 +627,17 @@
       "text": "La liberación cuenta con la ayuda de Barbatos y otros aliados.",
       "kind": "explicit",
       "support": [
+        {
+          "sourceId": "imp-vennessa-ii",
+          "locator": "Texto completo",
+          "fragment": {
+            "segmentId": "agd-document-100183-es-localization-200012",
+            "sha256": "254c7b248c9381be233eb173b082b676b254710692baeabb1bc1cb5c2fe3f78b"
+          },
+          "stance": "supports",
+          "verification": "verified",
+          "limits": "Barbatos responde a su devoción, le da un nombre y la acompaña; con él derrota al dragón y los vientos derriban la torre del tirano. Es un poema recitado por un narrador festivo; no menciona «otros aliados»."
+        },
         {
           "sourceId": "imp-aquila-favonia",
           "locator": "Párrafo 2 (línea 9 del texto importado)",
@@ -388,6 +668,17 @@
       "kind": "interpretation",
       "support": [
         {
+          "sourceId": "imp-genealogia-gunnhildr",
+          "locator": "Párrafos 2 y 5",
+          "fragment": {
+            "segmentId": "agd-document-100410-es-localization-200094",
+            "sha256": "520d1b1c229cc1baf8e2f7c4fe728f0b0a55a6f1ad4b9f80ac6a57a8e0a71f69"
+          },
+          "stance": "context",
+          "verification": "verified",
+          "limits": "Dice que los aristócratas posteriores a Barbatos se corrompieron y se hicieron tiranos «mil años más tarde» y fecha la guerra de Decarabian «hace tres mil años»; no fecha a Vennessa, así que no confirma ni desmiente «hace mil años»."
+        },
+        {
           "sourceId": "ext-wiki-vennessa",
           "locator": "Página completa citada en el dossier",
           "stance": "supports",
@@ -416,6 +707,17 @@
       "text": "Habitantes del viejo Mondstadt se rebelan contra Decarabian, cuyo cerco de vientos se vive como un encierro.",
       "kind": "explicit",
       "support": [
+        {
+          "sourceId": "imp-genealogia-gunnhildr",
+          "locator": "Párrafos 2–4",
+          "fragment": {
+            "segmentId": "agd-document-100410-es-localization-200094",
+            "sha256": "520d1b1c229cc1baf8e2f7c4fe728f0b0a55a6f1ad4b9f80ac6a57a8e0a71f69"
+          },
+          "stance": "supports",
+          "verification": "verified",
+          "limits": "Relata un rey despótico (Decarabian), el éxodo del clan Gunnhildr y a Barbatos desafiándolo y liberando a sus súbditos. No describe a «habitantes» que se rebelan contra un cerco de vientos como encierro."
+        },
         {
           "sourceId": "ext-wiki-decarabian",
           "locator": "Página completa citada en el dossier",
@@ -452,6 +754,17 @@
       "text": "La oposición de Andrius a Decarabian no equivale a haber liberado personalmente la ciudad.",
       "kind": "interpretation",
       "support": [
+        {
+          "sourceId": "imp-genealogia-gunnhildr",
+          "locator": "Párrafo 2",
+          "fragment": {
+            "segmentId": "agd-document-100410-es-localization-200094",
+            "sha256": "520d1b1c229cc1baf8e2f7c4fe728f0b0a55a6f1ad4b9f80ac6a57a8e0a71f69"
+          },
+          "stance": "supports",
+          "verification": "verified",
+          "limits": "Sitúa la guerra entre Decarabian y Andrius, Rey del Viento del Norte, y atribuye la liberación de los súbditos a Barbatos; no discute si Andrius liberó la ciudad."
+        },
         {
           "sourceId": "ext-wiki-decarabian",
           "locator": "Página completa citada en el dossier",
@@ -490,6 +803,17 @@
       "kind": "interpretation",
       "support": [
         {
+          "sourceId": "imp-genealogia-gunnhildr",
+          "locator": "Párrafo 2",
+          "fragment": {
+            "segmentId": "agd-document-100410-es-localization-200094",
+            "sha256": "520d1b1c229cc1baf8e2f7c4fe728f0b0a55a6f1ad4b9f80ac6a57a8e0a71f69"
+          },
+          "stance": "contradicts",
+          "verification": "verified",
+          "limits": "El texto fecha la guerra «hace tres mil años», no 2.600. Es una cifra aproximada dentro de un libro del mundo (narrador desconocido): no es una reconstrucción y difiere de la de la fuente secundaria."
+        },
+        {
           "sourceId": "ext-wiki-decarabian",
           "locator": "Página completa citada en el dossier",
           "stance": "supports",
@@ -508,6 +832,17 @@
       "kind": "explicit",
       "support": [
         {
+          "sourceId": "imp-snezhnaya-i",
+          "locator": "Volumen I: Leyendas de Hiperbórea",
+          "fragment": {
+            "segmentId": "agd-document-121679-es-localization-201286",
+            "sha256": "0e2e7383e52c941fa59381d18faf1334c1fd4612bc9ba3c3f712bea1679d5f27"
+          },
+          "stance": "supports",
+          "verification": "verified",
+          "limits": "Habla de ciudades-Estado que «resplandecían como el oro» y de una edad dorada contada por registros tardíos y poéticos; no usa el nombre «Ciudad Dorada» ni ubica a Hiperbórea antes de la Guerra de la Llama Funeraria ni relata su relación con el orden celestial."
+        },
+        {
           "sourceId": "ext-wiki-hyperborea",
           "locator": "Página completa citada en el dossier",
           "stance": "supports",
@@ -525,6 +860,28 @@
       "text": "Koitar, vinculada a los ángeles, y Seutervoinen, viajera estelar que ocupó el cuerpo de un joven, impulsaron conocimientos avanzados y la exploración más allá del falso cielo.",
       "kind": "explicit",
       "support": [
+        {
+          "sourceId": "imp-letanias-i",
+          "locator": "Poema introductorio",
+          "fragment": {
+            "segmentId": "agd-document-121391-es-localization-201119",
+            "sha256": "22d9bacb041bda1f596300eaa0ce2c6dc689cae6f0a014301cf3aa94c97991a4"
+          },
+          "stance": "context",
+          "verification": "verified",
+          "limits": "Alude a la «nave de bronce de Seutervoinen»; es un texto litúrgico de un narrador, no un relato histórico."
+        },
+        {
+          "sourceId": "imp-letanias-ii",
+          "locator": "Letanía XI",
+          "fragment": {
+            "segmentId": "agd-document-121392-es-localization-201120",
+            "sha256": "cb9bc14b717cec0382c7135caa24e9603b560b4ad898d8d9a36987103baa36c3"
+          },
+          "stance": "supports",
+          "verification": "verified",
+          "limits": "Koitar es «esposa de Seutervoinen» e hija del dios creador. No dice que esté vinculada a los ángeles ni que Seutervoinen sea una viajera estelar que ocupó un cuerpo."
+        },
         {
           "sourceId": "ext-wiki-koitar",
           "locator": "Página completa citada en el dossier",
@@ -562,6 +919,17 @@
       "kind": "interpretation",
       "support": [
         {
+          "sourceId": "imp-snezhnaya-i",
+          "locator": "Volumen I, introducción",
+          "fragment": {
+            "segmentId": "agd-document-121679-es-localization-201286",
+            "sha256": "0e2e7383e52c941fa59381d18faf1334c1fd4612bc9ba3c3f712bea1679d5f27"
+          },
+          "stance": "context",
+          "verification": "verified",
+          "limits": "Advierte de que los registros sobre Hiperbórea se escribieron «miles de años» después de su era dorada y mezclan hecho e imaginación; no da cifra alguna."
+        },
+        {
           "sourceId": "ext-wiki-timeline",
           "locator": "Página completa citada en el dossier",
           "stance": "supports",
@@ -579,6 +947,28 @@
       "text": "Las fuentes vinculan la formación de Mare Jivari con Tenoch, Sanhaj y la lucha contra Bakunawa durante la invasión abisal de hace quinientos años.",
       "kind": "explicit",
       "support": [
+        {
+          "sourceId": "imp-bakunawa",
+          "locator": "Texto completo",
+          "fragment": {
+            "segmentId": "agd-document-121280-es-localization-201061",
+            "sha256": "20c9efc9a6e5e058fb528327c3dd2f70e5a1594b3310e96af343a27aa64478f3"
+          },
+          "stance": "context",
+          "verification": "verified",
+          "limits": "Sitúa a Bakunawa, junto a hordas del Abismo, al oeste de Natlan «hace quinientos años» devorando tribus de Tenochtzitoc; no lo vincula con Mare Jivari ni con Tenoch o Sanhaj como personas."
+        },
+        {
+          "sourceId": "imp-mare-jivari",
+          "locator": "Texto completo",
+          "fragment": {
+            "segmentId": "agd-document-121281-es-localization-201062",
+            "sha256": "f65c85ecbf336e3df5a3003c4d433e0652090f8553affc1381a3db25bf1fe998"
+          },
+          "stance": "supports",
+          "verification": "verified",
+          "limits": "Dice que, según la versión predominante, Mare Jivari existe solo desde hace cinco siglos; no menciona a Tenoch, Sanhaj ni a Bakunawa."
+        },
         {
           "sourceId": "ext-wiki-mare-jivari",
           "locator": "Página completa citada en el dossier",
@@ -623,6 +1013,17 @@
       "kind": "testimony",
       "support": [
         {
+          "sourceId": "imp-mare-jivari",
+          "locator": "Texto completo (leyenda y especulación)",
+          "fragment": {
+            "segmentId": "agd-document-121281-es-localization-201062",
+            "sha256": "f65c85ecbf336e3df5a3003c4d433e0652090f8553affc1381a3db25bf1fe998"
+          },
+          "stance": "supports",
+          "verification": "verified",
+          "limits": "Cita una antigua leyenda de una orquesta que recorrió Mare Jivari «hace miles de años» y especula con una disrupción temporal por el poder del Abismo. Es un informe del mundo con narrador propio; no resuelve la contradicción."
+        },
+        {
           "sourceId": "ext-wiki-mare-jivari-report",
           "locator": "Página completa citada en el dossier",
           "stance": "supports",
@@ -660,6 +1061,28 @@
       "kind": "explicit",
       "support": [
         {
+          "sourceId": "imp-tokoyo-serpiente",
+          "locator": "Párrafos 5–10",
+          "fragment": {
+            "segmentId": "agd-document-101680-es-localization-200333",
+            "sha256": "9ed16916b08a08979846964ce4ec7d95288634861c2e8d840b2d578400dd9ce5"
+          },
+          "stance": "supports",
+          "verification": "verified",
+          "limits": "Un «Hijo del Sol» elegido rey resulta ser un tirano y encierra al sabio (Aberaku) que trajo la luz; no usa «Niños del Sol» en plural."
+        },
+        {
+          "sourceId": "imp-antes-sol-luna",
+          "locator": "«El año de la ceguera» y «El año de la luz»",
+          "fragment": {
+            "segmentId": "agd-document-101681-es-localization-200334",
+            "sha256": "e47018da49a6590d474a2c7c688b69901e0eee94dfc170b4a48e95debc39a9d4"
+          },
+          "stance": "supports",
+          "verification": "verified",
+          "limits": "Los ancestros del narrador (Enkanomiya) combaten en la oscuridad, y Abraxas lidera la construcción del Helios. Escribe «Abraxas», no «Abrax», y no menciona «Dainichi Mikoshi»."
+        },
+        {
           "sourceId": "ext-wiki-enkanomiya",
           "locator": "Página completa citada en el dossier",
           "stance": "supports",
@@ -677,6 +1100,28 @@
       "text": "Orobashi rompe ese orden, protege a los habitantes y hace posible su traslado a Watatsumi; más tarde entra en guerra contra el poder de Narukami y muere a manos de Ei.",
       "kind": "explicit",
       "support": [
+        {
+          "sourceId": "imp-luces-sombras",
+          "locator": "Párrafo 14",
+          "fragment": {
+            "segmentId": "agd-document-101684-es-localization-200337",
+            "sha256": "1db9e71f2aa3ed8a56d730729ea22e6e5a9fadda456f20dcc7d99a007c08070f"
+          },
+          "stance": "context",
+          "verification": "verified",
+          "limits": "Dice que al llegar Omikami de Watatsumi algunos ya habían subido a la superficie y que «todos subiremos» tarde o temprano; no menciona la guerra con Narukami."
+        },
+        {
+          "sourceId": "imp-sangonomiya",
+          "locator": "Párrafos 1–4",
+          "fragment": {
+            "segmentId": "agd-document-101528-es-localization-200264",
+            "sha256": "bb0acca740da733356de14cbbab3bedddae090303d4eb4884c18f2f19ca22638"
+          },
+          "stance": "supports",
+          "verification": "verified",
+          "limits": "Desde el punto de vista de Inazuma: Orobashi invade el este, la Shogun Raiden lo mata en Yashiori. No dice que proteja a Enkanomiya ni que permita su traslado; llama «la Shogun» a quien el dossier nombra Ei."
+        },
         {
           "sourceId": "ext-wiki-orobashi",
           "locator": "Página completa citada en el dossier",
@@ -702,6 +1147,17 @@
       "text": "La salida de Enkanomiya no es contemporánea a su hundimiento, y no debe colocarse toda la historia de Watatsumi antes de la formación de los Siete.",
       "kind": "interpretation",
       "support": [
+        {
+          "sourceId": "imp-hidrologia-byakuya",
+          "locator": "Nota editorial (párrafo 4)",
+          "fragment": {
+            "segmentId": "agd-document-101682-es-localization-200335",
+            "sha256": "471854bb26d95c2255f84f06416906c3d018f956f3d8ebf2918fe98bc4dab14b"
+          },
+          "stance": "context",
+          "verification": "verified",
+          "limits": "Una nota dice que «con la caída de Watatsumi» los habitantes de las profundidades regresaron a la superficie: coloca la salida tras una caída de Watatsumi, lo que tensiona la idea de una salida anterior. Pendiente de revisión."
+        },
         {
           "sourceId": "ext-wiki-inazuma-history",
           "locator": "Página completa citada en el dossier",
@@ -812,6 +1268,28 @@
       "kind": "interpretation",
       "support": [
         {
+          "sourceId": "imp-gurabad-iii",
+          "locator": "Texto completo",
+          "fragment": {
+            "segmentId": "agd-document-120184-es-localization-200513",
+            "sha256": "c2f5a52c43b5fe80e3871c3ca9928848f92f79b0d9185ef20d4528296d72c430"
+          },
+          "stance": "context",
+          "verification": "verified",
+          "limits": "Mientras Gurabad se descompone entre rebeliones, el Rey Deshret «ya no responde» al Sumo Sacerdote. El fragmento no dice si su crisis de conocimiento prohibido ya había empezado: podría tensionar el orden del dossier. Pendiente de revisión."
+        },
+        {
+          "sourceId": "imp-remuria-i",
+          "locator": "Párrafo 4",
+          "fragment": {
+            "segmentId": "agd-document-120404-es-localization-200640",
+            "sha256": "aea995e6e07eb56af0b34820316e0ddac4b899d563b9bd8253c036f5f398d831"
+          },
+          "stance": "context",
+          "verification": "verified",
+          "limits": "Un historiador de Fontaine afirma que el trono de Gurabad «se estableció y fue derrocado» antes de que Remo llegara a Fontaine; ordena Gurabad antes de Remuria, no respecto a Deshret."
+        },
+        {
           "sourceId": "ext-wiki-gurabad",
           "locator": "Página completa citada en el dossier",
           "stance": "supports",
@@ -874,6 +1352,28 @@
       "kind": "explicit",
       "support": [
         {
+          "sourceId": "imp-remuria-ii",
+          "locator": "Párrafos 5–7",
+          "fragment": {
+            "segmentId": "agd-document-120405-es-localization-200641",
+            "sha256": "6282793f9e2be148be7a06910047cda13d5d0002ce3893f573087d2cffaf834a"
+          },
+          "stance": "context",
+          "verification": "verified",
+          "limits": "Los «afinadores» comparten el poder del rey; intentar traspasar a humanos un poder divino se llama el pecado más grave."
+        },
+        {
+          "sourceId": "imp-remuria-i",
+          "locator": "Párrafos 5–8",
+          "fragment": {
+            "segmentId": "agd-document-120404-es-localization-200640",
+            "sha256": "aea995e6e07eb56af0b34820316e0ddac4b899d563b9bd8253c036f5f398d831"
+          },
+          "stance": "supports",
+          "verification": "verified",
+          "limits": "Remo llega a Fontaine, funda Remuria y compone una «serenata» para escapar al juicio del destino. El texto no nombra «Gran Sinfonía»."
+        },
+        {
           "sourceId": "ext-wiki-remuria",
           "locator": "Página completa citada en el dossier",
           "stance": "supports",
@@ -898,6 +1398,17 @@
       "text": "Phobos deja de ser un simple instrumento; la manipulación de Boethius y el aprisionamiento de Scylla forman parte del fracaso, y el hundimiento de Remuria deja paso al gobierno de Egeria.",
       "kind": "explicit",
       "support": [
+        {
+          "sourceId": "imp-remuria-iii",
+          "locator": "Párrafos 1–4",
+          "fragment": {
+            "segmentId": "agd-document-120406-es-localization-200642",
+            "sha256": "7b26da174718afa770bb76bec034ff0c7689c7ebb39ca5b2c13fa7793271f065"
+          },
+          "stance": "supports",
+          "verification": "verified",
+          "limits": "Remuria cae en un colapso nocturno; una «noble navegante» reina de las aguas resuelve después los conflictos entre tribus. No nombra a Egeria, Phobos, Boethius ni Scylla."
+        },
         {
           "sourceId": "ext-wiki-phobos",
           "locator": "Página completa citada en el dossier",
@@ -966,6 +1477,28 @@
       "text": "Khaenri’ah continúa fuera de ese sistema; los relatos como Perinheri conservan tradiciones sobre forasteros y creencias antiguas y deben leerse como textos internos con narrador, no como expedientes imparciales.",
       "kind": "testimony",
       "support": [
+        {
+          "sourceId": "imp-perinheri-ii",
+          "locator": "Párrafos 1 y 10",
+          "fragment": {
+            "segmentId": "agd-document-120798-es-localization-200801",
+            "sha256": "493266f88d4b0560f582bf45e63b810c6b621176e903818b1ce8b19c1d964355"
+          },
+          "stance": "supports",
+          "verification": "verified",
+          "limits": "Angélica, de una nación derrotada por el «Dios del Oro», y la nobleza «descendiente de quienes abandonaron a su deidad»: tradiciones sobre forasteros y creencias antiguas contadas desde dentro del relato."
+        },
+        {
+          "sourceId": "imp-perinheri-i",
+          "locator": "Párrafo 1",
+          "fragment": {
+            "segmentId": "agd-document-120797-es-localization-200800",
+            "sha256": "a16d6bdfaed6390a04d80465725af4ca92f9e6c8f6a79f81de7391b747d9e0be"
+          },
+          "stance": "supports",
+          "verification": "verified",
+          "limits": "El «reino subterráneo» está iluminado por una luna carmesí y no por el «sol oscuro» posterior; es un cuento con narrador («según cuentan»), no una crónica."
+        },
         {
           "sourceId": "ext-wiki-perinheri",
           "locator": "Página completa citada en el dossier",
@@ -1049,6 +1582,180 @@
       ],
       "review": {
         "status": "pending"
+      }
+    },
+    {
+      "id": "claim-conquista-cuatro-sombras",
+      "eventIds": ["evt-conquista-celestial"],
+      "text": "El Primordial llega y crea cuatro sombras para combatir a los siete soberanos del mundo anterior.",
+      "kind": "explicit",
+      "support": [
+        {
+          "sourceId": "imp-antes-sol-luna",
+          "locator": "Párrafos «Cuando las palomas sostenían ramas»",
+          "fragment": {
+            "segmentId": "agd-document-101681-es-localization-200334",
+            "sha256": "e47018da49a6590d474a2c7c688b69901e0eee94dfc170b4a48e95debc39a9d4"
+          },
+          "stance": "supports",
+          "verification": "verified",
+          "limits": "Narrador: habitantes de Enkanomiya; el texto tiene tramos omitidos («...»). No enumera las cuatro autoridades."
+        }
+      ],
+      "review": {
+        "status": "pending"
+      }
+    },
+    {
+      "id": "claim-conquista-cuarenta-anios",
+      "eventIds": ["evt-conquista-celestial"],
+      "text": "La guerra termina con la derrota de los dragones y la subordinación de sus dominios, en la cronología de cuarenta años del libro.",
+      "kind": "explicit",
+      "support": [
+        {
+          "sourceId": "imp-antes-sol-luna",
+          "locator": "«Cuarenta años tras el sostenimiento de las ramas»",
+          "fragment": {
+            "segmentId": "agd-document-101681-es-localization-200334",
+            "sha256": "e47018da49a6590d474a2c7c688b69901e0eee94dfc170b4a48e95debc39a9d4"
+          },
+          "stance": "supports",
+          "verification": "verified",
+          "limits": "Dice que a los cuarenta años de la cuenta los siete soberanos fueron derrotados y sus reinos se rindieron; no afirma que la guerra durase cuarenta años exactos."
+        }
+      ],
+      "review": {
+        "status": "pending"
+      }
+    },
+    {
+      "id": "claim-conquista-fanes",
+      "eventIds": ["evt-conquista-celestial"],
+      "text": "El libro propone el nombre Phanes para el Primordial.",
+      "kind": "explicit",
+      "support": [
+        {
+          "sourceId": "imp-antes-sol-luna",
+          "locator": "«Fanes, el Soberano Primordial»",
+          "fragment": {
+            "segmentId": "agd-document-101681-es-localization-200334",
+            "sha256": "e47018da49a6590d474a2c7c688b69901e0eee94dfc170b4a48e95debc39a9d4"
+          },
+          "stance": "supports",
+          "verification": "verified",
+          "limits": "El texto español escribe «Fanes»; su descripción (alado, coronado, nacido de un huevo) no coincide con la cautela del dossier sobre la identificación."
+        }
+      ],
+      "review": {
+        "status": "pending",
+        "note": "El dossier recomienda conservar la cautela del libro sobre su propia certeza."
+      }
+    },
+    {
+      "id": "claim-conquista-autoridades",
+      "eventIds": ["evt-conquista-celestial"],
+      "text": "Las cuatro autoridades son vida, muerte, tiempo y espacio.",
+      "kind": "explicit",
+      "support": [
+        {
+          "sourceId": "ext-wiki-the-seven",
+          "locator": "Página completa citada en el dossier",
+          "stance": "supports",
+          "verification": "cited",
+          "limits": "El dossier cita «Cuatro Sombras» y «Orden Celestial»; el libro importado solo habla de cuatro sombras y de Kairós (tiempo), sin enumerar vida, muerte y espacio."
+        }
+      ],
+      "review": {
+        "status": "pending"
+      }
+    },
+    {
+      "id": "claim-humano-cuatrocientos",
+      "eventIds": ["evt-mundo-humano"],
+      "text": "A los cuatrocientos años de la cuenta del libro se prepara el mundo para los humanos y el Primordial separa el mundo del exterior.",
+      "kind": "explicit",
+      "support": [
+        {
+          "sourceId": "imp-antes-sol-luna",
+          "locator": "«Cuatrocientos años después del sostenimiento de las ramas»",
+          "fragment": {
+            "segmentId": "agd-document-101681-es-localization-200334",
+            "sha256": "e47018da49a6590d474a2c7c688b69901e0eee94dfc170b4a48e95debc39a9d4"
+          },
+          "stance": "supports",
+          "verification": "verified",
+          "limits": "Crea montañas, ríos, seres vivos y la humanidad, y usa la cáscara del huevo para separar el universo del microcosmos. Narrador de Enkanomiya; la cifra pertenece a su cuenta de años."
+        }
+      ],
+      "review": {
+        "status": "pending"
+      }
+    },
+    {
+      "id": "claim-elemental-siete-soberanos",
+      "eventIds": ["evt-mundo-elemental"],
+      "text": "Los Siete Soberanos, reyes-dragones, poseían el poder del mundo antiguo.",
+      "kind": "explicit",
+      "support": [
+        {
+          "sourceId": "imp-antes-sol-luna",
+          "locator": "Primeros párrafos",
+          "fragment": {
+            "segmentId": "agd-document-101681-es-localization-200334",
+            "sha256": "e47018da49a6590d474a2c7c688b69901e0eee94dfc170b4a48e95debc39a9d4"
+          },
+          "stance": "supports",
+          "verification": "verified",
+          "limits": "Habla de «siete terroríficos soberanos: los reyes-dragones de la antigüedad». No dice que poseyeran autoridades elementales ni nombra a Nibelung."
+        }
+      ],
+      "review": {
+        "status": "pending"
+      }
+    },
+    {
+      "id": "claim-llama-enkanomiya",
+      "eventIds": ["evt-guerra-llama-funeraria"],
+      "text": "Enkanomiya queda hundida y separada de la superficie durante la guerra celestial posterior.",
+      "kind": "testimony",
+      "support": [
+        {
+          "sourceId": "imp-antes-sol-luna",
+          "locator": "«El año del funeral» y «El primer año de oscuridad»",
+          "fragment": {
+            "segmentId": "agd-document-101681-es-localization-200334",
+            "sha256": "e47018da49a6590d474a2c7c688b69901e0eee94dfc170b4a48e95debc39a9d4"
+          },
+          "stance": "supports",
+          "verification": "verified",
+          "limits": "Los ancestros del narrador caen al subsuelo cuando «llegó el segundo trono de los cielos» y empieza la oscuridad. No nombra la Guerra de la Llama Funeraria ni a Nibelung."
+        }
+      ],
+      "review": {
+        "status": "pending"
+      }
+    },
+    {
+      "id": "claim-remuria-fecha-narrador",
+      "eventIds": ["evt-remuria"],
+      "text": "El dossier no fecha Remuria; un historiador de Fontaine afirma que su tragedia ocurrió «hace apenas un siglo».",
+      "kind": "testimony",
+      "support": [
+        {
+          "sourceId": "imp-remuria-iii",
+          "locator": "Párrafo 5",
+          "fragment": {
+            "segmentId": "agd-document-120406-es-localization-200642",
+            "sha256": "7b26da174718afa770bb76bec034ff0c7689c7ebb39ca5b2c13fa7793271f065"
+          },
+          "stance": "supports",
+          "verification": "verified",
+          "limits": "La referencia es relativa al momento de escritura del libro, que el texto no fecha, así que no equivale a un número de años respecto al presente del juego."
+        }
+      ],
+      "review": {
+        "status": "pending",
+        "note": "Hallazgo de la revisión, no afirmación del dossier: candidato a incorporar con su salvedad."
       }
     }
   ]

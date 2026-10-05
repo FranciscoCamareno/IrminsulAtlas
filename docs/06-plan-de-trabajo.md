@@ -178,3 +178,9 @@ Añadir en cada iteración: fecha, fase, cambios, comprobaciones, limitaciones y
 - **Pruebas:** 101 pruebas unitarias/de integración (`validate`) y 24 de navegador (`test:e2e`): lectura de los 29 eventos en tres tamaños, solapes de 15 % a 240 %, táctil emulado, axe (0 infracciones en 14 análisis), teclado, movimiento reducido, reflujo al 200 %/400 %, spoilers en el HTML construido y rendimiento.
 - **Pendiente y límites:** aprobación editorial de afirmaciones, revelación y clasificaciones; respaldo primario para 16 eventos (exige ampliar la selección de P1); lector de pantalla, teléfono real, Firefox/WebKit y sesiones con participantes. Sin despliegue.
 
+### 2026-10-05 — Ampliación de textos primarios del lore antiguo
+
+- Por instrucción del usuario se amplió la selección de P1: 32 documentos de `Readable/ES` (libros y crónicas sobre Vennessa, Decarabian, Enkanomiya, Mare Jivari, Remuria, Gurabad, Khaenri’ah, Hiperbórea y el orden celestial), importados con P2 (candidato `9af75c4c…`, versión aceptada `675999db…`: 51 fuentes, sin errores). Nuevo tipo de fuente `document`. Las huellas de los archivos nuevos se calcularon al descargarlos (sin inventario Git independiente), anotado en el manifiesto.
+- Registro de evidencias: 46 afirmaciones, 51 fuentes, 37 apoyos contrastados con fragmento fijado en 27 afirmaciones y 13 de 29 acontecimientos; todo sigue `pending`. Hallazgos críticos (cifra de Decarabian «tres mil años» frente a 2.600, tensiones de orden en Gurabad/Deshret y Watatsumi, partes del dossier sin respaldo primario) en `docs/validation/revision-editorial-muestra.md`.
+- Pendiente: decisiones editoriales sobre esos hallazgos, 12 acontecimientos sin afirmaciones (varios exigen importar misiones o diálogos), aprobación humana.
+

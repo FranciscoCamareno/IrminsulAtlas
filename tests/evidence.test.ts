@@ -135,77 +135,70 @@ describe('evidence registry', () => {
   });
 });
 
-// Minimal stand-in for a promoted import: only what verification reads.
-function importWith(text: string, overrides: Record<string, unknown> = {}) {
-  const source = registry.sources.find((item) => item.kind === 'imported')!;
-  if (source.kind !== 'imported') throw new Error('unreachable');
-  const claim = registry.claims.find((item) =>
-    item.support.some((s) => s.fragment),
-  )!;
-  const fragment = claim.support.find((s) => s.fragment)!.fragment!;
+// Faithful stand-in for a promoted import, built from what the registry pins:
+// every imported source with every segment (and hash) its claims rely on.
+function standIn() {
+  const sources = registry.sources.flatMap((source) =>
+    source.kind === 'imported' ? [source] : [],
+  );
   return {
-    snapshot: { commit: source.snapshotCommit },
-    sources: [
-      {
-        id: source.importedId,
-        locator: source.locator,
-        segments: [
-          {
-            id: fragment.segmentId,
-            text: { status: 'available', sha256: text, value: 'x' },
-          },
-        ],
-        ...overrides,
-      },
-    ],
+    snapshot: { commit: sources[0]!.snapshotCommit },
+    sources: sources.map((source) => ({
+      id: source.importedId,
+      locator: structuredClone(source.locator),
+      segments: registry.claims.flatMap((claim) =>
+        claim.support
+          .filter(
+            (support) => support.sourceId === source.id && support.fragment,
+          )
+          .map((support) => ({
+            id: support.fragment!.segmentId,
+            text: {
+              status: 'available',
+              sha256: support.fragment!.sha256,
+              value: 'x',
+            },
+          })),
+      ),
+    })),
   } as unknown as ImportedDataset;
 }
-const pinned = registry.claims
-  .flatMap((claim) => claim.support)
-  .find((s) => s.fragment)!.fragment!.sha256;
+const codesOf = (imported: ImportedDataset) =>
+  verifyAgainstImport(registry, imported).map((issue) => issue.code);
 
 describe('verification against an accepted import', () => {
   it('passes when sources, locators and fragment hashes are unchanged', () => {
-    expect(verifyAgainstImport(registry, importWith(pinned))).toEqual([]);
+    expect(verifyAgainstImport(registry, standIn())).toEqual([]);
   });
   it('detects a changed fragment, a missing segment or source, a moved locator and another snapshot', () => {
-    expect(
-      verifyAgainstImport(registry, importWith('b'.repeat(64))).map(
-        (i) => i.code,
-      ),
-    ).toContain('fragment-changed');
-    expect(
-      verifyAgainstImport(registry, importWith(pinned, { segments: [] })).map(
-        (i) => i.code,
-      ),
-    ).toContain('missing-segment');
-    const noSource = importWith(pinned);
-    noSource.sources = [];
-    expect(
-      verifyAgainstImport(registry, noSource).map((i) => i.code),
-    ).toContain('missing-imported-source');
-    const moved = importWith(pinned);
+    const changed = standIn();
+    changed.sources[0]!.segments[0]!.text = {
+      ...changed.sources[0]!.segments[0]!.text,
+      sha256: 'b'.repeat(64),
+    } as never;
+    expect(codesOf(changed)).toContain('fragment-changed');
+    const noSegment = standIn();
+    noSegment.sources[0]!.segments = [];
+    expect(codesOf(noSegment)).toContain('missing-segment');
+    const noSource = standIn();
+    noSource.sources = noSource.sources.slice(1);
+    expect(codesOf(noSource)).toContain('missing-imported-source');
+    const moved = standIn();
     moved.sources[0]!.locator = {
       ...moved.sources[0]!.locator,
       fileSha256: 'c'.repeat(64),
     };
-    expect(verifyAgainstImport(registry, moved).map((i) => i.code)).toContain(
-      'locator-changed',
-    );
-    const other = importWith(pinned);
+    expect(codesOf(moved)).toContain('locator-changed');
+    const other = standIn();
     other.snapshot = { ...other.snapshot, commit: 'd'.repeat(40) };
-    expect(verifyAgainstImport(registry, other).map((i) => i.code)).toContain(
-      'snapshot-changed',
-    );
-    const noText = importWith(pinned);
+    expect(codesOf(other)).toContain('snapshot-changed');
+    const noText = standIn();
     noText.sources[0]!.segments[0]!.text = {
       status: 'missing',
       textMapHash: null,
       reason: 'x',
     };
-    expect(verifyAgainstImport(registry, noText).map((i) => i.code)).toContain(
-      'segment-without-text',
-    );
+    expect(codesOf(noText)).toContain('segment-without-text');
   });
 });
 
