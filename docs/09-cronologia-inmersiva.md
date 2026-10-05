@@ -15,7 +15,7 @@ El menú contiene Cronología y rótulos de Personajes, Ubicaciones y Otros dato
 - `getVisibleTimeline` en aplicación filtra eventos y relaciones antes de entregar épocas y conteos al layout.
 - `src/visualization/layout.ts` usa `d3-scale` para orden editorial y filas alternas. No modifica fechas ni dominio. Grupos vacíos/ocultos no llegan al lienzo.
 - `src/visualization/viewport.ts` usa `d3-zoom` y `d3-selection` para gestos y estado de cámara. D3 solo registra listeners y su transform privado en la superficie; React recibe valores y dibuja HTML/SVG.
-- `TimelineCanvas` proyecta posiciones a pantalla. Textos y áreas de interacción no se escalan junto con las conexiones. Zoom entre 8 % y 240 %, vista general por debajo de 48 %, principales hasta 115 % y detalle desde ahí. Son umbrales iniciales, sin histéresis todavía.
+- `TimelineCanvas` proyecta posiciones a pantalla. Textos y áreas de interacción no se escalan junto con las conexiones. Zoom entre 1 % y 240 %: mapa (puntos, todas las conexiones, nombres de capítulo pulsables) por debajo de 45 %, títulos hasta 130 % y detalle desde ahí. El lienzo ya no cambia a tarjetas; las tarjetas de capítulos viven en la vista de lista. Son umbrales iniciales, sin histéresis todavía.
 - `TimelineExplorer` integra menú modal nativo, tema, lista, selección y ficha. La ficha reduce el ancho del lienzo; ResizeObserver conserva su centro al cambiar tamaño. En móvil se coloca debajo y la vista general usa grupos apilados.
 - El corpus amplía los fixtures de cinco a catorce eventos en cuatro épocas y diecisiete relaciones. Todos continúan como `demo`; trece eventos son visibles sin progreso. Se conservan los casos temporales iniciales, las fuentes y los bloqueos.
 

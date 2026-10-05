@@ -2,7 +2,7 @@ import { select } from 'd3-selection';
 import { zoom, zoomIdentity, zoomTransform, type D3ZoomEvent } from 'd3-zoom';
 import type { Size, Viewport } from './layout';
 
-export const zoomLimits = [0.08, 2.4] as const;
+export const zoomLimits = [0.01, 2.4] as const;
 
 // D3 owns gestures + its private transform on this surface, not rendered children.
 // React receives snapshots and owns all SVG/HTML attributes and elements.

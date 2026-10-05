@@ -146,8 +146,8 @@ describe('timeline density and orientation', () => {
 
   it('opens a ficha with a tap and pans with a one-finger drag on a phone viewport', async () => {
     const { context, page } = await open(phone);
-    // Phone starts on the chapter cards; open the first chapter, then tap a node.
-    await page.locator('.chapter-card').first().tap();
+    // Phone starts on the map; open the first chapter, then tap a node.
+    await page.locator('.era-label.is-map').first().tap();
     await page.waitForSelector('[data-event-id]');
     const first = page.locator('[data-event-id]').first();
     const id = await first.getAttribute('data-event-id');

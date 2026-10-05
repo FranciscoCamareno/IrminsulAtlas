@@ -49,8 +49,13 @@ export function layoutTimeline(content: TimelineContent) {
 // Chapters are reading groups, not disjoint date intervals. Parallel regional
 // threads get their own rows; x spacing expresses no elapsed time.
 function layoutDossier(content: TimelineContent) {
-  let cursor = 160;
-  let height = 620;
+  // Spacing fits a full-size label at 100%: titles stay readable from about
+  // 50%, so a chapter and its neighbours share the screen.
+  const COLUMN = 250;
+  const LINE = 300;
+  const TOP = 160;
+  let cursor = 120;
+  let height = 480;
   const nodes: Array<
     TimelineContent['events'][number] & { x: number; y: number; index: number }
   > = [];
@@ -68,14 +73,12 @@ function layoutDossier(content: TimelineContent) {
         ).length,
     );
     const lines = counts.map((count) => Math.max(1, Math.ceil(count / WRAP)));
-    // Wrapped lines sit further apart than separate rows: long titles of the
-    // line above must clear the symbols below at every zoom.
-    const span = (count: number) => 340 + (count - 1) * 460;
+    const span = (count: number) => count * LINE;
     const offsets = lines.map((_, index) =>
       lines.slice(0, index).reduce((sum, value) => sum + span(value), 0),
     );
     const maxColumns = Math.min(WRAP, Math.max(1, ...counts));
-    const width = Math.max(680, maxColumns * 440 + 240);
+    const width = Math.max(420, maxColumns * COLUMN + 120);
     const columns = new Map<string, number>();
     events.forEach((event) => {
       const thread = event.narrativeThread ?? 'Historia';
@@ -84,25 +87,25 @@ function layoutDossier(content: TimelineContent) {
       const row = threads.indexOf(thread);
       nodes.push({
         ...event,
-        x: cursor + 150 + (column % WRAP) * 440,
-        y: 210 + offsets[row]! + Math.floor(column / WRAP) * 460,
+        x: cursor + 100 + (column % WRAP) * COLUMN,
+        y: TOP + offsets[row]! + Math.floor(column / WRAP) * LINE,
         index: nodes.length + 1,
       });
     });
     height = Math.max(
       height,
-      420 + lines.reduce((sum, value) => sum + span(value), 0),
+      TOP + 120 + lines.reduce((sum, value) => sum + span(value), 0),
     );
     const group = {
       ...era,
       x: cursor,
       center: cursor + width / 2,
-      focusY: 210,
+      focusY: TOP,
       width,
       count: events.length,
       index: eraIndex + 1,
     };
-    cursor += width + 220;
+    cursor += width + 120;
     return group;
   });
   const byId = new Map(nodes.map((node) => [node.id, node]));
@@ -115,7 +118,8 @@ function layoutDossier(content: TimelineContent) {
 }
 
 export type TimelineLayout = ReturnType<typeof layoutTimeline>;
-export type DetailLevel = 'eras' | 'events' | 'details';
+// 'map' draws every event as a point with its connections and no titles.
+export type DetailLevel = 'map' | 'events' | 'details';
 export interface Viewport {
   x: number;
   y: number;
@@ -126,8 +130,10 @@ export interface Size {
   height: number;
 }
 
+export const mapZoom = 0.45;
+
 export function detailLevel(k: number): DetailLevel {
-  return k < 0.1 ? 'eras' : k < 1.15 ? 'events' : 'details';
+  return k < mapZoom ? 'map' : k < 1.3 ? 'events' : 'details';
 }
 
 export function fitViewport(
@@ -137,7 +143,7 @@ export function fitViewport(
   const k = Math.min(
     1,
     Math.max(
-      0.08,
+      0.01,
       Math.min(
         (size.width - 100) / layout.width,
         (size.height - 160) / layout.height,

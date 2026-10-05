@@ -461,29 +461,79 @@ export default function TimelineExplorer({
               <span className="atlas-kicker">
                 Genshin Impact · Historia antigua y viaje del Viajero
               </span>
-              <h2>Acontecimientos</h2>
+              <h2>Capítulos y acontecimientos</h2>
               <p role="status">
                 {hasFilters(filters)
                   ? filtered.length + ' de ' + total + ' acontecimientos'
                   : filtered.length + ' acontecimientos'}
               </p>
             </div>
-            <ol>
-              {content?.events.map((event) => (
-                <li key={event.id}>
+            <div className="chapter-grid">
+              {content?.eras.map((era, index) => {
+                const count = content.events.filter(
+                  (event) => event.eraId === era.id,
+                ).length;
+                return (
                   <button
                     type="button"
-                    data-list-event-id={event.id}
-                    onClick={() => selectEvent(event.id)}
+                    className="chapter-card"
+                    key={era.id}
+                    aria-label={`Ir a ${era.name}, ${count} acontecimientos`}
+                    onClick={() => {
+                      const heading = document.getElementById(
+                        'capitulo-' + era.id,
+                      );
+                      heading?.scrollIntoView({ block: 'start' });
+                      heading?.focus();
+                    }}
                   >
-                    <span className="atlas-kicker">{event.eraName}</span>
-                    <strong>{event.title}</strong>
-                    <span>{event.timeLabel}</span>
-                    <Icon name="arrow" />
+                    <span className="atlas-kicker">
+                      {String(index + 1).padStart(2, '0')} / {count}{' '}
+                      acontecimientos
+                    </span>
+                    <strong>{era.name}</strong>
+                    <span>{era.description}</span>
+                    <span className="chapter-action">
+                      Ver acontecimientos →
+                    </span>
                   </button>
-                </li>
-              ))}
-            </ol>
+                );
+              })}
+            </div>
+            {content?.eras.map((era, index) => (
+              <section
+                className="list-chapter"
+                key={era.id}
+                aria-labelledby={'capitulo-' + era.id}
+              >
+                <h3 id={'capitulo-' + era.id} tabIndex={-1}>
+                  <span className="atlas-kicker">
+                    {String(index + 1).padStart(2, '0')}
+                  </span>{' '}
+                  {era.name}
+                </h3>
+                <ol>
+                  {content.events
+                    .filter((event) => event.eraId === era.id)
+                    .map((event) => (
+                      <li key={event.id}>
+                        <button
+                          type="button"
+                          data-list-event-id={event.id}
+                          onClick={() => selectEvent(event.id)}
+                        >
+                          <span className="atlas-kicker">
+                            {event.narrativeThread ?? event.eraName}
+                          </span>
+                          <strong>{event.title}</strong>
+                          <span>{event.timeLabel}</span>
+                          <Icon name="arrow" />
+                        </button>
+                      </li>
+                    ))}
+                </ol>
+              </section>
+            ))}
           </section>
         )}
         {view && directory && (
@@ -492,7 +542,7 @@ export default function TimelineExplorer({
             aria-label={directory === 'character' ? 'Personajes' : 'Lugares'}
           >
             <div className="atlas-list-heading">
-              <span className="atlas-kicker">Dossier · Primer borrador</span>
+              <span className="atlas-kicker">Genshin Impact</span>
               <h2>{directory === 'character' ? 'Personajes' : 'Lugares'}</h2>
               <label className="directory-search">
                 Buscar
@@ -568,8 +618,7 @@ export default function TimelineExplorer({
                     <p className="metadata">
                       {entityDetail.entity.kind === 'character'
                         ? 'Personaje / grupo'
-                        : 'Lugar / ámbito'}{' '}
-                      · Borrador visible
+                        : 'Lugar / ámbito'}
                     </p>
                     <h3>{entityDetail.entity.name}</h3>
                     {entityDetail.entity.body && (
@@ -754,9 +803,8 @@ export default function TimelineExplorer({
               {light ? 'Cambiar a tema oscuro' : 'Cambiar a tema claro'}
             </button>
             <p>
-              Borrador basado en el dossier y en los diálogos de la Misión de
-              Arconte. El contenido se muestra según tu progreso; el filtro
-              protege tu experiencia, no es un control de acceso.
+              El contenido se muestra según tu progreso de lectura para que no
+              te encuentres spoilers.
             </p>
           </div>
         </div>

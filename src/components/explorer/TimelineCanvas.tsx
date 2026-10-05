@@ -13,6 +13,7 @@ import {
   fitViewport,
   groupByDensity,
   layoutTimeline,
+  mapZoom,
   project,
   type Size,
   type Viewport,
@@ -62,7 +63,7 @@ export default function TimelineCanvas({
   const latestViewport = useRef(viewport);
   const initialLayout = useRef(layout);
   const level = detailLevel(viewport.k);
-  const overview = dossier && level === 'eras';
+  const map = level === 'map';
 
   useEffect(() => {
     const element = surface.current;
@@ -79,16 +80,29 @@ export default function TimelineCanvas({
         height: element.clientHeight || 760,
       };
       if (first) {
-        // Start at event level, with room to pan; "Ver todo" provides the overview.
+        // The dossier opens on the whole map, or on a phone on its first
+        // chapters, where the whole map would be a pile of points. The short
+        // demo starts at event level. Either way "Ver todo" fits everything.
         const fit = fitViewport(initialLayout.current, next);
-        const k = Math.max(0.65, fit.k);
+        const dossierStart = initialLayout.current.nodes.some(
+          (node) => node.narrativeThread,
+        );
+        const k = dossierStart
+          ? fit.k < 0.05
+            ? 0.25
+            : fit.k
+          : Math.max(0.65, fit.k);
         controls.set(
-          initialLayout.current.nodes.some((node) => node.narrativeThread)
+          dossierStart && k === fit.k
             ? fit
             : {
                 k,
-                x: 70,
-                y: (next.height - initialLayout.current.height * k) / 2,
+                x: dossierStart ? 24 : 70,
+                // Chapter names sit above the points: leave room under the heading.
+                y: Math.max(
+                  dossierStart ? 300 : 0,
+                  (next.height - initialLayout.current.height * k) / 2,
+                ),
               },
         );
         first = false;
@@ -124,7 +138,7 @@ export default function TimelineCanvas({
       controller.current?.center(
         { x: selectedX, y: selectedY },
         size.current,
-        Math.max(latestViewport.current.k, 0.9),
+        Math.max(latestViewport.current.k, 0.75),
       );
     }
   }, [selectedId, selectedX, selectedY]);
@@ -159,7 +173,7 @@ export default function TimelineCanvas({
     const k = Math.min(
       0.9,
       Math.max(
-        0.4,
+        mapZoom,
         Math.min(
           size.current.width / width,
           (size.current.height * 0.8) / height,
@@ -182,18 +196,20 @@ export default function TimelineCanvas({
       )
       .flatMap((edge) => [edge.from.id, edge.to.id]),
   );
+  // Dense data sets only: draw what is near the window. The real corpus keeps
+  // every node in the DOM so Tab can still reach all of them; beyond this
+  // size the list and search are the way to every event.
+  const culling = layout.nodes.length > cullingThreshold;
+  // Every event stays on the map as a point; dense sets drop minor ones there.
   const shownByLevel = layout.nodes.filter(
     (node) =>
-      viewport.k >= 0.45 ||
+      !culling ||
+      !map ||
       node.importance === 'major' ||
       node.id === selectedId ||
       connected.has(node.id),
   );
   const renderedIds = new Set(shownByLevel.map((node) => node.id));
-  // Dense data sets only: draw what is near the window. The real corpus keeps
-  // every node in the DOM so Tab can still reach all of them; beyond this
-  // size the list and search are the way to every event.
-  const culling = layout.nodes.length > cullingThreshold;
   const onScreen = (point: { x: number; y: number }) => {
     const at = project(point, viewport);
     return (
@@ -230,20 +246,12 @@ export default function TimelineCanvas({
     a.id === selectedId ||
     b.id === selectedId ||
     (onScreen(a) && onScreen(b));
-  const compactOverview = dimensions.width < 640 && level === 'eras';
-  function eraPosition(era: (typeof layout.eras)[number]) {
-    return compactOverview
-      ? {
-          x: dimensions.width / 2,
-          y:
-            90 +
-            (era.index - 1) *
-              Math.max(
-                48,
-                (dimensions.height - 260) / Math.max(layout.eras.length - 1, 1),
-              ),
-        }
-      : project({ x: era.center, y: 300 }, viewport);
+  // On the map, chapter names alternate between two rows, so each one may
+  // extend over the chapter that follows it; a name with no room shows only
+  // its number.
+  function mapLabelWidth(eraIndex: number) {
+    const after = layout.eras[eraIndex + 2]?.x ?? layout.width + 2000;
+    return (after - layout.eras[eraIndex]!.x) * viewport.k - 16;
   }
   function keyboard(event: KeyboardEvent<HTMLDivElement>) {
     if (
@@ -273,16 +281,14 @@ export default function TimelineCanvas({
   }
 
   return (
-    <div
-      className={`timeline-stage ${compactOverview ? 'compact-overview' : ''}`}
-    >
+    <div className="timeline-stage">
       <div className="canvas-heading" aria-hidden="true">
         <span className="atlas-kicker">
           {dossier || preview ? 'Genshin Impact' : 'Archivo de la Bruma'}
         </span>
         <span>
           {dossier
-            ? 'Historia antigua y viaje del Viajero · Borrador visible'
+            ? 'Historia antigua y viaje del Viajero'
             : preview
               ? 'Vista previa · historias y conexiones'
               : 'Cronología de demostración'}
@@ -298,7 +304,11 @@ export default function TimelineCanvas({
         onKeyDown={keyboard}
         data-level={level}
         style={
-          { '--timeline-scale': Math.min(1, viewport.k / 0.6) } as CSSProperties
+          {
+            // Titles keep one size relative to the layout below 75%; on the
+            // map the points shrink only down to a visible minimum.
+            '--timeline-scale': Math.max(0.28, Math.min(1, viewport.k / 0.75)),
+          } as CSSProperties
         }
       >
         <svg
@@ -320,7 +330,7 @@ export default function TimelineCanvas({
               <path d="M 0 0 L 10 5 L 0 10 z" fill="currentColor" />
             </marker>
           </defs>
-          {(overview ? [] : layout.eras).map((era) => {
+          {layout.eras.map((era) => {
             const start = project({ x: era.x, y: 0 }, viewport);
             const end = project({ x: era.x, y: layout.height }, viewport);
             return (
@@ -342,100 +352,99 @@ export default function TimelineCanvas({
               </g>
             );
           })}
-          {overview
-            ? null
-            : level === 'eras'
-              ? layout.eras.slice(1).map((era, index) => {
-                  const previous = layout.eras[index]!;
-                  return (
-                    <path
-                      key={era.id}
-                      d={connectionPath(
-                        eraPosition(previous),
-                        eraPosition(era),
-                      )}
-                      className="era-order-line"
-                    />
-                  );
-                })
-              : layout.edges
-                  .filter(
-                    (edge) =>
-                      // Without a selection, only expressed order and links inside
-                      // one chapter are drawn; the long associations across chapters
-                      // tangle the overview and appear when an event is selected.
-                      (!dossier ||
-                        (selectedId
-                          ? edge.from.id === selectedId ||
-                            edge.to.id === selectedId
-                          : edge.kind === 'precedes' ||
-                            edge.from.eraId === edge.to.eraId)) &&
-                      edgeIds.has(edge.from.id) &&
-                      edgeIds.has(edge.to.id) &&
-                      edgeShown(edge.from, edge.to),
-                  )
-                  .map((edge) => {
-                    const active =
-                      edge.from.id === selectedId || edge.to.id === selectedId;
-                    return (
-                      <path
-                        key={edge.id}
-                        d={connectionPath(
-                          project(edge.from, viewport),
-                          project(edge.to, viewport),
-                        )}
-                        className={`timeline-connection ${active ? 'is-active' : ''} ${selectedId && !active ? 'is-muted' : ''} ${edge.claimStatus === 'fact' ? '' : 'is-inferred'}`}
-                        markerEnd={
-                          edge.directed ? 'url(#timeline-arrow)' : undefined
-                        }
-                      />
-                    );
-                  })}
+          {layout.edges
+            .filter(
+              (edge) =>
+                // At reading zoom and without a selection, only expressed order
+                // and links inside one chapter are drawn; the long associations
+                // across chapters would tangle the titles. The map draws them all.
+                (!dossier ||
+                  map ||
+                  (selectedId
+                    ? edge.from.id === selectedId || edge.to.id === selectedId
+                    : edge.kind === 'precedes' ||
+                      edge.from.eraId === edge.to.eraId)) &&
+                edgeIds.has(edge.from.id) &&
+                edgeIds.has(edge.to.id) &&
+                edgeShown(edge.from, edge.to),
+            )
+            .map((edge) => {
+              const active =
+                edge.from.id === selectedId || edge.to.id === selectedId;
+              return (
+                <path
+                  key={edge.id}
+                  d={connectionPath(
+                    project(edge.from, viewport),
+                    project(edge.to, viewport),
+                  )}
+                  className={`timeline-connection ${active ? 'is-active' : ''} ${selectedId && !active ? 'is-muted' : ''} ${edge.claimStatus === 'fact' ? '' : 'is-inferred'}`}
+                  markerEnd={
+                    edge.directed && !map ? 'url(#timeline-arrow)' : undefined
+                  }
+                />
+              );
+            })}
         </svg>
-        {(overview ? [] : layout.eras).map((era) => {
-          const position =
-            level === 'eras'
-              ? eraPosition(era)
-              : project({ x: era.x, y: 0 }, viewport);
-          return level === 'eras' ? (
+        {layout.eras.map((era, eraIndex) => {
+          const position = project({ x: era.x, y: 0 }, viewport);
+          if (!map)
+            return (
+              <div
+                className="era-label"
+                key={era.id}
+                style={{ left: position.x, top: position.y }}
+              >
+                <span>{String(era.index).padStart(2, '0')}</span>
+                <strong>{era.name}</strong>
+              </div>
+            );
+          const width = mapLabelWidth(eraIndex);
+          return (
             <button
               type="button"
-              className="era-group"
+              className="era-label is-map"
               key={era.id}
-              style={{ left: position.x, top: position.y }}
+              style={{
+                left: position.x,
+                // Above the first row of points, so names never cover them.
+                top: position.y - (eraIndex % 2 ? 46 : 92),
+                maxWidth: Math.max(width, 40),
+              }}
+              title={era.name}
+              aria-label={`Acercar a ${era.name}, ${era.count} acontecimientos`}
               onClick={() =>
-                controller.current?.center(
-                  { x: era.center, y: 310 },
-                  size.current,
-                  0.95,
-                )
+                jumpToAll(layout.nodes.filter((node) => node.eraId === era.id))
               }
-              aria-label={`Explorar ${era.name}, ${era.count} eventos visibles`}
-            >
-              <span className="era-orbit">
-                <span>{String(era.index).padStart(2, '0')}</span>
-              </span>
-              <strong>{era.name}</strong>
-              <span>{era.count} acontecimientos</span>
-            </button>
-          ) : (
-            <div
-              className="era-label"
-              key={era.id}
-              style={{ left: position.x, top: position.y }}
             >
               <span>{String(era.index).padStart(2, '0')}</span>
-              <strong>{era.name}</strong>
-            </div>
+              {width >= 70 && <strong>{era.name}</strong>}
+            </button>
           );
         })}
-        {(overview
-          ? []
-          : level === 'eras'
-            ? layout.nodes.filter((node) => node.id === selectedId)
-            : renderedNodes
-        ).map((node) => {
+        {renderedNodes.map((node) => {
           const position = project(node, viewport);
+          // On the map a point has no title; it stays a button so it opens the
+          // event, and the selection then zooms to reading level.
+          if (map)
+            return (
+              <button
+                type="button"
+                key={node.id}
+                data-event-id={node.id}
+                className={`timeline-node is-point ${node.importance} ${node.id === selectedId ? 'is-selected' : ''} ${connected.has(node.id) ? 'is-connected' : ''} ${selectedId && !connected.has(node.id) && node.id !== selectedId ? 'is-muted' : ''}`}
+                style={{ left: position.x, top: position.y }}
+                aria-label={`Abrir ${node.title}`}
+                title={node.title}
+                aria-pressed={node.id === selectedId}
+                onClick={() => onSelect(node.id)}
+              >
+                <span className="node-symbol" aria-hidden="true">
+                  <span className="node-diamond" />
+                  <span className="node-core" />
+                </span>
+              </button>
+            );
           return (
             <button
               type="button"
@@ -495,52 +504,6 @@ export default function TimelineCanvas({
           </p>
         )}
       </div>
-      {overview && (
-        <section
-          className="dossier-overview"
-          aria-label="Capítulos de la historia"
-        >
-          <div className="overview-intro">
-            <h2>De la historia antigua al viaje del Viajero</h2>
-            <p>
-              Elige un capítulo para explorar sus acontecimientos. Las
-              trayectorias regionales se solapan; el orden de lectura no fija
-              fechas ni simultaneidad.
-            </p>
-          </div>
-          <div className="chapter-grid">
-            {layout.eras.map((era) => (
-              <button
-                type="button"
-                className="chapter-card"
-                key={era.id}
-                aria-label={
-                  'Explorar ' +
-                  era.name +
-                  ', ' +
-                  era.count +
-                  ' eventos visibles'
-                }
-                onClick={() => {
-                  const first = layout.nodes.find(
-                    (node) => node.eraId === era.id,
-                  );
-                  if (first)
-                    controller.current?.center(first, size.current, 0.9);
-                }}
-              >
-                <span className="atlas-kicker">
-                  {String(era.index).padStart(2, '0')} / {era.count}{' '}
-                  acontecimientos
-                </span>
-                <strong>{era.name}</strong>
-                <span>{era.description}</span>
-                <span className="chapter-action">Explorar capítulo →</span>
-              </button>
-            ))}
-          </div>
-        </section>
-      )}
       {groups.map((group) => {
         const position = project(group, viewport);
         return (
@@ -562,7 +525,7 @@ export default function TimelineCanvas({
           </button>
         );
       })}
-      {dossier && !overview && (
+      {dossier && (
         <div
           className="chapter-jump"
           role="group"
@@ -627,17 +590,15 @@ export default function TimelineCanvas({
       <div className="canvas-bottom">
         <div className="canvas-caption">
           <span className="atlas-kicker">
-            {overview
-              ? null
-              : level === 'eras'
-                ? '01 / Épocas'
-                : level === 'events'
-                  ? '02 / Acontecimientos'
-                  : '03 / Detalle'}
+            {map
+              ? '01 / Mapa'
+              : level === 'events'
+                ? '02 / Acontecimientos'
+                : '03 / Detalle'}
           </span>
           <p id="canvas-help">
-            {overview
-              ? 'Desplázate por los capítulos y elige uno'
+            {map
+              ? 'Acerca o elige un capítulo para leer los títulos'
               : 'Arrastra para explorar · Rueda para acercar'}
             <span className="sr-only">
               . Con foco en el lienzo: flechas para desplazar, más y menos para
@@ -647,7 +608,7 @@ export default function TimelineCanvas({
           </p>
           <small>
             {dossier
-              ? 'Orden de lectura; distancias y filas no representan duración ni simultaneidad. Conexiones discontinuas: interpretación del dossier; al seleccionar un evento se muestran todas las suyas.'
+              ? 'Orden de lectura: las distancias no representan tiempo transcurrido. Las líneas discontinuas son interpretaciones; selecciona un acontecimiento para ver todas sus conexiones.'
               : preview
                 ? 'Vista previa: distribución y conexiones provisionales. Contiene spoilers.'
                 : 'Orden narrativo; las distancias no representan duración.'}

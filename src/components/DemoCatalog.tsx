@@ -26,33 +26,35 @@ const relationLabels = {
   causes: 'Causalidad',
   mentions: 'Mención',
 };
-const editorialLabels = {
-  demo: 'Demostración',
-  draft: 'Borrador',
-  provisional: 'Borrador visible',
-  reviewed: 'Revisado',
-};
 const claimKindLabels = {
   explicit: 'Dato explícito',
   testimony: 'Testimonio',
   interpretation: 'Interpretación',
   unknown: 'Cuestión abierta',
 };
-const reviewLabels = {
-  pending: 'Revisión pendiente',
-  reviewed: 'Revisada',
-  disputed: 'En disputa',
-};
-const tierLabels = {
-  primary: 'Texto del juego',
-  secondary: 'Fuente secundaria',
-  dossier: 'Dossier',
-};
-const stanceLabels = {
-  supports: 'Respalda',
-  contradicts: 'Contradice',
-  context: 'Da contexto',
-};
+// Language tags on imported titles are for the archive, not for readers.
+const readable = (title: string) => title.replace(/\s*\((?:ES|EN)\)$/, '');
+function SourceNames({
+  supports,
+}: {
+  supports: ReadonlyArray<{
+    sourceTitle: string;
+    sourceUrl?: string | undefined;
+  }>;
+}) {
+  return supports.map((support, index) => (
+    <span key={support.sourceTitle}>
+      {index > 0 && '; '}
+      {support.sourceUrl ? (
+        <a href={support.sourceUrl} rel="noreferrer">
+          {readable(support.sourceTitle)}
+        </a>
+      ) : (
+        readable(support.sourceTitle)
+      )}
+    </span>
+  ));
+}
 const eventHref = (id: string) => `/evento/?id=${encodeURIComponent(id)}`;
 const currentLocation = () => window.location.pathname + window.location.search;
 function subscribeLocation(onChange: () => void) {
@@ -81,20 +83,22 @@ function EventMeta({ event }: { event: EventSummary }) {
         {event.eraName} · {event.timeLabel}
       </p>
       <div className="tags">
-        <span className="tag">
-          {event.id.startsWith('preview-')
-            ? 'Vista previa'
-            : editorialLabels[event.editorialStatus]}
-        </span>
-        <span className="tag">
-          {event.id.startsWith('preview-')
-            ? 'Material fuente'
-            : event.editorialStatus === 'provisional'
-              ? event.id.startsWith('evt-viajero-')
-                ? 'Resumen del acto'
-                : 'Síntesis del dossier'
-              : claimLabels[event.claimStatus]}
-        </span>
+        {/* Synthetic and preview material stays identified; the editorial
+            workflow state of real content is not shown to readers. */}
+        {event.id.startsWith('preview-') ? (
+          <span className="tag">Vista previa</span>
+        ) : (
+          event.editorialStatus === 'demo' && (
+            <span className="tag">Demostración</span>
+          )
+        )}
+        {event.id.startsWith('preview-') ? (
+          <span className="tag">Material fuente</span>
+        ) : (
+          event.editorialStatus !== 'provisional' && (
+            <span className="tag">{claimLabels[event.claimStatus]}</span>
+          )
+        )}
         <span className="tag">
           {event.importance === 'major' ? 'Principal' : 'Secundario'}
         </span>
@@ -104,7 +108,7 @@ function EventMeta({ event }: { event: EventSummary }) {
               {
                 documented: event.id.startsWith('evt-viajero-')
                   ? 'Documentado en los diálogos'
-                  : 'Documentado en el dossier',
+                  : 'Documentado',
                 tradition: 'Testimonio o tradición',
                 approximate: 'Aproximado',
                 disputed: 'Discutido',
@@ -196,11 +200,6 @@ export function Detail({
                   </p>
                 )}
                 <p>{relation.explanation}</p>
-                {relation.evidence.map((evidence, index) => (
-                  <p key={`${evidence.sourceId}-${index}`}>
-                    Fuente: {evidence.sourceTitle} · {evidence.locator}
-                  </p>
-                ))}
               </li>
             );
           })}
@@ -210,86 +209,75 @@ export function Detail({
       )}
       {event.claims && event.claims.length > 0 && (
         <>
-          <h4>Afirmaciones y respaldo</h4>
-          <p className="metadata">
-            Cada afirmación indica qué clase de enunciado es y qué la respalda.
-            «Contrastada» significa que se comprobó el fragmento; «citada», que
-            la fuente es la que menciona el dossier pero no se ha vuelto a leer.
-            Una interpretación o una cuestión abierta no es un dato.
-          </p>
+          <h4>Qué se sabe</h4>
           <ul className="detail-list claim-list">
-            {event.claims.map((claim) => (
-              <li key={claim.id} data-claim-id={claim.id}>
-                <p className="metadata">
-                  {claimKindLabels[claim.kind]} ·{' '}
-                  {reviewLabels[claim.reviewStatus]}
-                </p>
-                <p>{claim.text}</p>
-                {claim.supports.length === 0 ? (
+            {event.claims.map((claim) => {
+              // Readers see what kind of statement it is and where it comes
+              // from; locators, review state and limits stay in the data.
+              const sources = (stance: 'supports' | 'contradicts') => [
+                ...new Map(
+                  claim.supports
+                    .filter((support) =>
+                      stance === 'contradicts'
+                        ? support.stance === 'contradicts'
+                        : support.stance !== 'contradicts',
+                    )
+                    .map((support) => [support.sourceTitle, support] as const),
+                ).values(),
+              ];
+              const backing = sources('supports');
+              const against = sources('contradicts');
+              const fromGame = claim.supports.some(
+                (support) =>
+                  support.tier === 'primary' &&
+                  support.stance !== 'contradicts',
+              );
+              return (
+                <li key={claim.id} data-claim-id={claim.id}>
                   <p className="metadata">
-                    Sin fuente que la respalde: es una lectura editorial o una
-                    pregunta que las fuentes dejan abierta.
+                    {claimKindLabels[claim.kind]}
+                    {claim.reviewStatus === 'disputed' && ' · En disputa'}
                   </p>
-                ) : (
-                  <ul>
-                    {claim.supports.map((support, index) => (
-                      <li key={index}>
-                        <strong>
-                          {support.sourceUrl ? (
-                            <a href={support.sourceUrl} rel="noreferrer">
-                              {support.sourceTitle}
-                            </a>
-                          ) : (
-                            support.sourceTitle
-                          )}
-                        </strong>
-                        <p className="metadata">
-                          {tierLabels[support.tier]} ·{' '}
-                          {stanceLabels[support.stance]} ·{' '}
-                          {support.verification === 'verified'
-                            ? 'Contrastada con el fragmento'
-                            : 'Citada, sin contrastar'}{' '}
-                          · {support.locator}
-                        </p>
-                        <p>Límites: {support.limits}</p>
-                      </li>
-                    ))}
-                  </ul>
-                )}
-              </li>
-            ))}
+                  <p>{claim.text}</p>
+                  {backing.length > 0 && (
+                    <p className="metadata">
+                      Fuente: <SourceNames supports={backing} />
+                    </p>
+                  )}
+                  {against.length > 0 && (
+                    <p className="metadata">
+                      Lo contradice: <SourceNames supports={against} />
+                    </p>
+                  )}
+                  {!fromGame && (
+                    <p className="metadata">
+                      {claim.supports.length === 0
+                        ? 'Sin confirmación directa en el juego.'
+                        : 'No está confirmado del todo por textos del juego.'}
+                    </p>
+                  )}
+                </li>
+              );
+            })}
           </ul>
         </>
       )}
-      <h4>Fuentes y evidencia</h4>
+      <h4>Fuentes</h4>
       {event.evidence.length ? (
         <ul className="detail-list">
-          {event.evidence.map((evidence, index) => (
-            <li key={`${evidence.sourceId}-${index}`}>
-              <strong>
-                {evidence.sourceUrl ? (
-                  <a href={evidence.sourceUrl} rel="noreferrer">
-                    {evidence.sourceTitle}
-                  </a>
-                ) : (
-                  evidence.sourceTitle
-                )}
-              </strong>
-              <p className="metadata">
-                {evidence.locator} · {evidence.availability}
-              </p>
-              <p>
-                {evidence.availability === 'Texto del dossier'
-                  ? 'Origen del texto'
-                  : evidence.availability ===
-                      'Referencia externa sin contrastar'
-                    ? 'Citada, sin contrastar'
-                    : evidence.stance === 'supports'
-                      ? 'Respalda'
-                      : 'Contradice'}
-                : {evidence.claim}
-              </p>
-              {evidence.note && <p>{evidence.note}</p>}
+          {[
+            ...new Map(
+              event.evidence.map((evidence) => [evidence.sourceId, evidence]),
+            ).values(),
+          ].map((evidence) => (
+            <li key={evidence.sourceId}>
+              {evidence.sourceUrl ? (
+                <a href={evidence.sourceUrl} rel="noreferrer">
+                  {readable(evidence.sourceTitle)}
+                </a>
+              ) : (
+                readable(evidence.sourceTitle)
+              )}
             </li>
           ))}
         </ul>

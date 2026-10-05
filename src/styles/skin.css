@@ -203,12 +203,6 @@
   stroke-linecap: round;
   opacity: 0.55;
 }
-.era-order-line {
-  stroke: var(--atlas-border-strong);
-  stroke-width: 2.5;
-  stroke-dasharray: 1 10;
-  stroke-linecap: round;
-}
 .era-label > span {
   display: inline-grid;
   place-items: center;
@@ -249,6 +243,20 @@
   color: var(--atlas-text);
 }
 
+[data-level='map'] .timeline-connection {
+  stroke-width: 1.2;
+  opacity: 0.45;
+}
+[data-level='map'] .timeline-connection.is-active {
+  stroke-width: 2.4;
+  opacity: 1;
+}
+[data-level='map'] .timeline-connection.is-muted {
+  opacity: 0.12;
+}
+.era-label.is-map strong {
+  font-size: 0.95rem;
+}
 /* ——— Nodos: pegatinas con destello ———————————————————————— */
 .node-symbol {
   border: 3px solid var(--atlas-panel);
@@ -326,8 +334,12 @@
     translate: 0 -4px;
   }
 }
+/* Muting dims the symbol only: titles of nearby events stay readable. */
 .timeline-node.is-muted {
-  opacity: 0.62;
+  opacity: 1;
+}
+.timeline-node.is-muted .node-symbol {
+  opacity: 0.45;
 }
 .node-label {
   gap: 0.3rem;
@@ -377,32 +389,6 @@
 }
 .timeline-group:hover {
   scale: 1.12;
-}
-.era-orbit {
-  border: 3px solid var(--atlas-panel);
-  outline: 2.5px dashed var(--atlas-border-strong);
-  outline-offset: 6px;
-  background: var(--sky);
-  box-shadow: 0 6px 0 #3d8fd1;
-}
-.era-orbit > span {
-  font-family: var(--font-display);
-  font-style: italic;
-  font-weight: 700;
-  color: var(--atlas-ink);
-}
-.era-group strong {
-  font-family: var(--font-display);
-  font-style: italic;
-  font-weight: 700;
-  font-size: 1rem;
-}
-.era-group:hover .era-orbit {
-  border-color: var(--atlas-panel);
-  background: var(--butter);
-}
-.compact-overview .era-group {
-  background: transparent;
 }
 
 /* ——— Controles de zoom y pie del lienzo ——————————————————— */
@@ -521,11 +507,6 @@
   color: var(--atlas-ink) !important;
   background: var(--sun);
   box-shadow: 0 3px 0 var(--sun-edge);
-}
-.overview-intro h2 {
-  font-family: var(--font-display);
-  font-style: italic;
-  font-weight: 700;
 }
 .chapter-jump label {
   font-weight: 800;
