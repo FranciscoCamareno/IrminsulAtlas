@@ -72,6 +72,7 @@ export async function loadSiteContent(): Promise<Dataset> {
     entities: [],
     milestones: [],
     sources: [],
+    claims: [],
     events: [],
     relations: [],
   };

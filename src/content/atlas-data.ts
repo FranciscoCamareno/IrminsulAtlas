@@ -42,6 +42,46 @@ export function buildAtlasData(data: Dataset): AtlasData {
         },
       ];
     });
+  const sourceById = new Map(data.sources.map((item) => [item.id, item]));
+  const requirementsOf = new Map(
+    data.events.map((event) => [event.id, event.spoilerRequirements]),
+  );
+  // A claim concerning several events is shown only where all of them are open.
+  const claimViews = (eventId: string) =>
+    data.claims
+      .filter((claim) => claim.eventIds.includes(eventId))
+      .map((claim) => ({
+        id: claim.id,
+        text: claim.text,
+        kind: claim.kind,
+        reviewStatus: claim.review.status,
+        spoilerRequirements: [
+          ...new Set(
+            claim.eventIds.flatMap((id) => requirementsOf.get(id) ?? []),
+          ),
+        ],
+        supports: claim.support.flatMap((support) => {
+          const source = sourceById.get(support.sourceId);
+          if (!source) return [];
+          return [
+            {
+              sourceTitle: source.title,
+              ...(source.url ? { sourceUrl: source.url } : {}),
+              tier:
+                source.kind === 'document'
+                  ? (source.tier ?? 'secondary')
+                  : 'secondary',
+              locator: support.locator,
+              stance: support.stance,
+              verification: support.verification,
+              limits: support.limits,
+              ...(support.fragment
+                ? { fragmentId: support.fragment.segmentId }
+                : {}),
+            },
+          ];
+        }),
+      }));
   const entityName = new Map(
     data.entities.map((entity) => [entity.id, entity.name]),
   );
@@ -132,6 +172,7 @@ export function buildAtlasData(data: Dataset): AtlasData {
         summary: event.summary,
         body: event.body,
         evidence: evidenceViews(event.evidence),
+        claims: claimViews(event.id),
         relations: index.relations
           .filter(
             (relation) =>

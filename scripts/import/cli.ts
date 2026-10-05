@@ -2,9 +2,14 @@ import process from 'node:process';
 import console from 'node:console';
 import { resolve } from 'node:path';
 import {
+  EvidenceRegistrySchema,
   ImportSelectionSchema,
   SnapshotManifestSchema,
 } from '../../src/domain/schema.ts';
+import {
+  findRegistryIssues,
+  verifyAgainstImport,
+} from '../../src/domain/evidence-integrity.ts';
 import { acquireSnapshot } from './acquire.ts';
 import {
   acceptedSubset,
@@ -96,9 +101,66 @@ try {
         sources: current.dataset.sources.length,
       }),
     );
+  } else if (command === 'evidence' && !id) {
+    // Compares every pinned fragment with the accepted import. Without one it
+    // cannot say anything, and says so instead of passing.
+    const registry = parse(
+      EvidenceRegistrySchema,
+      await readJson('content/editorial/genshin-evidence.json'),
+      'genshin-evidence.json',
+    );
+    const dossier = (await readJson(
+      'content/editorial/genshin-dossier.json',
+    )) as {
+      events: Array<{ id: string }>;
+    };
+    const events = new Set(dossier.events.map((event) => event.id));
+    const structural = findRegistryIssues(registry, events);
+    const current = await readAccepted(store);
+    if (!current)
+      fail(
+        'NO_ACCEPTED_VERSION',
+        'content/imported/animegame/accepted.json',
+        '',
+        null,
+        'No hay importación aceptada: las referencias a fragmentos no pueden verificarse. Ejecutar acquire, import y promote.',
+      );
+    const textual = verifyAgainstImport(registry, current.dataset);
+    const issues = [...structural, ...textual];
+    console.log(
+      stableJson({
+        status: issues.some((issue) => issue.severity === 'error')
+          ? 'rejected'
+          : 'valid',
+        importVersion: current.pointer.version,
+        claims: registry.claims.length,
+        sources: registry.sources.length,
+        // Coverage is reported, never hidden: events with no claim are unreviewed.
+        coverage: {
+          eventsWithClaims: [...events].filter((id) =>
+            registry.claims.some((claim) => claim.eventIds.includes(id)),
+          ).length,
+          eventsWithoutClaims: [...events].filter(
+            (id) =>
+              !registry.claims.some((claim) => claim.eventIds.includes(id)),
+          ),
+          verifiedSupports: registry.claims.flatMap((claim) =>
+            claim.support.filter(
+              (support) => support.verification === 'verified',
+            ),
+          ).length,
+          claimsReviewed: registry.claims.filter(
+            (claim) => claim.review.status === 'reviewed',
+          ).length,
+        },
+        issues,
+      }),
+    );
+    if (issues.some((issue) => issue.severity === 'error'))
+      process.exitCode = 1;
   } else {
     console.error(
-      'Uso: node scripts/import/cli.ts acquire|import|validate [ID]|diff ID|promote ID',
+      'Uso: node scripts/import/cli.ts acquire|import|validate [ID]|diff ID|promote ID|evidence',
     );
     process.exitCode = 1;
   }

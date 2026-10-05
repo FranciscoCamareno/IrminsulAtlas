@@ -23,7 +23,8 @@
     "content:import": "node scripts/import/cli.ts import",
     "content:validate": "node scripts/import/cli.ts validate",
     "content:diff": "node scripts/import/cli.ts diff",
-    "content:promote": "node scripts/import/cli.ts promote"
+    "content:promote": "node scripts/import/cli.ts promote",
+    "content:evidence": "node scripts/import/cli.ts evidence"
   },
   "dependencies": {
     "@astrojs/react": "7.0.0",
@@ -37,6 +38,7 @@
   },
   "devDependencies": {
     "@astrojs/check": "0.9.10",
+    "@axe-core/playwright": "4.13.0",
     "@eslint/js": "10.0.1",
     "@types/d3-scale": "4.0.9",
     "@types/d3-selection": "3.0.12",
@@ -47,6 +49,7 @@
     "eslint": "10.11.0",
     "eslint-plugin-react-hooks": "7.1.1",
     "jsdom": "30.1.1",
+    "playwright-core": "1.63.0",
     "prettier": "3.9.9",
     "prettier-plugin-astro": "1.1.0",
     "typescript": "6.0.3",

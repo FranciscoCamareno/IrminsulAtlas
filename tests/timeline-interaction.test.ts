@@ -599,4 +599,32 @@ describe('progress, search and loading', () => {
       titleOf('evt-rebelion-decarabian'),
     );
   });
+  it('tells the reader what backs each claim and what remains interpretation or an open question', async () => {
+    window.history.replaceState(null, '', '/?id=evt-revolucion-vennessa');
+    await render(dossier, { kind: 'all' });
+    const claims = [...host.querySelectorAll<HTMLElement>('[data-claim-id]')];
+    expect(claims.length).toBeGreaterThanOrEqual(6);
+    const tyranny = host.querySelector(
+      '[data-claim-id="claim-vennessa-tirania"]',
+    )!;
+    expect(tyranny.textContent).toContain('Dato explícito');
+    expect(tyranny.textContent).toContain('Texto del juego');
+    expect(tyranny.textContent).toContain('Contrastada con el fragmento');
+    expect(tyranny.textContent).toContain('Citada, sin contrastar');
+    const separate = host.querySelector(
+      '[data-claim-id="claim-vennessa-no-decarabian"]',
+    )!;
+    expect(separate.textContent).toContain('Interpretación');
+    expect(separate.textContent).toContain('Sin fuente que la respalde');
+    expect(host.querySelector('.atlas-detail')?.textContent).toContain(
+      'Revisión pendiente',
+    );
+    window.history.replaceState(null, '', '/?id=evt-hiperborea');
+    await act(async () => window.dispatchEvent(new PopStateEvent('popstate')));
+    await settle();
+    expect(
+      host.querySelector('[data-claim-id="claim-hiperborea-intervalo"]')
+        ?.textContent,
+    ).toContain('Cuestión abierta');
+  });
 });

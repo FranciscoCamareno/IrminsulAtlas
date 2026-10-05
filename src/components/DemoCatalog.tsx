@@ -32,6 +32,27 @@ const editorialLabels = {
   provisional: 'Borrador visible',
   reviewed: 'Revisado',
 };
+const claimKindLabels = {
+  explicit: 'Dato explícito',
+  testimony: 'Testimonio',
+  interpretation: 'Interpretación',
+  unknown: 'Cuestión abierta',
+};
+const reviewLabels = {
+  pending: 'Revisión pendiente',
+  reviewed: 'Revisada',
+  disputed: 'En disputa',
+};
+const tierLabels = {
+  primary: 'Texto del juego',
+  secondary: 'Fuente secundaria',
+  dossier: 'Dossier',
+};
+const stanceLabels = {
+  supports: 'Respalda',
+  contradicts: 'Contradice',
+  context: 'Da contexto',
+};
 const eventHref = (id: string) => `/evento/?id=${encodeURIComponent(id)}`;
 const currentLocation = () => window.location.pathname + window.location.search;
 function subscribeLocation(onChange: () => void) {
@@ -182,6 +203,59 @@ export function Detail({
         </ul>
       ) : (
         <p>Sin relaciones visibles con este progreso.</p>
+      )}
+      {event.claims && event.claims.length > 0 && (
+        <>
+          <h4>Afirmaciones y respaldo</h4>
+          <p className="metadata">
+            Cada afirmación indica qué clase de enunciado es y qué la respalda.
+            «Contrastada» significa que se comprobó el fragmento; «citada», que
+            la fuente es la que menciona el dossier pero no se ha vuelto a leer.
+            Una interpretación o una cuestión abierta no es un dato.
+          </p>
+          <ul className="detail-list claim-list">
+            {event.claims.map((claim) => (
+              <li key={claim.id} data-claim-id={claim.id}>
+                <p className="metadata">
+                  {claimKindLabels[claim.kind]} ·{' '}
+                  {reviewLabels[claim.reviewStatus]}
+                </p>
+                <p>{claim.text}</p>
+                {claim.supports.length === 0 ? (
+                  <p className="metadata">
+                    Sin fuente que la respalde: es una lectura editorial o una
+                    pregunta que las fuentes dejan abierta.
+                  </p>
+                ) : (
+                  <ul>
+                    {claim.supports.map((support, index) => (
+                      <li key={index}>
+                        <strong>
+                          {support.sourceUrl ? (
+                            <a href={support.sourceUrl} rel="noreferrer">
+                              {support.sourceTitle}
+                            </a>
+                          ) : (
+                            support.sourceTitle
+                          )}
+                        </strong>
+                        <p className="metadata">
+                          {tierLabels[support.tier]} ·{' '}
+                          {stanceLabels[support.stance]} ·{' '}
+                          {support.verification === 'verified'
+                            ? 'Contrastada con el fragmento'
+                            : 'Citada, sin contrastar'}{' '}
+                          · {support.locator}
+                        </p>
+                        <p>Límites: {support.limits}</p>
+                      </li>
+                    ))}
+                  </ul>
+                )}
+              </li>
+            ))}
+          </ul>
+        </>
       )}
       <h4>Fuentes y evidencia</h4>
       {event.evidence.length ? (

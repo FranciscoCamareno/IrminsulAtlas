@@ -192,6 +192,9 @@ export function assembleEvent(
       return entity ? [{ id, name: entity.name, kind: entity.kind }] : [];
     }),
     evidence: evidence(file.evidence),
+    claims: file.claims.filter((claim) =>
+      meetsRequirements(claim.spoilerRequirements, view.progress),
+    ),
     relations: view.relations
       .filter(
         (relation) =>

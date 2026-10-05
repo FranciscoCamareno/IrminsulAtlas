@@ -4,12 +4,14 @@ import { resolve } from 'node:path';
 import {
   DatasetSchema,
   DossierMapSchema,
+  EvidenceRegistrySchema,
   RevelationMapSchema,
   type Dataset,
   type Evidence,
   type RevelationMap,
 } from '../domain/schema';
 import { findIntegrityIssues } from '../domain/integrity';
+import { findRegistryIssues } from '../domain/evidence-integrity';
 
 export const dossierFiles = [
   {
@@ -102,6 +104,65 @@ export function extractDossierSections(body: string) {
     seen.add(section.id);
   }
   return sections;
+}
+
+// The registry is editorial data; incomplete or broken references stop the
+// load, exactly like a broken event reference would.
+async function applyEvidenceRegistry(data: Dataset) {
+  const registry = EvidenceRegistrySchema.parse(
+    JSON.parse(
+      await readFile(
+        resolve('content/editorial/genshin-evidence.json'),
+        'utf8',
+      ),
+    ),
+  );
+  const problems = findRegistryIssues(
+    registry,
+    new Set(data.events.map((event) => event.id)),
+  ).filter((issue) => issue.severity === 'error');
+  if (problems.length)
+    throw new Error(
+      'Registro de evidencias inválido:\n' +
+        problems
+          .map((issue) => `${issue.code} ${issue.path}: ${issue.message}`)
+          .join('\n'),
+    );
+  for (const source of registry.sources) {
+    data.sources.push(
+      source.kind === 'imported'
+        ? {
+            ...scope,
+            id: source.id,
+            kind: 'document',
+            title: source.title,
+            language: 'es',
+            locator: source.locator.path + source.locator.pointer,
+            work:
+              'AnimeGameData (ES) · ' +
+              source.sourceKind +
+              ' · snapshot ' +
+              source.snapshotCommit.slice(0, 7),
+            tier: 'primary',
+          }
+        : {
+            ...scope,
+            id: source.id,
+            kind: 'document',
+            title: source.title,
+            language: 'und',
+            locator: 'Referencia externa',
+            url: source.url,
+            ...(source.accessedAt ? { accessedAt: source.accessedAt } : {}),
+            work:
+              source.tier === 'primary'
+                ? 'Fuente primaria externa'
+                : 'Fuente secundaria externa',
+            tier: source.tier,
+          },
+    );
+  }
+  data.claims = registry.claims;
 }
 
 async function loadRevelationMap() {
@@ -230,6 +291,7 @@ export async function loadDossierContent(): Promise<Dataset> {
     events: [],
     relations: [],
     sources: [],
+    claims: [],
   };
   const sourceIds = new Set<string>();
   function evidenceFor(sectionId: string): Evidence[] {
@@ -332,6 +394,7 @@ export async function loadDossierContent(): Promise<Dataset> {
     if (!mappedIds.has(section.id))
       throw new Error('Acontecimiento sin anotaciones: ' + section.id);
   }
+  await applyEvidenceRegistry(data);
   applyRevelation(data, await loadRevelationMap());
   const parsed = DatasetSchema.parse(data);
   const issues = findIntegrityIssues(parsed);

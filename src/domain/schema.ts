@@ -116,7 +116,13 @@ export const MissionSchema = z.strictObject({
 });
 export const SourceSchema = z.discriminatedUnion('kind', [
   MissionSchema,
-  z.strictObject({ ...sourceFields, kind: z.literal('document'), work: text }),
+  z.strictObject({
+    ...sourceFields,
+    kind: z.literal('document'),
+    work: text,
+    // Primary = text of the game itself; secondary = community or editorial reading.
+    tier: z.enum(['primary', 'secondary', 'dossier']).optional(),
+  }),
 ]);
 export const EventSchema = z
   .strictObject({
@@ -185,6 +191,48 @@ export const RelationSchema = z
     },
   );
 
+// A claim is one statement the editorial text makes. It is separate from the
+// event so that one claim can concern several events and one source can back
+// several claims; it records what kind of statement it is and what supports it.
+export const ClaimKindSchema = z.enum([
+  'explicit',
+  'testimony',
+  'interpretation',
+  'unknown',
+]);
+export const ClaimSupportSchema = z.strictObject({
+  sourceId: IdSchema,
+  locator: text,
+  // Imported material is pinned to one segment and the hash of its text, so a
+  // later import that changes the text is detected instead of silently trusted.
+  fragment: z
+    .strictObject({
+      segmentId: IdSchema,
+      sha256: z.string().regex(/^[a-f0-9]{64}$/),
+    })
+    .optional(),
+  stance: z.enum(['supports', 'contradicts', 'context']),
+  // verified: the fragment was located and compared with the claim.
+  // cited: the source is the one the dossier cites; it was not re-read.
+  verification: z.enum(['verified', 'cited']),
+  limits: text,
+});
+export const ClaimSchema = z.strictObject({
+  id: IdSchema,
+  eventIds: ids.refine((items) => items.length > 0, {
+    message: 'Una afirmación necesita al menos un evento',
+  }),
+  text,
+  kind: ClaimKindSchema,
+  support: z.array(ClaimSupportSchema),
+  review: z.strictObject({
+    status: z.enum(['pending', 'reviewed', 'disputed']),
+    reviewer: text.optional(),
+    date: z.iso.date().optional(),
+    note: text.optional(),
+  }),
+});
+
 export const EditorialContentSchema = z.strictObject({
   schemaVersion: z.literal(1),
   universes: z.array(UniverseSchema).min(1),
@@ -193,6 +241,8 @@ export const EditorialContentSchema = z.strictObject({
   milestones: z.array(MilestoneSchema),
   events: z.array(EventSchema),
   relations: z.array(RelationSchema),
+  // Claim-level traceability (see EvidenceRegistrySchema); optional for fixtures.
+  claims: z.array(ClaimSchema).default([]),
 });
 export const DatasetSchema = EditorialContentSchema.extend({
   sources: z.array(SourceSchema),
@@ -512,6 +562,28 @@ export const AtlasIndexSchema = z.strictObject({
   entities: z.array(IndexEntitySchema),
   relations: z.array(IndexRelationSchema),
 });
+// What the reader sees for one claim; support is resolved to titles and links.
+export const ClaimViewSchema = z.strictObject({
+  id: IdSchema,
+  text,
+  kind: ClaimKindSchema,
+  reviewStatus: ClaimSchema.shape.review.shape.status,
+  // Union of the requirements of every event the claim concerns.
+  spoilerRequirements: ids,
+  supports: z.array(
+    z.strictObject({
+      sourceTitle: text,
+      sourceUrl: z.string().optional(),
+      tier: z.enum(['primary', 'secondary', 'dossier']),
+      locator: text,
+      stance: ClaimSupportSchema.shape.stance,
+      verification: ClaimSupportSchema.shape.verification,
+      limits: text,
+      fragmentId: IdSchema.optional(),
+    }),
+  ),
+});
+export type ClaimView = z.infer<typeof ClaimViewSchema>;
 export const EvidenceViewSchema = z.strictObject({
   sourceId: IdSchema,
   sourceTitle: text,
@@ -530,6 +602,7 @@ export const EventDetailFileSchema = z.strictObject({
   summary: text,
   body: text,
   evidence: z.array(EvidenceViewSchema),
+  claims: z.array(ClaimViewSchema),
   relations: z.array(
     z.strictObject({
       id: IdSchema,
@@ -566,3 +639,34 @@ export const DossierDocumentFileSchema = z.strictObject({
   body: text,
 });
 export type DossierDocumentFile = z.infer<typeof DossierDocumentFileSchema>;
+
+// Editorial evidence registry: sources and claims, kept apart from the prose.
+export const RegistrySourceSchema = z.discriminatedUnion('kind', [
+  z.strictObject({
+    kind: z.literal('imported'),
+    id: IdSchema,
+    importedId: IdSchema,
+    snapshotCommit: CommitSchema,
+    title: text,
+    sourceKind: SourceRecordSchema.shape.kind,
+    locator: SourceLocatorSchema,
+  }),
+  z.strictObject({
+    kind: z.literal('external'),
+    id: IdSchema,
+    title: text,
+    url: z.url({ protocol: /^https?$/ }),
+    tier: z.enum(['primary', 'secondary']),
+    accessedAt: z.iso.date().optional(),
+    note: text.optional(),
+  }),
+]);
+export const EvidenceRegistrySchema = z.strictObject({
+  schemaVersion: z.literal(1),
+  sources: z.array(RegistrySourceSchema),
+  claims: z.array(ClaimSchema),
+});
+export type Claim = z.infer<typeof ClaimSchema>;
+export type ClaimSupport = z.infer<typeof ClaimSupportSchema>;
+export type RegistrySource = z.infer<typeof RegistrySourceSchema>;
+export type EvidenceRegistry = z.infer<typeof EvidenceRegistrySchema>;

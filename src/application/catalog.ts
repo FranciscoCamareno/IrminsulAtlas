@@ -1,4 +1,5 @@
 import type {
+  ClaimView,
   Dataset,
   Evidence,
   HistoricalTime,
@@ -252,7 +253,7 @@ export type EventSummary = ReturnType<typeof listVisibleEvents>[number];
 export type EventDetail = Extract<
   ReturnType<typeof getEventById>,
   { status: 'visible' }
->['event'];
+>['event'] & { claims?: ClaimView[] };
 
 export function listVisibleEntities(data: Dataset, progress: Progress) {
   return data.entities

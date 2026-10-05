@@ -1,0 +1,1055 @@
+{
+  "schemaVersion": 1,
+  "sources": [
+    {
+      "kind": "imported",
+      "id": "imp-aquila-favonia",
+      "importedId": "agd-document-191501-es",
+      "snapshotCommit": "b061b403c8afc7bca633cf4f201edc4a3baa75fe",
+      "title": "Aquila Favonia · historia del arma (ES)",
+      "sourceKind": "weapon-story",
+      "locator": {
+        "path": "ExcelBinOutput/DocumentExcelConfigData.json",
+        "pointer": "/1584",
+        "fileSha256": "101aaaf9c0cbb161d4c0f59da1314bd427cbe954a43fec6d9483fdda4aa38a47"
+      }
+    },
+    {
+      "kind": "external",
+      "id": "ext-wiki-vennessa",
+      "title": "Fandom · Vennessa",
+      "url": "https://genshin-impact.fandom.com/wiki/Vennessa",
+      "tier": "secondary",
+      "note": "Referencia citada por el dossier; no vuelta a leer en esta revisión."
+    },
+    {
+      "kind": "external",
+      "id": "ext-wiki-decarabian",
+      "title": "Fandom · Decarabian",
+      "url": "https://genshin-impact.fandom.com/wiki/Decarabian",
+      "tier": "secondary",
+      "note": "Referencia citada por el dossier; no vuelta a leer en esta revisión."
+    },
+    {
+      "kind": "external",
+      "id": "ext-wiki-venti-profile",
+      "title": "Fandom · Venti/Profile",
+      "url": "https://genshin-impact.fandom.com/wiki/Venti/Profile",
+      "tier": "secondary",
+      "note": "Referencia citada por el dossier; no vuelta a leer en esta revisión."
+    },
+    {
+      "kind": "external",
+      "id": "ext-wiki-hyperborea",
+      "title": "Fandom · Hyperborea",
+      "url": "https://genshin-impact.fandom.com/wiki/Hyperborea",
+      "tier": "secondary",
+      "note": "Referencia citada por el dossier; no vuelta a leer en esta revisión."
+    },
+    {
+      "kind": "external",
+      "id": "ext-wiki-koitar",
+      "title": "Fandom · Koitar",
+      "url": "https://genshin-impact.fandom.com/wiki/Koitar",
+      "tier": "secondary",
+      "note": "Referencia citada por el dossier; no vuelta a leer en esta revisión."
+    },
+    {
+      "kind": "external",
+      "id": "ext-wiki-seutervoinen",
+      "title": "Fandom · Seutervoinen",
+      "url": "https://genshin-impact.fandom.com/wiki/Seutervoinen",
+      "tier": "secondary",
+      "note": "Referencia citada por el dossier; no vuelta a leer en esta revisión."
+    },
+    {
+      "kind": "external",
+      "id": "ext-wiki-timeline",
+      "title": "Fandom · Timeline (reconstrucción editorial)",
+      "url": "https://genshin-impact.fandom.com/wiki/Timeline",
+      "tier": "secondary",
+      "note": "Referencia citada por el dossier; no vuelta a leer en esta revisión."
+    },
+    {
+      "kind": "external",
+      "id": "ext-wiki-mare-jivari",
+      "title": "Fandom · Mare Jivari",
+      "url": "https://genshin-impact.fandom.com/wiki/Mare_Jivari",
+      "tier": "secondary",
+      "note": "Referencia citada por el dossier; no vuelta a leer en esta revisión."
+    },
+    {
+      "kind": "external",
+      "id": "ext-wiki-tenoch",
+      "title": "Fandom · Tenoch",
+      "url": "https://genshin-impact.fandom.com/wiki/Tenoch",
+      "tier": "secondary",
+      "note": "Referencia citada por el dossier; no vuelta a leer en esta revisión."
+    },
+    {
+      "kind": "external",
+      "id": "ext-wiki-mare-jivari-report",
+      "title": "Fandom · Investigative Report: Mare Jivari",
+      "url": "https://genshin-impact.fandom.com/wiki/Investigative_Report%3A_Mare_Jivari",
+      "tier": "secondary",
+      "note": "Referencia citada por el dossier; no vuelta a leer en esta revisión."
+    },
+    {
+      "kind": "external",
+      "id": "ext-wiki-enkanomiya",
+      "title": "Fandom · Enkanomiya",
+      "url": "https://genshin-impact.fandom.com/wiki/Enkanomiya",
+      "tier": "secondary",
+      "note": "Referencia citada por el dossier; no vuelta a leer en esta revisión."
+    },
+    {
+      "kind": "external",
+      "id": "ext-wiki-orobashi",
+      "title": "Fandom · Orobashi",
+      "url": "https://genshin-impact.fandom.com/wiki/Orobashi",
+      "tier": "secondary",
+      "note": "Referencia citada por el dossier; no vuelta a leer en esta revisión."
+    },
+    {
+      "kind": "external",
+      "id": "ext-wiki-inazuma-history",
+      "title": "Fandom · Inazuma/History",
+      "url": "https://genshin-impact.fandom.com/wiki/Inazuma/History",
+      "tier": "secondary",
+      "note": "Referencia citada por el dossier; no vuelta a leer en esta revisión."
+    },
+    {
+      "kind": "external",
+      "id": "ext-wiki-guili-assembly",
+      "title": "Fandom · Guili Assembly",
+      "url": "https://genshin-impact.fandom.com/wiki/Guili_Assembly",
+      "tier": "secondary",
+      "note": "Referencia citada por el dossier; no vuelta a leer en esta revisión."
+    },
+    {
+      "kind": "external",
+      "id": "ext-wiki-guizhong",
+      "title": "Fandom · Guizhong",
+      "url": "https://genshin-impact.fandom.com/wiki/Guizhong",
+      "tier": "secondary",
+      "note": "Referencia citada por el dossier; no vuelta a leer en esta revisión."
+    },
+    {
+      "kind": "external",
+      "id": "ext-wiki-havria",
+      "title": "Fandom · Havria",
+      "url": "https://genshin-impact.fandom.com/wiki/Havria",
+      "tier": "secondary",
+      "note": "Referencia citada por el dossier; no vuelta a leer en esta revisión."
+    },
+    {
+      "kind": "external",
+      "id": "ext-wiki-fujin",
+      "title": "Fandom · Fujin",
+      "url": "https://genshin-impact.fandom.com/wiki/Fujin",
+      "tier": "secondary",
+      "note": "Referencia citada por el dossier; no vuelta a leer en esta revisión."
+    },
+    {
+      "kind": "external",
+      "id": "ext-wiki-sumeru-history",
+      "title": "Fandom · Sumeru/History",
+      "url": "https://genshin-impact.fandom.com/wiki/Sumeru/History",
+      "tier": "secondary",
+      "note": "Referencia citada por el dossier; no vuelta a leer en esta revisión."
+    },
+    {
+      "kind": "external",
+      "id": "ext-wiki-gurabad",
+      "title": "Fandom · Gurabad",
+      "url": "https://genshin-impact.fandom.com/wiki/Gurabad",
+      "tier": "secondary",
+      "note": "Referencia citada por el dossier; no vuelta a leer en esta revisión."
+    },
+    {
+      "kind": "external",
+      "id": "ext-wiki-deshret",
+      "title": "Fandom · King Deshret",
+      "url": "https://genshin-impact.fandom.com/wiki/King_Deshret",
+      "tier": "secondary",
+      "note": "Referencia citada por el dossier; no vuelta a leer en esta revisión."
+    },
+    {
+      "kind": "external",
+      "id": "ext-game8-apep",
+      "title": "Game8 · Apep y su pacto",
+      "url": "https://game8.co/games/Genshin-Impact/archives/390319",
+      "tier": "secondary",
+      "note": "Referencia citada por el dossier; no vuelta a leer en esta revisión."
+    },
+    {
+      "kind": "external",
+      "id": "ext-wiki-remuria",
+      "title": "Fandom · Remuria",
+      "url": "https://genshin-impact.fandom.com/wiki/Remuria",
+      "tier": "secondary",
+      "note": "Referencia citada por el dossier; no vuelta a leer en esta revisión."
+    },
+    {
+      "kind": "external",
+      "id": "ext-wiki-remus",
+      "title": "Fandom · Remus",
+      "url": "https://genshin-impact.fandom.com/wiki/Remus",
+      "tier": "secondary",
+      "note": "Referencia citada por el dossier; no vuelta a leer en esta revisión."
+    },
+    {
+      "kind": "external",
+      "id": "ext-wiki-phobos",
+      "title": "Fandom · Phobos",
+      "url": "https://genshin-impact.fandom.com/wiki/Phobos",
+      "tier": "secondary",
+      "note": "Referencia citada por el dossier; no vuelta a leer en esta revisión."
+    },
+    {
+      "kind": "external",
+      "id": "ext-wiki-egeria",
+      "title": "Fandom · Egeria",
+      "url": "https://genshin-impact.fandom.com/wiki/Egeria",
+      "tier": "secondary",
+      "note": "Referencia citada por el dossier; no vuelta a leer en esta revisión."
+    },
+    {
+      "kind": "external",
+      "id": "ext-wiki-the-seven",
+      "title": "Fandom · The Seven",
+      "url": "https://genshin-impact.fandom.com/wiki/The_Seven",
+      "tier": "secondary",
+      "note": "Referencia citada por el dossier; no vuelta a leer en esta revisión."
+    },
+    {
+      "kind": "external",
+      "id": "ext-wiki-dark-sea",
+      "title": "Fandom · Dark Sea",
+      "url": "https://genshin-impact.fandom.com/wiki/Dark_Sea",
+      "tier": "secondary",
+      "note": "Referencia citada por el dossier; no vuelta a leer en esta revisión."
+    },
+    {
+      "kind": "external",
+      "id": "ext-wiki-perinheri",
+      "title": "Fandom · Perinheri",
+      "url": "https://genshin-impact.fandom.com/wiki/Perinheri",
+      "tier": "secondary",
+      "note": "Referencia citada por el dossier; no vuelta a leer en esta revisión."
+    },
+    {
+      "kind": "external",
+      "id": "ext-wiki-spaceship",
+      "title": "Fandom · Aether and Lumine's Spaceship",
+      "url": "https://genshin-impact.fandom.com/wiki/Aether_and_Lumine%27s_Spaceship",
+      "tier": "secondary",
+      "note": "Referencia citada por el dossier; no vuelta a leer en esta revisión."
+    },
+    {
+      "kind": "external",
+      "id": "ext-wiki-sibling",
+      "title": "Fandom · Traveler's Sibling",
+      "url": "https://genshin-impact.fandom.com/wiki/Traveler%27s_Sibling",
+      "tier": "secondary",
+      "note": "Referencia citada por el dossier; no vuelta a leer en esta revisión."
+    },
+    {
+      "kind": "external",
+      "id": "ext-wiki-court-khaenriah",
+      "title": "Fandom · Court of Khaenri'ah",
+      "url": "https://genshin-impact.fandom.com/wiki/Court_of_Khaenri%27ah",
+      "tier": "secondary",
+      "note": "Referencia citada por el dossier; no vuelta a leer en esta revisión."
+    }
+  ],
+  "claims": [
+    {
+      "id": "claim-vennessa-tirania",
+      "eventIds": ["evt-revolucion-vennessa"],
+      "text": "Mondstadt convive durante siglos con una aristocracia opresiva y su ideal de libertad nace frente a ella.",
+      "kind": "explicit",
+      "support": [
+        {
+          "sourceId": "imp-aquila-favonia",
+          "locator": "Párrafo 2 (líneas 5–6 del texto importado)",
+          "fragment": {
+            "segmentId": "agd-document-191501-es-localization-291501",
+            "sha256": "5d6e434c2c025761b4409c271e1207876da049a22a01f4438deaa4121c1557fd"
+          },
+          "stance": "supports",
+          "verification": "verified",
+          "limits": "Confirma la tiranía de los antiguos nobles y el clamor de libertad. No dice «durante siglos»."
+        },
+        {
+          "sourceId": "ext-wiki-vennessa",
+          "locator": "Página completa citada en el dossier",
+          "stance": "supports",
+          "verification": "cited",
+          "limits": "Página citada por el dossier para este tema; no se ha vuelto a leer en esta revisión, no se ha localizado el pasaje concreto."
+        }
+      ],
+      "review": {
+        "status": "pending"
+      }
+    },
+    {
+      "id": "claim-vennessa-esclavizada",
+      "eventIds": ["evt-revolucion-vennessa"],
+      "text": "Vennessa, esclavizada y obligada a combatir, encabeza la liberación.",
+      "kind": "explicit",
+      "support": [
+        {
+          "sourceId": "imp-aquila-favonia",
+          "locator": "Párrafo 2 (líneas 6–8 del texto importado)",
+          "fragment": {
+            "segmentId": "agd-document-191501-es-localization-291501",
+            "sha256": "5d6e434c2c025761b4409c271e1207876da049a22a01f4438deaa4121c1557fd"
+          },
+          "stance": "supports",
+          "verification": "verified",
+          "limits": "Dice que luchadores forasteros fueron esclavizados y que «ella» no se arrodilló y derrocó a los nobles. El fragmento no nombra a Vennessa ni dice «obligada a combatir»: esa identificación procede de la fuente secundaria."
+        },
+        {
+          "sourceId": "ext-wiki-vennessa",
+          "locator": "Página completa citada en el dossier",
+          "stance": "supports",
+          "verification": "cited",
+          "limits": "Página citada por el dossier para este tema; no se ha vuelto a leer en esta revisión, no se ha localizado el pasaje concreto."
+        }
+      ],
+      "review": {
+        "status": "pending",
+        "note": "La identificación de «ella» con Vennessa debe confirmarse en un texto que la nombre."
+      }
+    },
+    {
+      "id": "claim-vennessa-caballeros",
+      "eventIds": ["evt-revolucion-vennessa"],
+      "text": "El fin del régimen y la fundación de los Caballeros de Favonius explican las instituciones que sobreviven hasta el tiempo del juego.",
+      "kind": "explicit",
+      "support": [
+        {
+          "sourceId": "imp-aquila-favonia",
+          "locator": "Párrafo 2 (línea 8 del texto importado)",
+          "fragment": {
+            "segmentId": "agd-document-191501-es-localization-291501",
+            "sha256": "5d6e434c2c025761b4409c271e1207876da049a22a01f4438deaa4121c1557fd"
+          },
+          "stance": "supports",
+          "verification": "verified",
+          "limits": "Dice que derrocó a los nobles y fundó la Orden de los Caballeros y la Iglesia. No usa «de Favonius» ni habla de instituciones actuales."
+        },
+        {
+          "sourceId": "ext-wiki-vennessa",
+          "locator": "Página completa citada en el dossier",
+          "stance": "supports",
+          "verification": "cited",
+          "limits": "Página citada por el dossier para este tema; no se ha vuelto a leer en esta revisión, no se ha localizado el pasaje concreto."
+        }
+      ],
+      "review": {
+        "status": "pending"
+      }
+    },
+    {
+      "id": "claim-vennessa-barbatos",
+      "eventIds": ["evt-revolucion-vennessa"],
+      "text": "La liberación cuenta con la ayuda de Barbatos y otros aliados.",
+      "kind": "explicit",
+      "support": [
+        {
+          "sourceId": "imp-aquila-favonia",
+          "locator": "Párrafo 2 (línea 9 del texto importado)",
+          "fragment": {
+            "segmentId": "agd-document-191501-es-localization-291501",
+            "sha256": "5d6e434c2c025761b4409c271e1207876da049a22a01f4438deaa4121c1557fd"
+          },
+          "stance": "context",
+          "verification": "verified",
+          "limits": "Solo dice que fue bendecida con caminar a la par de los dioses; no menciona a Barbatos ni a otros aliados."
+        },
+        {
+          "sourceId": "ext-wiki-vennessa",
+          "locator": "Página completa citada en el dossier",
+          "stance": "supports",
+          "verification": "cited",
+          "limits": "Página citada por el dossier para este tema; no se ha vuelto a leer en esta revisión, no se ha localizado el pasaje concreto."
+        }
+      ],
+      "review": {
+        "status": "pending"
+      }
+    },
+    {
+      "id": "claim-vennessa-fecha",
+      "eventIds": ["evt-revolucion-vennessa"],
+      "text": "La revolución ocurrió hace aproximadamente mil años.",
+      "kind": "interpretation",
+      "support": [
+        {
+          "sourceId": "ext-wiki-vennessa",
+          "locator": "Página completa citada en el dossier",
+          "stance": "supports",
+          "verification": "cited",
+          "limits": "Datación reconstruida por la fuente secundaria; el texto del juego importado no la fija."
+        }
+      ],
+      "review": {
+        "status": "pending"
+      }
+    },
+    {
+      "id": "claim-vennessa-no-decarabian",
+      "eventIds": ["evt-revolucion-vennessa", "evt-rebelion-decarabian"],
+      "text": "No es la misma revolución que derrocó a Decarabian: entre ambas transcurre aproximadamente un milenio y medio.",
+      "kind": "interpretation",
+      "support": [],
+      "review": {
+        "status": "pending",
+        "note": "Distinción editorial del dossier; depende de dos dataciones aproximadas (1.000 y 2.600 años)."
+      }
+    },
+    {
+      "id": "claim-decarabian-rebelion",
+      "eventIds": ["evt-rebelion-decarabian"],
+      "text": "Habitantes del viejo Mondstadt se rebelan contra Decarabian, cuyo cerco de vientos se vive como un encierro.",
+      "kind": "explicit",
+      "support": [
+        {
+          "sourceId": "ext-wiki-decarabian",
+          "locator": "Página completa citada en el dossier",
+          "stance": "supports",
+          "verification": "cited",
+          "limits": "Página citada por el dossier para este tema; no se ha vuelto a leer en esta revisión, no se ha localizado el pasaje concreto."
+        }
+      ],
+      "review": {
+        "status": "pending"
+      }
+    },
+    {
+      "id": "claim-decarabian-barbatos-bardo",
+      "eventIds": ["evt-rebelion-decarabian"],
+      "text": "Participan el espíritu que será Barbatos y un joven bardo que muere en la rebelión; Venti adopta después su apariencia.",
+      "kind": "explicit",
+      "support": [
+        {
+          "sourceId": "ext-wiki-venti-profile",
+          "locator": "Página completa citada en el dossier",
+          "stance": "supports",
+          "verification": "cited",
+          "limits": "Página citada por el dossier para este tema; no se ha vuelto a leer en esta revisión, no se ha localizado el pasaje concreto."
+        }
+      ],
+      "review": {
+        "status": "pending"
+      }
+    },
+    {
+      "id": "claim-decarabian-andrius",
+      "eventIds": ["evt-rebelion-decarabian"],
+      "text": "La oposición de Andrius a Decarabian no equivale a haber liberado personalmente la ciudad.",
+      "kind": "interpretation",
+      "support": [
+        {
+          "sourceId": "ext-wiki-decarabian",
+          "locator": "Página completa citada en el dossier",
+          "stance": "supports",
+          "verification": "cited",
+          "limits": "Página citada por el dossier para este tema; no se ha vuelto a leer en esta revisión, no se ha localizado el pasaje concreto."
+        }
+      ],
+      "review": {
+        "status": "pending",
+        "note": "Cautela del dossier frente a lecturas que atribuyen la liberación a Andrius."
+      }
+    },
+    {
+      "id": "claim-decarabian-organizacion",
+      "eventIds": ["evt-rebelion-decarabian"],
+      "text": "La nueva organización de Mondstadt queda asociada a Barbatos y al ideal de libertad, distinto del gobierno cerrado del antiguo rey.",
+      "kind": "interpretation",
+      "support": [
+        {
+          "sourceId": "ext-wiki-decarabian",
+          "locator": "Página completa citada en el dossier",
+          "stance": "supports",
+          "verification": "cited",
+          "limits": "Página citada por el dossier para este tema; no se ha vuelto a leer en esta revisión, no se ha localizado el pasaje concreto."
+        }
+      ],
+      "review": {
+        "status": "pending"
+      }
+    },
+    {
+      "id": "claim-decarabian-fecha",
+      "eventIds": ["evt-rebelion-decarabian"],
+      "text": "La rebelión se sitúa hace unos 2.600 años.",
+      "kind": "interpretation",
+      "support": [
+        {
+          "sourceId": "ext-wiki-decarabian",
+          "locator": "Página completa citada en el dossier",
+          "stance": "supports",
+          "verification": "cited",
+          "limits": "Datación reconstruida por la fuente secundaria."
+        }
+      ],
+      "review": {
+        "status": "pending"
+      }
+    },
+    {
+      "id": "claim-hiperborea-ciudad-dorada",
+      "eventIds": ["evt-hiperborea"],
+      "text": "Hiperbórea fue una civilización septentrional conocida como Ciudad Dorada, anterior a la Guerra de la Llama Funeraria, con relaciones con el orden celestial.",
+      "kind": "explicit",
+      "support": [
+        {
+          "sourceId": "ext-wiki-hyperborea",
+          "locator": "Página completa citada en el dossier",
+          "stance": "supports",
+          "verification": "cited",
+          "limits": "Página citada por el dossier para este tema; no se ha vuelto a leer en esta revisión, no se ha localizado el pasaje concreto."
+        }
+      ],
+      "review": {
+        "status": "pending"
+      }
+    },
+    {
+      "id": "claim-hiperborea-koitar-seutervoinen",
+      "eventIds": ["evt-hiperborea"],
+      "text": "Koitar, vinculada a los ángeles, y Seutervoinen, viajera estelar que ocupó el cuerpo de un joven, impulsaron conocimientos avanzados y la exploración más allá del falso cielo.",
+      "kind": "explicit",
+      "support": [
+        {
+          "sourceId": "ext-wiki-koitar",
+          "locator": "Página completa citada en el dossier",
+          "stance": "supports",
+          "verification": "cited",
+          "limits": "Página citada por el dossier para este tema; no se ha vuelto a leer en esta revisión, no se ha localizado el pasaje concreto."
+        },
+        {
+          "sourceId": "ext-wiki-seutervoinen",
+          "locator": "Página completa citada en el dossier",
+          "stance": "supports",
+          "verification": "cited",
+          "limits": "Página citada por el dossier para este tema; no se ha vuelto a leer en esta revisión, no se ha localizado el pasaje concreto."
+        }
+      ],
+      "review": {
+        "status": "pending"
+      }
+    },
+    {
+      "id": "claim-hiperborea-intervalo",
+      "eventIds": ["evt-hiperborea"],
+      "text": "Se desconoce el intervalo entre su encuentro, unión y la destrucción de Hiperbórea: los pasajes discrepan entre «treinta días» y al menos diez años.",
+      "kind": "unknown",
+      "support": [],
+      "review": {
+        "status": "pending",
+        "note": "Cuestión abierta que el dossier conserva a propósito; no debe resolverse con una cronología exacta."
+      }
+    },
+    {
+      "id": "claim-hiperborea-seis-mil",
+      "eventIds": ["evt-hiperborea"],
+      "text": "La antigüedad aproximada de seis mil años es una reconstrucción de la wiki, no una fecha absoluta demostrada.",
+      "kind": "interpretation",
+      "support": [
+        {
+          "sourceId": "ext-wiki-timeline",
+          "locator": "Página completa citada en el dossier",
+          "stance": "supports",
+          "verification": "cited",
+          "limits": "La propia fuente se presenta como reconstrucción editorial, no como calendario oficial."
+        }
+      ],
+      "review": {
+        "status": "pending"
+      }
+    },
+    {
+      "id": "claim-mare-jivari-formacion",
+      "eventIds": ["evt-mare-jivari"],
+      "text": "Las fuentes vinculan la formación de Mare Jivari con Tenoch, Sanhaj y la lucha contra Bakunawa durante la invasión abisal de hace quinientos años.",
+      "kind": "explicit",
+      "support": [
+        {
+          "sourceId": "ext-wiki-mare-jivari",
+          "locator": "Página completa citada en el dossier",
+          "stance": "supports",
+          "verification": "cited",
+          "limits": "Página citada por el dossier para este tema; no se ha vuelto a leer en esta revisión, no se ha localizado el pasaje concreto."
+        },
+        {
+          "sourceId": "ext-wiki-tenoch",
+          "locator": "Página completa citada en el dossier",
+          "stance": "supports",
+          "verification": "cited",
+          "limits": "Página citada por el dossier para este tema; no se ha vuelto a leer en esta revisión, no se ha localizado el pasaje concreto."
+        }
+      ],
+      "review": {
+        "status": "pending"
+      }
+    },
+    {
+      "id": "claim-mare-jivari-barbatos",
+      "eventIds": ["evt-mare-jivari"],
+      "text": "La intervención de Barbatos separa Mare Jivari de la línea temporal ordinaria para contener su corrupción.",
+      "kind": "explicit",
+      "support": [
+        {
+          "sourceId": "ext-wiki-mare-jivari",
+          "locator": "Página completa citada en el dossier",
+          "stance": "supports",
+          "verification": "cited",
+          "limits": "Página citada por el dossier para este tema; no se ha vuelto a leer en esta revisión, no se ha localizado el pasaje concreto."
+        }
+      ],
+      "review": {
+        "status": "pending"
+      }
+    },
+    {
+      "id": "claim-mare-jivari-tradiciones",
+      "eventIds": ["evt-mare-jivari"],
+      "text": "Los relatos de la Compañía Errante y las afirmaciones sobre su formación requieren distinguir narrador y fuente; algunas tradiciones parecen situarlo antes.",
+      "kind": "testimony",
+      "support": [
+        {
+          "sourceId": "ext-wiki-mare-jivari-report",
+          "locator": "Página completa citada en el dossier",
+          "stance": "supports",
+          "verification": "cited",
+          "limits": "Página citada por el dossier para este tema; no se ha vuelto a leer en esta revisión, no se ha localizado el pasaje concreto."
+        }
+      ],
+      "review": {
+        "status": "pending",
+        "note": "Discrepancia temporal real: no basta escoger una cifra y descartar el resto."
+      }
+    },
+    {
+      "id": "claim-mare-jivari-exploracion",
+      "eventIds": ["evt-mare-jivari"],
+      "text": "Hubo exploración parcial en la versión 5.8; la descripción de «lugar del que solo se sabe el nombre» está obsoleta.",
+      "kind": "explicit",
+      "support": [
+        {
+          "sourceId": "ext-wiki-mare-jivari-report",
+          "locator": "Página completa citada en el dossier",
+          "stance": "supports",
+          "verification": "cited",
+          "limits": "Página citada por el dossier para este tema; no se ha vuelto a leer en esta revisión, no se ha localizado el pasaje concreto."
+        }
+      ],
+      "review": {
+        "status": "pending"
+      }
+    },
+    {
+      "id": "claim-enkanomiya-byakuyakoku",
+      "eventIds": ["evt-enkanomiya-watatsumi"],
+      "text": "Byakuyakoku lucha contra los vishaps y la oscuridad; Abrax construye Helios (Dainichi Mikoshi), que acaba convertido en instrumento de dominación mediante los Niños del Sol.",
+      "kind": "explicit",
+      "support": [
+        {
+          "sourceId": "ext-wiki-enkanomiya",
+          "locator": "Página completa citada en el dossier",
+          "stance": "supports",
+          "verification": "cited",
+          "limits": "Página citada por el dossier para este tema; no se ha vuelto a leer en esta revisión, no se ha localizado el pasaje concreto."
+        }
+      ],
+      "review": {
+        "status": "pending"
+      }
+    },
+    {
+      "id": "claim-enkanomiya-orobashi",
+      "eventIds": ["evt-enkanomiya-watatsumi"],
+      "text": "Orobashi rompe ese orden, protege a los habitantes y hace posible su traslado a Watatsumi; más tarde entra en guerra contra el poder de Narukami y muere a manos de Ei.",
+      "kind": "explicit",
+      "support": [
+        {
+          "sourceId": "ext-wiki-orobashi",
+          "locator": "Página completa citada en el dossier",
+          "stance": "supports",
+          "verification": "cited",
+          "limits": "Página citada por el dossier para este tema; no se ha vuelto a leer en esta revisión, no se ha localizado el pasaje concreto."
+        },
+        {
+          "sourceId": "ext-wiki-inazuma-history",
+          "locator": "Página completa citada en el dossier",
+          "stance": "supports",
+          "verification": "cited",
+          "limits": "Página citada por el dossier para este tema; no se ha vuelto a leer en esta revisión, no se ha localizado el pasaje concreto."
+        }
+      ],
+      "review": {
+        "status": "pending"
+      }
+    },
+    {
+      "id": "claim-enkanomiya-periodo",
+      "eventIds": ["evt-enkanomiya-watatsumi", "evt-era-siete"],
+      "text": "La salida de Enkanomiya no es contemporánea a su hundimiento, y no debe colocarse toda la historia de Watatsumi antes de la formación de los Siete.",
+      "kind": "interpretation",
+      "support": [
+        {
+          "sourceId": "ext-wiki-inazuma-history",
+          "locator": "Página completa citada en el dossier",
+          "stance": "supports",
+          "verification": "cited",
+          "limits": "Página citada por el dossier para este tema; no se ha vuelto a leer en esta revisión, no se ha localizado el pasaje concreto."
+        }
+      ],
+      "review": {
+        "status": "pending",
+        "note": "Afirmación sobre la cronología que afecta a dos eventos; es una cautela editorial, no un dato fechado."
+      }
+    },
+    {
+      "id": "claim-guili-asamblea",
+      "eventIds": ["evt-caida-guili"],
+      "text": "Morax y Guizhong sostienen la Asamblea Guili; la guerra destruye ese centro, Guizhong muere y la reorganización de la población favorece el puerto como núcleo de Liyue.",
+      "kind": "explicit",
+      "support": [
+        {
+          "sourceId": "ext-wiki-guili-assembly",
+          "locator": "Página completa citada en el dossier",
+          "stance": "supports",
+          "verification": "cited",
+          "limits": "Página citada por el dossier para este tema; no se ha vuelto a leer en esta revisión, no se ha localizado el pasaje concreto."
+        },
+        {
+          "sourceId": "ext-wiki-guizhong",
+          "locator": "Página completa citada en el dossier",
+          "stance": "supports",
+          "verification": "cited",
+          "limits": "Página citada por el dossier para este tema; no se ha vuelto a leer en esta revisión, no se ha localizado el pasaje concreto."
+        }
+      ],
+      "review": {
+        "status": "pending"
+      }
+    },
+    {
+      "id": "claim-guili-fecha",
+      "eventIds": ["evt-caida-guili"],
+      "text": "La caída de Guili se sitúa hace aproximadamente 3.700 años.",
+      "kind": "interpretation",
+      "support": [
+        {
+          "sourceId": "ext-wiki-guili-assembly",
+          "locator": "Página completa citada en el dossier",
+          "stance": "supports",
+          "verification": "cited",
+          "limits": "Datación reconstruida por la fuente secundaria."
+        }
+      ],
+      "review": {
+        "status": "pending"
+      }
+    },
+    {
+      "id": "claim-guili-otros-dioses",
+      "eventIds": [
+        "evt-caida-guili",
+        "evt-caida-havria",
+        "evt-proteccion-chenyu"
+      ],
+      "text": "Havria perece por la acción de sus propios súbditos y, en Chenyu, antiguos servidores se enfrentan a su señora para proteger a la población; las naciones actuales contienen herencias de varios dioses.",
+      "kind": "explicit",
+      "support": [
+        {
+          "sourceId": "ext-wiki-havria",
+          "locator": "Página completa citada en el dossier",
+          "stance": "supports",
+          "verification": "cited",
+          "limits": "Página citada por el dossier para este tema; no se ha vuelto a leer en esta revisión, no se ha localizado el pasaje concreto."
+        },
+        {
+          "sourceId": "ext-wiki-fujin",
+          "locator": "Página completa citada en el dossier",
+          "stance": "supports",
+          "verification": "cited",
+          "limits": "Página citada por el dossier para este tema; no se ha vuelto a leer en esta revisión, no se ha localizado el pasaje concreto."
+        }
+      ],
+      "review": {
+        "status": "pending"
+      }
+    },
+    {
+      "id": "claim-sumeru-tres-dioses",
+      "eventIds": ["evt-tres-dioses-sumeru"],
+      "text": "Deshret, Nabu Malikata y Rukkhadevata comparten una etapa de amistad y construcción cultural; la muerte de Nabu Malikata altera ese equilibrio.",
+      "kind": "explicit",
+      "support": [
+        {
+          "sourceId": "ext-wiki-sumeru-history",
+          "locator": "Página completa citada en el dossier",
+          "stance": "supports",
+          "verification": "cited",
+          "limits": "Página citada por el dossier para este tema; no se ha vuelto a leer en esta revisión, no se ha localizado el pasaje concreto."
+        }
+      ],
+      "review": {
+        "status": "pending"
+      }
+    },
+    {
+      "id": "claim-sumeru-orden-relativo",
+      "eventIds": ["evt-tres-dioses-sumeru", "evt-caida-gurabad"],
+      "text": "Gurabad surge después de la muerte de Nabu Malikata y cae antes de la crisis de conocimiento prohibido de Deshret; ese orden relativo es más sólido que asignar un año a cada episodio.",
+      "kind": "interpretation",
+      "support": [
+        {
+          "sourceId": "ext-wiki-gurabad",
+          "locator": "Página completa citada en el dossier",
+          "stance": "supports",
+          "verification": "cited",
+          "limits": "Página citada por el dossier para este tema; no se ha vuelto a leer en esta revisión, no se ha localizado el pasaje concreto."
+        }
+      ],
+      "review": {
+        "status": "pending",
+        "note": "El dossier lo presenta como orden relativo, no como fecha."
+      }
+    },
+    {
+      "id": "claim-sumeru-deshret-apep",
+      "eventIds": ["evt-tres-dioses-sumeru"],
+      "text": "Deshret busca trascender las limitaciones del mundo; el conocimiento prohibido contamina su civilización; su sacrificio y la intervención de Rukkhadevata contienen la crisis y Apep consume su cuerpo conforme a un pacto.",
+      "kind": "explicit",
+      "support": [
+        {
+          "sourceId": "ext-wiki-deshret",
+          "locator": "Página completa citada en el dossier",
+          "stance": "supports",
+          "verification": "cited",
+          "limits": "Página citada por el dossier para este tema; no se ha vuelto a leer en esta revisión, no se ha localizado el pasaje concreto."
+        },
+        {
+          "sourceId": "ext-game8-apep",
+          "locator": "Página completa citada en el dossier",
+          "stance": "supports",
+          "verification": "cited",
+          "limits": "Página citada por el dossier para este tema; no se ha vuelto a leer en esta revisión, no se ha localizado el pasaje concreto."
+        }
+      ],
+      "review": {
+        "status": "pending"
+      }
+    },
+    {
+      "id": "claim-sumeru-no-cataclismo",
+      "eventIds": ["evt-tres-dioses-sumeru"],
+      "text": "No es el Cataclismo de Khaenri’ah: Sumeru conoce más de una crisis abisal separada por siglos.",
+      "kind": "interpretation",
+      "support": [
+        {
+          "sourceId": "ext-wiki-sumeru-history",
+          "locator": "Página completa citada en el dossier",
+          "stance": "supports",
+          "verification": "cited",
+          "limits": "Página citada por el dossier para este tema; no se ha vuelto a leer en esta revisión, no se ha localizado el pasaje concreto."
+        }
+      ],
+      "review": {
+        "status": "pending"
+      }
+    },
+    {
+      "id": "claim-remuria-proyecto",
+      "eventIds": ["evt-remuria"],
+      "text": "Antes del gobierno de Egeria como Arconte, Remus construye Remuria para superar el destino anunciado de Fontaine mediante la Gran Sinfonía.",
+      "kind": "explicit",
+      "support": [
+        {
+          "sourceId": "ext-wiki-remuria",
+          "locator": "Página completa citada en el dossier",
+          "stance": "supports",
+          "verification": "cited",
+          "limits": "Página citada por el dossier para este tema; no se ha vuelto a leer en esta revisión, no se ha localizado el pasaje concreto."
+        },
+        {
+          "sourceId": "ext-wiki-remus",
+          "locator": "Página completa citada en el dossier",
+          "stance": "supports",
+          "verification": "cited",
+          "limits": "Página citada por el dossier para este tema; no se ha vuelto a leer en esta revisión, no se ha localizado el pasaje concreto."
+        }
+      ],
+      "review": {
+        "status": "pending"
+      }
+    },
+    {
+      "id": "claim-remuria-fracaso",
+      "eventIds": ["evt-remuria"],
+      "text": "Phobos deja de ser un simple instrumento; la manipulación de Boethius y el aprisionamiento de Scylla forman parte del fracaso, y el hundimiento de Remuria deja paso al gobierno de Egeria.",
+      "kind": "explicit",
+      "support": [
+        {
+          "sourceId": "ext-wiki-phobos",
+          "locator": "Página completa citada en el dossier",
+          "stance": "supports",
+          "verification": "cited",
+          "limits": "Página citada por el dossier para este tema; no se ha vuelto a leer en esta revisión, no se ha localizado el pasaje concreto."
+        },
+        {
+          "sourceId": "ext-wiki-remuria",
+          "locator": "Página completa citada en el dossier",
+          "stance": "supports",
+          "verification": "cited",
+          "limits": "Página citada por el dossier para este tema; no se ha vuelto a leer en esta revisión, no se ha localizado el pasaje concreto."
+        }
+      ],
+      "review": {
+        "status": "pending"
+      }
+    },
+    {
+      "id": "claim-remuria-egeria",
+      "eventIds": ["evt-remuria"],
+      "text": "La existencia de Egeria es anterior a su acceso al trono; su relación con el Mar Primigenio y con el origen de los fontainianos no empieza cuando Remuria desaparece.",
+      "kind": "explicit",
+      "support": [
+        {
+          "sourceId": "ext-wiki-egeria",
+          "locator": "Página completa citada en el dossier",
+          "stance": "supports",
+          "verification": "cited",
+          "limits": "Página citada por el dossier para este tema; no se ha vuelto a leer en esta revisión, no se ha localizado el pasaje concreto."
+        }
+      ],
+      "review": {
+        "status": "pending"
+      }
+    },
+    {
+      "id": "claim-era-siete-sistema",
+      "eventIds": ["evt-era-siete"],
+      "text": "Se consolida el sistema de las siete naciones y sus Arcontes (hace unos 2.000 años); los dioses derrotados pueden morir, quedar sellados, integrarse bajo otra autoridad o refugiarse en el Mar Oscuro, y no desaparecen todos salvo siete.",
+      "kind": "explicit",
+      "support": [
+        {
+          "sourceId": "ext-wiki-the-seven",
+          "locator": "Página completa citada en el dossier",
+          "stance": "supports",
+          "verification": "cited",
+          "limits": "Página citada por el dossier para este tema; no se ha vuelto a leer en esta revisión, no se ha localizado el pasaje concreto."
+        },
+        {
+          "sourceId": "ext-wiki-dark-sea",
+          "locator": "Página completa citada en el dossier",
+          "stance": "supports",
+          "verification": "cited",
+          "limits": "Página citada por el dossier para este tema; no se ha vuelto a leer en esta revisión, no se ha localizado el pasaje concreto."
+        }
+      ],
+      "review": {
+        "status": "pending"
+      }
+    },
+    {
+      "id": "claim-era-siete-khaenriah",
+      "eventIds": ["evt-era-siete"],
+      "text": "Khaenri’ah continúa fuera de ese sistema; los relatos como Perinheri conservan tradiciones sobre forasteros y creencias antiguas y deben leerse como textos internos con narrador, no como expedientes imparciales.",
+      "kind": "testimony",
+      "support": [
+        {
+          "sourceId": "ext-wiki-perinheri",
+          "locator": "Página completa citada en el dossier",
+          "stance": "supports",
+          "verification": "cited",
+          "limits": "Página citada por el dossier para este tema; no se ha vuelto a leer en esta revisión, no se ha localizado el pasaje concreto."
+        }
+      ],
+      "review": {
+        "status": "pending"
+      }
+    },
+    {
+      "id": "claim-gemelos-nave",
+      "eventIds": ["evt-llegada-gemelos"],
+      "text": "Las fuentes describen un viaje entre mundos tras la pérdida de su planeta y una nave que llega a Teyvat; Nod-Krai añade una visita anterior y un aterrizaje accidentado en Starsand Shoal.",
+      "kind": "explicit",
+      "support": [
+        {
+          "sourceId": "ext-wiki-spaceship",
+          "locator": "Página completa citada en el dossier",
+          "stance": "supports",
+          "verification": "cited",
+          "limits": "Página citada por el dossier para este tema; no se ha vuelto a leer en esta revisión, no se ha localizado el pasaje concreto."
+        }
+      ],
+      "review": {
+        "status": "pending",
+        "note": "El propio dossier avisa de que no se puede sustituir por «aparecieron durante la destrucción de Khaenri’ah»."
+      }
+    },
+    {
+      "id": "claim-gemelos-despertar",
+      "eventIds": ["evt-llegada-gemelos"],
+      "text": "El hermano o hermana despierta primero y aparece en Khaenri’ah; su designación como heredero pertenece a la estancia en el reino.",
+      "kind": "explicit",
+      "support": [
+        {
+          "sourceId": "ext-wiki-sibling",
+          "locator": "Página completa citada en el dossier",
+          "stance": "supports",
+          "verification": "cited",
+          "limits": "Página citada por el dossier para este tema; no se ha vuelto a leer en esta revisión, no se ha localizado el pasaje concreto."
+        },
+        {
+          "sourceId": "ext-wiki-court-khaenriah",
+          "locator": "Página completa citada en el dossier",
+          "stance": "supports",
+          "verification": "cited",
+          "limits": "Página citada por el dossier para este tema; no se ha vuelto a leer en esta revisión, no se ha localizado el pasaje concreto."
+        }
+      ],
+      "review": {
+        "status": "pending"
+      }
+    },
+    {
+      "id": "claim-gemelos-interrogantes",
+      "eventIds": ["evt-llegada-gemelos"],
+      "text": "Se desconoce con certeza la relación entre la salida del hermano o hermana de la nave y la invocación.",
+      "kind": "unknown",
+      "support": [],
+      "review": {
+        "status": "pending",
+        "note": "Interrogante que el dossier conserva expresamente."
+      }
+    },
+    {
+      "id": "claim-gemelos-asmoday",
+      "eventIds": ["evt-llegada-gemelos"],
+      "text": "La separación ante Asmoday ocurre al intentar abandonar Teyvat, no en el primer contacto con el mundo.",
+      "kind": "explicit",
+      "support": [
+        {
+          "sourceId": "ext-wiki-sibling",
+          "locator": "Página completa citada en el dossier",
+          "stance": "supports",
+          "verification": "cited",
+          "limits": "Página citada por el dossier para este tema; no se ha vuelto a leer en esta revisión, no se ha localizado el pasaje concreto."
+        }
+      ],
+      "review": {
+        "status": "pending"
+      }
+    }
+  ]
+}
