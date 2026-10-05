@@ -221,3 +221,14 @@ Añadir en cada iteración: fecha, fase, cambios, comprobaciones, limitaciones y
 - **N-02 (preparación):** 12 decisiones editoriales y 3 estructurales con evidencia, límites y propuesta en [n02](validation/n02-paquete-decisiones-2026-10-05.md); la más importante, la cifra «tres mil años» del juego frente a 2.600 para Decarabian. Sin aprobar.
 - Pendiente: importar misiones y diálogos para los 4 eventos restantes y los huecos de la matriz; decisiones y aprobación humanas; N-03 en adelante. Sin despliegue.
 
+### 2026-10-05 — N-03 a N-10 y N-13 (entrega técnica parcial)
+
+- **N-04/N-05/N-06:** selector «Ir a región o hilo» y capítulo; reintento de búsqueda; filtros de categoría y facción (propuesta editorial `pending`); agrupación por densidad en cronologías muy cargadas (el corpus real no la activa al encuadre completo). `validate` y 27 pruebas e2e en verde.
+- **N-03:** matriz provisional [n03](validation/n03-matriz-revelacion-2026-10-05.md): 16 de 29 eventos y 57 de 82 fichas exigen Natlan (criterio conservador); fichas de región arrastradas por `evt-cataclismo`. Sin fuentes de revelación ni aprobación. El mapa sigue `provisional`. Nuevo `relationOverrides` (vacío) para requisitos propios de relaciones.
+- **N-07:** repetición e2e en Chromium y revisión visual; Firefox/WebKit, teléfono real, lector de pantalla y personas **pendientes** ([accesibilidad](validation/accesibilidad-compatibilidad.md)).
+- **N-08:** registro de cobertura `content/editorial/genshin-coverage.json` (430 unidades del snapshot; 51 de Archonte), esquema, informe [n08](validation/n08-inventario-cobertura-2026-10-05.md) y `npm run content:coverage`. Corte público 7.1 (23/09/2026) **solo por fuentes secundarias**: la página oficial estaba bloqueada; confirmación humana pendiente. Ninguna unidad examinada.
+- **N-09:** composición de corpus adicionales ([n09](validation/n09-composicion-corpus-2026-10-05.md)); sin corpus real del Viajero todavía.
+- **N-10:** hitos `main`/`optional`, formato de progreso v2 con migración ([n10](validation/n10-progreso-actos-2026-10-05.md)).
+- **N-13:** `npm run content:impact` y procedimiento de recuperación probado ([n13](validation/n13-actualizaciones-recuperacion-2026-10-05.md)).
+- **No hecho:** N-11 y N-12 (contenido del Viajero), N-01 restante (4 eventos), N-02 (decisiones humanas). Por tanto la meta completa del documento 14 **no** está cumplida. Sin despliegue.
+
