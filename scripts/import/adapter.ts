@@ -231,6 +231,31 @@ export function normalizeSnapshot(
     segments: [],
   });
 
+  // Gaps are facts about the provider data; they are recorded, never repaired.
+  function sourceGaps(source: SourceRecord): string[] {
+    const known = new Set(source.segments.map((segment) => segment.id));
+    const dangling = source.segments.reduce(
+      (n, segment) =>
+        n + segment.nextSegmentIds.filter((next) => !known.has(next)).length,
+      0,
+    );
+    const roots = source.conversations.filter(
+      (item) => item.rootSegmentId && !known.has(item.rootSegmentId),
+    ).length;
+    const unknownRoots = source.conversations.filter(
+      (item) => !item.rootSegmentId,
+    ).length;
+    const untranslated = source.segments.filter(
+      (segment) => segment.text.status === 'missing',
+    ).length;
+    return [
+      ...(dangling ? [`${dangling} enlaces a diálogos inexistentes`] : []),
+      ...(roots ? [`${roots} raíces inexistentes`] : []),
+      ...(unknownRoots ? [`${unknownRoots} conversaciones sin raíz`] : []),
+      ...(untranslated ? [`${untranslated} líneas sin texto en español`] : []),
+    ];
+  }
+
   function conversation(
     source: SourceRecord,
     path: string,
@@ -285,11 +310,17 @@ export function normalizeSnapshot(
         externalId: String(id),
         locator: origin(path, `/${field}/${index}`),
         sourceOrder: index,
-        text: resolveText(
-          row[textField],
-          path,
-          `${field}/${index}/${textField}`,
-        ),
+        text:
+          row[textField] === undefined
+            ? {
+                status: 'none',
+                reason: 'El registro de diálogo no tiene campo de texto',
+              }
+            : resolveText(
+                row[textField],
+                path,
+                `${field}/${index}/${textField}`,
+              ),
         speaker: {
           externalId: roleId === undefined ? null : String(roleId),
           roleType: typeof roleType === 'string' ? roleType : null,
@@ -318,11 +349,18 @@ export function normalizeSnapshot(
       `agd-quest-${id}-es`,
       id,
       'mission',
-      title(
-        metadata.titleTextMapHash,
-        tablePath('MainQuest'),
-        `${index}/titleTextMapHash`,
-      ),
+      selection.untitledQuests.includes(id) &&
+        resolveText(
+          metadata.titleTextMapHash,
+          tablePath('MainQuest'),
+          `${index}/titleTextMapHash`,
+        ).status !== 'available'
+        ? `Misión ${id} (sin título en español en el proveedor)`
+        : title(
+            metadata.titleTextMapHash,
+            tablePath('MainQuest'),
+            `${index}/titleTextMapHash`,
+          ),
       origin(path),
       { quest, metadata },
       [rowOrigin('MainQuest', index)],
@@ -330,13 +368,22 @@ export function normalizeSnapshot(
     for (const entry of list(quest.DLLABGGCEBM, path, 'DLLABGGCEBM')) {
       const talk = record(entry, path, 'DLLABGGCEBM');
       const talkId = number(talk.id, path, 'DLLABGGCEBM/id');
+      // A talk file holding only its own id carries no dialog: nothing to import.
+      const talkPath = `BinOutput/Talk/Quest/${talkId}.json`;
+      const talkFile = record(json(talkPath), talkPath);
+      if (Object.keys(talkFile).join() === 'talkId') continue;
       conversation(
         source,
-        `BinOutput/Talk/Quest/${talkId}.json`,
-        number(talk.NNEHBCLEGHG, path, 'DLLABGGCEBM/NNEHBCLEGHG'),
+        talkPath,
+        // Some talks do not name an entry dialog: keep them with an unknown root.
+        talk.NNEHBCLEGHG === undefined
+          ? null
+          : number(talk.NNEHBCLEGHG, path, 'DLLABGGCEBM/NNEHBCLEGHG'),
         String(talkId),
       );
     }
+    const gaps = selection.recordGaps ? sourceGaps(source) : [];
+    if (gaps.length) source.incomplete = gaps;
     sources.push(source);
   }
   for (const id of selection.ambientNpcs) {

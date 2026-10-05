@@ -80,8 +80,18 @@ describe('dossier integration', () => {
       rank(mondstadt.spoilerRequirements[0]!),
     );
     // An entity opens with the event that is its own text, or otherwise only
-    // after every event that mentions it.
-    for (const entity of data.entities) {
+    // after every event that mentions it, unless an editorial override (checked
+    // against the entity's own text) opens it earlier.
+    const overrides = JSON.parse(
+      readFileSync('content/editorial/genshin-revelation.json', 'utf8'),
+    ).entityOverrides as Record<string, string>;
+    for (const [id, milestone] of Object.entries(overrides))
+      expect(
+        data.entities.find((entity) => entity.id === id)?.spoilerRequirements,
+      ).toEqual([milestone]);
+    for (const entity of data.entities.filter(
+      (item) => !(item.id in overrides),
+    )) {
       const home = data.events.find(
         (event) => event.dossierSection === entity.id,
       );

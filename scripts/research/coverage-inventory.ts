@@ -34,6 +34,18 @@ const categories: Record<string, CoverageUnit['category']> = {
   CHAPTER_STYLE_TYPE_TRIBAL: 'tribal',
 };
 const sampled = new Set<number>(selection.quests);
+// Every main quest the provider files under a chapter (the chapter row itself
+// only names its last quest).
+const mainQuests: { id: number; chapterId?: number }[] = read(
+  `${cache}/ExcelBinOutput/MainQuestExcelConfigData.json`,
+);
+const questsOf = new Map<number, number[]>();
+for (const quest of mainQuests)
+  if (quest.chapterId !== undefined)
+    questsOf.set(quest.chapterId, [
+      ...(questsOf.get(quest.chapterId) ?? []),
+      quest.id,
+    ]);
 const previous = new Map<string, CoverageUnit>(
   existsSync(registryPath)
     ? (read(registryPath) as CoverageRegistry).units.map((unit) => [
@@ -44,7 +56,12 @@ const previous = new Map<string, CoverageUnit>(
 );
 const units: CoverageUnit[] = chapters.map((chapter) => {
   const chapterId = chapter.id as number;
-  const mainQuestIds = (chapter.KMJJJPDPLKE as number[] | undefined) ?? [];
+  const mainQuestIds = [
+    ...new Set([
+      ...((chapter.KMJJJPDPLKE as number[] | undefined) ?? []),
+      ...(questsOf.get(chapterId) ?? []),
+    ]),
+  ].sort((a, b) => a - b);
   const title = text(chapter.chapterTitleTextMapHash);
   const id = `cov-${chapterId}`;
   const fresh: CoverageUnit = {

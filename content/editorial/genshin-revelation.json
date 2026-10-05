@@ -58,6 +58,10 @@
     "evt-mare-jivari": "hito-natlan",
     "evt-amrita-pari": "hito-fontaine"
   },
-  "entityOverrides": {},
+  "entityOverrides": {
+    "loc-liyue": "hito-liyue",
+    "loc-sumeru": "hito-sumeru",
+    "loc-fontaine": "hito-fontaine"
+  },
   "unlinkedEntityMilestone": "hito-natlan"
 }

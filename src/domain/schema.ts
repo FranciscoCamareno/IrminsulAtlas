@@ -322,6 +322,12 @@ export const ImportSelectionSchema = z.strictObject({
   schemaVersion: z.literal(1),
   adapterVersion: z.literal('animegamedata-7.1-p1-v1'),
   quests: z.array(z.number().int().positive()),
+  // Quests whose Spanish title is absent from the provider's dictionaries. They
+  // are still imported, under a neutral placeholder title that invents nothing.
+  untitledQuests: z.array(z.number().int().positive()).default([]),
+  // Record structural gaps of a quest as `incomplete` (reported as warnings)
+  // instead of rejecting the import. Off for the original fixtures.
+  recordGaps: z.boolean().default(false),
   ambientNpcs: z.array(z.number().int().positive()),
   hangouts: z.array(
     z.strictObject({
@@ -364,6 +370,9 @@ export const ImportedTextSchema = z.discriminatedUnion('status', [
     textMapHash: z.string().regex(/^\d+$/).nullable(),
     reason: text,
   }),
+  // The provider record has no text field at all (a link or cutscene node):
+  // nothing is missing, so it does not count as an untranslated gap.
+  z.strictObject({ status: z.literal('none'), reason: text }),
 ]);
 export const SourceSegmentSchema = z.strictObject({
   id: IdSchema,
@@ -405,6 +414,10 @@ export const SourceRecordSchema = z.strictObject({
   // P1 review concerns source coverage; it is not approval of inferred events/spoilers.
   publication: z.literal('not-publishable'),
   context: z.json(),
+  // Structural gaps found in the provider data of this source (dialog links to
+  // records that do not exist, untranslated lines). Absent when complete; a
+  // source that declares gaps is kept with them reported as warnings.
+  incomplete: z.array(text).optional(),
   conversations: z.array(
     z.strictObject({
       id: IdSchema,
@@ -801,8 +814,10 @@ export type CoverageRegistry = z.infer<typeof CoverageRegistrySchema>;
 export const CorpusFileSchema = z.strictObject({
   schemaVersion: z.literal(1),
   corpus: IdSchema,
-  // Appended after the base ladder, in this order.
   milestones: z.array(MilestoneSchema),
+  // Full order of the main-story ladder (base and new milestones) when this
+  // corpus interleaves with it. Without it, new milestones go after the base.
+  ladder: z.array(IdSchema).optional(),
   eras: z.array(EraSchema),
   entities: z.array(NarrativeEntitySchema),
   events: z.array(EventSchema),

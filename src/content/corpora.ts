@@ -25,6 +25,34 @@ export async function loadCorpusFiles(): Promise<CorpusFile[]> {
   );
 }
 
+// Reorders the main-story milestones to the declared ladder and recomputes the
+// revelation rank of events, which the base dossier set from its own ladder.
+function applyLadder(data: Dataset, ladder: readonly string[]) {
+  const main = data.milestones.filter((item) => item.track === 'main');
+  if (
+    new Set(ladder).size !== ladder.length ||
+    ladder.length !== main.length ||
+    !main.every((item) => ladder.includes(item.id))
+  )
+    throw new Error(
+      'La escalera declarada debe contener cada hito principal exactamente una vez',
+    );
+  const byId = new Map(data.milestones.map((item) => [item.id, item]));
+  data.milestones = [
+    ...ladder.map((id) => byId.get(id)!),
+    ...data.milestones.filter((item) => item.track !== 'main'),
+  ];
+  const rank = new Map(ladder.map((id, index) => [id, index + 1]));
+  for (const event of data.events)
+    event.revelation = {
+      ...event.revelation,
+      order: Math.max(
+        0,
+        ...event.spoilerRequirements.map((id) => rank.get(id) ?? 0),
+      ),
+    };
+}
+
 // Pure composition. A draft is authoring work in progress: it never reaches the
 // published dataset, nor does anything that only exists because of it.
 export function composeCorpora(
@@ -32,6 +60,7 @@ export function composeCorpora(
   corpora: readonly CorpusFile[],
 ): Dataset {
   const data: Dataset = structuredClone(base);
+  let mainLadder: readonly string[] | null = null;
   for (const corpus of corpora) {
     const published = <T extends { editorialStatus: string }>(items: T[]) =>
       items.filter((item) => item.editorialStatus !== 'draft');
@@ -49,6 +78,7 @@ export function composeCorpora(
             .join('\n'),
       );
     data.milestones.push(...corpus.milestones);
+    if (corpus.ladder) mainLadder = corpus.ladder;
     data.eras.push(...corpus.eras);
     data.entities.push(...published(corpus.entities));
     data.events.push(...events);
@@ -76,6 +106,7 @@ export function composeCorpora(
         })),
     );
   }
+  if (mainLadder) applyLadder(data, mainLadder);
   const parsed = DatasetSchema.parse(data);
   const issues = findIntegrityIssues(parsed);
   if (issues.length)

@@ -70,7 +70,10 @@ export function findImportIssues(
   };
   for (const source of data.sources) {
     const category = source.kind;
-    const coverageSeverity = excluded.has(source.id) ? 'warning' : 'error';
+    const coverageSeverity =
+      excluded.has(source.id) || source.incomplete?.length
+        ? 'warning'
+        : 'error';
     identity(source.id, source.locator.path, category);
     locator(source.locator, source.id, category);
     source.metadataLocators.forEach((item) =>
@@ -102,6 +105,7 @@ export function findImportIssues(
             conversation.id,
             'Raíz inexistente o de otra conversación',
             category,
+            coverageSeverity,
           );
       }
     }
@@ -118,7 +122,8 @@ export function findImportIssues(
           category,
           coverageSeverity,
         );
-      else locator(segment.text.origin, segment.id, category);
+      else if (segment.text.status === 'available')
+        locator(segment.text.origin, segment.id, category);
       for (const next of segment.nextSegmentIds) {
         const target = segments.get(next);
         if (!target || target.locator.path !== segment.locator.path)
@@ -129,6 +134,7 @@ export function findImportIssues(
             segment.externalId,
             `Destino inválido: ${next}`,
             category,
+            coverageSeverity,
           );
       }
     }

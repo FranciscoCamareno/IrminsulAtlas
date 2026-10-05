@@ -21,7 +21,9 @@
       "title": "El forastero que atrapó el viento",
       "providerRef": {
         "chapterId": 1001,
-        "mainQuestIds": [311]
+        "mainQuestIds": [
+          306, 307, 308, 309, 311, 352, 353, 354, 355, 356, 357, 358, 360, 363
+        ]
       },
       "publication": null,
       "spanish": "available",
@@ -38,7 +40,10 @@
       "title": "Por un mañana sin lágrimas",
       "providerRef": {
         "chapterId": 1002,
-        "mainQuestIds": [384]
+        "mainQuestIds": [
+          370, 371, 372, 373, 374, 375, 376, 377, 379, 380, 381, 382, 383, 384,
+          20101
+        ]
       },
       "publication": null,
       "spanish": "available",
@@ -55,7 +60,7 @@
       "title": "Canción del dragón y la libertad",
       "providerRef": {
         "chapterId": 1003,
-        "mainQuestIds": [396]
+        "mainQuestIds": [388, 389, 390, 393, 394, 396, 397, 398, 399]
       },
       "publication": null,
       "spanish": "available",
@@ -72,7 +77,7 @@
       "title": "Paralogismo",
       "providerRef": {
         "chapterId": 1004,
-        "mainQuestIds": [602]
+        "mainQuestIds": [600, 601, 602]
       },
       "publication": null,
       "spanish": "available",
@@ -89,7 +94,7 @@
       "title": "La tierra entre los monolitos",
       "providerRef": {
         "chapterId": 1101,
-        "mainQuestIds": [1018]
+        "mainQuestIds": [1000, 1001, 1002, 1003, 1004, 1008, 1009, 1018]
       },
       "publication": null,
       "spanish": "available",
@@ -106,7 +111,7 @@
       "title": "Adiós, amo perfeccionado",
       "providerRef": {
         "chapterId": 1102,
-        "mainQuestIds": [1016]
+        "mainQuestIds": [1010, 1011, 1012, 1013, 1014, 1015, 1016]
       },
       "publication": null,
       "spanish": "available",
@@ -123,7 +128,7 @@
       "title": "Una nueva estrella en ascenso",
       "providerRef": {
         "chapterId": 1103,
-        "mainQuestIds": [1025]
+        "mainQuestIds": [1020, 1021, 1022, 1023, 1024, 1025]
       },
       "publication": null,
       "spanish": "available",
@@ -140,7 +145,7 @@
       "title": "Nos volveremos a encontrar",
       "providerRef": {
         "chapterId": 1104,
-        "mainQuestIds": [8003]
+        "mainQuestIds": [8000, 8001, 8002, 8003]
       },
       "publication": null,
       "spanish": "available",
@@ -174,7 +179,7 @@
       "title": "Viento de otoño y hojas escarlata",
       "providerRef": {
         "chapterId": 1201,
-        "mainQuestIds": [2002]
+        "mainQuestIds": [2000, 2001, 2002]
       },
       "publication": null,
       "spanish": "available",
@@ -191,7 +196,7 @@
       "title": "La diosa inmutable y la utopía eterna",
       "providerRef": {
         "chapterId": 1202,
-        "mainQuestIds": [2007]
+        "mainQuestIds": [2003, 2004, 2005, 2006, 2007, 2011, 2012, 2013]
       },
       "publication": null,
       "spanish": "available",
@@ -208,7 +213,7 @@
       "title": "Quietud, la sublimación de la sombra",
       "providerRef": {
         "chapterId": 1203,
-        "mainQuestIds": [2009]
+        "mainQuestIds": [2008, 2009]
       },
       "publication": null,
       "spanish": "available",
@@ -225,7 +230,9 @@
       "title": "Omnipresencia sobre los mortales",
       "providerRef": {
         "chapterId": 1204,
-        "mainQuestIds": [2021]
+        "mainQuestIds": [
+          2010, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021, 2024
+        ]
       },
       "publication": null,
       "spanish": "available",
@@ -242,7 +249,7 @@
       "title": "La grulla regresa con el viento",
       "providerRef": {
         "chapterId": 1205,
-        "mainQuestIds": [11015]
+        "mainQuestIds": [11009, 11013, 11014, 11015, 11016, 11017]
       },
       "publication": null,
       "spanish": "available",
@@ -259,7 +266,7 @@
       "title": "Réquiem desde el abismo",
       "providerRef": {
         "chapterId": 1206,
-        "mainQuestIds": [8007]
+        "mainQuestIds": [8004, 8005, 8006, 8007]
       },
       "publication": null,
       "spanish": "available",
@@ -276,7 +283,7 @@
       "title": "Senderos peligrosos",
       "providerRef": {
         "chapterId": 1207,
-        "mainQuestIds": [1031]
+        "mainQuestIds": [1019, 1028, 1029, 1030, 1031]
       },
       "publication": null,
       "spanish": "available",
@@ -293,7 +300,7 @@
       "title": "Tras la bruma y el bosque",
       "providerRef": {
         "chapterId": 1301,
-        "mainQuestIds": [3006]
+        "mainQuestIds": [3000, 3001, 3002, 3003, 3004, 3005, 3006]
       },
       "publication": null,
       "spanish": "available",
@@ -310,7 +317,7 @@
       "title": "El alba de las mil rosas",
       "providerRef": {
         "chapterId": 1302,
-        "mainQuestIds": [3012]
+        "mainQuestIds": [3007, 3008, 3009, 3010, 3011, 3012, 3014, 3015]
       },
       "publication": null,
       "spanish": "available",
@@ -327,7 +334,7 @@
       "title": "Quimeras, ilusiones y engaños",
       "providerRef": {
         "chapterId": 1303,
-        "mainQuestIds": [3018]
+        "mainQuestIds": [3016, 3017, 3018]
       },
       "publication": null,
       "spanish": "available",
@@ -344,7 +351,7 @@
       "title": "El Rey Deshret y los tres peregrinos",
       "providerRef": {
         "chapterId": 1304,
-        "mainQuestIds": [3021]
+        "mainQuestIds": [3019, 3020, 3021]
       },
       "publication": null,
       "spanish": "available",
@@ -361,7 +368,7 @@
       "title": "Pulso de Akasha, fuego que arrasa",
       "providerRef": {
         "chapterId": 1305,
-        "mainQuestIds": [3026]
+        "mainQuestIds": [3022, 3024, 3025, 3026, 3028]
       },
       "publication": null,
       "spanish": "available",
@@ -395,7 +402,7 @@
       "title": "La transposición de la génesis",
       "providerRef": {
         "chapterId": 1307,
-        "mainQuestIds": [3032]
+        "mainQuestIds": [3029, 3030, 3031, 3032]
       },
       "publication": null,
       "spanish": "available",
@@ -412,7 +419,7 @@
       "title": "Cariberto",
       "providerRef": {
         "chapterId": 1308,
-        "mainQuestIds": [8012]
+        "mainQuestIds": [8009, 8010, 8011, 8012, 8013, 8014, 8015]
       },
       "publication": null,
       "spanish": "available",
@@ -429,7 +436,7 @@
       "title": "Preludio de la claridad y la oscuridad",
       "providerRef": {
         "chapterId": 1401,
-        "mainQuestIds": [4006]
+        "mainQuestIds": [4004, 4005, 4006]
       },
       "publication": null,
       "spanish": "available",
@@ -446,7 +453,7 @@
       "title": "Una llovizna inesperada",
       "providerRef": {
         "chapterId": 1402,
-        "mainQuestIds": [4002]
+        "mainQuestIds": [4000, 4001, 4002]
       },
       "publication": null,
       "spanish": "available",
@@ -463,7 +470,7 @@
       "title": "Hacia las estrellas del abismo marino",
       "providerRef": {
         "chapterId": 1403,
-        "mainQuestIds": [4018]
+        "mainQuestIds": [4011, 4012, 4015, 4018]
       },
       "publication": null,
       "spanish": "available",
@@ -480,7 +487,7 @@
       "title": "Un cataclismo en ciernes",
       "providerRef": {
         "chapterId": 1404,
-        "mainQuestIds": [4019]
+        "mainQuestIds": [4007, 4008, 4009, 4010, 4019]
       },
       "publication": null,
       "spanish": "available",
@@ -497,7 +504,7 @@
       "title": "Mascarada de los culpables",
       "providerRef": {
         "chapterId": 1405,
-        "mainQuestIds": [4025]
+        "mainQuestIds": [4020, 4021, 4022, 4023, 4024, 4025]
       },
       "publication": null,
       "spanish": "available",
@@ -514,7 +521,7 @@
       "title": "Un cuento para dormir",
       "providerRef": {
         "chapterId": 1406,
-        "mainQuestIds": [8021]
+        "mainQuestIds": [8019, 8020, 8021, 8022]
       },
       "publication": null,
       "spanish": "available",
@@ -531,7 +538,7 @@
       "title": "Un viaje glorioso y ardiente",
       "providerRef": {
         "chapterId": 1500,
-        "mainQuestIds": [5002]
+        "mainQuestIds": [5000, 5001, 5002]
       },
       "publication": null,
       "spanish": "available",
@@ -548,7 +555,7 @@
       "title": "Roca oscura bajo roca blanca",
       "providerRef": {
         "chapterId": 1501,
-        "mainQuestIds": [5007]
+        "mainQuestIds": [5003, 5004, 5005, 5006, 5007]
       },
       "publication": null,
       "spanish": "available",
@@ -565,7 +572,7 @@
       "title": "Más allá del humo y los espejos",
       "providerRef": {
         "chapterId": 1502,
-        "mainQuestIds": [5017]
+        "mainQuestIds": [5015, 5016, 5017]
       },
       "publication": null,
       "spanish": "available",
@@ -582,7 +589,7 @@
       "title": "El arcoíris destinado a arder",
       "providerRef": {
         "chapterId": 1503,
-        "mainQuestIds": [5014]
+        "mainQuestIds": [5009, 5010, 5011, 5012, 5013, 5014]
       },
       "publication": null,
       "spanish": "available",
@@ -599,7 +606,7 @@
       "title": "Oda incandescente de la resurrección",
       "providerRef": {
         "chapterId": 1504,
-        "mainQuestIds": [5029]
+        "mainQuestIds": [5022, 5023, 5024, 5028, 5029]
       },
       "publication": null,
       "spanish": "available",
@@ -633,7 +640,7 @@
       "title": "El espacio-tiempo en el que estás",
       "providerRef": {
         "chapterId": 1506,
-        "mainQuestIds": [8018]
+        "mainQuestIds": [8016, 8017, 8018]
       },
       "publication": null,
       "spanish": "available",
@@ -650,7 +657,7 @@
       "title": "Danza de las mareas nevadas y las arboledas escarchadas",
       "providerRef": {
         "chapterId": 1600,
-        "mainQuestIds": [6002]
+        "mainQuestIds": [6000, 6001, 6002]
       },
       "publication": null,
       "spanish": "available",
@@ -667,7 +674,7 @@
       "title": "Elegía del polvo y las lámparas",
       "providerRef": {
         "chapterId": 1601,
-        "mainQuestIds": [6011]
+        "mainQuestIds": [6007, 6008, 6009, 6010, 6011]
       },
       "publication": null,
       "spanish": "available",
@@ -684,7 +691,7 @@
       "title": "El camino de regreso a casa",
       "providerRef": {
         "chapterId": 1602,
-        "mainQuestIds": [6006]
+        "mainQuestIds": [6004, 6005, 6006]
       },
       "publication": null,
       "spanish": "available",
@@ -701,7 +708,7 @@
       "title": "Una nación inexistente",
       "providerRef": {
         "chapterId": 1603,
-        "mainQuestIds": [6014]
+        "mainQuestIds": [6012, 6013, 6014]
       },
       "publication": null,
       "spanish": "available",
@@ -718,7 +725,7 @@
       "title": "El lamento de la evanescente luz lunar",
       "providerRef": {
         "chapterId": 1604,
-        "mainQuestIds": [6020]
+        "mainQuestIds": [6018, 6019, 6020]
       },
       "publication": null,
       "spanish": "available",
@@ -735,7 +742,7 @@
       "title": "Nocturno del Lejano Norte",
       "providerRef": {
         "chapterId": 1605,
-        "mainQuestIds": [6026]
+        "mainQuestIds": [6025, 6026]
       },
       "publication": null,
       "spanish": "available",
@@ -752,7 +759,7 @@
       "title": "La luz lunar entre la bruma del alba",
       "providerRef": {
         "chapterId": 1606,
-        "mainQuestIds": [6028]
+        "mainQuestIds": [6024, 6027, 6028]
       },
       "publication": null,
       "spanish": "available",
@@ -769,7 +776,7 @@
       "title": "Un viajero en una noche de invierno",
       "providerRef": {
         "chapterId": 1607,
-        "mainQuestIds": [6023]
+        "mainQuestIds": [6003, 6022, 6023]
       },
       "publication": null,
       "spanish": "available",
@@ -786,7 +793,7 @@
       "title": "La verdadera luna",
       "providerRef": {
         "chapterId": 1608,
-        "mainQuestIds": [6017]
+        "mainQuestIds": [6015, 6016, 6017]
       },
       "publication": null,
       "spanish": "available",
@@ -803,7 +810,7 @@
       "title": "Todo cae en el vacío",
       "providerRef": {
         "chapterId": 1609,
-        "mainQuestIds": [3036]
+        "mainQuestIds": [3034, 3035, 3036]
       },
       "publication": null,
       "spanish": "available",
@@ -820,7 +827,7 @@
       "title": "Múltiples caminos, flujo y disolución",
       "providerRef": {
         "chapterId": 1611,
-        "mainQuestIds": [6038]
+        "mainQuestIds": [6034, 6035, 6036, 6038]
       },
       "publication": null,
       "spanish": "available",
@@ -837,7 +844,7 @@
       "title": "Frío eterno y cruel",
       "providerRef": {
         "chapterId": 1700,
-        "mainQuestIds": [7014]
+        "mainQuestIds": [7011, 7012, 7013, 7014]
       },
       "publication": null,
       "spanish": "available",
@@ -854,7 +861,7 @@
       "title": "Nocturno de las almas difuntas",
       "providerRef": {
         "chapterId": 1701,
-        "mainQuestIds": [7009]
+        "mainQuestIds": [7005, 7006, 7007, 7008, 7009]
       },
       "publication": null,
       "spanish": "available",
@@ -871,7 +878,7 @@
       "title": "Una noche blanca como un sueño al despertar",
       "providerRef": {
         "chapterId": 1702,
-        "mainQuestIds": [7017]
+        "mainQuestIds": [7015, 7016, 7017]
       },
       "publication": null,
       "spanish": "available",
@@ -888,7 +895,7 @@
       "title": "Un réquiem para el inframundo",
       "providerRef": {
         "chapterId": 1703,
-        "mainQuestIds": [7020]
+        "mainQuestIds": [7018, 7019, 7020]
       },
       "publication": null,
       "spanish": "available",
@@ -905,7 +912,7 @@
       "title": "El tesoro pirata",
       "providerRef": {
         "chapterId": 2001,
-        "mainQuestIds": [463]
+        "mainQuestIds": [461, 462, 463]
       },
       "publication": null,
       "spanish": "available",
@@ -922,7 +929,7 @@
       "title": "La coartada del Héroe Oscuro",
       "providerRef": {
         "chapterId": 2002,
-        "mainQuestIds": [466]
+        "mainQuestIds": [464, 465, 466, 491]
       },
       "publication": null,
       "spanish": "available",
@@ -939,7 +946,7 @@
       "title": "Viento, coraje y alas",
       "providerRef": {
         "chapterId": 2003,
-        "mainQuestIds": [485]
+        "mainQuestIds": [427, 480, 481, 482, 484, 485]
       },
       "publication": null,
       "spanish": "available",
@@ -956,7 +963,7 @@
       "title": "Un trabajo problemático",
       "providerRef": {
         "chapterId": 2004,
-        "mainQuestIds": [10101]
+        "mainQuestIds": [10100, 10101]
       },
       "publication": null,
       "spanish": "available",
@@ -973,7 +980,7 @@
       "title": "El significado de lupical",
       "providerRef": {
         "chapterId": 2005,
-        "mainQuestIds": [454]
+        "mainQuestIds": [451, 452, 453, 454]
       },
       "publication": null,
       "spanish": "available",
@@ -990,7 +997,7 @@
       "title": "El día libre de una Gran Maestra",
       "providerRef": {
         "chapterId": 2006,
-        "mainQuestIds": [490]
+        "mainQuestIds": [486, 487, 488, 489, 490, 492]
       },
       "publication": null,
       "spanish": "available",
@@ -1007,7 +1014,7 @@
       "title": "Viaje gastronómico de Mondstadt",
       "providerRef": {
         "chapterId": 2007,
-        "mainQuestIds": [11005]
+        "mainQuestIds": [11000, 11001, 11002, 11003, 11004, 11005]
       },
       "publication": null,
       "spanish": "available",
@@ -1024,7 +1031,7 @@
       "title": "El ratón de biblioteca espadachín",
       "providerRef": {
         "chapterId": 2008,
-        "mainQuestIds": [12003]
+        "mainQuestIds": [12000, 12001, 12002, 12003]
       },
       "publication": null,
       "spanish": "available",
@@ -1041,7 +1048,7 @@
       "title": "El verdadero tesoro",
       "providerRef": {
         "chapterId": 2009,
-        "mainQuestIds": [10202]
+        "mainQuestIds": [10200, 10201, 10202]
       },
       "publication": null,
       "spanish": "available",
@@ -1058,7 +1065,7 @@
       "title": "Más allá de las estrellas",
       "providerRef": {
         "chapterId": 2010,
-        "mainQuestIds": [10502]
+        "mainQuestIds": [10500, 10501, 10502]
       },
       "publication": null,
       "spanish": "available",
@@ -1075,7 +1082,7 @@
       "title": "El sueño de la mariposa",
       "providerRef": {
         "chapterId": 2011,
-        "mainQuestIds": [11103]
+        "mainQuestIds": [11100, 11101, 11102, 11103]
       },
       "publication": null,
       "spanish": "available",
@@ -1092,7 +1099,7 @@
       "title": "La marcha de los cíclopes",
       "providerRef": {
         "chapterId": 2012,
-        "mainQuestIds": [11012]
+        "mainQuestIds": [11010, 11011, 11012]
       },
       "publication": null,
       "spanish": "available",
@@ -1109,7 +1116,7 @@
       "title": "Atrapado en una tierra sin viento",
       "providerRef": {
         "chapterId": 2013,
-        "mainQuestIds": [10113]
+        "mainQuestIds": [10110, 10111, 10112, 10113]
       },
       "publication": null,
       "spanish": "available",
@@ -1126,7 +1133,7 @@
       "title": "Sal Flore",
       "providerRef": {
         "chapterId": 2014,
-        "mainQuestIds": [11024]
+        "mainQuestIds": [11020, 11021, 11022, 11023, 11024]
       },
       "publication": null,
       "spanish": "available",
@@ -1143,7 +1150,7 @@
       "title": null,
       "providerRef": {
         "chapterId": 2015,
-        "mainQuestIds": [11202]
+        "mainQuestIds": [11200, 11201, 11202]
       },
       "publication": null,
       "spanish": "title-missing",
@@ -1160,7 +1167,7 @@
       "title": "Mar de nubes, mar de humanos",
       "providerRef": {
         "chapterId": 2016,
-        "mainQuestIds": [11032]
+        "mainQuestIds": [11030, 11031, 11032]
       },
       "publication": null,
       "spanish": "available",
@@ -1177,7 +1184,7 @@
       "title": "El informe de investigación del viajero",
       "providerRef": {
         "chapterId": 2017,
-        "mainQuestIds": [11045]
+        "mainQuestIds": [11040, 11041, 11042, 11043, 11044, 11045]
       },
       "publication": null,
       "spanish": "available",
@@ -1194,7 +1201,7 @@
       "title": "Vuelan las mariposas",
       "providerRef": {
         "chapterId": 2018,
-        "mainQuestIds": [11113]
+        "mainQuestIds": [11110, 11111, 11112, 11113, 11114]
       },
       "publication": null,
       "spanish": "available",
@@ -1211,7 +1218,7 @@
       "title": "Las olas que no vuelven al mar",
       "providerRef": {
         "chapterId": 2019,
-        "mainQuestIds": [10122]
+        "mainQuestIds": [10120, 10121, 10122]
       },
       "publication": null,
       "spanish": "available",
@@ -1228,7 +1235,7 @@
       "title": "Más que una simple piedra",
       "providerRef": {
         "chapterId": 2020,
-        "mainQuestIds": [11123]
+        "mainQuestIds": [11120, 11121, 11122, 11123, 11124]
       },
       "publication": null,
       "spanish": "available",
@@ -1245,7 +1252,7 @@
       "title": "Intemporal como un sueño",
       "providerRef": {
         "chapterId": 2021,
-        "mainQuestIds": [12013]
+        "mainQuestIds": [12010, 12011, 12012, 12013]
       },
       "publication": null,
       "spanish": "available",
@@ -1262,7 +1269,7 @@
       "title": "El cuento de la grulla y el conejo blanco",
       "providerRef": {
         "chapterId": 2022,
-        "mainQuestIds": [12008]
+        "mainQuestIds": [12004, 12005, 12006, 12007, 12008]
       },
       "publication": null,
       "spanish": "available",
@@ -1279,7 +1286,7 @@
       "title": "Reflexiones sobre lo mortal",
       "providerRef": {
         "chapterId": 2023,
-        "mainQuestIds": [12018]
+        "mainQuestIds": [12015, 12016, 12017, 12018, 12019]
       },
       "publication": null,
       "spanish": "available",
@@ -1296,7 +1303,7 @@
       "title": "Sueños guerreros renovados",
       "providerRef": {
         "chapterId": 2024,
-        "mainQuestIds": [12024]
+        "mainQuestIds": [12020, 12021, 12022, 12023, 12024]
       },
       "publication": null,
       "spanish": "available",
@@ -1313,7 +1320,7 @@
       "title": "La gran ofrenda de Narukami",
       "providerRef": {
         "chapterId": 2025,
-        "mainQuestIds": [12031]
+        "mainQuestIds": [12028, 12029, 12030, 12031]
       },
       "publication": null,
       "spanish": "available",
@@ -1330,7 +1337,7 @@
       "title": "Alma de oro",
       "providerRef": {
         "chapterId": 2026,
-        "mainQuestIds": [12026]
+        "mainQuestIds": [12009, 12025, 12026]
       },
       "publication": null,
       "spanish": "available",
@@ -1347,7 +1354,7 @@
       "title": "Sueños efímeros",
       "providerRef": {
         "chapterId": 2027,
-        "mainQuestIds": [12042]
+        "mainQuestIds": [12032, 12040, 12041, 12042]
       },
       "publication": null,
       "spanish": "available",
@@ -1364,7 +1371,7 @@
       "title": "Hojas caen de las malváceas",
       "providerRef": {
         "chapterId": 2028,
-        "mainQuestIds": [12035]
+        "mainQuestIds": [12033, 12034, 12035]
       },
       "publication": null,
       "spanish": "available",
@@ -1381,7 +1388,7 @@
       "title": "Una apuesta calculada",
       "providerRef": {
         "chapterId": 2029,
-        "mainQuestIds": [11026]
+        "mainQuestIds": [11018, 11019, 11026]
       },
       "publication": null,
       "spanish": "available",
@@ -1398,7 +1405,7 @@
       "title": "Preguntas sin respuesta",
       "providerRef": {
         "chapterId": 2030,
-        "mainQuestIds": [13003]
+        "mainQuestIds": [13000, 13001, 13002, 13003]
       },
       "publication": null,
       "spanish": "available",
@@ -1415,7 +1422,7 @@
       "title": "Un camino sin amigos",
       "providerRef": {
         "chapterId": 2031,
-        "mainQuestIds": [12039]
+        "mainQuestIds": [12037, 12038, 12039]
       },
       "publication": null,
       "spanish": "available",
@@ -1432,7 +1439,7 @@
       "title": "Arenas solitarias",
       "providerRef": {
         "chapterId": 2032,
-        "mainQuestIds": [13011]
+        "mainQuestIds": [13009, 13010, 13011]
       },
       "publication": null,
       "spanish": "available",
@@ -1449,7 +1456,7 @@
       "title": "Para aquellos que son sabios",
       "providerRef": {
         "chapterId": 2033,
-        "mainQuestIds": [13008]
+        "mainQuestIds": [13006, 13007, 13008]
       },
       "publication": null,
       "spanish": "available",
@@ -1466,7 +1473,7 @@
       "title": "Calidez incesante",
       "providerRef": {
         "chapterId": 2034,
-        "mainQuestIds": [13015]
+        "mainQuestIds": [13013, 13014, 13015]
       },
       "publication": null,
       "spanish": "available",
@@ -1483,7 +1490,7 @@
       "title": "Ilusiones entre la multitud",
       "providerRef": {
         "chapterId": 2035,
-        "mainQuestIds": [13022]
+        "mainQuestIds": [13020, 13021, 13022]
       },
       "publication": null,
       "spanish": "available",
@@ -1500,7 +1507,7 @@
       "title": "Sangre de la Leona",
       "providerRef": {
         "chapterId": 2036,
-        "mainQuestIds": [13026]
+        "mainQuestIds": [13024, 13025, 13026]
       },
       "publication": null,
       "spanish": "available",
@@ -1517,7 +1524,7 @@
       "title": "Un corazón sanador",
       "providerRef": {
         "chapterId": 2037,
-        "mainQuestIds": [11029]
+        "mainQuestIds": [11027, 11028, 11029]
       },
       "publication": null,
       "spanish": "available",
@@ -1534,7 +1541,7 @@
       "title": "Viajando con las estrellas",
       "providerRef": {
         "chapterId": 2038,
-        "mainQuestIds": [13032]
+        "mainQuestIds": [13030, 13031, 13032]
       },
       "publication": null,
       "spanish": "available",
@@ -1551,7 +1558,7 @@
       "title": "Vuelta a casa",
       "providerRef": {
         "chapterId": 2039,
-        "mainQuestIds": [13027]
+        "mainQuestIds": [13019, 13027]
       },
       "publication": null,
       "spanish": "available",
@@ -1568,7 +1575,7 @@
       "title": "El ladrón olvidado",
       "providerRef": {
         "chapterId": 2040,
-        "mainQuestIds": [14003]
+        "mainQuestIds": [14000, 14001, 14002, 14003, 14019]
       },
       "publication": null,
       "spanish": "available",
@@ -1585,7 +1592,7 @@
       "title": "Cicatrices del pasado",
       "providerRef": {
         "chapterId": 2041,
-        "mainQuestIds": [14009]
+        "mainQuestIds": [14007, 14008, 14009, 14014]
       },
       "publication": null,
       "spanish": "available",
@@ -1602,7 +1609,7 @@
       "title": "Renaciendo en suelo estéril",
       "providerRef": {
         "chapterId": 2042,
-        "mainQuestIds": [14006]
+        "mainQuestIds": [14004, 14005, 14006]
       },
       "publication": null,
       "spanish": "available",
@@ -1619,7 +1626,7 @@
       "title": "«La pequeña Oceánida»",
       "providerRef": {
         "chapterId": 2043,
-        "mainQuestIds": [14012]
+        "mainQuestIds": [14010, 14011, 14012]
       },
       "publication": null,
       "spanish": "available",
@@ -1636,7 +1643,7 @@
       "title": "Juntos sobre las olas",
       "providerRef": {
         "chapterId": 2044,
-        "mainQuestIds": [14017]
+        "mainQuestIds": [14015, 14016, 14017]
       },
       "publication": null,
       "spanish": "available",
@@ -1653,7 +1660,7 @@
       "title": "Mil millas iluminadas por la luna",
       "providerRef": {
         "chapterId": 2045,
-        "mainQuestIds": [11035]
+        "mainQuestIds": [11033, 11034, 11035, 11036]
       },
       "publication": null,
       "spanish": "available",
@@ -1670,7 +1677,7 @@
       "title": "Recordaremos esta noche",
       "providerRef": {
         "chapterId": 2046,
-        "mainQuestIds": [14022]
+        "mainQuestIds": [14020, 14021, 14022]
       },
       "publication": null,
       "spanish": "available",
@@ -1687,7 +1694,7 @@
       "title": "Cuando se apaga la hoguera",
       "providerRef": {
         "chapterId": 2047,
-        "mainQuestIds": [14026]
+        "mainQuestIds": [14023, 14024, 14025, 14026]
       },
       "publication": null,
       "spanish": "available",
@@ -1704,7 +1711,7 @@
       "title": "Mentiras piréticas",
       "providerRef": {
         "chapterId": 2048,
-        "mainQuestIds": [14030]
+        "mainQuestIds": [14027, 14028, 14029, 14030]
       },
       "publication": null,
       "spanish": "available",
@@ -1721,7 +1728,7 @@
       "title": "El protector de la promesa",
       "providerRef": {
         "chapterId": 2049,
-        "mainQuestIds": [13039]
+        "mainQuestIds": [13035, 13036, 13037, 13038, 13039]
       },
       "publication": null,
       "spanish": "available",
@@ -1738,7 +1745,7 @@
       "title": "Silencio entre tinieblas",
       "providerRef": {
         "chapterId": 2050,
-        "mainQuestIds": [14034]
+        "mainQuestIds": [14031, 14032, 14033, 14034]
       },
       "publication": null,
       "spanish": "available",
@@ -1755,7 +1762,7 @@
       "title": "Deuda floral, pago en sangre",
       "providerRef": {
         "chapterId": 2051,
-        "mainQuestIds": [14039]
+        "mainQuestIds": [14037, 14038, 14039]
       },
       "publication": null,
       "spanish": "available",
@@ -1806,7 +1813,7 @@
       "title": "El trato de Kinich",
       "providerRef": {
         "chapterId": 2054,
-        "mainQuestIds": [15004]
+        "mainQuestIds": [15002, 15003, 15004]
       },
       "publication": null,
       "spanish": "available",
@@ -1857,7 +1864,7 @@
       "title": "Viaje a la isla misteriosa",
       "providerRef": {
         "chapterId": 2057,
-        "mainQuestIds": [15010]
+        "mainQuestIds": [15007, 15008, 15009, 15010]
       },
       "publication": null,
       "spanish": "available",
@@ -1908,7 +1915,7 @@
       "title": "Canto melodioso",
       "providerRef": {
         "chapterId": 2060,
-        "mainQuestIds": [15016]
+        "mainQuestIds": [15013, 15014, 15015, 15016]
       },
       "publication": null,
       "spanish": "available",
@@ -1959,7 +1966,7 @@
       "title": "Pistolas y alas",
       "providerRef": {
         "chapterId": 2063,
-        "mainQuestIds": [15023]
+        "mainQuestIds": [15021, 15022, 15023]
       },
       "publication": null,
       "spanish": "available",
@@ -2010,7 +2017,7 @@
       "title": "La verdad de la Batalla de los Siete Colores",
       "providerRef": {
         "chapterId": 2066,
-        "mainQuestIds": [15029]
+        "mainQuestIds": [15026, 15027, 15028, 15029]
       },
       "publication": null,
       "spanish": "available",
@@ -2027,7 +2034,7 @@
       "title": "Como el sol abrasador",
       "providerRef": {
         "chapterId": 2067,
-        "mainQuestIds": [5034]
+        "mainQuestIds": [5027, 5032, 5033, 5034]
       },
       "publication": null,
       "spanish": "available",
@@ -2044,7 +2051,9 @@
       "title": "La magia de la narración",
       "providerRef": {
         "chapterId": 2068,
-        "mainQuestIds": [16004]
+        "mainQuestIds": [
+          16000, 16001, 16002, 16003, 16004, 16005, 16006, 16007, 16008
+        ]
       },
       "publication": null,
       "spanish": "available",
@@ -2061,7 +2070,7 @@
       "title": "La melancolía de una baku",
       "providerRef": {
         "chapterId": 2069,
-        "mainQuestIds": [12048]
+        "mainQuestIds": [12044, 12045, 12046, 12047, 12048]
       },
       "publication": null,
       "spanish": "available",
@@ -2112,7 +2121,7 @@
       "title": "Rastros fúngicos en la campiña",
       "providerRef": {
         "chapterId": 2073,
-        "mainQuestIds": [15032]
+        "mainQuestIds": [15030, 15031, 15032]
       },
       "publication": null,
       "spanish": "available",
@@ -2129,7 +2138,7 @@
       "title": "Delicatessen",
       "providerRef": {
         "chapterId": 2074,
-        "mainQuestIds": [14046]
+        "mainQuestIds": [14044, 14045, 14046]
       },
       "publication": null,
       "spanish": "available",
@@ -2146,7 +2155,7 @@
       "title": "Susurros entre las estrellas y la noche",
       "providerRef": {
         "chapterId": 2075,
-        "mainQuestIds": [15038]
+        "mainQuestIds": [15034, 15035, 15036, 15037, 15038]
       },
       "publication": null,
       "spanish": "available",
@@ -2299,7 +2308,7 @@
       "title": "Para aquellos que estuvieron en la expedición",
       "providerRef": {
         "chapterId": 2087,
-        "mainQuestIds": [16011]
+        "mainQuestIds": [16009, 16010, 16011]
       },
       "publication": null,
       "spanish": "available",
@@ -2316,7 +2325,7 @@
       "title": "El legado de un caballero",
       "providerRef": {
         "chapterId": 2088,
-        "mainQuestIds": [10013]
+        "mainQuestIds": [10011, 10012, 10013]
       },
       "publication": null,
       "spanish": "available",
@@ -2333,7 +2342,7 @@
       "title": "Hacia las plumas del retorno",
       "providerRef": {
         "chapterId": 2089,
-        "mainQuestIds": [16020]
+        "mainQuestIds": [16018, 16019, 16020]
       },
       "publication": null,
       "spanish": "available",
@@ -2588,7 +2597,7 @@
       "title": "El resplandor de las linternas celestes",
       "providerRef": {
         "chapterId": 10015,
-        "mainQuestIds": [41357]
+        "mainQuestIds": [41357, 71000, 71003, 71023, 71024]
       },
       "publication": null,
       "spanish": "available",
@@ -2605,7 +2614,7 @@
       "title": "El resplandor de las linternas celestes",
       "providerRef": {
         "chapterId": 10016,
-        "mainQuestIds": [41358]
+        "mainQuestIds": [41358, 71025, 71026, 71027, 71028]
       },
       "publication": null,
       "spanish": "available",
@@ -2622,7 +2631,7 @@
       "title": "El resplandor de las linternas celestes",
       "providerRef": {
         "chapterId": 10017,
-        "mainQuestIds": [41359]
+        "mainQuestIds": [41359, 71029, 71030, 71032]
       },
       "publication": null,
       "spanish": "available",
@@ -2758,7 +2767,7 @@
       "title": "Purificación del Cerezo Sagrado",
       "providerRef": {
         "chapterId": 10025,
-        "mainQuestIds": [72105]
+        "mainQuestIds": [72100, 72105, 72106, 72107, 72108]
       },
       "publication": null,
       "spanish": "available",
@@ -2860,7 +2869,7 @@
       "title": "Abismo plenilunado",
       "providerRef": {
         "chapterId": 10031,
-        "mainQuestIds": [72149]
+        "mainQuestIds": [72145, 72146, 72147, 72148, 72149]
       },
       "publication": null,
       "spanish": "available",
@@ -2877,7 +2886,7 @@
       "title": "Cazatormentas de Seirai",
       "providerRef": {
         "chapterId": 10032,
-        "mainQuestIds": [72158]
+        "mainQuestIds": [72155, 72156, 72157, 72158]
       },
       "publication": null,
       "spanish": "available",
@@ -2945,7 +2954,7 @@
       "title": "Cuentos de Tatara",
       "providerRef": {
         "chapterId": 10036,
-        "mainQuestIds": [72122]
+        "mainQuestIds": [72114, 72115, 72116, 72117, 72118, 72119, 72120, 72122]
       },
       "publication": null,
       "spanish": "available",
@@ -2962,7 +2971,7 @@
       "title": "Legado de Orobashi",
       "providerRef": {
         "chapterId": 10037,
-        "mainQuestIds": [72132]
+        "mainQuestIds": [72129, 72130, 72131, 72132, 72133, 72134]
       },
       "publication": null,
       "spanish": "available",
@@ -3081,7 +3090,7 @@
       "title": "A través de la niebla",
       "providerRef": {
         "chapterId": 10044,
-        "mainQuestIds": [72173]
+        "mainQuestIds": [72166, 72167, 72172, 72173]
       },
       "publication": null,
       "spanish": "available",
@@ -3098,7 +3107,7 @@
       "title": "Un pasado nevado",
       "providerRef": {
         "chapterId": 10045,
-        "mainQuestIds": [40026]
+        "mainQuestIds": [40025, 40026]
       },
       "publication": null,
       "spanish": "available",
@@ -3115,7 +3124,7 @@
       "title": "Las sombras se alargan",
       "providerRef": {
         "chapterId": 10046,
-        "mainQuestIds": [40028]
+        "mainQuestIds": [40027, 40028]
       },
       "publication": null,
       "spanish": "available",
@@ -3166,7 +3175,7 @@
       "title": "No es momento de lágrimas",
       "providerRef": {
         "chapterId": 10049,
-        "mainQuestIds": [40219]
+        "mainQuestIds": [40218, 40219]
       },
       "publication": null,
       "spanish": "available",
@@ -3183,7 +3192,7 @@
       "title": "La niebla de las profundidades",
       "providerRef": {
         "chapterId": 10050,
-        "mainQuestIds": [40051]
+        "mainQuestIds": [40047, 40048, 40049, 40050, 40051]
       },
       "publication": null,
       "spanish": "available",
@@ -3200,7 +3209,9 @@
       "title": "Viaje al centro de la Sima",
       "providerRef": {
         "chapterId": 10051,
-        "mainQuestIds": [71045]
+        "mainQuestIds": [
+          71037, 71040, 71041, 71042, 71043, 71044, 71045, 71048, 71049
+        ]
       },
       "publication": null,
       "spanish": "available",
@@ -3268,7 +3279,7 @@
       "title": "Alba y crepúsculo en Byakuya",
       "providerRef": {
         "chapterId": 10055,
-        "mainQuestIds": [72177]
+        "mainQuestIds": [72177, 72190, 72191, 72192, 72242]
       },
       "publication": null,
       "spanish": "available",
@@ -3319,7 +3330,7 @@
       "title": "Un papel de la fortuna muy peculiar",
       "providerRef": {
         "chapterId": 10058,
-        "mainQuestIds": [72266]
+        "mainQuestIds": [72263, 72265, 72266]
       },
       "publication": null,
       "spanish": "available",
@@ -3336,7 +3347,7 @@
       "title": "El secreto de Érebo",
       "providerRef": {
         "chapterId": 10059,
-        "mainQuestIds": [72275]
+        "mainQuestIds": [72268, 72269, 72270, 72275]
       },
       "publication": null,
       "spanish": "available",
@@ -3404,7 +3415,7 @@
       "title": "El cuento de Suikou el borracho",
       "providerRef": {
         "chapterId": 10065,
-        "mainQuestIds": [40055]
+        "mainQuestIds": [40054, 40055]
       },
       "publication": null,
       "spanish": "available",
@@ -3455,7 +3466,7 @@
       "title": "Un palacio teñido de negro",
       "providerRef": {
         "chapterId": 10068,
-        "mainQuestIds": [40059]
+        "mainQuestIds": [40058, 40059]
       },
       "publication": null,
       "spanish": "available",
@@ -3489,7 +3500,7 @@
       "title": "Vimana Agama",
       "providerRef": {
         "chapterId": 10070,
-        "mainQuestIds": [73027]
+        "mainQuestIds": [73000, 73026, 73027, 73028, 73029, 73073]
       },
       "publication": null,
       "spanish": "available",
@@ -3506,7 +3517,7 @@
       "title": "Buscando tesoros entre arrecifes",
       "providerRef": {
         "chapterId": 10071,
-        "mainQuestIds": [79020]
+        "mainQuestIds": [79020, 79028, 79029, 79030, 79031]
       },
       "publication": null,
       "spanish": "available",
@@ -3523,7 +3534,7 @@
       "title": "El gaza de Váruna",
       "providerRef": {
         "chapterId": 10072,
-        "mainQuestIds": [73018]
+        "mainQuestIds": [73014, 73015, 73016, 73017, 73018, 73060]
       },
       "publication": null,
       "spanish": "available",
@@ -3540,7 +3551,7 @@
       "title": "Encuentro en el bosque",
       "providerRef": {
         "chapterId": 10073,
-        "mainQuestIds": [73003]
+        "mainQuestIds": [73001, 73002, 73003]
       },
       "publication": null,
       "spanish": "available",
@@ -3591,7 +3602,10 @@
       "title": "El jardín onírico",
       "providerRef": {
         "chapterId": 10076,
-        "mainQuestIds": [73032]
+        "mainQuestIds": [
+          73025, 73031, 73032, 73033, 73039, 73040, 73041, 73042, 73047, 73048,
+          73050, 73069, 73070, 73074, 73081, 73239
+        ]
       },
       "publication": null,
       "spanish": "available",
@@ -3642,7 +3656,7 @@
       "title": "El jardín de los sueños perdidos",
       "providerRef": {
         "chapterId": 10079,
-        "mainQuestIds": [73037]
+        "mainQuestIds": [73035, 73036, 73037]
       },
       "publication": null,
       "spanish": "available",
@@ -3710,7 +3724,7 @@
       "title": "Sutra del agnihotra",
       "providerRef": {
         "chapterId": 10083,
-        "mainQuestIds": [73066]
+        "mainQuestIds": [73005, 73006, 73007, 73008, 73045, 73061, 73063, 73066]
       },
       "publication": null,
       "spanish": "available",
@@ -3778,7 +3792,7 @@
       "title": "El Letargo Dorado",
       "providerRef": {
         "chapterId": 10087,
-        "mainQuestIds": [73055]
+        "mainQuestIds": [73052, 73053, 73054, 73055]
       },
       "publication": null,
       "spanish": "available",
@@ -3812,7 +3826,7 @@
       "title": "Jardín primaveral de antaño",
       "providerRef": {
         "chapterId": 10089,
-        "mainQuestIds": [40067]
+        "mainQuestIds": [40065, 40066, 40067]
       },
       "publication": null,
       "spanish": "available",
@@ -3829,7 +3843,7 @@
       "title": "Canción ardiente",
       "providerRef": {
         "chapterId": 10090,
-        "mainQuestIds": [40070]
+        "mainQuestIds": [40068, 40069, 40070]
       },
       "publication": null,
       "spanish": "available",
@@ -3846,7 +3860,7 @@
       "title": "Apocalipsis de la Noche Eterna",
       "providerRef": {
         "chapterId": 10091,
-        "mainQuestIds": [40073]
+        "mainQuestIds": [40071, 40072, 40073]
       },
       "publication": null,
       "spanish": "available",
@@ -3863,7 +3877,7 @@
       "title": "Estrellas arcaicas",
       "providerRef": {
         "chapterId": 10092,
-        "mainQuestIds": [40076]
+        "mainQuestIds": [40074, 40075, 40076]
       },
       "publication": null,
       "spanish": "available",
@@ -3897,7 +3911,7 @@
       "title": "Paraíso",
       "providerRef": {
         "chapterId": 10094,
-        "mainQuestIds": [76095]
+        "mainQuestIds": [70067, 70068, 70069, 76089, 76095, 76147]
       },
       "publication": null,
       "spanish": "available",
@@ -3914,7 +3928,7 @@
       "title": "Infierno",
       "providerRef": {
         "chapterId": 10095,
-        "mainQuestIds": [76148]
+        "mainQuestIds": [76148, 76152]
       },
       "publication": null,
       "spanish": "available",
@@ -4118,7 +4132,7 @@
       "title": "Antiguas notas y nuevos amigos",
       "providerRef": {
         "chapterId": 10107,
-        "mainQuestIds": [73110]
+        "mainQuestIds": [73083, 73110, 73189, 73190, 73191]
       },
       "publication": null,
       "spanish": "available",
@@ -4288,7 +4302,7 @@
       "title": "¡Una invitación muy lejana!",
       "providerRef": {
         "chapterId": 10117,
-        "mainQuestIds": [40114]
+        "mainQuestIds": [40112, 40113, 40114]
       },
       "publication": null,
       "spanish": "available",
@@ -4322,7 +4336,7 @@
       "title": "¡Sueños y nuevas historias!",
       "providerRef": {
         "chapterId": 10119,
-        "mainQuestIds": [40119]
+        "mainQuestIds": [40116, 40119]
       },
       "publication": null,
       "spanish": "available",
@@ -4339,7 +4353,7 @@
       "title": "Enemigos como torrentes de agua",
       "providerRef": {
         "chapterId": 10120,
-        "mainQuestIds": [73225]
+        "mainQuestIds": [73212, 73225, 73264]
       },
       "publication": null,
       "spanish": "available",
@@ -4356,7 +4370,9 @@
       "title": "Jvarena del bien y del mal",
       "providerRef": {
         "chapterId": 10121,
-        "mainQuestIds": [73232]
+        "mainQuestIds": [
+          73231, 73232, 73235, 73238, 73251, 73253, 73254, 73256, 73257
+        ]
       },
       "publication": null,
       "spanish": "available",
@@ -4512,7 +4528,7 @@
       "title": "La elegía de Bilqis",
       "providerRef": {
         "chapterId": 10130,
-        "mainQuestIds": [73220]
+        "mainQuestIds": [73103, 73186, 73187, 73219, 73220, 73287]
       },
       "publication": null,
       "spanish": "available",
@@ -4665,7 +4681,7 @@
       "title": "Crecidas y estiajes",
       "providerRef": {
         "chapterId": 10140,
-        "mainQuestIds": [40102]
+        "mainQuestIds": [40101, 40102]
       },
       "publication": null,
       "spanish": "available",
@@ -4682,7 +4698,7 @@
       "title": "Reuniones y partidas",
       "providerRef": {
         "chapterId": 10141,
-        "mainQuestIds": [40104]
+        "mainQuestIds": [40103, 40104]
       },
       "publication": null,
       "spanish": "available",
@@ -4716,7 +4732,7 @@
       "title": "Una comedia inacabada",
       "providerRef": {
         "chapterId": 10143,
-        "mainQuestIds": [74028]
+        "mainQuestIds": [74025, 74026, 74028]
       },
       "publication": null,
       "spanish": "available",
@@ -4750,7 +4766,7 @@
       "title": "Crónicas del Instituto de Ciencias de Fontaine",
       "providerRef": {
         "chapterId": 10145,
-        "mainQuestIds": [74053]
+        "mainQuestIds": [74053, 74087, 74088]
       },
       "publication": null,
       "spanish": "available",
@@ -4767,7 +4783,7 @@
       "title": "La gran aventura de la Cruz de los Narcisos",
       "providerRef": {
         "chapterId": 10146,
-        "mainQuestIds": [74002]
+        "mainQuestIds": [74001, 74002]
       },
       "publication": null,
       "spanish": "available",
@@ -4784,7 +4800,7 @@
       "title": "El hada salvaje de Erinias",
       "providerRef": {
         "chapterId": 10147,
-        "mainQuestIds": [74085]
+        "mainQuestIds": [74082, 74083, 74084, 74085, 74169]
       },
       "publication": null,
       "spanish": "available",
@@ -4869,7 +4885,7 @@
       "title": "Búsqueda en el mar de algas",
       "providerRef": {
         "chapterId": 10152,
-        "mainQuestIds": [74072]
+        "mainQuestIds": [74072, 74073, 74074, 74075, 74076]
       },
       "publication": null,
       "spanish": "available",
@@ -4937,7 +4953,10 @@
       "title": "La vida en el Fuerte Merópide",
       "providerRef": {
         "chapterId": 10156,
-        "mainQuestIds": [74030, 74031, 74032, 74033]
+        "mainQuestIds": [
+          74030, 74031, 74032, 74033, 74061, 74062, 74063, 74064, 74065, 74066,
+          74067, 74068
+        ]
       },
       "publication": null,
       "spanish": "available",
@@ -5141,7 +5160,7 @@
       "title": "El venerable jade de Chenyu",
       "providerRef": {
         "chapterId": 10168,
-        "mainQuestIds": [71100]
+        "mainQuestIds": [71100, 71102, 71103]
       },
       "publication": null,
       "spanish": "available",
@@ -5175,7 +5194,7 @@
       "title": "Pociones místicas",
       "providerRef": {
         "chapterId": 10170,
-        "mainQuestIds": [40144]
+        "mainQuestIds": [40144, 40160, 40161]
       },
       "publication": null,
       "spanish": "available",
@@ -5311,7 +5330,7 @@
       "title": "Darradarljód",
       "providerRef": {
         "chapterId": 10178,
-        "mainQuestIds": [76100]
+        "mainQuestIds": [76100, 76160, 76161, 76162]
       },
       "publication": null,
       "spanish": "available",
@@ -5345,7 +5364,7 @@
       "title": "La rapsodia de Farsalia",
       "providerRef": {
         "chapterId": 10181,
-        "mainQuestIds": [74194]
+        "mainQuestIds": [74194, 74202, 74206]
       },
       "publication": null,
       "spanish": "available",
@@ -5430,7 +5449,7 @@
       "title": "El amor y el odio de las Hespérides",
       "providerRef": {
         "chapterId": 10187,
-        "mainQuestIds": [77107]
+        "mainQuestIds": [77104, 77105, 77107, 77128, 77131]
       },
       "publication": null,
       "spanish": "available",
@@ -5617,7 +5636,7 @@
       "title": "De más allá de los cielos",
       "providerRef": {
         "chapterId": 10199,
-        "mainQuestIds": [76062]
+        "mainQuestIds": [76062, 76127, 76133]
       },
       "publication": null,
       "spanish": "available",
@@ -5685,7 +5704,7 @@
       "title": "Entre la promesa y el olvido",
       "providerRef": {
         "chapterId": 10203,
-        "mainQuestIds": [75003]
+        "mainQuestIds": [75000, 75002, 75003, 75019]
       },
       "publication": null,
       "spanish": "available",
@@ -5702,7 +5721,10 @@
       "title": "#El periplo {F#de la}{M#del} elegid{F#a}{M#o} de los dragones",
       "providerRef": {
         "chapterId": 10204,
-        "mainQuestIds": [75082]
+        "mainQuestIds": [
+          75009, 75010, 75015, 75018, 75022, 75023, 75024, 75025, 75028, 75035,
+          75036, 75081, 75082, 75094, 75107, 75108, 75177, 75178
+        ]
       },
       "publication": null,
       "spanish": "available",
@@ -5719,7 +5741,7 @@
       "title": "La sombra de las montañas",
       "providerRef": {
         "chapterId": 10205,
-        "mainQuestIds": [75004]
+        "mainQuestIds": [75001, 75004]
       },
       "publication": null,
       "spanish": "available",
@@ -5736,7 +5758,7 @@
       "title": "Soñando entre las llamas",
       "providerRef": {
         "chapterId": 10206,
-        "mainQuestIds": [75011]
+        "mainQuestIds": [75006, 75011]
       },
       "publication": null,
       "spanish": "available",
@@ -5872,7 +5894,7 @@
       "title": "De un plan a otro",
       "providerRef": {
         "chapterId": 10214,
-        "mainQuestIds": [75087]
+        "mainQuestIds": [75014, 75079, 75086, 75087]
       },
       "publication": null,
       "spanish": "available",
@@ -5889,7 +5911,7 @@
       "title": "Soñando con el cielo azul",
       "providerRef": {
         "chapterId": 10215,
-        "mainQuestIds": [75135]
+        "mainQuestIds": [75133, 75134, 75135]
       },
       "publication": null,
       "spanish": "available",
@@ -5906,7 +5928,7 @@
       "title": "El tremor del Tonatiuh",
       "providerRef": {
         "chapterId": 10216,
-        "mainQuestIds": [75137]
+        "mainQuestIds": [75136, 75137, 75170, 75171, 75172]
       },
       "publication": null,
       "spanish": "available",
@@ -6110,7 +6132,7 @@
       "title": "El Proyecto Vigía Lunar",
       "providerRef": {
         "chapterId": 10228,
-        "mainQuestIds": [76143]
+        "mainQuestIds": [76131, 76143]
       },
       "publication": null,
       "spanish": "available",
@@ -6127,7 +6149,7 @@
       "title": "Un encargo de la Cámara de Secretos",
       "providerRef": {
         "chapterId": 10229,
-        "mainQuestIds": [40236]
+        "mainQuestIds": [40225, 40226, 40227, 40236]
       },
       "publication": null,
       "spanish": "available",
@@ -6144,7 +6166,10 @@
       "title": "El narrador de la ciudad desolada",
       "providerRef": {
         "chapterId": 10230,
-        "mainQuestIds": [75166]
+        "mainQuestIds": [
+          75149, 75150, 75166, 75175, 75176, 75181, 75189, 75199, 75200, 75201,
+          75202, 75203
+        ]
       },
       "publication": null,
       "spanish": "available",
@@ -6178,7 +6203,7 @@
       "title": "Un parque temático construido en una noche",
       "providerRef": {
         "chapterId": 10232,
-        "mainQuestIds": [40194, 40189]
+        "mainQuestIds": [40189, 40194]
       },
       "publication": null,
       "spanish": "available",
@@ -6314,7 +6339,7 @@
       "title": "Polca bajo el oráculo de la luna",
       "providerRef": {
         "chapterId": 10241,
-        "mainQuestIds": [76011]
+        "mainQuestIds": [76005, 76009, 76010, 76011, 76014]
       },
       "publication": null,
       "spanish": "available",
@@ -6331,7 +6356,7 @@
       "title": "Más allá de la plata y el oro",
       "providerRef": {
         "chapterId": 10242,
-        "mainQuestIds": [76205]
+        "mainQuestIds": [76202, 76203, 76204, 76205]
       },
       "publication": null,
       "spanish": "available",
@@ -6348,7 +6373,9 @@
       "title": "Misión de prueba beta de evento de verano",
       "providerRef": {
         "chapterId": 10244,
-        "mainQuestIds": [75211]
+        "mainQuestIds": [
+          70054, 70055, 70056, 70057, 75209, 75210, 75211, 75214, 75242
+        ]
       },
       "publication": null,
       "spanish": "available",
@@ -6382,7 +6409,7 @@
       "title": "¡El mundo es tu lienzo!",
       "providerRef": {
         "chapterId": 10246,
-        "mainQuestIds": [15043]
+        "mainQuestIds": [15040, 15041, 15042, 15043, 15047, 15048]
       },
       "publication": null,
       "spanish": "available",
@@ -6433,7 +6460,7 @@
       "title": "El jabalí y la brujita",
       "providerRef": {
         "chapterId": 10249,
-        "mainQuestIds": [40228]
+        "mainQuestIds": [40212, 40221, 40228, 40232, 40243]
       },
       "publication": null,
       "spanish": "available",
@@ -6518,7 +6545,7 @@
       "title": "En la morada de la vida",
       "providerRef": {
         "chapterId": 10255,
-        "mainQuestIds": [77112]
+        "mainQuestIds": [77102, 77103, 77110, 77111, 77112, 77115, 77116]
       },
       "publication": null,
       "spanish": "available",
@@ -6552,7 +6579,7 @@
       "title": "Los colores del vacío",
       "providerRef": {
         "chapterId": 10260,
-        "mainQuestIds": [76028]
+        "mainQuestIds": [76026, 76027, 76028]
       },
       "publication": null,
       "spanish": "available",
@@ -6637,7 +6664,7 @@
       "title": "Al este de la luna, al oeste del sol",
       "providerRef": {
         "chapterId": 10265,
-        "mainQuestIds": [76003]
+        "mainQuestIds": [76003, 76016, 76020, 76098, 76110]
       },
       "publication": null,
       "spanish": "available",
@@ -6773,7 +6800,7 @@
       "title": "Aquellos que conservamos",
       "providerRef": {
         "chapterId": 10273,
-        "mainQuestIds": [40247]
+        "mainQuestIds": [40246, 40247]
       },
       "publication": null,
       "spanish": "available",
@@ -6841,7 +6868,7 @@
       "title": "A la vez palacio y mausoleo",
       "providerRef": {
         "chapterId": 10282,
-        "mainQuestIds": [77101]
+        "mainQuestIds": [77100, 77101]
       },
       "publication": null,
       "spanish": "available",
@@ -6858,7 +6885,7 @@
       "title": "Los callejones de los infames",
       "providerRef": {
         "chapterId": 10283,
-        "mainQuestIds": [77143]
+        "mainQuestIds": [77142, 77143]
       },
       "publication": null,
       "spanish": "available",
@@ -6875,7 +6902,10 @@
       "title": "Variación blanquinegra",
       "providerRef": {
         "chapterId": 10284,
-        "mainQuestIds": [77000, 77013]
+        "mainQuestIds": [
+          77000, 77001, 77002, 77003, 77004, 77005, 77006, 77007, 77008, 77009,
+          77010, 77011, 77012, 77013, 77235, 77236, 77237
+        ]
       },
       "publication": null,
       "spanish": "available",
@@ -6926,7 +6956,7 @@
       "title": "¡Por la feria gastronómica!",
       "providerRef": {
         "chapterId": 10287,
-        "mainQuestIds": [71546]
+        "mainQuestIds": [71544, 71545, 71546]
       },
       "publication": null,
       "spanish": "available",
@@ -7011,7 +7041,9 @@
       "title": "La fuente de la curación",
       "providerRef": {
         "chapterId": 101401,
-        "mainQuestIds": [19005, 19007, 19009]
+        "mainQuestIds": [
+          19001, 19002, 19003, 19004, 19005, 19006, 19007, 19008, 19009
+        ]
       },
       "publication": null,
       "spanish": "available",
@@ -7028,7 +7060,9 @@
       "title": "Engaños y licor dulce",
       "providerRef": {
         "chapterId": 101501,
-        "mainQuestIds": [19098, 19094, 19096, 19097, 19080]
+        "mainQuestIds": [
+          19073, 19079, 19080, 19093, 19094, 19095, 19096, 19097, 19098
+        ]
       },
       "publication": null,
       "spanish": "available",
@@ -7045,7 +7079,7 @@
       "title": "Cuando la Flota Crux brilla refulgente",
       "providerRef": {
         "chapterId": 102401,
-        "mainQuestIds": [19051, 19052, 19053, 19054]
+        "mainQuestIds": [19050, 19051, 19052, 19053, 19054]
       },
       "publication": null,
       "spanish": "available",
@@ -7062,7 +7096,7 @@
       "title": "Otra invitación a la Cámara de Jade",
       "providerRef": {
         "chapterId": 102701,
-        "mainQuestIds": [19133, 19134, 19135, 19136, 19137]
+        "mainQuestIds": [19131, 19132, 19133, 19134, 19135, 19136, 19137, 19138]
       },
       "publication": null,
       "spanish": "available",
@@ -7079,7 +7113,7 @@
       "title": "Una aventura maravillosa",
       "providerRef": {
         "chapterId": 103201,
-        "mainQuestIds": [19042, 19043, 19044, 19045]
+        "mainQuestIds": [19041, 19042, 19043, 19044, 19045]
       },
       "publication": null,
       "spanish": "available",
@@ -7096,7 +7130,9 @@
       "title": "El camino de una caballera",
       "providerRef": {
         "chapterId": 103401,
-        "mainQuestIds": [19062, 19065, 19066, 19068, 19069]
+        "mainQuestIds": [
+          19061, 19062, 19063, 19064, 19065, 19066, 19067, 19068, 19069
+        ]
       },
       "publication": null,
       "spanish": "available",
@@ -7113,7 +7149,9 @@
       "title": "El examen de una caballera",
       "providerRef": {
         "chapterId": 103402,
-        "mainQuestIds": [19083, 19084, 19087, 19091, 19092]
+        "mainQuestIds": [
+          19081, 19082, 19083, 19084, 19085, 19086, 19087, 19090, 19091, 19092
+        ]
       },
       "publication": null,
       "spanish": "available",
@@ -7130,7 +7168,10 @@
       "title": "El cazafantasmas",
       "providerRef": {
         "chapterId": 103601,
-        "mainQuestIds": [19023, 19025, 19024, 19031, 19032]
+        "mainQuestIds": [
+          19021, 19022, 19023, 19024, 19025, 19030, 19031, 19032, 19033, 19034,
+          19035
+        ]
       },
       "publication": null,
       "spanish": "available",
@@ -7147,7 +7188,7 @@
       "title": "Coctelería felina",
       "providerRef": {
         "chapterId": 103901,
-        "mainQuestIds": [19102, 19104, 19105, 19107]
+        "mainQuestIds": [19101, 19102, 19103, 19104, 19105, 19106, 19107]
       },
       "publication": null,
       "spanish": "available",
@@ -7164,7 +7205,9 @@
       "title": "Los quehaceres cotidianos de un amo de llaves",
       "providerRef": {
         "chapterId": 105001,
-        "mainQuestIds": [19114, 19115, 19117, 19118, 19119, 19121]
+        "mainQuestIds": [
+          19111, 19112, 19113, 19114, 19115, 19116, 19117, 19118, 19119, 19121
+        ]
       },
       "publication": null,
       "spanish": "available",
@@ -7181,7 +7224,7 @@
       "title": "Técnica “¡Yujuuu!”: el arte de crecer",
       "providerRef": {
         "chapterId": 105301,
-        "mainQuestIds": [19013, 19014, 19015, 19016]
+        "mainQuestIds": [19010, 19012, 19013, 19014, 19015, 19016]
       },
       "publication": null,
       "spanish": "available",
@@ -7198,7 +7241,7 @@
       "title": "¡Operaciones especiales del General Canino!",
       "providerRef": {
         "chapterId": 105501,
-        "mainQuestIds": [19019, 19020, 19026, 19027, 19028]
+        "mainQuestIds": [19018, 19019, 19020, 19026, 19027, 19028]
       },
       "publication": null,
       "spanish": "available",
@@ -7215,7 +7258,7 @@
       "title": "Investigación tormentosa",
       "providerRef": {
         "chapterId": 105901,
-        "mainQuestIds": [19055, 19057, 19060]
+        "mainQuestIds": [19036, 19039, 19055, 19056, 19057, 19060]
       },
       "publication": null,
       "spanish": "available",
@@ -7232,7 +7275,7 @@
       "title": "Canción de gracia",
       "providerRef": {
         "chapterId": 106401,
-        "mainQuestIds": [19038, 19040, 19047]
+        "mainQuestIds": [19017, 19037, 19038, 19040, 19047, 19048]
       },
       "publication": null,
       "spanish": "available",
@@ -7249,7 +7292,7 @@
       "title": "El día a día de la Banda",
       "providerRef": {
         "chapterId": 106501,
-        "mainQuestIds": [19145, 19146, 19147, 19148, 19144]
+        "mainQuestIds": [19141, 19142, 19143, 19144, 19145, 19146, 19147, 19148]
       },
       "publication": null,
       "spanish": "available",
@@ -7266,7 +7309,10 @@
       "title": "La estrella taciturna",
       "providerRef": {
         "chapterId": 107401,
-        "mainQuestIds": [19153, 19155, 19156, 19159, 19160, 19162]
+        "mainQuestIds": [
+          19150, 19151, 19152, 19153, 19154, 19155, 19156, 19157, 19158, 19159,
+          19160, 19161, 19162
+        ]
       },
       "publication": null,
       "spanish": "available",
@@ -7283,7 +7329,7 @@
       "title": "Un entramado inextricable",
       "providerRef": {
         "chapterId": 107601,
-        "mainQuestIds": [19171, 19172, 19173]
+        "mainQuestIds": [19170, 19171, 19172, 19173]
       },
       "publication": null,
       "spanish": "available",
@@ -7300,7 +7346,9 @@
       "title": "El péndulo de la tristeza y la felicidad",
       "providerRef": {
         "chapterId": 108101,
-        "mainQuestIds": [19071, 19074, 19077, 19076, 19078]
+        "mainQuestIds": [
+          19058, 19059, 19071, 19072, 19074, 19075, 19076, 19077, 19078
+        ]
       },
       "publication": null,
       "spanish": "available",
@@ -7317,7 +7365,7 @@
       "title": "Una gata llena de posibilidades",
       "providerRef": {
         "chapterId": 108301,
-        "mainQuestIds": [19182, 19184, 19187, 19185, 19180]
+        "mainQuestIds": [19180, 19182, 19184, 19185, 19187]
       },
       "publication": null,
       "spanish": "available",
